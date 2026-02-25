@@ -2,7 +2,7 @@
 
 La tasa de éxito de la lucha contra el cáncer es cada vez mayor, a medida que van avanzando las técnicas terapéuticas de todo tipo (quirúrgicas, farmacológicas, etc.) se incrementan las posibilidades de curación. Por eso es importante analizar qué factores son determinantes para conseguir la curación y/o tener altas tasas de supervivencia.
 
-El trabajo podrá ser abordado desde dos puntos de vista diferentes: analizar la supervivencia basándose en factores genéticos o en datos clínicos e imágenes.
+El trabajo podrá ser abordado desde dos puntos de vista diferentes: analizar la supervivencia basándose en factores genéticos **o en datos clínicos e imágenes.**
 
 Es conocido que la genética es uno de los factores que más condicionan al cáncer: tanto la predisposición a padecerlo como las posibilidades de curación una vez que se ha contraído la enfermedad. Esta línea de investigación se basa en el análisis genético de personas con diagnóstico positivo y que están o han estado en tratamiento. La genética influye tanto en las posibilidades de desarrollar la enfermedad como la de la respuesta del organismo a la terapia. 
 
