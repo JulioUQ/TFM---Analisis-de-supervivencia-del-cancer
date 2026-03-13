@@ -1,5 +1,3 @@
-# Recursos de aprendizaje (M2)
-
 A continuación se presentan unas pautas que os intentarán guiar a la hora de redactar vuestro estado del arte.
 
 **¿Qué se entiende por Estado del Arte?**
