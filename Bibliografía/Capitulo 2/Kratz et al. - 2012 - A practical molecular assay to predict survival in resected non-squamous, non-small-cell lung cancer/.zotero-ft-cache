@@ -1,0 +1,378 @@
+Articles
+www.thelancet.com Vol 379 March 3, 2012 823
+Lancet 2012; 379: 823–32
+Published Online January 27, 2012 DOI:10.1016/S01406736(11)61941-7
+See Comment page 785
+*These authors share first authorship
+University of California, San Francisco, CA, USA (J R Kratz MD, P T Pham BS, M S Mulvihill BS, C-C Yeh PhD, Prof M R Segal PhD, M R Ray BS, Prof K D Jones MD, D J Raz MD, Z Xu MD, T M Jahan MD, B He PhD, M J Mann MD, Prof D M Jablons MD);
+Department of Cardiothoracic Surgery, The First Affiliated Hospital of Guangzhou Medical College, State Key Laboratory of Respiratory Disease, Guangzhou, China
+(Prof J He MD, H Zhang MD, Q Deng BS, Z Wang BS, J Zhou BS, H Li PhD); Kaiser Permanente Department of Research, Northern California, Oakland, CA, USA (S K Van Den Eeden PhD, C P Quesenberry PhD,
+L A Habel BS); Department of Thoracic Oncology, Cancer Centre of Sun Yat-Sen University, Guangzhou, China (Prof Z-H Zhu MD); Shanghai Pulmonary Hospital, Shanghai, China (Prof W Gao MD, B Su MD); Pinpoint Genomics, Mountain View, CA, USA (F Ziaei BS, M-C Huang PhD, D Berryman PharmD); and Beijing Lung Cancer Centre, Capital Medical University, Beijing, China (Prof X Zhi MD)
+Correspondence to: Dr Michael J Mann and Prof David M Jablons, UCSF Thoracic Surgery, 1600 Divisadero Street, Room A-743, San Francisco, CA 94143-1724, USA
+michael.mann@ucsfmedctr.org or
+david.jablons@ucsfmedctr.org
+A practical molecular assay to predict survival in resected
+non-squamous, non-small-cell lung cancer: development
+and international validation studies
+Johannes R Kratz*, Jianxing He*, Stephen K Van Den Eeden, Zhi-Hua Zhu, Wen Gao, Patrick T Pham, Michael S Mulvihill, Fatemeh Ziaei, Huanrong Zhang, Bo Su, Xiuyi Zhi, Charles P Quesenberry, Laurel A Habel, Qiuhua Deng, Zongfei Wang, Jiangfen Zhou, Huiling Li, Mei-Chun Huang, Che-Chung Yeh, Mark R Segal, M Roshni Ray, Kirk D Jones, Dan J Raz, Zhidong Xu, Thierry M Jahan, David Berryman, Biao He, Michael J Mann, David M Jablons
+Summary
+Background The frequent recurrence of early-stage non-small-cell lung cancer (NSCLC) is generally attributable to metastatic disease undetected at complete resection. Management of such patients depends on prognostic staging to identify the individuals most likely to have occult disease. We aimed to develop and validate a practical, reliable assay that improves risk stratification compared with conventional staging.
+Methods A 14-gene expression assay that uses quantitative PCR, runs on formalin-fixed paraffin-embedded tissue samples, and differentiates patients with heterogeneous statistical prognoses was developed in a cohort of 361 patients with non-squamous NSCLC resected at the University of California, San Francisco. The assay was then independently validated by the Kaiser Permanente Division of Research in a masked cohort of 433 patients with stage I nonsquamous NSCLC resected at Kaiser Permanente Northern California hospitals, and on a cohort of 1006 patients with stage I–III non-squamous NSCLC resected in several leading Chinese cancer centres that are part of the China Clinical Trials Consortium (CCTC).
+Findings Kaplan-Meier analysis of the Kaiser validation cohort showed 5 year overall survival of 71·4% (95% CI 60·5–80·0) in low-risk, 58·3% (48·9–66·6) in intermediate-risk, and 49·2% (42·2–55·8) in high-risk patients (ptrend=0·0003). Similar analysis of the CCTC cohort indicated 5 year overall survivals of 74·1% (66·0–80·6) in lowrisk, 57·4% (48·3–65·5) in intermediate-risk, and 44·6% (40·2–48·9) in high-risk patients (ptrend<0·0001). Multivariate analysis in both cohorts indicated that no standard clinical risk factors could account for, or provide, the prognostic information derived from tumour gene expression. The assay improved prognostic accuracy beyond National Comprehensive Cancer Network criteria for stage I high-risk tumours (p<0·0001), and differentiated low-risk, intermediate-risk, and high-risk patients within all disease stages.
+Interpretation Our practical, quantitative-PCR-based assay reliably identified patients with early-stage non-squamous NSCLC at high risk for mortality after surgical resection.
+Funding UCSF Thoracic Oncology Laboratory and Pinpoint Genomics.
+Background
+By contrast with other common solid tumours such as breast and colon cancer, outcomes after resection of early-stage non-small-cell lung cancer (NSCLC) are poor, with 35–50% recurrence rates.1 Little progress has been made in the past 30 years in the reduction of distant recurrence and subsequent mortality,1 which remain unacceptably high, even for patients with stage I disease in whom no nodal or other metastatic involvement can be detected at the time of surgery.2 Despite the high rate of occult metastasis and the proven survival benefit of adjuvant platinum-based chemotherapy in stage II–III disease, no data lend support to the use of adjuvant treatment in patients with stage IA tumours as defined by conventional criteria. Furthermore, use of such treatment in patients with stage IB disease is lent support by only controversial evidence.3
+A more precise staging test would give clinicians the ability to identify patients with statistically heterogeneous outcomes from within otherwise homogeneous clinical groups. Differentiation of patients who meet clinicopathological criteria for stage I disease, for example, but who can be identified by a practical and rigorously validated test to have a worse-than-expected prognosis, would help identify patients at especially high risk for occult metastasis. Several groups have developed gene expression analyses that successfully predicted higher-than-expected mortality after resection of early-stage disease in small-to-medium cohorts.4–19 Many of these gene signatures are based on a microarray platform and need snap-frozen tissue samples, making their use difficult in practical clinical settings where reproducibility, cost, and widespread availability are key priorities.4,20 Furthermore, none of these studies has established widespread reliable
+
+
+Articles
+824 www.thelancet.com Vol 379 March 3, 2012
+applicability through blinded, large-scale validation in a community-based setting.20 The purpose of this study was to develop and validate a practical and reliable molecular assay that provides improved risk stratification in patients with nonsquamous NSCLC who are deemed to have early-stage disease by conventional criteria but who have a high rate of treatment failure after resection.
+Methods Study design and participants
+A 14-gene assay that uses quantitative PCR analysis of formalin-fixed, paraffin-embedded tissues was developed with a cohort of 361 patients with non-squamous NSCLC resected at the University of California, San Francisco (UCSF), USA. This assay, developed and run at an independent laboratory certified by Clinical Laboratory Improvement Amendments (CLIA), was then validated by the Kaiser Permanente Division of Research (KPDOR) with a blinded study design in a cohort of 433 patients with stage I non-squamous NSCLC resected at hospitals in the
+Kaiser Permanente Northern California system (CA, USA). Assay results were compared with actual patient outcomes independently by the KPDOR. International, independent large-scale validation of this molecular prognostic assay was also done in a cohort of 1006 Chinese patients who had undergone resection of early-stage NSCLC at one of several institutions participating in the China Clinical Trials Consortium (CCTC). Patients were eligible to enter the study as part of the training cohort if they underwent surgical resection of non-squamous NSCLC at UCSF with curative intent between Jan 1, 1997, and Dec 31, 2007. Patients with squamous-cell lung carcinomas were excluded from assay development and validation because previous studies have suggested fundamental differences in the molecular make-up between the squamous-cell and nonsquamous-cell lung carcinoma,21 and because the selection of candidate genes for this assay was based on previous research in a cohort of patients with nonsquamous-cell NSCLC.14 Patients were eligible to be included in the Kaiser Permanente validation cohort if they underwent complete resection of American Joint Commission on Cancer22 stage I non-squamous NSCLC by clinical and pathological staging at a Northern California Kaiser Permanente facility between Jan 1, 1998, and Dec 31, 2005. Patients were eligible to be included in the CCTC validation cohort if they had undergone an attempt at curative resection for American Joint Commission on Cancer stage I–III non-squamous-cell NSCLC at either First Affiliated Hospital of Guangzhou Medical College (Guangdong, China), Sun Yat-sen University Cancer Centre in Guangzhou (Guangdong, China), or Shanghai Pulmonary Hospital (Shanghai, China) between Jan 1, 2000, and Dec 31, 2008. Exclusion criteria for patients in either the training or validation cohorts were as follows: missing or inadequate tissue blocks (ie, a tumour that occupies <25% of the tissue surface area), death within 30 days of resection, treatment with preoperative chemotherapy (validation cohorts only), positive margins on pathology (validation cohorts only), and a second cancer (excluding cutaneous basal and squamous-cell carcinomas) diagnosed within 3 years of the lung cancer diagnosis (CCTC validation cohort only). Information on clinical variables, follow-up, and cause of death were obtained from a review of medical records. Vital status and date of death were established by review of medical records and verified by sources including the Kaiser Permanente Northern California Cancer Registry, California Death Records, Social Security Death Master File,24 and direct contact with the patient or their family. The study was approved by Institutional Review Boards of the University of California, San Francisco and Kaiser Permanente Division of Research. Written consent for the use of resected tissue for research purposes was obtained from CCTC patients at the time of surgery. Each of the Chinese institutions involved in this study maintains an
+UCSF training cohort
+Kaiser validation cohort
+CCTC validation cohort
+FFPE blocks available 361 433 1006
+Successful RNA recovery 337 (93%) 420 (97%) 967 (96%)
+Age at resection (years; mean [SD]) 67·4 (11) 66·6 (9) 58·3 (11)
+Sex (female) 200 (59%) 229 (55%) 366 (38%)
+Smoking history
+Yes 224 (66%) 355 (85%) 492 (49%)
+No 57 (17%) 36 (9%) 403 (40%)
+Unknown 56 (17%) 29 (7%) 72 (7%)
+Survivor follow-up (months; median [IQR])
+64·0 (45·6–88·9) 106·0 (88·0–125·0) 53·4 (37·4–68·0)
+Deaths at 5 years from resection 139 (41%) 179 (43%) 406 (42%)
+Histology
+Adenocarcinoma 278 (83%) 325 (77%) 881 (88%)
+Large cell 17 (5%) 15 (4%) 17 (2%)
+Mixed 10 (3%) 15 (4%) 46 (5%)
+NSCLC (not otherwise specified) 32 (10%) 65 (16%) 23 (2%)
+Stage
+I 223 (66%) 420 (100%) 471 (47%)
+Ia 152 (45%) 285 (68%) 239 (24%)
+Ib 71 (21%) 135 (32%) 232 (23%)
+II 41 (12%) 0 222 (22%)
+IIa 14 (4%) 0 69 (7%)
+IIb 27 (8%) 0 153 (15%)
+III 58 (17%) 0 266 (26%)
+IIIa 32 (10%) 0 247 (25%)
+IIIb 26 (8%) 0 19 (2%)
+IV 9 (3%) 0 0
+Undetermined 6 (2%) 0 8 (1%)
+Data are n (%), unless otherwise stated. CCTC= China Clinical Trials Consortium. FFPE= formalin-fixed, paraffin-embedded. NSCLC=non-small-cell lung cancer. UCSF= University of California, San Francisco.
+Table 1: Clinical and pathological characteristics of patients
+
+
+Articles
+www.thelancet.com Vol 379 March 3, 2012 825
+ethics committee that complies with International Conference on Harmonisation/Good Clinical Practice guidelines for institutional review boards. The policy of the institutional review boards at these institutions is that research with tissues samples retained in the hospital pathology laboratory or tissue banks can be done as long as clinical data are handled in a blinded fashion.
+Procedures
+The assay was developed with the training cohort of resected samples from UCSF. All steps of the assay including the prognostic algorithm were fully developed, completely specified, and technically validated in line with CLIA-laboratory guidelines before initiation of the external validation studies (see webappendix for further details). The KPDOR did a double-blinded, independent, large-scale validation of the assay according to a strict, prespecified study design. Samples from hospitals in the Kaiser Permanente Northern California system that met the inclusion criteria above were submitted to the independent CLIA-certified laboratory for molecular testing. Both the CLIA laboratory and the UCSF investigators were masked to patients’ clinical and outcome data and researchers were masked to continuing testing results. After all samples had been tested by the
+CLIA laboratory, these blinded data were released to and analysed independently by the KPDOR and compared with clinical outcomes. In the CCTC validation study, all analytical work was done by the First Affiliated Hospital of Guangzhou Medical College-State Key Laboratory of Respiratory Disease-UCSF Thoracic Oncology Joint Cancer Research Laboratory; RNA extraction was done at both that laboratory and the Shanghai Pulmonary Hospital-UCSF Thoracic Oncology Joint Cancer Research Laboratory (Shanghai, China). Training and validation of the RNA extraction method and of the quantitative PCR protocol was jointly provided by the CCTC, the UCSF Thoracic Oncology Laboratory (San Fransisco, CA, USA), and Pinpoint Genomics (Mountain View, CA, USA). All samples were analysed in line with the CLIA-certified, analytically validated methods described below. The quantitative PCR assay was done entirely by Chinese scientists at the Joint Laboratory in Guangzhou (Guangdong, China), and was held to the same standards as those used in the CLIA-certified laboratory in which assay development had been undertaken. Gene expression data were then provided to the Pinpoint Genomics reference laboratory in a blinded fashion and entered into an algorithm for deriving risk score. Every
+See Online for webappendix
+0 20 40 60 80 100
+0
+0·2
+0·4
+0·6
+0·8
+1·0
+AB
+Probability of mortality at 5 years
+Risk score
+HR (95% CI)
+Age (years) <65 >65 Sex Male Female
+Smoking history
+Past or current smoker Never smoker
+Neoadjuvant chemotherapy Yes No
+Adjuvant chemotherapy Yes No
+Histology
+Adenocarcinoma Non-adenocarcinoma AJCC stage I II III
+Tumour percentage 25–50% 50–75% 75–100% Overall
+2·02 (1·40–2·92) 2·66 (1·95–3·63)
+2·18 (1·56–3·06) 2·42 (1·77–3·32)
+2·40 (1·81–3·18) 2·65 (1·40–5·02)
+2·03 (0·88–4·66) 2·41 (1·89–3·06)
+2·31 (1·29–4·14) 2·42 (1·88–3·11)
+2·43 (1·89–3·13) 2·13 (1·22–3·71)
+2·43 (1·80–3·27) 2·68 (1·26–5·67) 1·93 (1·15–3·23)
+2·40 (1·65–3·47) 2·39 (1·65–3·47) 2·40 (1·52–3·79) 2·38 (1·89–2·99)
+01 23456
+Figure 1: Probability of mortality and mortality hazard ratio by subgroup in the training cohort
+Probability of mortality at 5 years by risk score; dashed lines are 95% CIs, hash marks above the x axis are individual risk scores for every patient. (B) Increase in 5 year overall mortality hazard ratio (HR) by subgroup for each stepwise increase in risk category (eg, low to intermediate, and intermediate to high); box sizes are proportional to group size. A hazard ratio greater than 1 implies that more patients in the high-risk group are dying at any time compared with the low-risk group; a hazard ratio of less than 1 means that fewer patients in the high-risk group are dying at any time compared with the low-risk group. AJCC=American Joint Committee on Cancer.22
+
+
+Articles
+826 www.thelancet.com Vol 379 March 3, 2012
+patient’s risk score was then converted to a risk category of high-risk, intermediate-risk, or low-risk, on the basis of the assay’s cutoff values.
+Full details of sample preparation and analysis are given in the webappendix. Briefly, RNA was extracted from six 10 μm formalin-fixed, paraffin-embedded sections, (MasterPure RNA Purification Kit, Epicentre, Madison, WI, USA), and DNase treated and purified with silica-gel-membrane spin columns (Qiagen, Valencia, CA, USA). Extracted RNA underwent reverse transcription with gene-specific priming (iScript Select cDNA Synthesis Kit, BioRad Laboratories, Hercules, CA, USA) followed by cDNA preamplification (TaqMan PreAmp Master Mix, Applied Biosystems, Carlsbad, CA, USA) and FAST TaqMan quantitative PCR amplification (Applied Biosystems) with custom-designed primer or probe sets specific to formalin-fixed paraffin-embedding (BioSearch Technologies, Novato, CA, USA). All RNA expression measurements were normalised to RNA extracted from commercially available, pooled, frozen, normal lung samples (Clontech, Laboratories, Mountain View, CA, USA), and the relative expression for each target gene was calculated with the comparative Ct method.25 Full details of prognostic algorithm development are given in the webappendix. Briefly, 11 cancer-related target genes (BAG1, BRCA1, CDC6, CDK2AP1, ERBB3, FUT3, IL11, LCK, RND3, SH3BGR, WNT3A) and three reference genes (ESD, TBP, YAP1) were assessed in the UCSF training cohort. The 11 candidate target genes for this study had been identified from a large pool originally consisting of more than 200 cancer-related genes during the development at UCSF of a separate four-gene assay based on snap-frozen tumour tissue;14 the 11 genes included the four genes of the earlier assay. L2-penalised Cox proportional hazards modeling26 was the main analytical test used to develop the prognostic algorithm, which used only the relative expression values of the 11 target genes in the UCSF 337-patient training cohort. The amount of L2-penalty applied was established with ten-fold cross-validation. A continuous risk score was generated for every individual on the basis of model coefficients; resultant predicted risk scores from the UCSF training cohort were divided at the 33rd and 67th percentiles to generate cutoffs for categorisation of risk score as low-risk, intermediate-risk, and high-risk.
+Statistical analysis
+The potential bias introduced by post-hoc analysis of medical records in the establishment of recurrence and cause-specific death has been well documented.27 Therefore, we chose overall survival from the time of resection as our primary endpoint, which is both verifiable via multiple sources and less subject to interpretation bias. A secondary endpoint in the Kaiser validation cohort was lung-cancer-specific mortality. The primary predictor assessed was the risk category assigned by the molecular assay. Other important covariates, including age, sex, smoking history, histology, tumour size, and disease stage, were compared with outcome by use of univariate and multivariate Cox
+Number at risk Low risk Intermediate risk High risk
+0
+85 119 216
+12
+81 116 192
+24
+78 104 165
+36
+71 90 140
+48
+67 77 120
+60
+60 68 98
+0
+20
+40
+60
+80
+100
+A
+Overall survival (%)
+Low risk Intermediate risk High risk
+85 119 216
+81 116 192
+78 104 165
+71 90 140
+67 76 120
+60 67 98
+0 12 24 36 48 60
+B
+Lung cancer-specific survival (%)
+Number at risk Low risk Intermediate risk High risk
+Number at risk Low risk Intermediate risk High risk
+0
+78 104 151
+12
+74 101 140
+24
+71 92 121
+36
+64 80 99
+48
+60 67 86
+60
+56 59 71
+0
+20
+40
+60
+80
+100
+0
+20
+40
+60
+80
+100
+C
+Overall survival (%)
+Months
+ptrend=0·0003
+ptrend=0·0005
+ptrend=0·0016
+Figure 2: Survival analysis by risk category in the Kaiser Permanente validation cohort (A) Overall survival for the entire cohort; median survival was 113 months in the low-risk group, 91 months in the intermediate-risk group, and 59 months in the high-risk group. (B) Lung-cancer-specific survival for the entire cohort (non-lung cancer deaths were censored); median lung cancer-specific survival was not reached in any risk group; the mortality incidence rate was 2·7 per 100 person-years in the low-risk group, 5·0 per 100 person-years in the intermediate-risk group, and 6·6 per 100 person-years in the high-risk group. (C) Overall survival for 330 patients with American Joint Commission on Cancer stage IA and IB disease considered to be low risk as per conventional pathological criteria (National Comprehensive Cancer Network); median survival was 113 months in the low-risk group, 88 months in the intermediate-risk group, and 70 months in the high-risk group.
+
+
+Articles
+www.thelancet.com Vol 379 March 3, 2012 827
+proportional hazards modelling. Wald and nested likelihood ratio tests were done for univariate and multivariate modelling, respectively, to assess statistical significance. Nested likelihood ratio tests are more appropriate for multivariate models because they examine whether the addition of a new variable, such as the molecular test, offers an improvement in fit beyond standard clinical variables such as age, sex, and tumour size.28 Stratified Kaplan-Meier analysis with a rightcensored dataset and the log-rank test for trend were used to assess the association between risk category and the primary and secondary endpoints. For all statistical tests, a prespecified two-sided α of 0·05 was regarded as statistically significant. Time-dependent area under the receiver operating characteristic curve (AUROC) was calculated with the survcomp (version 1.1.6) package in R; differences in AUROCs were tested by multivariate Cox proportional hazards modelling and compared by use of integrated AUROCs with the Wilcoxon rank sum test. See webappendix for details of power calculations. Analyses were done with the programming languages R29 (version 2.12.2 for Macintosh) and Stata/MP (version 11).
+Role of the funding sources
+The development of the assay and the prognostic algorithm was a joint project by the UCSF Thoracic Oncology Laboratory and Pinpoint Genomics. Pinpoint Genomics did the RNA extraction and quantitative PCR for the Kaiser Permanente validation cohort, and provided reagents, supplies, and training to the CCTC. DMJ and MJM had full access to all the data in the study and had final responsibility for the decision to submit for publication.
+Results
+A total of 399 patients were identified who had undergone resection of non-squamous NSCLC at UCSF during the study period; of these, 361 met criteria for inclusion in the training cohort. 460 patients at Kaiser Northern California had undergone resections of stage I non-squamous NSCLC, of whom 433 met criteria for inclusion in the independent validation cohort. 1006 patients were identified in the CCTC institutions that met criteria for inclusion in that validation study. Relevant clinical and pathological characteristics of these patients are shown in table 1. The rate of successful RNA extraction was high in all three cohorts. During rigorous technical validation and establishment of the assay, candidate gene expression analysis and comparison with patients’ outcomes was shown to be similar in groups of tissue blocks in which the tumour occupied either 25–50%, 50–75%, or more than 75% of the tissue surface area, consistent with findings from another study.23 Individual risk scores were calculated for every patient in the UCSF training cohort. Higher risk scores were
+positively associated with increased probability of mortality at 5 years (figure 1). To better identify patients at highest and lowest risk, cutoff values defining low-risk, intermediate-risk, and high-risk groups were derived by dividing the training cohort risk scores into tertiles. We recorded a higher risk of morality with each increase in risk category in almost every subgroup of the UCSF training cohort (figure 1), and correlation of risk score to clinical outcome was much the same in samples with 25–50%, 50–75%, and >75% tumour surface area (webappendix). After the assay was fully specified, technical validation was done by the CLIA-certificated laboratory (see webappendix for further details). The KPDOR and the CCTC then did independent, blinded validations of the technically validated assay. Samples were sent by the KPDOR to the CLIA-certified laboratory for blinded testing and assignment of a risk category, and the assay’s performance. By contrast with the empirical ratio (1:1:1) of low-risk, intermediate-risk, and high-risk patients in the training cohort, a greater proportion of high-risk patients was identified in the Kaiser Permanente validation cohort (figure 2). This finding might be attributable to the lower 5 year overall survival of the Kaiser stage I validation cohort (56·4%) compared with the stage I UCSF training cohort (61·9%). In the Kaiser Permanente validation cohort, Kaplan-Meier survival analysis showed 5 year survival of 71·4% (95% CI 60·5–80·0) in the low-risk group, 58·3% (48·9–66·6) in the intermediate-risk group, and 49·2% (42·2–55·8) in the high-risk group (figure 2). A sensitivity analysis that excluded the 18 patients in the Kaiser Permanente validation cohort who received adjuvant chemotherapy gave 5 year survival outcomes that were much the same: 70·0% (58·7–78·8) in the low-risk group, 58·2% (48·5–66·7) in the intermediate-risk group, and 48·9% (41·7–55·6) in the high-risk group (ptrend=0·0006). 5 year
+Univariate analysis Multivariate analysis
+Hazard ratio (95% CI)
+Wald test p value
+Hazard ratio (95% CI)
+Likelihood ratio test p value
+Risk category*
+High risk 2·16 (1·39–3·36) 0·0007 2·04 (1·28–3·26) 0·0016
+Intermediate risk 1·60 (0·98–2·60) 0·0610 1·66 (1·00–2·74) 0·0436
+Age >65 years 1·55 (1·14–2·10) 0·0054 1·66 (1·21–2·29) 0·0016
+Sex (female) 0·55 (0·41–0·74) 0·0001 0·67 (0·49–0·92) 0·0123
+Never smoker 0·59 (0·32–1·09) 0·0917 0·83 (0·44–1·55) 0·5438
+Histology†
+Large-cell carcinoma 0·96 (0·42–2·17) 0·9139 0·64 (0·26–1·59) 0·3038
+Mixed 0·98 (0·43–2·22) 0·9615 0·85 (0·37–1·95) 0·6932
+NSCLC (not otherwise specified) 1·13 (0·89–1·93) 0·1659 1·18 (0·79–1·75) 0·4320
+Tumour size >4 cm 1·42 (0·97–2·07) 0·0697 1·10 (0·73–1·66) 0·6435
+NSCLC=non-small-cell lung cancer. *Compared with low-risk group. †Compared with adenocarcinoma.
+Table 2: Cox proportional hazards models for 5 year overall mortality in the Kaiser Permanente validation cohort
+
+
+Articles
+828 www.thelancet.com Vol 379 March 3, 2012
+lung-cancer-specific survival was 84·6% (74·4–91·0) in the low-risk group, 70·3% (60·6–78·0) in the intermediate-risk group, and 63·3% (55·8–69·8) in the high-risk group (figure 2). We also did a Kaplan-Meier survival analysis for patients with stage I disease in the Kaiser validation cohort who had no high-risk National Comprehensive Cancer Network (NCCN) criteria. This group included all patients with stage IA disease and a subgroup of patients with stage IB disease. The 5 year overall survival for the patients in this subgroup (with risk staging as per molecular assay results) was 72·7%
+(61·3–81·3) in the low-risk group, 59·0% (48·9–67·8) in the intermediate-risk group, and 50·4% (42·0–58·3) in the high-risk group (figure 2). In the Kaiser Permanente validation cohort, risk category (high), age, and sex were statistically significant predictors of mortality in univariate analysis (table 2). Multivariate analysis (adjusting for age, sex, smoking history, histology, and tumour size >4 cm) showed that both high-risk and intermediate-risk groupings as well as age and sex were statistically significant predictors of mortality (table 2; webappendix).
+Number at risk Low risk Intermediate risk High risk
+0
+193 172 602
+12
+183 156 499
+24
+170 139 387
+36
+138 101 290
+48
+94 67 202
+60
+64 45 126
+0
+20
+40
+60
+80
+100
+A
+Overall survival (%)
+Number at risk Low risk Intermediate risk High risk
+0
+34 32 156
+12
+32 29 132
+24
+28 25 93
+36
+21 18 55
+48
+14 11 40
+60
+8 7 22
+0
+20
+40
+60
+80
+100
+C
+Overall survival (%)
+0
+130 95 246
+12
+126 90 222
+24
+121 85 190
+36
+99 66 164
+48
+72 41 120
+60
+51 28 88
+B
+0
+26 44 196
+12
+22 36 141
+24
+18 29 101
+36 Months Months
+15 17 70
+48
+8 15 42
+60
+5 10 16
+D
+Low risk Intermediate risk High risk
+ptrend=0·0049 ptrend=0·0044
+ptrend<0·0001 ptrend=0·0001
+Figure 3: Survival analysis by risk category in the China Clinical Trials Consortium validation cohort
+(A) Overall survival for the entire cohort. Survival in patients with stage I (B) stage II (C) and stage III (D) disease.
+
+
+Articles
+www.thelancet.com Vol 379 March 3, 2012 829
+In the CCTC cohort, 5 year mortality after complete resection of non-squamous-cell NSCLC by risk group (defined according to results of the molecular assay) were as follows: 74·1% (66·0–80·6) in the low-risk group, 57·4% (48·3–65·5) in the intermediate-risk group, and 44·6% (40·2–48·9) in the high-risk group (figure 3). Median survival was 101·1 months in the low-risk group, 77·2 in the intermediate-risk groups, and 43·1 months in the high-risk group. An improvement with the use of our prognostic assay compared with use of traditional staging is suggested by the statistically significant separation of Kaplan-Meier survival curves for 5 year overall survival between low-risk, intermediate-risk, and high-risk patients in subgroup analyses of patients with different stage disease (figure 3): stage I disease (low risk=83·0% [73·8–89·1]; intermediate risk=67·7% [54·8–77·7]; high risk=64·6% [57·9–70·5]), stage II disease (low risk=54·2% [30·1–73·2]; intermediate risk=45·8% [26·2–63·4]; high risk=38·1% [29·4–46·8]), and stage III disease (low risk=53·3% [32·6–70·3]; intermediate risk=43·3% [27·2–58·5]; high risk=24·0% [17·5–30·9]). Univariate Cox proportional hazards modelling indicated that sex (male), smoking history, large and mixed cell histology, and disease stage all had a negative effect on survival in the CCTC cohort (table 3). None of these factors, however, had as great an effect on survival as designation in the high-risk category according to the molecular assay. Multivariate analysis showed that highrisk and intermediate-risk designation remained a statistically significant predictor of survival even after adjusting for age, sex, smoking history, histology, and disease stage (table 3; webappendix). In addition to multivariate analysis, we did time-dependent AUROC analysis to test whether the molecular assay provided more useful prognostic information than does conventional staging alone. The AUROC is a measure of the discrimination of a prognostic test and coincides with the c-statistic.30 Because American Society of Clinical Oncology (ASCO) guidelines do not provide criteria to identify high-risk patients with stage I disease, we used NCCN criteria, which identify such patients as stage IB plus at least one of the following risk factors: poorly differentiated tumours, vascular invasion, wedge resection, minimal margins, tumours greater than 4 cm in diameter, visceral pleural involvement, and unknown lymph node status.31 The addition of the molecular assay gave better risk discrimination than did NCCN risk criteria alone in the Kaiser Permanente validation cohort, shown by a larger AUROC (c-statistic of 0·60 vs 0·54; p<0·0001). Complete data were not available for all NCCN high-risk stage I criteria in patients from the CCTC cohort. AUROC analysis in this cohort therefore focused on 471 patients with stage I disease; addition of the molecular assay to conventional staging alone similarly increased the AUROC for this group, consistent with better discrimination in risk prediction by the addition of the molecular assay (c-statistic of 0·61 vs 0·56; p<0·0001).
+Discussion
+Our practical, quantitative-PCR-based assay reliably identified patients with early-stage non-squamous NSCLC at high risk for mortality after surgical resection, discriminating such patients with greater accuracy than use of NCCN criteria alone. Outcomes after the diagnosis of stage I NSCLC are poor compared with other solid tumours, despite advances in the molecular understanding of lung cancer. Several randomised controlled trials32–36 have shown improved survival with platinum-based adjuvant chemotherapy compared with observation alone in patients with stage II–IIIA NSCLC who are known to have at least nodal metastasis. However, a meta-analysis37 of these trials did not show a definitive survival benefit for the few patients with stage I disease. Similarly, a randomised controlled trial3 of adjuvant paclitaxel plus carboplatin in patients with stage IB disease did not show a survival benefit of this treatment ompared with observation alone. Most of the deaths seen after resection of stage I NSCLC were due to distant recurrence,2 suggesting that many patients designated as having stage I disease by conventional criteria actually have occult metastasis or circulating tumour cells at the time of resection. The inability to show a benefit from adjuvant treatment in stage I disease is probably in part attributable to the dilution of treatment effect by the inclusion of patients with stage I disease without this occult disease who are cured surgically. Results from a retrospective analysis of the JBR.10 trial,38 which assessed several tumour gene profiles, lent support to the conclusion that patients identified through any tumour gene profile as being high risk for treatment failure will benefit from adjuvant treatment. These findings underscore the need for a practical assay that reliably identifies subsets of patients
+Univariate analysis Multivariate analysis
+Hazard ratio (95% CI)
+Wald test p value
+Hazard ratio (95% CI)
+Likelihood ratio test p value
+Risk category*
+High risk 3·07 (2·21–4·25) <0·0001 2·37 (1·63–3·43) <0·0001
+Intermediate risk 1·87 (1·26–2·77) 0·0019 1·60 (1·03–2·49) 0·0354
+Age >65 years 1·11 (0·90–1·37) 0·3337 1·19 (0·94–1·49) 0·1493
+Sex (female) 0.78 (0·63–0·95) 0·0150 0·93 (0·70–1·23) 0·6057
+Never smoker 0·70 (0·56–0·86) 0·0009 0·84 (0·64–1·10) 0·1986
+Histology†
+Large-cell carcinoma 2·12 (1·09–4·11) 0·0259 1·68 (0·83–3·41) 0·1831
+Mixed 1·67 (1·12–2·48) 0·0118 1·07 (0·69–1·64) 0·7714
+NSCLC (not otherwise specified) 0·89 (0·44–1·80) 0·7528 0·77 (0·36–1·63) 0·4759
+Stage‡ 1·44 (1·35–1·53) <0·0001 1·43 (1·33–1·53) <0·0001
+NSCLC=non-small-cell lung cancer. *Compared with low-risk category. †Compared with adenocarcinoma. ‡Modelled as a continuous variable.
+Table 3: Cox proportional hazards models for 5 year overall mortality in the China Clinical Trials Consortium validation cohort
+
+
+Articles
+830 www.thelancet.com Vol 379 March 3, 2012
+after resection who have different statistical outcomes despite similar staging by conventional criteria. Many of the genes in our prognostic algorithm, including BAG1, BRCA1, CDC6, ERBB3, and WNT3A are known elements of classical oncogenic pathways (table 4). All 11 genes are intricately related to molecular lung cancer pathways such as KRAS, BRAF, EGFR, HER2, ALK, and p53. Five of these genes overlapped with previously published prognostic gene signatures in nonsquamous NSCLC including CDC6,5,13,16 ERBB3,7 FUT3,5,13,18 LCK,7 and RND3.13 Although other groups have developed gene signatures prognostic of survival in lung cancer,4,20 none of these previous studies used paraffin-embedded tissues (panel). Furthermore, as noted in systematic reviews of this subject area,4,20 most previous studies did not subject their prognostic signatures to large-scale, independent validation. The only study that attempted blinded validation of their proposed signature16 used frozen tissues to derive a microarray-based classifier that did not reliably separate patients with stage I disease without the addition of clinical covariates. Taken together, our assay for non-squamous NSCLC is the first of its kind in four important respects: the implementation of a clinically relevant platform with
+extraction of interpretable RNA from formalin-fixed paraffin-embedded tissue, the performance of the assay in one of the studies in a laboratory that was independent from the laboratory in which the assay was developed, the very large sizes of the independent validation cohorts, and the potentially large disparity between the genetic background of one of the validation cohorts and that of the original training cohort used for development of the assay. The latter two features draw attention to the unique contribution of the CCTC to assay validation. The rapid accrual of specimens from more than 1000 patients with NSCLC annotated clinical data is unprecedented even in previous multicentre efforts reported from leading centres in the USA and Europe.16,39,40 Criteria for assignment to stage I disease in the new NSCLC staging system were validated on about 2250 patients.41 With CCTC participation, our molecular prognostic assay has now undergone international validation on a similar number of patients, including 891 patients with stage I disease. Furthermore, the success of this assay in an ethnically distinct cohort might be among the strongest pieces of available evidence that fundamental genetic elements of non-squamous NSCLC biology exist that characterise this disease, genetic elements that do not
+Gene name Chromosome Reference sequence Protein location Relevant biological functions and pathways Role in algorithm
+BAG1 BCL2-associated athanogene 9p12 NM_004323 Cytoplasm Apoptosis; cell surface receptor linked signalling Prognosis
+BRCA1 Breast cancer 1, early onset 17q21-q24 NM_007294 Nucleus Induction of apoptosis; protein ubiquitination; regulation of G2/M transition DNA damage checkpoints; regulation of DNA repair
+Prognosis
+CDC6 Cell division cycle 6 homologue 17q21.3 NM_001254 Nucleus Regulation of transcription involved in G1/S phase of mitotic cell cycle; regulation of cell proliferation
+Prognosis
+CDK2AP1 Cyclin-dependent kinase 2 associated protein 1
+12q24 NM_004642 Nucleus Regulation of S phase of mitotic cell cycle; DNA-dependent DNA replication
+Prognosis
+ERBB3 V-erb-b2 erythroblastic leukaemia viral oncogene homologue 3
+12q13 NM_001982 Plasma membrane Regulation of cell adhesion; transmembrane receptor protein tyrosine kinase signalling; regulation of phosphoinositide 3-kinase cascade; regulation of cell proliferation
+Prognosis
+FUT3 Fucosyltransferase 3 19p13.3 NM_000149 Cytoplasm Carbohydrate metabolism; protein aminoacid glycosylation Prognosis
+IL11 Interleukin 11 19q13.3-q13.4 NM_000641 Extracellular Regulation of cell proliferation; B-cell differentiation; megakaryocyte differentiation; regulation of peptidyl-serine phosphorylation; regulation of MAPKKK cascade
+Prognosis
+LCK Lymphocyte-specific protein tyrosine kinase
+1p34.3 NM_001042771 Cytoplasm Induction of apoptosis; activation of caspase activity; regulation of T-cell receptor signalling; leucocyte migration
+Prognosis
+RND3 Rho family GTPase 3 2q23.3 NM_005168 Cytoplasm Cell adhesion; small GTPase mediated signal transduction; actin cytoskeleton organisation
+Prognosis
+SH3BGR SH3 domain binding glutamic acid-rich protein
+21q22.3 NM_007341 Cytoplasm Protein complex assembly Prognosis
+WNT3A Wingless-type MMTV integration site family, member 3A
+1q42 NM_033131 Extracellular Canonical Wnt receptor signalling; multicellular organismal development; regulation of cell proliferation and differentiation; regulation of catenin protein nuclear translocation
+Prognosis
+ESD Esterase D 13q14.1-q14.2 NM_001984 Cytoplasm Recycling of sialic acids; serine hydrolysis Reference
+TBP TATA box binding protein 6q27 NM_003194 Nucleus Transcription initiation from RNA polymerase II promoter; RNA elongation from RNA polymerase II promoter; transcription from RNA polymerase III promoter
+Reference
+YAP1 Yes-associated protein 1 11q13 NM_006106 Nucleus Hippo signalling cascade; regulation of transcription; contact inhibition
+Reference
+Table 4: Algorithm genes
+
+
+Articles
+www.thelancet.com Vol 379 March 3, 2012 831
+depend on nor show the particular genetic make-up of a training cohort from which an assay is derived. The data further indicate that a reasonable set of such key prognostic non-squamous NSCLC genes has been identified successfully. In addition to the size and independence of a validation cohort, systematic reviews of studies with related assays have suggested that other elements are important in the determination of the clinical use of a molecular prognostic assay for early-stage NSCLC.20,42,43 Perhaps most important is the ability of the assay to separate patients assigned to a single stage or substage, so that true improvement compared with clinicopathologic staging can be achieved. Our assay performed well in this respect in both stage I and stage II of non-squamous NSCLC. A prospective study is planned in which patients with stage I disease identified as high risk by our molecular assay will be randomly allocated to observation versus chemotherapy, and will directly test the effectiveness of the application of guidelines for adjuvant treatment on the basis of this molecular enhancement of risk stratification in patients with stage I disease. However, such a study will require 5–7 years for accrual alone44,45 plus additional years for follow-up. During this time, hundreds of thousands of patients with stage I NSCLC and occult metastasis at the time of resection would succumb to recurrent disease with surgical resection alone. NCCN guidelines recommend consideration of adjuvant chemotherapy for patients with stage IB disease and poorly differentiated tumours, vascular invasion, wedge resection, minimal margins, tumours greater than 4 cm in diameter, visceral pleural involvement, or unknown lymph-node status. Despite the fact that, with the exception of tumours greater than 4 cm, prospective randomised data have never associated these criteria with a response to chemotherapy, consideration of adjuvant treatment is recommended because these features are thought to reasonably characterise patients with stage I disease at highest risk for recurrence and death.31 Although our molecular assay has not been associated with this type of confirmatory prospective data, it specifically outperformed these NCCN criteria and conventional staging in the identification of high-risk patients with stage I disease. Our assay, therefore, might provide additional, validated prognostic information to clinicians as they consider therapeutic choices that might improve outcomes for their patients. We have developed a practical molecular assay that provides a more precise test for the definition of subsets of patients with non-squamous NSCLC and statistically heterogeneous outcomes. This robust assay was independently validated in a large, community-based American cohort to improve risk-stratification in patients with stage I disease. In view of the enormity of the public health crisis due to lung cancer in China, the additional validation of this molecular assay in a large Chinese population further increases its potential effect. This
+assay provides prognostic differentiation of patients with early-stage disease and might be helpful in the identification of the most appropriate application of treatment guidelines to improve clinical outcomes.
+Contributors
+The original study design and study protocol was written by JRK, JH, SKVDE, MRS, DJR, TMJ, ZX, DB, BH, MJM, and DMJ. JRK, PTP, MSM, FZ, XZ, MRR, KDJ, JH, Z-HZ, WG, HZ, BS, QD, ZW, JZ, M-CH, C-CY, and HL did the data collection. JRK, SKVDE, PTP, MSM, FZ, CPQ, LAH, MRS, BH, DB, JH, MJM, and DMJ participated in the data analysis and interpretation. The paper was written by JRK, MJM, and DMJ, and was edited by all authors, who have approved the final version. MJM and DMJ are the guarantors.
+Conflicts of interest
+DMJ, MJM, JRK, FZ, MRR, MRS, ZX, DJR, DB, M-CH, C-CY, and BH would like to disclose a consulting relationship with Pinpoint Genomics Inc, the company that has established a CLIA-certified laboratory and developed this molecular assay based on UCSF technology. SKV, CPQ, LAH, TJ, PTP, MSM, KDJ, JH, Z-HZ, WG, HZ, BS, XZ, QD, ZW, JZ, and HL declare that they have no conflicts of interest.
+Acknowledgments
+We gratefully acknowledge Jerry Hurst for guidance during the analytical validation of the assay, Eric Vittinghoff for helpful discussions regarding the development of the prognostic algorithm, Mary Meng and Min Wang for coordination of the retrieval and analysis of clinical samples at CCTC sites, and Christina Pham for assistance in editing the paper.
+References
+1 Jemal A, Siegel R, Xu J, Ward E. Cancer statistics, 2010. CA Cancer J Clin 2010; 60: 277–300.
+2 Kelsey CR, Marks LB, Hollis D, et al. Local recurrence after surgery for early stage lung cancer: an 11-year experience with 975 patients. Cancer 2009; 115: 5218–27. 3 Strauss GM, Herndon JE 2nd, Maddaus MA, et al. Adjuvant paclitaxel plus carboplatin compared with observation in stage IB non-small-cell lung cancer: CALGB 9633 with the Cancer and Leukemia Group B, Radiation Therapy Oncology Group, and North Central Cancer Treatment Group Study Groups. J Clin Oncol 2008; 26: 5043–51. 4 Kratz JR, Jablons DM. Genomic prognostic models in early-stage lung cancer. Clin Lung Cancer 2009; 10: 151–57.
+Panel: Research in context
+Systematic review
+We searched PubMed with the search terms “non-small cell lung cancer”, “molecular profile”, “gene expression”, “prognosis”, and “early stage”. This search identified at least 15 studies of the development of a gene-based assay for the refinement of prognosis in early-stage non-small-cell lung cancer,4–19 and several systematic reviews.20,42,43 These studies were based on analysis of fresh-frozen specimens, limiting their immediate clinical application in a broad community setting, and none was validated in multiple, large-scale, independent cohorts of patients from a diverse geographical and ethnic background.
+Interpretation
+By contrast with the studies identified in our search, the studies presented here are two large-scale, blinded validations of a molecular prognostic assay for resected non-squamous non-small-cell lung cancer, done in entirely independent cohorts. Furthermore, the application of this assay to widely available formalin-fixed, paraffin-embedded tissue samples makes it relevant to the routine management of patients with lung cancer. In our validation cohorts, this robust, practical assay successfully identified patients with a higher risk of death than predicted by conventional staging. The molecular assay was the strongest predictor of 5 year mortality compared with standard criteria such as sex, age, smoking status, tumour size, and even disease stage, and outperformed National Comprehensive Cancer Network guidelines used to identify high-risk patients with stage I disease.
+
+
+Articles
+832 www.thelancet.com Vol 379 March 3, 2012
+28 Vittinghoff E. Regression methods in biostatistics: linear, logistic, survival, and repeated measures models. New York: Springer; 2005. 29 Team RDCR. A Language and environment for statistical computing. Vienna, Austria: R Foundation for Statistical Computing, 2011. 30 Heagerty PJ, Zheng Y. Survival model predictive accuracy and ROC curves. Biometrics 2005; 61: 92–105. 31 NCCN Clinical Practice Guidelines in Oncology Non-Small Cell Lung Cancer. National Comprehensive Cancer Network, 2011. http://www.nccn.org/professionals/physician_gls/PDF/nscl.pdf (accessed Oct 2, 2011). 32 Arriagada R, Dunant A, Pignon JP, et al. Long-term results of the international adjuvant lung cancer trial evaluating adjuvant cisplatin-based chemotherapy in resected lung cancer. J Clin Oncol 2010; 28: 35–42. 33 Douillard JY, Rosell R, De Lena M, et al. Adjuvant vinorelbine plus cisplatin versus observation in patients with completely resected stage IB-IIIA non-small-cell lung cancer (Adjuvant Navelbine International Trialist Association [ANITA]): a randomised controlled trial. Lancet Oncol 2006; 7: 719–27. 34 Scagliotti GV, Fossati R, Torri V, et al, and the Adjuvant Lung Project Italy/European Organisation for Research Treatment of Cancer-Lung Cancer Cooperative Group Investigators. Randomized study of adjuvant chemotherapy for completely resected stage I, II, or IIIA non-small-cell Lung cancer. J Natl Cancer Inst 2003; 95: 1453–61. 35 Waller D, Peake MD, Stephens RJ, et al. Chemotherapy for patients with non-small cell lung cancer: the surgical setting of the Big Lung Trial. Eur J Cardiothorac Surg 2004; 26: 173–82.
+36 Winton T, Livingston R, Johnson D, et al, and the National Cancer Institute of Canada Clinical Trials Group, and the National Cancer Institute of the United States Intergroup JBR.10 Trial Investigators. Vinorelbine plus cisplatin vs observation in resected non-small-cell lung cancer. N Engl J Med 2005; 352: 2589–97. 37 Pignon JP, Tribodet H, Scagliotti GV, et al, and the LACE Collaborative Group. Lung adjuvant cisplatin evaluation: a pooled analysis by the LACE Collaborative Group. J Clin Oncol 2008; 26: 3552–59. 38 Zhu CQ, Ding K, Strumpf D, et al. Prognostic and predictive gene signature for adjuvant chemotherapy in resected non-small-cell lung cancer. J Clin Oncol 2010; 28: 4417–24. 39 Cobo M, Isla D, Massuti B, et al. Customizing cisplatin based on quantitative excision repair cross-complementing 1 mRNA expression: a phase III trial in non-small-cell lung cancer. J Clin Oncol 2007; 25: 2747–54. 40 Allen MS, Darling GE, Pechet TT, et al, and the ACOSOG Z0030 Study Group. Morbidity and mortality of major pulmonary resections in patients with early-stage lung cancer: initial results of the randomized, prospective ACOSOG Z0030 trial. Ann Thorac Surg 2006; 81: 1013–19. 41 Detterbeck FC, Boffa DJ, Tanoue LT. The new lung cancer staging system. Chest 2009; 136: 260–71. 42 Dupuy A, Simon RM. Critical review of published microarray studies for cancer outcome and guidelines on statistical analysis and reporting. J Natl Cancer Inst 2007; 99: 147–57. 43 Zhu CQ, Pintilie M, John T, et al. Understanding prognostic gene expression signatures in lung cancer. Clin Lung Cancer 2009; 10: 331–40. 44 RADIANT. A study of tarceva after surgery with or without adjuvant chemotherapy in NSCLC patients who have EGFR-positive tumors (adjuvent). http://clinicaltrials.gov/ct2/show/NCT00373425 (accessed Aug 16, 2011). 45 Chemotherapy With or without bevacizumab in Treating Patients With Stage IB. Stage II, or Stage IIIA Non-Small Lung Cancer That Was Removed By Surgery. http://clinicaltrials.gov/ct2/show/ NCT00324805 (accessed Aug 16, 2011).
+5 Beer DG, Kardia SL, Huang CC, et al. Gene-expression profiles predict survival of patients with lung adenocarcinoma. Nat Med 2002; 8: 816–24. 6 Boutros PC, Lau SK, Pintilie M, et al. Prognostic gene signatures for non-small-cell lung cancer. Proc Natl Acad Sci USA 2009; 106: 2824–28. 7 Chen HY, Yu SL, Chen CH, et al. A five-gene signature and clinical outcome in non-small-cell lung cancer. N Engl J Med 2007; 356: 11–20. 8 Guo L, Ma Y, Ward R, Castranova V, Shi X, Qian Y. Constructing molecular classifiers for the accurate prognosis of lung adenocarcinoma. Clin Cancer Res 2006; 12: 3344–54. 9 Larsen JE, Pavey SJ, Passmore LH, et al. Expression profiling defines a recurrence signature in lung squamous cell carcinoma. Carcinogenesis 2007; 28: 760–66.
+10 Larsen JE, Pavey SJ, Passmore LH, Bowman RV, Hayward NK, Fong KM. Gene expression signature predicts recurrence in lung adenocarcinoma. Clin Cancer Res 2007; 13: 2946–54. 11 Lau SK, Boutros PC, Pintilie M, et al. Three-gene prognostic classifier for early-stage non small-cell lung cancer. J Clin Oncol 2007; 25: 5562–69. 12 Lu Y, Lemon W, Liu PY, et al. A gene expression signature predicts survival of patients with stage I non-small cell lung cancer. PLoS Med 2006; 3: e467. 13 Raponi M, Zhang Y, Yu J, et al. Gene expression signatures for predicting prognosis of squamous cell and adenocarcinomas of the lung. Cancer Res 2006; 66: 7466–72. 14 Raz DJ, Ray MR, Kim JY, et al. A multigene assay is prognostic of survival in patients with early-stage lung adenocarcinoma. Clin Cancer Res 2008; 14: 5565–70.
+15 Roepman P, Jassem J, Smit EF, et al. An immune response enriched 72-gene prognostic profile for early-stage non-small-cell lung cancer. Clin Cancer Res 2009; 15: 284–90. 16 Shedden K, Taylor JM, Enkemann SA, et al, and the Director’s Challenge Consortium for the Molecular Classification of Lung Adenocarcinoma. Gene expression-based survival prediction in lung adenocarcinoma: a multi-site, blinded validation study. Nat Med 2008; 14: 822–27. 17 Skrzypski M, Jassem E, Taron M, et al. Three-gene expression signature predicts survival in early-stage squamous cell carcinoma of the lung. Clin Cancer Res 2008; 14: 4794–99. 18 Sun Z, Wigle DA, Yang P. Non-overlapping and non-cell-typespecific gene expression signatures predict lung cancer survival. J Clin Oncol 2008; 26: 877–83. 19 Tomida S, Koshikawa K, Yatabe Y, et al. Gene expression-based, individualized outcome prediction for surgically treated lung cancer patients. Oncogene 2004; 23: 5360–70. 20 Subramanian J, Simon R. Gene expression-based prognostic signatures in lung cancer: ready for clinical use? J Natl Cancer Inst 2010; 102: 464–74. 21 Herbst RS, Heymach JV, Lippman SM. Lung cancer. N Engl J Med 2008; 359: 1367–80. 22 Greene FL, and the American Joint Committee on Cancer. American Cancer Society. AJCC cancer staging manual, 6th edn. New York: Springer-Verlag, 2002. 23 Baty F, Facompré M, Kaiser S, et al. Gene profiling of clinical routine biopsies and prediction of survival in non-small cell lung cancer. Am J Respir Crit Care Med 2010; 181: 181–88.
+24 File SSDM. National Technical Information Service, U.S. Department of Commerce, 2010. http://www.ssdmf.com (accessed May 1, 2011). 25 Schmittgen TD, Livak KJ. Analyzing real-time PCR data by the comparative C(T) method. Nat Protoc 2008; 3: 1101–08. 26 Simon N, Friedman J, Hastie T, Tibshirani R. Regularization paths for Cox’s proportional hazards model via coordinate descent. J Stat Softw 2011; 39: 1–13.
+27 Black WC, Haggstrom DA, Welch HG. All-cause mortality in randomized trials of cancer screening. J Natl Cancer Inst 2002; 94: 167–73.
