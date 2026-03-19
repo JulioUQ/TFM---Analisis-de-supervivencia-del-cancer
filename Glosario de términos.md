@@ -11,5 +11,9 @@
 - RT-PCR:
 - cáncer de mama, 
 	- Subtipos: (Luminal A, Luminal B, HER2-enriched y Triple Negativo)
-- cáncer de pulmón no microcítico, 
+- Cáncer de pulmón no microcítico (NSCLC – Non-Small Cell Lung Cancer):
 	-  mutaciones en EGFR, ERBB2 o KRAS
+
+- TCGA-BRCA
+
+- METABRIC
