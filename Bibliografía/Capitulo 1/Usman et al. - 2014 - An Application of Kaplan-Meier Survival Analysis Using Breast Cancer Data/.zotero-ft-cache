@@ -1,0 +1,127 @@
+Sub-Saharan African Journal of Medicine /Vol 1/Issue 3/Jul-Sep 2014 132
+INTRODUCTION
+Kaplan–Meier (K-M) method or product limit method[1] is a statistical technique used to analyze cancer data. It is applied in analyzing the distribution of the patient’s survival times following their recruitment into the study. The analysis expresses this in terms of proportion of patients still alive up to a given time following the recruitment or entry into the study. The K-M estimator is also called nonparametric maximum likelihood estimator. It is used for estimating survival probabilities. The method computes the probability of dying at a certain point in time conditional to the survival, up to that point.
+It utilizes the information of censored individuals till the point when the patient is censored. Thus, it maximizes utilization of available information on time to event of
+the study sample. This is a modified form of the ‘Life Table’ technique, with the condition that each time interval contains exactly one event, and event occurs at the beginning of the time interval. In clinical studies, individual data are usually available on time to death or time to last seen alive. The life table technique is one of the oldest methods for analyzing survival data.
+The distribution of survival times is divided into a certain number of intervals. For each interval, the number and proportion of cases or objects that entered the respective interval alive are computed; the number and proportion of cases that failed in the respective interval (number of terminal events, or number of cases that died) and the number of cases that were lost or censored in the respective interval will also be computed. Based on these numbers and proportions, several additional statistics can be computed; such as number of cases at risk, proportion failing, proportion surviving, the survival function, the hazard rate and median survival time. This procedure is used for large samples where the time intervals are large enough to be broken down into smaller units.
+The K-M estimator for the survival curves is usually used to analyze individual data, whereas life table
+An Application of Kaplan–Meier Survival Analysis Using Breast Cancer Data
+M. Usman, H. G. Dikko1, S. Bala1, S. U. Gulumbe2
+Department of Mathematics and Statistics, Nuhu Bamalli Polytechnic, 1Department of Mathematics, Ahmadu Bello University, Zaria, 2Department of Mathematics, Usmanu Danfodio University, Sokoto, Nigeria
+ABSTRACT
+Aim: Kaplan–Meier estimator provides better estimates to determine the median of the distribution of breast cancer patient’s survival times following their recruitment into the study. Materials and Methods: Age, sex, occupation, stage of the disease and results of the treatment of 312 breast cancer patients were the variables used in the study. The mean age of breast cancer patients was found to be 43.39 with a standard deviation of 11.74; the overall median survival time was 10 months. This indicates that 50% of breast cancer patients survived longer than 10 months after being diagnosed with the disease. Results and Discussion: Log-rank test was used to test the significant difference between the survival experiences of the patients. Age group, stage of the breast cancer and results of the treatment, indicated a significant difference, while occupations have not shown any significant difference in the survival of the breast cancer patients.
+Keywords: Breast cancer, censoring, Kaplan–Meier, log-rank test
+Address for correspondence: Mr. M. Usman, Nuhu Bamalli Polytechnic, Zaria, Kaduna, Nigeria. E-mail: Ummohammed67@yahoo.com
+Received: 12-05-14, Accepted: 23-07-14
+Access this article online
+Quick Response Code: Website:
+www.ssajm.org
+DOI:
+10.4103/2384-5147.138940
+Original Article
+
+
+Usman, et al.: An application of Kaplan–Meier survival analysis using breast cancer data
+133 Sub-Saharan African Journal of Medicine /Vol 1/Issue 3/Jul-Sep 2014
+method applies to group data. K-M is an extension of the concept of life table for analysis of censored data.[1-3] Since the life table method is a group data statistic, it is not as precise as the K-M estimate, which uses individual values. Three assumptions are made when carrying out a K-M analysis.[4] First, those who are censored had the same probability of death as those who remained in the study. Second, it is assumed that the probability of surviving is the same for all individuals recruited to the study, regardless of whether this was at an early or late point in the recruitment period. Thirdly, it is assumed that the exact date at which death occurred was known.
+The K-M survival curves can give an insight about the difference of survival functions of two or more groups, but whether this observed difference is statistically significant requires a statistical test. The survival curves can be compared statistically by testing the null hypothesis that there is no significant difference in survival among the two or more groups.
+Comparison of two or more survival distributions (or curves) are common practice in medical research. Several methods are used for comparing survival distributions. There are a number of methods that can be used to test the equality of survival functions in different groups.
+The one commonly used, is the nonparametric test for comparison of two or more survival distributions called “log-rank test.” The test is also called “Mantel–Cox test.”[5]
+In rare cases, some researchers may be interested in giving more weight to the time point where more number of subjects are available, and then log-rank test is not appropriate. Another method, generalized Wilcoxonsum test is used in this case.[6]
+RELATED WORK
+The life table is the earliest statistical method to study human mortality rigorously,[7] but its importance has been reduced by the modern methods, like K-M method. K-M estimator, also known as the product limit incorporates information from all observations available, both censored and uncensored, by considering any point in time as a series of steps defined by the observed survival and censored times. Kaplan and Meier[1] were the first to carry out the solution of a problem to estimate the survival curve in a simple way while considering the right censoring. A plot of the K-M estimate of the survival function is a series of horizontal steps of declining magnitude which, when large enough samples are taken, approaches the true survival function for that population. The value of the survival function between successive distinct sampled observations is assumed to be constant.
+Kaplan–Meier approach can clearly be used for outcomes other than death. For example, comparison of conventional surgery and endovenous laser ablation of recurrent varicose veins of a small sapphenous vein in a retrospective study was done.[8] The outcome of the study was time to recurrence. The authors used the K-M approach to assess this and found similar recurrence rates under two interventions.
+The K-M procedure is a method of estimating time-toevent models in the presence of censored cases. K-M model is based on estimating conditional probabilities at each time point when an event occurs and taking the product limit of those probabilities to estimate the survival rate at each point in time. For example, does the new treatment for a particular disease such as AIDS have any therapeutic benefit in extending the life? A study could be conducted using two groups of AIDS patients, one receiving traditional therapy and the other receiving the experimental treatment. Constructing a K-M model from the data would allow one to compare overall survival rates between the two groups to determine whether the experimental treatment is an improvement over the traditional therapy. A survival or hazard function can also be plotted in order to compare them visually for more detailed information.
+Kaplan–Meier curves have attractive properties, which perhaps explains their popularity in medical research for over half a century, they provide a visual depiction of all the raw data, the failure times (the “steps” down) and the censoring times (the vertical bars) — yet they also provide a mathematical estimate of the underlying probabilistic model.[9]
+An important advantage of the K-M curve is that the method can take into account some types of censored data, particularly right-censoring, which occurs if a patient withdraws from a study. On the plot, small vertical tick-marks indicate losses, where a patient’s survival time has been right-censored. When no truncation or censoring occurs, the K-M curve is the complement of the empirical distribution function. When there are several explanatory variables, and in particular when some of these are continuous, it is much more useful to use a regression method such as Cox rather than a K-M approach.
+Since K-M method do not control confounding nor accommodate time-varying treatments, other methods such as parametric survival models and proportional hazards models are often employed. However their apparent simplicity masks severe drawbacks, which has led to rightful criticism of indiscriminate use of the K-M method over decades.
+
+
+Usman, et al.: An application of Kaplan–Meier survival analysis using breast cancer data
+Sub-Saharan African Journal of Medicine /Vol 1/Issue 3/Jul-Sep 2014 134
+Other disadvantages of K-M method are firstly, the vertical drop at each actual failure, draws undue visual attention to those particular “danger times,” with the K-M estimate of the survival function remaining unchanged until the next failure is encountered. In reality, no practitioner would believe that patients are only at risk at specific times; rather, they are in continuous danger of failure, with a degree of danger perhaps changing with time.
+Secondly, as time progresses, there are fewer remaining patients at risk. This has two direct effects on the K-M curve: The interval between failures grows, and the effect of each individual failure on the size of the step-down increases. Thus, the visual impact of a single failure is unjustifiably magnified in both the horizontal and the vertical directions if it occurs at a later time.
+Thirdly, if the last remaining patient at risk fails, the K-M estimate of the survival function drops to zero at that time, whereas the true survival function will never reach zero in any physically sensible model.
+The fourth drawback of the K-M method is somewhat more subtle. The K-M estimate of the probability of surviving each “danger time” depends only on the number of patients at risk at that time; for each censored patient, it disregards the time between the last failure and the time of censoring.[10] Again, the amount of censored subjects and the distribution of censored subjects are also important. If the number of censored subjects is large, one must question how the study was carried out or if the treatment was ineffective, resulting in subjects leaving the study to pursue different therapies. A curve that does not demonstrate censored patients should be interpreted with caution.[11]
+Figure 1 illustrates the application of K-M. In the figure, the patients on treatment 1 appear to have a higher survival rate than those on treatment 2. The graph can be used to estimate the median survival time, because this is the time with probability of survival of 0.5. The median survival time for those on treatment 2 appears to be 5 days versus about 37 days on treatment 1.[12]
+The log-rank test is a hypothesis test to compare the survival distribution of two samples. It is a nonparametric test and appropriate to use when the data are right skewed and censored (technically, the censoring must be noninformative). It is widely used in clinical trials to establish the efficacy of a new treatment in comparison with a control treatment when the measurement is the time to event (such as the time from initial treatment to a heart attack). The test is sometimes called the MantelCox test.[13]
+Log-rank method works on the same principle as K-M and thus, requires that survival duration is exactly available for both groups. Expected death at each time point in either groups are obtained by following a procedure similar to the one followed for the contingency table. Total expected death for a group I and group II are compared with the total observed deaths in the group I and group II respectively and the chi-square value with one degree of freedom is obtained. This is used to reject or fail to reject the null hypothesis of the equality of the survival curves. Some properties of log-rank test were studied.[14] The test is more powerful, reliable and appropriate when compared to other tests in a situation where two or more survival curves do not cross i.e., whose hazard functions are proportional.
+Log-rank statistic forms the basis for several tests appropriate in the presence of nonproportional hazards and crossing survival curves.[15] Assume that the time point t0 can be “prespecified” (before one obtains the data), such that survival beyond t0 is considered longterm with t0 chosen such that the survival curves are likely to cross prior to that time point, if at all. They then consider a post-t0 log-rank test as:
+(1)
+The log-rank test is used to test whether there is a difference between the survival times of different groups, but it drawback is that it does not allow other explanatory variables to be taken into account.
+MATERIALS AND METHODS
+Breast cancer is one of the most common and feared in cancer deaths after lung cancer.[16] It is a major cause of morbidity and cancer-related mortality among
+Figure 1: Kaplan–Meier plot for treatment 1 and 2 associated with patients’ survival
+
+
+Usman, et al.: An application of Kaplan–Meier survival analysis using breast cancer data
+135 Sub-Saharan African Journal of Medicine /Vol 1/Issue 3/Jul-Sep 2014
+women. The data used in this study is for 312 cases of breast cancer reported at Ahmadu Bello University Teaching Hospital, Zaria Nigeria from January 1997 to December 2012. The covariates or independent variables considered under study were age, sex, occupation, stage of the disease, length of stay in the hospital, status of the patients and results of the treatment.
+In cancer trial, K-M method is the recommended technique in survival analysis. It is a method used to measure the fraction of subjects living for a certain period of time after treatment. It is applied by analyzing the distribution of patient’s survival times following their recruitment into the study. The analysis expresses these in terms of proportion of patients still alive up to a given time, following their recruitment. The K-M method is used to estimate the survival curves of patients from the observed survival times without the assumption of the underlying probability distribution. The method is based on the basic idea that the probability of surviving P or more periods from entering the study is the product of the P observed survival rates for each period i.e., the cumulative surviving; and is given by:
+S (p) = (K1) (K2) (K3),..., (Kp) (2)
+where K1 = Proportion of surviving the first period, K2 = Proportion of surviving beyond the second period conditional on having survived up to the secondperiod and so on.
+The proportion surviving period i having survived up to period i is given by,
+(3)
+Where ri = The number alive at the beginning of the period di = The number of deaths within the period
+Comparison of two-survival curves can be done using a statistical hypothesis test called the log-rank test. It is used to test the null hypothesis that there is no significant difference between the population survival curves (i.e., the probability of an event occurring at any time point is the same for each population).
+The test statistic is calculated by:
+(4)
+Where 01 and 02 are the total number of observed events in groups 1 and 2, respectively, E1 and E2 are the total number of expected events in the respective groups.
+RESULTS AND DISCUSSION
+Kaplan–Meier was used to estimate and graph the survival curves. The mean age of the breast cancer patients was 43.39 with a standard deviation of 11.74. From Figure 1, the overall median survival time was 10 months. This indicates that 50% of the breast cancer patients survived longer than 10 months after their diagnosed with the disease. In other words, for breast cancer patients, the chance of living beyond 10 months is 50%. This is the survival time at which the cumulative survival function is equal to 0.5 from Figure 2, the median survival time for housewives was found to be 16 months and for the other occupations was 10 months. These clearly shows that 50% of the breast cancer patients who are housewives survived longer than 16 months after being diagnosed and 50% of the patients who are in other occupations survived longer than 10 months after diagnosed with the disease. From Figure 3, the median survival time for age group 20-39 was found to be 19 months and for age groups 40-49, 50-59 and 60 years and above were 7, 5, and 10 months respectively. This indicates that 50% of the breast cancer patients age 20-39 survived longer than 19 days. 50% of age groups 40–49, 50-59 and 60 years and above of the breast cancer patients survived longer than 7, 5 and 10 months respectively after their diagnosed with the disease [Figure 4].
+To describe how to evaluate whether or not K-M curves for two or more groups are statistically significant, log-rank test was used as the most popular testing method. When two K-M curves are statistically the same or equivalent it means that based on the testing procedure that compares the two curves in some overall sense, there is no evidence to indicate that the true population survival curves are different. The log-rank
+Figure 2: Kaplan–Meier curve for overall survival estimate
+
+
+Usman, et al.: An application of Kaplan–Meier survival analysis using breast cancer data
+Sub-Saharan African Journal of Medicine /Vol 1/Issue 3/Jul-Sep 2014 136
+statistic, like any other statistics used in other kinds of chi-square tests, makes use of observed versus expected cells values over categories of outcomes. The categories for log-rank statistic are defined by each of the ordered failure times for the entire set of data being analyzed [Table 1].
+The log-rank statistic is 300.23, and the P = 0.0001, this indicates that the null hypothesis is rejected, and that the breast cancer patients in the three stages have significant different K-M survival curves. In other words, the survival experience of the breast cancer patients are not the same with respect to their stages of the breast cancer at 5% level of significance [Table 2].
+The log-rank statistic is 0.01, and the P = 0.9899, this indicates that the null hypothesis is not rejected. This means that the K-M curves of the breast cancer patients are almost the same for housewives and other occupations at 5% level of significance. House wives in this study refer to the patients who are not engaged in any work or business. For other occupations, the patients are engaged in some kind of work or business [Table 3].
+The log-rank statistic is 2.40, and the P = 0.0378, this indicates that the null hypothesis is rejected, and that the breast cancer patients in the three groups have significant different K-M survival curves, the survival experience of the breast cancer patients are not the same with respect to their age groups at 5% level of significance [Table 4].
+The log-rank statistic is 139.11, and the P = 0.0001, this indicates that the null hypothesis is rejected, and that the breast cancer patients have significant different K-M survival curves, the survival experience of the breast cancer patients are not the same with respect to the results of their treatment at 5% level of significance [Table 5].
+CONCLUSION
+In this study, K-M procedure was used to estimate the survival curves of the breast cancer patients. K-M method of estimation is better than life table method, because K-M analyses individual data whereas the
+Table 1: Stages of the breast cancer patients
+Stages Events observed Events expected I 0 9.15 II 3 84.45 III 147 56.40 Total 150 150.00
+Table 2: Occupations of the breast cancer patients
+Occupations Events observed Events expected Housewives 109 108.94 Other occupations 41 41.06 Total 150 150.00
+Table 3: Age groups of the breast cancer patients
+Age groups Events observed Events expected 20-39 54 61.57 40-49 47 44.63 50-59 32 26.95 60 and above 17 16.85 Total 150 150.00
+Table 4: Results of the treatment of the breast cancer patients
+Results of the treatment Events observed Events expected Improved condition 38 99.41 Unimproved condition 112 50.59 Total 150 150.00
+Table 5: Summary of log-rank tests for group variables
+Group variables Tests statistics P values
+Breast cancer stages 300.23 0.0001 Occupations 0.01 0.9899 Age groups 2.40 0.0378 Results of the treatment 139.11 0.0001
+Figure 3: Kaplan–Meier curves for survival estimate for occupations Figure 4: Kaplan–Meier curves for survival estimates for age
+
+
+Usman, et al.: An application of Kaplan–Meier survival analysis using breast cancer data
+137 Sub-Saharan African Journal of Medicine /Vol 1/Issue 3/Jul-Sep 2014
+traditional life table analyses group of individual data. The log-rank statistic was also used to test whether there is a significant difference in the survival experience of the breast cancer patients with respect to the different variables being considered. P < 0.05 was considered as significant difference. Stages of breast cancer, age group of the patients and the result of the treatment were found to have a significant difference in the survival experience; whereas occupations of the breast cancer patients do not have a significant difference in the survival experience.
+REFERENCES
+1. Kaplan EL, Meier PL. Non parametric estimation from incomplete observations. J Am Stat Assoc 1958;53:457-81.
+2. Kleinbaum DG. Survival Analysis: A Self Learning Text. New York: Springer; 1996.
+3. Lee ET, Wang JW. Statistical Methods for Survival Data Analysis. New Jersey, USA: John Willey; 2003.
+4. Bland JM, Altman DG. Survival probabilities (the Kaplan-Meier method). BMJ 1998;317:1572.
+5. Mantel N. Evaluation of survival data and two new rank order statistics arising in its consideration. Cancer Chemother Rep 1966;50:163-70.
+6. Hosmer DW, Lemeshow S. Applied Survival Analysis: Regression Modeling of Time to Event Data. New York: Wiley Inter Science; 1998.
+7. Berkson J, Gage RP. Calculation of survival rates for cancer. Proc Staff Meet Mayo Clin 1950;25:270-86.
+8. van Groenendael L, Flinkenflögel L, van der Vliet JA, Roovers EA, van Sterkenburg SM, Reijnen MM. Conventional surgery and endovenous laser ablation of recurrent varicose veins of the small saphenous vein: A retrospective clinical comparison and assessment of patient satisfaction. Phlebology 2010;25:151-7.
+9. John PC. A simple alternative to Kaplan–Meier for survival curves; 2010. Peter MacCallum Cancer Centre.
+10. Carter RE, Huang P. Cautionary note regarding the use of CIs obtained from Kaplan-Meier survival curves. J Clin Oncol 2009;27:174-5.
+11. Rich JT, Neely JG, Paniello RC, Voelker CC, Nussenbaum B, Wang EW. A practical guide to understanding Kaplan-Meier curves. Otolaryngol Head Neck Surg 2010;143:331-6.
+12. Bewick V, Cheek L, Ball J. Statistics review 12: Survival analysis. Crit Care 2004;8:389-94.
+13. David H. Linear Rank Tests in Survival Analysis. Encyclopedia of Biostatistics. Wiley Inter Science; 2005. doi:10.1002/0470011815. b2a11047. John Wiley and Sons Ltd.
+14. Gill RD. Censoring and Stochastic Integrals. Mathematical Centre Tracts. Vol. 24. Amsterdam: Mathematisch Centrum; 1980.
+15. Logan BR, Klein JP, Zhang MJ. Comparing treatments in the presence of crossing survival curves: An application to bone marrow transplantation. Biometrics 2008;64:733-40.
+16. Ries LA, Wingo PA, Miller DS, Howe HL, Weir HK, Rosenberg HM, et al. The annual report to the nation on the status of cancer, 1973-1997, with a special section on colorectal cancer. Cancer 2000;88:2398-424.
+How to cite this article: Usman M, Dikko HG, Bala S, Gulumbe SU. An application of kaplan-meier survival analysis using breast cancer data. SubSaharan Afr J Med 2014;1:132-7.
+Source of Support: Nil, Conflict of Interest: None declared.
+New features on the journal’s website
+Optimized content for mobile and hand-held devices
+HTML pages have been optimized of mobile and other hand-held devices (such as iPad, Kindle, iPod) for faster browsing speed. Click on [Mobile Full text] from Table of Contents page. This is simple HTML version for faster download on mobiles (if viewed on desktop, it will be automatically redirected to full HTML version)
+E-Pub for hand-held devices
+EPUB is an open e-book standard recommended by The International Digital Publishing Forum which is designed for reflowable content i.e. the text display can be optimized for a particular display device. Click on [EPub] from Table of Contents page. There are various e-Pub readers such as for Windows: Digital Editions, OS X: Calibre/Bookworm, iPhone/iPod Touch/iPad: Stanza, and Linux: Calibre/Bookworm.
+E-Book for desktop
+One can also see the entire issue as printed here in a ‘flip book’ version on desktops. Links are available from Current Issue as well as Archives pages. Click on View as eBook

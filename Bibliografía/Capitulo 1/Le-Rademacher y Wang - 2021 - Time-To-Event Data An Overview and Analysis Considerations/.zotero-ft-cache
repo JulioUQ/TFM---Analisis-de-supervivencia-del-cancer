@@ -1,0 +1,195 @@
+STATISTICS IN THORACIC ONCOLOGY
+Time-To-Event Data: An Overview and Analysis Considerations
+Jennifer Le-Rademacher, PhD,a,* Xiaofei Wang, PhDb
+aDivision of Clinical Trials and Biostatistics, Mayo Clinic, Rochester, Minnesota
+bDepartment of Biostatistics and Bioinformatics, Duke University, Durham, North Carolina
+Received 25 January 2021; revised 13 April 2021; accepted 14 April 2021 Available online 19 April 2021
+ABSTRACT
+In oncology, overall survival and progression-free survival are common time-to-event end points used to measure treatment efficacy. Analyses of this type of data rely on a complex statistical framework and the analysis results are only valid when the data meet certain assumptions. This article provides an overview of time-to-event data, the basic mechanics of common analysis methods, and issues often encountered when analyzing such data. Our goal is to provide clinicians and other lung cancer researchers with the knowledge to choose the appropriate time-to-event analysis methods and to interpret the outcomes of such analyses appropriately. We strongly encourage investigators to seek out statisticians with expertise in survival analysis when embarking on studies that include time-to-event data to ensure that their data are collected and analyzed using the appropriate methods.
+Ó 2021 International Association for the Study of Lung Cancer. Published by Elsevier Inc. All rights reserved.
+Keywords: Time-to-event data; Survival analysis; Competing risks; Kaplan-Meier estimates; Log-rank test; Cox model
+Introduction
+Time-to-event end points such as time to complete response (CR), time to disease progression, or time to death are important measures of cancer therapy efficacy. Analysis of time-to-event data requires a good understanding of the data structure, statistical methods, and related assumptions. This article provides a high-level overview of time-to-event data, the basic mechanics of common analysis methods, and pitfalls often encountered in the analysis of these data. Our goal is to provide clinicians and other lung cancer researchers with the knowledge to choose the appropriate time-to-event analysis methods and to interpret the outcomes of such analyses appropriately. The readers are strongly
+encouraged to seek out and collaborate with statisticians with survival analysis expertise when considering timeto-event end points in their research. Time-to-event data—including survival data, the most common type of time-to-event data encountered in clinical research—are longitudinal data in which subjects are followed from a clearly defined starting time until they experience the event of interest. In oncology, examples of the starting time include the time of cancer diagnosis, time of cancer therapy initiation, or time of treatment randomization (for randomized clinical trials); and common events of interest include achieving CR, having a disease progression, or death. In practiceowing to early dropout, financial, logistical, or administrative reasons—it is often not possible to follow all patients until the event of interest occurs. Patients who have not experienced the event of interest by the end of the study or those who did not complete their required follow-up for reasons not related to the event of interest are censored at the time of their last follow-up (i.e., we know that these patients are event-free at their last follow-up time and we assume that the event would happen at some unknown future time.) Naively excluding censored patients from analyses or treating the follow-up time of the censored patients as the event time would yield biased survival estimates. Time-toevent (survival) analysis methods were developed to
+*Corresponding author.
+Disclosure: Dr. Le-Rademacher reports receiving a grant from Mayo Clinic, during the conduct of the study. Dr. Wang declare no conflict of interest.
+Address for Correspondence: Jennifer Le-Rademacher, PhD, Division of Clinical Trials and Biostatistics, Mayo Clinic, Rochester, Minnesota E-mail: le-rademacher.jennifer@mayo.edu
+a 2021 International Association for the Study of Lung Cancer. Published by Elsevier Inc. All rights reserved.
+ISSN: 1556-0864
+https://doi.org/10.1016/j.jtho.2021.04.004
+Journal of Thoracic Oncology Vol. 16 No. 7: 1067–1074
+
+
+incorporate censoring into analysis procedures of these data.1,2 The censoring scheme described above is called right censoring. Data with other censoring schemes, such as left-censored or interval-censored, exist but rightcensored survival data are the most common, and their analysis methods are well established, hence the focus of this article.
+Definition and Types of Time-To-Event Data
+Time-to-event data consist of two tightly linked components: the time variable and the event indicator. The first component, the time variable, is the interval from the starting time to the event time or the last follow-up time whichever occurs first. It is important to clearly specify the starting and ending time and the time unit when defining the time variable. Care should be taken when selecting the starting time to ensure that the appropriate set of patients are included in the study and that the resulting data unbiasedly capture the time to the event of interest. Selecting the appropriate starting time is very important—especially in observational studies, retrospective studies, or studies pooling data across clinical trials—to avoid often encountered biases with time-to-event data such as lead-time bias and immortal time bias. As an example, lead-time bias occurs in a screening study comparing the survival rates between patients whose cancer was detected through screening and those whose cancer was detected from symptoms with survival being measured from the time of cancer diagnosis. Because the cancer is likely detected earlier with screening and later by symptoms, the longer survival time in screened patients is likely owing to their survival being measured at an earlier time point rather than the screening itself prolongs life. In contrast, immortal time bias occurs in studies that include followup time during which a patient or the entire exposure group is not at risk of the event of interest. For example, in a study evaluating whether achieving a CR prolongs overall survival (OS) in patients receiving a new therapy, the longer survival in patients achieving a CR is attributed to the fact that they have to live long enough to have a CR assessment, which is, an immortal time bias. Please refer to Lévesque et al.3 and Gill et al.4 for further discussions on immortal time bias. In summary, the choice of the starting time should be carefully considered. The other component is a categorical variable indicating the patient’s status at the ending time. Definition of the indicator variable depends on the type of time-toevent data. Besides survival data, time-to-event data encompass other more complex data, including competing risks data and, more generally, data
+generated from multistate models. Descriptions and examples of different types of time-to-event data follow.
+Survival Data
+OS, with death from any cause as the event of interest, is the simplest time-to-event end point. The time of event occurrence—that is, death—is relatively welldefined and survival duration is often the ultimate measure of treatment benefit. In oncology, survival can be measured from the time of cancer diagnosis to death if the interest is in survival prognosis of patients with newly diagnosed cancer or from the time of therapy initiation (such as tumor resection, chemotherapy, or immunotherapy) to death if the interest is in survival after treatment. The event indicator variable for OS is often coded as 1 ( 1⁄4 dead) for patients who die during the follow-up period and 0 ( 1⁄4 censored) for patients who are alive at their last follow-up. Another common survival end point in cancer studies is progression-free survival (PFS). Unlike OS in which death is the only event of interest, PFS is a composite survival end point in which both death and cancer progression are events of interest. The time interval for PFS starts from the origin time and ends at cancer progression, death, or the last follow-up, whichever occurs first, and the event indicator is one ( 1⁄4 dead or progressive disease) if the patient has a cancer progression or dies; and zero ( 1⁄4 censored) if the patient is alive without cancer progression at the last follow-up. Observed data for four hypothetical patients are illustrated in Figure 1 and columns 1 to 3 of the embedded table. Specifically, patient 1 died at 12 months poststudy entry and patient 2 had a disease progression at 12 months poststudy entry so the observed time was 12 months with indicator equal to one for both patients; patient 3 was alive without disease progression in the first 24 months from study entry corresponding to an observed time of 24 months and indicator equal to zero; and patient 4 had a cancer progression 6 months after study entry and subsequently died 12 months later corresponding to an observed time of 6 months (the time of the first event, progression) and indicator equal to one for PFS. A similar definition can be extended to other composite survival end points such as recurrence-free survival or event-free survival. Although any number of different events can be considered in a composite end point, the events should be clearly specified. It is important to note that a composite end point in itself may not provide a clear picture of the time course of each of its components.5 For example, the observed data for PFS for patients 1 and 2 in Figure 1 are identical, although one died and the other had a disease progression. It is advisable to also investigate each outcome
+1068 Le-Rademacher and Wang Journal of Thoracic Oncology Vol. 16 No. 7
+
+
+component separately, which can be accomplished by analyzing these data as competing risks, as described and illustrated in the following sections.
+Other Types of Time-To-Event Data
+Competing risk data arise when patients may experience one of the multiple events and the occurrence of one event may preclude the occurrence of other events.6 Common competing risks are cancer progression and death without progression, in which progression cannot occur in patients who died before having a progression. In the examples of Figure 1 (and columns 4–5 of the embedded table), the observed time for the competing risks of death and cancer progression is the time from study entry to the time of progression, death, or last follow-up, whichever occurs first (same as the PFS composite end point). However, the event indicator, illustrated in the last column of the table embedded in Figure 1, is one ( 1⁄4 cancer progression), two ( 1⁄4 death), and zero ( 1⁄4 alive without progression at the time of the last follow-up). Unlike the PFS setting in which the observed data for patients 1 and 2 are identical although these patients experienced 2 different types of event, in the competing risk setting, the event indicator for patient 1 is two ( 1⁄4 death) and for patient 2 is one ( 1⁄4 progression), which reflect the different types of event they experienced. Gajra et al.7 illustrate the use of competing risks to explore the differences in specific causes of treatment failure in a study comparing time-to-treatment failure (TTF) in older versus younger patients with advanced NSCLC. TTF is a composite end point, defined as chemotherapy discontinuation before completion of the planned six cycles for any reason, including cancer progression, adverse events, patient choice, or death, whichever occurs first. They found that the rates of premature treatment discontinuation were not different between patients who were 65 years of age or older compared with those younger than 65 (67% versus 65%). However, looking at specific reasons for
+discontinuation, older patients were less likely to discontinue therapy owing to cancer progression (41% versus 55%) and were more likely to discontinue by choice (15% versus 6%) compared with younger patients.7 These insights would have been missed if specific reasons for treatment discontinuation (the components of TTF) were not evaluated. Competing risk data are encountered more frequently in practice than are recognized. Erroneously treating a competing event (death before progression in this example) as censored observation may lead to an overestimation of the incidence of the events of interest.8 Besides survival and competing risk data, more complex time-to-event data can be generated from the multistate model framework.9 Multistate models are beyond the scope of this article. For readers interested in this topic, Le-Rademacher et al.10 illustrate the application of multistate models in an oncology trial.
+Analysis Considerations Kaplan-Meier Estimates
+Survival data are often summarized using the KaplanMeier method,11 which incorporates data from patients who had the event of interest and those being censored to estimate the survival probabilities at various time points. Censored observations are included in the estimation procedure up to the censoring time. Without censoring, the Kaplan-Meier estimates are the simple proportions of survivors at these time points. KaplanMeier estimates at different follow-up times are used to generate the Kaplan-Meier curves. The number of patients at risk should be reported (typically in equally spaced intervals between the time zero and the maximum time on the plot as illustrated at the bottom of Fig. 2), along with the Kaplan-Meier curves. As the number of patients at risk gets smaller, the survival estimate becomes less stable, that is, one death can cause a big drop in the survival curve. It is important to consider the number of patients at risk when interpreting the shape and the tails of the Kaplan-Meier curves.
+Figure 1. Example of composite progression-free survival end point versus competing risks of disease progression and death without progression.
+July 2021 Time-to-Event Data Considerations 1069
+
+
+Additional statistical summaries derived from the Kaplan-Meier estimates include the median survival time (the time point in which the survival probability is 50%) (Fig. 2A), survival probabilities at fixed time points (Fig. 2B), and the restricted mean survival time (RMST) (the area under the survival curve between the origin time and the restriction time) (Fig. 2C). The time point must be specified when starting a survival probability. As illustrated in Figure 2B, the survival probability at 6 months from diagnosis is 64%; whereas the survival probability at 24 months is 16%. For the RMST, the mean survival time is calculated restricted to a prespecified time point, called the restriction time, to ensure that the mean is estimable within a reasonable time frame. The restriction time should be selected as a clinically meaningful time horizon for the disease, the patient population, and the treatment under consideration. In the example of Figure 2C, the mean survival time within 5 years from diagnosis is 11.6 months in this group of patients.
+Log-Rank Test
+The goal of many clinical studies is to compare survival experience between treatment groups or to evaluate the association between patient demographics or disease-related risk factors and survival. Although the log-rank test and the Cox proportional hazards model (hereafter Cox model) are the most widely used survival analysis techniques, other methods for the analysis of survival data exist as summarized in Table 1. The logrank test compares the hazard rates (the rates at which the event of interest occurs among those still at risk for that event) between groups and, in general, has the most statistical power when the hazard rates between groups are constantly proportional to each other throughout the entire follow-up time. However, the log
+rank test is strictly a testing procedure that produces a p-value but does not provide an estimate of the treatment effect.1,2,12 The log-rank test compares the entire survival curves rather than the Kaplan-Meier estimates at a specific time point. The log-rank test is often used for sample size estimation and analysis of survival data from randomized clinical trials. The statistical power for the log-rank test depends on the number of events rather than the number of patients. Therefore, in randomized trials in which the numbers of events are low such as in adjuvant trials, enrollment of a large number of patients or a long follow-up period is needed to reach the required number of events. In general, the estimation precision and the statistical power are directly determined by the number of observed events at the time of statistical analysis, which is in turn dependent on the total sample size, the number of patients at risk at landmark follow-up times, and the duration of follow-up. Therefore, it is important to consider the maturity of the survival data when interpreting the Kaplan-Meier curves and the result from the log-rank test.
+Cox Proportional Hazards Model
+When an estimate of the treatment effect on survival is needed or when the comparison needs to adjust for other covariates or confounding factors, Cox models are fit to provide hazard ratio estimates and corresponding confidence intervals.13 Cox models are often used to identify potential biomarkers associated with survival outcomes. For example, Dy et al.14 used Cox models to explore the impact of baseline level of various analytes on survival. One important assumption of the Cox model is that the hazard ratio is constant over time, known as the proportional hazards (PHs) assumption.15 The PH assumption should be evaluated by using a graphical
+ABC
+Figure 2. Summary statistics from Kaplan-Meier estimates. (A) (left) Median survival time; (B) (middle) Survival probabilities at 6 months and 24 months from diagnosis; and (C) (right) restricted mean survival time. #, number at risk.
+1070 Le-Rademacher and Wang Journal of Thoracic Oncology Vol. 16 No. 7
+
+
+Table 1. Survival End Points and Analysis Methods
+End Point Analysis Method Treatment Effect Estimate Interpretation Pros and Cons
+Hazard rate Log-rank test1,2,12 None Test whether the hazard rates are
+the same between groups over
+the entire follow-up time.
+Has the most statistical power under proportional
+hazards.
+No inherent estimate.
+Often used in conjunction with Cox model to
+obtain the treatment effect estimate.
+Cox proportional hazards
+model1,2,13
+Hazard ratio of treatment B vs.
+treatment A ( 1⁄4 x)
+The hazard with treatment B is x
+times the hazard with
+treatment A.
+Most often used to quantify treatment effect for
+survival data.
+Allows for inclusion of other covariates in the
+model.
+Quantifies relative treatment effect.
+Not interpretable if hazards are not proportional.
+Survival probability at a
+prespecified time t0
+(Has much lower power
+than the other survival
+end points)
+If no censoring before time t0 – this is equivalent to the simple proportion of survivors at time t0:
+chi-square test or Fisher’s
+exact test
+None Test whether or not survival is
+independent of treatment.
+No inherent estimate.
+Often used in conjunction with a logistic
+regression model to obtain treatment effect
+estimate. Logistic regression model OR of survival of treatment B
+compared with treatment
+A ( 1⁄4 x)
+The odds of survival in treatment
+B is x times the odds in
+treatment A.
+Familiar interpretation.
+Allows for inclusion of other covariates in the
+model.
+Quantifies relative treatment effect.
+Test of difference in
+proportions
+The difference in survival
+probabilities with treatment B
+compared with treatment
+A ( 1⁄4 x)
+The survival probabilities at time
+t0 with treatment B is increased
+by x compared with treatment
+A.
+Clear interpretation.
+Quantifies absolute treatment effect.
+Does not allow for adjustment of other covariates.
+If there are censored observations before t0:
+Test of difference in Kaplan
+Meier estimates assuming
+asymptotic normality2
+The difference in survival
+probabilities with treatment B
+compared with treatment
+A ( 1⁄4 x)
+The survival probabilities at time
+t0 with treatment B is increased
+by x compared with treatment
+A
+Clear interpretation.
+Quantifies absolute treatment effect.
+Pseudovalue regression25 OR (or hazard ratio) of survival
+with treatment B compared
+with treatment A
+Same interpretation as logistic
+regression model (or Cox
+model)
+Allows inclusion of other covariates in the model.
+Familiar interpretation.
+Quantifies relative treatment effect.
+Mean survival time
+restricted to time s
+(RMST)
+(Power can reach that
+of the log-rank test)
+Test of difference (or ratio) of
+RMST20
+Difference (or ratio) between
+mean survival time with
+treatment B compared with
+treatment A ( 1⁄4 x)
+The mean survival time with
+treatment B is increased by x
+units (or is x times) compared
+with treatment A
+Clear interpretation.
+Quantifies absolute treatment effect if testing the
+difference.
+Quantifies relative treatment effect if testing the
+ratio.
+Interpretable regardless of whether or not the
+hazards are proportional.
+Pseudovalue regression25 Difference between mean survival
+time with treatment B
+compared with treatment
+A ( 1⁄4 x)
+The mean survival time with
+treatment B is increased by x
+units compared with treatment
+A
+Clear interpretation.
+Allows for inclusion of other covariates in the
+model.
+Quantifies absolute treatment effect if testing the
+difference.
+RMST, restricted mean survival time.
+July 2021 Time-to-Event Data Considerations 1071
+
+
+approach or a test of covariate by time interactions when fitting the Cox model.16 If there are indications of nonPHs, models with time-varying effect should be considered.2 Alternative methods, such as the difference or the ratio of the RMST (Fig. 2C and Table 1), can be used to quantify the treatment effect under non-PHs as further discussed in the section on other analysis methods.17 However, when the PH assumption is violated, many randomized trials still use the hazard ratio estimated from the Cox model as a measure for treatment effect. In such case, the estimated hazard ratio can be clinically interpreted as an average increase or reduction in the hazard rate over time; and inference on the average hazard ratio should use bootstrapping or inverse probability weighting approach to correct for the standard variance estimator.16 A common pitfall in survival analysis that can lead to serious bias is the incorrect analysis of time-dependent covariates. Time-dependent covariates are covariates whose values change over time. For example, LeRademacher et al.18 evaluated the impact of weight change during chemotherapy (classified as any weight gain, weight loss of <2%, or weight loss of 2% from the prechemotherapy weight) on survival in patients with advanced NSCLC in which survival is measured from trial enrollment and before starting chemotherapy. It would be incorrect to group patients into three weight change groups and plot Kaplan-Meier curves using the time of trial enrollment as the origin time or to fit a Cox regression model with weight change as a fixed covariate from the time of trial enrollment, as weight change during therapy is not yet known at the time of trial enrollment. One approach to analyzing such timedependent covariate is to use landmark analysis. In this study, the start of treatment cycle 2 was chosen as the landmark time—the origin time for subsequent analyses. Only patients who were still alive at the beginning of treatment cycle 2 were included in the analyses and patients were categorized into groups on the basis of their weight change between the time of trial enrollment and the end of treatment cycle 1.18 When using this approach, the landmark time should be carefully considered to ensure that there is a sufficient number of patients still at risk for the event of interest at the landmark time and that the set of patients included in the analysis represents the study’s target patient population. Another approach to handle time-dependent covariate is to introduce a time-dependent effect term in the Cox model. Correct application of this complex modeling approach requires advanced statistical knowledge and programming skills.19 We advise investigators to seek out a statistician with advanced knowledge of survival analysis when encountering survival data with potential time-dependent covariates.
+Other Analysis Methods for Time-to-Event Data Besides the log-rank test and the Cox model, which are hazard-based methods, the treatment effect on survival or the association between demographics and disease characteristics with survival can be evaluated using parametric models including the log-linear model and the accelerated failure-time model or other methods that are based on the survival probability at a fixed time point or are based on the RMST (their interpretations and pros and cons are summarized in Table 1). Unlike the log-rank test and the Cox model, these methods do not rely heavily on the PHs assumption, hence an increased interest in these methods in the era of immuno-oncology. Interpretation of the test on the basis of survival probability at a fixed time point is clear and familiar to the clinical audience. However, this method focuses on the survival experience only at a single time point and, thus, may not be a good summary for the overall treatment effect. Methods based on the RMST are less familiar to oncology researchers. The difference in RMST is interpreted as the difference in the average survival time, restricted to the first s years (or mo) from the origin time, between the two patient groups. The RMST test compares the entire survival experience from the origin time to the restriction time. In certain settings, the test on the basis of the difference in RMST can provide as much statistical power as the log-rank test.20 For competing risks data, the Cox model is often used to model the cause-specific hazards of competing risks data.6 Competing risks data are also often described in terms of the cumulative incidence of the event of interest (i.e., the cumulative proportion of patients experiencing that event) by a fixed time point.21 Without censoring, the cumulative incidence of an event by a prespecified time is the simple proportion of patients who experienced that event (before experiencing any competing causes) by that time. For example, in early phase trials, response rate after a short period of treatment can be evaluated as a binary variable. Other methods for competing risks including Gray’s test,22 which is an extension of the log-rank test, and the Fine and Gray model,23 which is an extension of the Cox model. These methods appropriately account for the competing events.
+Reporting Considerations
+When describing the statistical analysis of time-toevent data in publications, it is important to clearly specify the start time, the end time, the time unit, the events of interest, and the events being considered as competing risks or censored. The time points of the survival probability or the cumulative incidence estimates should be specified along with the corresponding
+1072 Le-Rademacher and Wang Journal of Thoracic Oncology Vol. 16 No. 7
+
+
+confidence intervals. Detailed guidance for presenting Kaplan-Meier curves is given in a previous article in this series (Table 1 and Fig. 1 of Ou et al.24). The same principles apply to cumulative incidence plots. Results of the Cox or Fine and Gray models should be reported with the hazard ratios, corresponding confidence intervals along with their associated p values.
+Conclusions
+Time-to-event data, especially survival data, are essential in oncology research; however, the structure of these data and their analysis methods are complex. These methods are on the basis of specific assumptions on the underlying data structure and their distributions. The validity of the conclusions drawn from the observed time-to-event data and their analyses requires special care to ensure that the data reasonably meet these assumptions. With most clinical outcomes in oncology being timeto-event in nature, it is important for clinicians and other cancer researchers to have basic knowledge of time-to-event data and assumptions of common analysis methods and be able to interpret the results of time-toevent analyses appropriately. This article is one step toward the effort to educate the clinical audience on this topic. However, continuing education is needed to help refresh and reinforce this knowledge. In addition to offering survival analysis courses in educational oncology research programs, we recommend offering statistical seminars or short courses on this topic at oncology conferences as another venue for educating clinicians and researchers. Furthermore, we strongly encourage investigators, regardless of their comfort level with this type of data, to seek out statisticians with expertise in survival analysis when embarking on studies that include time-to-event data to ensure that their data are collected and analyzed using the appropriate methods.
+Acknowledgments
+This work was partially supported by the Mayo Clinic Comprehensive Cancer Center Grant (grant number P30CA15083) through Dr. Le-Rademacher and Dr. Wang through grant numbers P01CA142538 and R01AG066883.
+References
+1. Cox DR, Oakes D. Analysis of Survival Data. London, United Kingdom: Chapman & Hall; 2001.
+2. Klein JP, Moeschberger ML. Survival Analysis: Techniques for Censored and Truncated Data. New York, NY: Springer Science and Business Media; 2006. 3. Lévesque LE, Hanley JA, Kezouh A, Suissa S. Problem of immortal time bias in cohort studies: example using
+statins for preventing progression of diabetes. BMJ. 2010;340:b5087. 4. Gill BS, Flickinger JC, Beriwal S. Caveat for immortal time bias in adjuvant therapy–related population-based analyses. J Clin Oncol. 2015;33:2931. 5. George S, Wang X, Pang H. Endpoints for cancer clinical trials. In: George S, Wang X, Pang H, eds. Cancer Clinical Trials: Current and Controversial Issues in Design and Analysis. New York, NY: Chapman & Hall; 2016:3–36. 6. Prentice RL, Kalbfleisch JD, Peterson AV Jr, Flournoy N, Farewell VT, Breslow NE. The analysis of failure times in the presence of competing risks. Biometrics. 1978;34:541–554. 7. Gajra J, Zemla TL, Jatoi J, et al. Time-to-treatmentfailure and related outcomes among 1000þ advanced Non–small cell lung cancer patients: comparisons between older versus younger patients (alliance A151711). J Thorac Oncol. 2018;13:996–1003. 8. Bakoyannis G, Touloumi G. Practical methods for competing risks data: a review. Stat Methods Med Res. 2012;21:257–272. 9. Andersen PK, Keiding N. Multi-state models for event history analysis. Stat Methods Med Res. 2002;11:91–115. 10. Le-Rademacher JG, Peterson RA, Therneau TM, Sanford BL, Stone RM, Mandrekar SJ. Application of multi-state models in cancer clinical trials. Clin Trials. 2018;15:489–498. 11. Kaplan EL, Meier P. Nonparametric estimation from incomplete observations. J Am Stat Assoc. 1958;53:457481. 12. Mantel N. Evaluation of survival data and two new rank order statistics arising in its consideration. Cancer Chemother Rep. 1966;50:163–170. 13. Cox DR. Regression models and life-tables. J R Stat Soc B. 1972;34:187–202. 14. Dy GK, Mandrekar SJ, Nelson GD, et al. A randomized phase II study of gemcitabine and carboplatin with or without cediranib as first-line therapy in advanced nonsmall-cell lung cancer: North Central Cancer Treatment Group study N0528. J Thorac Oncol. 2013;8:79–88. 15. Hernán MA. The hazards of hazard ratios. Epidemiol (Camb Mass). 2010;21:13–15. 16. Stensrud MJ, Hernán MA. Why test for proportional hazards? JAMA. 2020;323:1401–1402. 17. Uno H, Claggett B, Tian L, et al. Moving beyond the hazard ratio in quantifying the between-group difference in survival analysis. J Clin Oncol. 2014;32:23802385. 18. Le-Rademacher J, Lopez C, Wolfe E, et al. Weight loss over time and survival: a landmark analysis of 1000þ prospectively treated and monitored lung cancer patients. J Cachexia Sarcopenia Muscle. 2020;11:15011508. 19. Fisher LD, Lin DY. Time-dependent covariates in the Cox proportional-hazards regression model. Annu Rev Public Health. 1999;20:145–157. 20. Eaton A, Therneau T, Le-Rademacher J. Designing clinical trials with (restricted) mean survival time endpoint: practical considerations. Clin Trials. 2020;17:285–294.
+July 2021 Time-to-Event Data Considerations 1073
+
+
+21. Kalbfleish JD, Prentice RL. The Statistical Analysis of Failure Time Data. New York, NY: John Wiley; 1980. 22. Gray RJ. A class of K-sample tests for comparing the cumulative incidence of a competing risk. Ann Stat. 1988;16:1141–1154. 23. Fine JP, Gray RJ. A proportional hazards model for the sub-distribution of a competing risk. J Am Stat Assoc. 1999;94:496–509.
+24. Ou FS, Le-Rademacher JG, Ballman KV, Adjei AA, Mandrekar SJ. Guidelines for statistical reporting in medical journals. J Thorac Oncol. 2020;15:17221726. 25. Klein JP, Gerster M, Andersen PK, Tarima S, Perme MP. SAS and R functions to compute pseudo-values for censored data regression. Comput Methods Programs Biomed. 2008;89:289–300.
+1074 Le-Rademacher and Wang Journal of Thoracic Oncology Vol. 16 No. 7

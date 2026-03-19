@@ -9,3 +9,7 @@
 
 
 - RT-PCR:
+- cáncer de mama, 
+	- Subtipos: (Luminal A, Luminal B, HER2-enriched y Triple Negativo)
+- cáncer de pulmón no microcítico, 
+	-  mutaciones en EGFR, ERBB2 o KRAS
