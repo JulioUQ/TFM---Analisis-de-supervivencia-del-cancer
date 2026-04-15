@@ -2,7 +2,7 @@
 - **Autor(es):** Robert Clarke, Habtom W. Ressom, Antai Wang, Jianhua Xuan, Minetta C. Liu, Edmund A. Gehans y Yue Wang
 - **Fecha de publicación:** Enero de 2008
 - **Revista/Editorial:** Nature Reviews Cancer / Nature Publishing Group
-- **Campo/Disciplina:** Oncología, Biología de Sistemas, Bioinformática, Bioestadística
+- **Campo/Disciplina:** [[Oncología]], [[Multidimensionalidad]], [[Bioinformática]], [[Bioestadística]], [[Machine learning]]
 - **DOI/Enlace:** 10.1038/nrc2294
 
 ---

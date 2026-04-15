@@ -1,7 +1,7 @@
 
 **Autor(es):** Li Tong, Jonathan Mitchel, Kevin Chatlin y May D. Wang 
 **Fecha de publicación:** 15 de septiembre de 2020 (Recibido: 7 de febrero de 2020) **Revista/Editorial:** BMC Medical Informatics and Decision Making 
-**Campo/Disciplina:** Bioinformática Médica / Oncología Computacional 
+**Campo/Disciplina:** [[Biomarcadores]], [[Breast Cancer]], [[Análisis de Supervivencia]], [[Deep learning]] [[Oncología]] [[Autoencoders]] [[TCGA]]
 **DOI/Enlace:** [https://doi.org/10.1186/s12911-020-01225-8](https://doi.org/10.1186/s12911-020-01225-8)
 
 ---
@@ -37,7 +37,6 @@ La investigación se fundamenta en la hipótesis de que los datos multi-ómicos 
 - **Capacidad predictiva individual:** Entre las modalidades individuales, el miRNA resultó ser el más predictivo, mientras que las CNVs fueron las menos útiles para la supervivencia global.
     
 - **Efectividad de los principios:** Se confirmó que los datos de metilación y miRNA contienen información tanto complementaria como de consenso beneficiosa para el análisis.
-    
 
 ---
 

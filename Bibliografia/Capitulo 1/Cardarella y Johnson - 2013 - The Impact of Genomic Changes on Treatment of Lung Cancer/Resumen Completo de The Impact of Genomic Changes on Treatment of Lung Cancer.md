@@ -2,7 +2,7 @@
 **Autor(es):** Stephanie Cardarella y Bruce E. Johnson 
 **Fecha de publicación:** 1 de octubre de 2013 (Publicado originalmente en línea el 10 de julio de 2013) 
 **Revista/Editorial:** American Journal of Respiratory and Critical Care Medicine 
-**Campo/Disciplina:** Oncología Torácica / Genómica del Cáncer 
+**Campo/Disciplina:** [[Oncología]],  [[Genómica]], [[Lung cancer]] 
 **DOI/Enlace:** 10.1164/rccm.201305-0843PP
 
 ---

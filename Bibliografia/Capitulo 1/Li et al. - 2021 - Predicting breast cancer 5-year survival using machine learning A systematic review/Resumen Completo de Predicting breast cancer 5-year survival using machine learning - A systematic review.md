@@ -2,7 +2,7 @@
 - **Autor(es):** Jiaxin Li, Zijun Zhou, Jianyu Dong, Ying Fu, Yuan Li, Ze Luan, Xin Peng
 - **Fecha de publicación:** 16 de abril de 2021
 - **Revista/Editorial:** PLOS ONE
-- **Campo/Disciplina:** Informática de la salud / Oncología / Enfermería
+- **Campo/Disciplina:** [[Machine learning]], [[Breast Cancer]], [[Oncología]], [[Análisis de Supervivencia]], [[Revision sistemática]], [[Nota permanente]]
 - **DOI/Enlace:** [https://doi.org/10.1371/journal.pone.0250370](https://doi.org/10.1371/journal.pone.0250370)
 
 ---

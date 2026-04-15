@@ -1,7 +1,6 @@
 
 **Autor(es):** Jeffrey T. Leek, W. Evan Johnson, Hilary S. Parker, Andrew E. Jaffe y John D. Storey 
-**Fecha de publicación:** 17 de enero de 2012 (Acceso anticipado); Marzo de 2012 (Edición impresa) 
-**Revista/Editorial:** Bioinformatics (Oxford University Press) 
+**Fecha de publicación:** 17 de enero de 2012 (Acceso anticipado); Marzo de 2012 (Edición impresa)
 **Campo/Disciplina:** Bioinformática / Genómica / Estadística 
 **DOI/Enlace:** [10.1093/bioinformatics/bts034](https://doi.org/10.1093/bioinformatics/bts034)
 
