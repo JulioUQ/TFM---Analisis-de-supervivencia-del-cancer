@@ -2,7 +2,7 @@
 **Autor(es):** Freddie Bray, Mathieu Laversanne, Hyuna Sung, Jacques Ferlay, Rebecca L. Siegel, Isabelle Soerjomataram, Ahmedin Jemal
 **Fecha de publicación:** 2024
 **Revista/Editorial:** CA: A Cancer Journal for Clinicians
-**Campo/Disciplina:** [[Epidemiología]], [[OncologíaGlobal]] y [[SaludPública]]
+**Campo/Disciplina:** [[Epidemiología]], [[OncologíaGlobal]], [[SaludPública]], [[Implicaciones clinicas]]
 **DOI/Enlace:** 10.3322/caac.21834
 
 ## Resumen Ejecutivo

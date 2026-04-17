@@ -2,7 +2,7 @@
 **Autor(es):** Christina Curtis, Sohrab P. Shah, Suet-Feung Chin, et al. (METABRIC Group) 
 **Fecha de publicación:** 21 de junio de 2012 
 **Revista/Editorial:** Nature 
-**Campo/Disciplina:** Genómica del Cáncer / Oncología Molecular 
+**Campo/Disciplina:** [[Genómica del Cáncer]], [[Oncología]], [[Revision sistemática]], [[Breast Cancer Heterogenety]], [[Kaplan-Meier]], [[Riesgos Proporcionales de Cox]]
 **DOI/Enlace:** [10.1038/nature10983](https://doi.org/10.1038/nature10983) 
 
 ---

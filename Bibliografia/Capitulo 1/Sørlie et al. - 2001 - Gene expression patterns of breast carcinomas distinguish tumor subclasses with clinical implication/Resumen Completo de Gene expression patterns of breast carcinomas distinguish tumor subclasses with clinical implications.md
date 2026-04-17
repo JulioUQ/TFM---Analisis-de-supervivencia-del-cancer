@@ -3,7 +3,7 @@
 - **Autor(es):** Therese Sørlie, Charles M. Perou, Robert Tibshirani, Turid Aas, Stephanie Geisler, Hilde Johnsen, Trevor Hastie, Michael B. Eisen, Matt van de Rijn, Stefanie S. Jeffrey, Thor Thorsen, Hanne Quist, John C. Matese, Patrick O. Brown, David Botstein, Per Eystein Lønning y Anne-Lise Børresen-Dale.
 - **Fecha de publicación:** 11 de septiembre de 2001.
 - **Revista/Editorial:** Proceedings of the National Academy of Sciences (PNAS).
-- **Campo/Disciplina:** Ciencias Médicas / Genética del Cáncer.
+- **Campo/Disciplina:** [[Genómica del Cáncer]], [[Breast Cancer]], [[Subtipos moleculares]], [[Implicaciones clinicas]]
 - **DOI/Enlace:** [10.1073/pnas.191367098](https://doi.org/10.1073/pnas.191367098).
 
 ---

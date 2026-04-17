@@ -1,0 +1,69 @@
+---
+title: "Curso R - Básico"
+author: "Julio Úbeda Quesada"
+date: "`r format(Sys.time(), '%d/%m/%Y, %H:%M')`"
+output:
+  html_document:
+    df_print: paged
+    theme: united
+    toc: true
+    toc_float: true
+abstract: |
+  Este documento presenta una introducción práctica al uso del paquete tidyverse, enfocado en la manipulación de datos mediante dplyr, en el contexto del análisis de desembarques pesqueros en la zona CIEM 27. Se utiliza el dataset DatosPesca para ilustrar las funciones fundamentales de dplyr, tales como filter(), select(), mutate(), arrange(), summarise(), group_by(), distinct(), count() y case_when(). Se exploran patrones de captura, volúmenes desembarcados, proporciones bajo talla y combinaciones categóricas únicas. Además, se destaca la importancia de transformar, agrupar y clasificar los datos de manera eficiente para facilitar el análisis exploratorio y la toma de decisiones en contextos de sostenibilidad pesquera.
+subtitle: Módulo 3. Manipulacion de datos con Tidyverse
+---
+
+https://bioconductor.org/packages/devel/bioc/vignettes/TCGAbiolinks/inst/doc/index.html
+
+<!-- INITIALIZATION -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE
+)
+```
+
+<!-- LIBRERIAS -->
+
+```{r install_libraries, include=FALSE, results='hide'}
+rm(list=ls())
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("BioinformaticsFMRP/TCGAbiolinksGUI.data")
+BiocManager::install("BioinformaticsFMRP/TCGAbiolinks")
+
+packageVersion("TCGAbiolinks")
+
+```
+
+```{r load_libraries, include=FALSE, results='hide'}
+rm(list=ls())
+
+#--------------PAQUETES NECESARIOS PARA EL CURSO---------------#
+Packages = c("TCGAbiolinks", "dplyr", "DT")
+
+# Instalar los paquetes que no estén instalados
+new_packages <- Packages[!(Packages %in% installed.packages()[,"Package"])]
+if(length(new_packages)) install.packages(new_packages)
+
+# Cargar los paquetes
+lapply(Packages, library, character.only = TRUE
+```
+
+
+```{r load_data, include=FALSE, results='hide'}
+rm(list=ls())
+
+#--------------ESPACIO DE TRABAJO Y RUTAS RELATIVAS---------------#
+# Modificar por el path del directorio de trabajo 
+home_file  = "C:/Users/usuario/Documents/GitHub/TFM---Analisis-de-supervivencia-del-cancer"
+data_loc   = paste0(home_file,"Modulo 3 - Diseño e implementacion del/data/")
+
+)
+```
