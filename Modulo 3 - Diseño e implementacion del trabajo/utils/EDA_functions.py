@@ -393,7 +393,7 @@ def plot_correlation_heatmap(
     # Anchura dinámica según el par más largo
     max_len = max(
         (len(f"{r['Variable A']}  ↔  {r['Variable B']}") 
-         for _, r in pd.concat([top_high, top_low]).iterrows()),
+         for _, r in pd.concat([top_high, top_low]).iterrows()), # type: ignore
         default=40
     )
     col_w = max(max_len, 40)
