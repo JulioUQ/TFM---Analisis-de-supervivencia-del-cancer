@@ -136,16 +136,21 @@ def unique_df(df):
         
 # ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-def plot_categorical_subplots(df, group_name, dataset_name="Dataset", columns=None, output_path="."):
-    """
-    Genera subplots para variables categóricas detectadas automáticamente
-    o especificadas manualmente.
-    """
-
+def plot_categorical_subplots(
+    df, group_name, dataset_name="Dataset",
+    columns=None, output_path=".",
+    ncol=3, nrow=None
+):
     if columns is None:
         valid_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
     else:
         valid_cols = [col for col in columns if col in df.columns]
+
+    if nrow is not None:
+        max_vars = nrow * ncol
+        if len(valid_cols) > max_vars:
+            print(f"⚠ Se muestran las primeras {max_vars} variables ({nrow} filas × {ncol} cols).")
+        valid_cols = valid_cols[:max_vars]
 
     n_cols = len(valid_cols)
 
@@ -153,36 +158,41 @@ def plot_categorical_subplots(df, group_name, dataset_name="Dataset", columns=No
         print(f"No hay variables categóricas para '{group_name}'.")
         return
 
-    max_cols_per_row = 3
-    n_rows = math.ceil(n_cols / max_cols_per_row)
+    n_rows = math.ceil(n_cols / ncol)
     subplot_titles = [f"<b>{col}</b>" for col in valid_cols]
 
     if n_rows > 1:
         max_allowed_spacing = 1.0 / (n_rows - 1)
-        safe_vertical_spacing = min(0.18, max_allowed_spacing * 0.75)
+        safe_vertical_spacing = min(0.28, max_allowed_spacing * 0.75)  # ← cambiado
     else:
         safe_vertical_spacing = 0.05
 
     fig = make_subplots(
-        rows=n_rows, cols=max_cols_per_row,
+        rows=n_rows, cols=ncol,
         subplot_titles=subplot_titles,
         horizontal_spacing=0.08,
         vertical_spacing=safe_vertical_spacing
     )
 
     color_palette = px.colors.qualitative.Plotly + px.colors.qualitative.Set1
+    MAX_LABEL_LEN = 18
 
     for i, col in enumerate(valid_cols):
-        row_pos = (i // max_cols_per_row) + 1
-        col_pos = (i % max_cols_per_row) + 1
+        row_pos = (i // ncol) + 1
+        col_pos = (i % ncol) + 1
 
         df_clean = df.dropna(subset=[col])
         conteo = df_clean[col].value_counts().reset_index()
         conteo.columns = ['Categoría', 'Frecuencia']
 
+        raw_labels = conteo['Categoría'].astype(str)
+        short_labels = raw_labels.apply(
+            lambda x: x[:MAX_LABEL_LEN] + '…' if len(x) > MAX_LABEL_LEN else x
+        )
+
         fig.add_trace(
             go.Bar(
-                x=conteo['Categoría'].astype(str),
+                x=short_labels,
                 y=conteo['Frecuencia'],
                 name=col[:15],
                 marker=dict(
@@ -190,12 +200,22 @@ def plot_categorical_subplots(df, group_name, dataset_name="Dataset", columns=No
                     line=dict(color='white', width=1)
                 ),
                 text=conteo['Frecuencia'],
-                textposition='outside'
+                textposition='outside',
+                customdata=raw_labels,
+                hovertemplate='<b>%{customdata}</b><br>Frecuencia: %{y}<extra></extra>'
             ),
             row=row_pos, col=col_pos
         )
 
-        fig.update_xaxes(tickangle=-45, row=row_pos, col=col_pos, tickfont=dict(size=10))
+        max_freq = conteo['Frecuencia'].max()
+        fig.update_yaxes(range=[0, max_freq * 1.15], row=row_pos, col=col_pos)
+
+        fig.update_xaxes(
+            tickangle=-45,
+            tickfont=dict(size=10),
+            automargin=True,
+            row=row_pos, col=col_pos
+        )
 
         if col_pos == 1:
             fig.update_yaxes(title_text="Frecuencia", row=row_pos, col=col_pos)
@@ -207,18 +227,21 @@ def plot_categorical_subplots(df, group_name, dataset_name="Dataset", columns=No
         width=1200,
         showlegend=False,
         title=dict(
-            text=f"<span style='font-size: 24px;'><b>Análisis de Variables: {group_name}</b></span><br><span style='color: gray;'>Cohorte: {dataset_name}</span>",
-            x=0.5, y=0.98, xanchor="center", yanchor="top"
+            text=(
+                f"<span style='font-size: 24px;'><b>Análisis de Variables: {group_name}</b></span>"
+                f"<br><span style='color: gray;'>Cohorte: {dataset_name}</span>"
+            ),
+            x=0.5, y=0.94,
+            xanchor="center", yanchor="top"
         ),
-        margin=dict(t=160, b=80, l=70, r=70),
+        margin=dict(t=155, b=120, l=80, r=80),   # ← cambiado
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="white",
         font=dict(family="Arial", size=12)
     )
 
-    fig.update_yaxes(gridcolor='lightgray', zerolinecolor='lightgray')
+    fig.update_yaxes(gridcolor='lightgray', zerolinecolor='lightgray', automargin=True)
 
-    # ── Guardar en el directorio recibido como parámetro ──────────────────────
     os.makedirs(output_path, exist_ok=True)
     safe_name = group_name.replace(' ', '_').replace('/', '_')
     file_path = os.path.join(output_path, f"{dataset_name}_cat_{safe_name}.html")
@@ -228,14 +251,13 @@ def plot_categorical_subplots(df, group_name, dataset_name="Dataset", columns=No
     fig.show()
 
 
-# ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
 
-def plot_numerical_subplots(df, group_name, dataset_name="Dataset", columns=None, output_path="."):
-    """
-    Genera histogramas para variables numéricas detectadas automáticamente
-    o especificadas manualmente.
-    """
-
+def plot_numerical_subplots(
+    df, group_name, dataset_name="Dataset",
+    columns=None, output_path=".",
+    ncol=3, nrow=None
+):
     if columns is None:
         valid_cols = df.select_dtypes(include=[np.number]).columns.tolist()
     else:
@@ -244,24 +266,29 @@ def plot_numerical_subplots(df, group_name, dataset_name="Dataset", columns=None
             if col in df.columns and pd.api.types.is_numeric_dtype(df[col])
         ]
 
+    if nrow is not None:
+        max_vars = nrow * ncol
+        if len(valid_cols) > max_vars:
+            print(f"⚠ Se muestran las primeras {max_vars} variables ({nrow} filas × {ncol} cols).")
+        valid_cols = valid_cols[:max_vars]
+
     n_cols = len(valid_cols)
 
     if n_cols == 0:
         print(f"No hay variables numéricas para '{group_name}'.")
         return
 
-    max_cols_per_row = 3
-    n_rows = math.ceil(n_cols / max_cols_per_row)
+    n_rows = math.ceil(n_cols / ncol)
     subplot_titles = [f"<b>{col}</b>" for col in valid_cols]
 
     if n_rows > 1:
         max_allowed_spacing = 1.0 / (n_rows - 1)
-        safe_vertical_spacing = min(0.18, max_allowed_spacing * 0.75)
+        safe_vertical_spacing = min(0.28, max_allowed_spacing * 0.75)  # ← cambiado
     else:
         safe_vertical_spacing = 0.05
 
     fig = make_subplots(
-        rows=n_rows, cols=max_cols_per_row,
+        rows=n_rows, cols=ncol,
         subplot_titles=subplot_titles,
         horizontal_spacing=0.08,
         vertical_spacing=safe_vertical_spacing
@@ -270,8 +297,8 @@ def plot_numerical_subplots(df, group_name, dataset_name="Dataset", columns=None
     color_palette = px.colors.qualitative.Safe + px.colors.qualitative.Pastel
 
     for i, col in enumerate(valid_cols):
-        row_pos = (i // max_cols_per_row) + 1
-        col_pos = (i % max_cols_per_row) + 1
+        row_pos = (i // ncol) + 1
+        col_pos = (i % ncol) + 1
 
         serie_limpia = df[col].dropna()
 
@@ -287,6 +314,8 @@ def plot_numerical_subplots(df, group_name, dataset_name="Dataset", columns=None
             row=row_pos, col=col_pos
         )
 
+        fig.update_xaxes(automargin=True, row=row_pos, col=col_pos)
+
         if col_pos == 1:
             fig.update_yaxes(title_text="Frecuencia", row=row_pos, col=col_pos)
 
@@ -297,19 +326,22 @@ def plot_numerical_subplots(df, group_name, dataset_name="Dataset", columns=None
         width=1200,
         showlegend=False,
         title=dict(
-            text=f"<span style='font-size: 24px;'><b>Análisis de Variables Numéricas: {group_name}</b></span><br><span style='color: gray;'>Cohorte: {dataset_name}</span>",
-            x=0.5, y=0.98, xanchor="center", yanchor="top"
+            text=(
+                f"<span style='font-size: 24px;'><b>Análisis de Variables Numéricas: {group_name}</b></span>"
+                f"<br><span style='color: gray;'>Cohorte: {dataset_name}</span>"
+            ),
+            x=0.5, y=0.94,
+            xanchor="center", yanchor="top"
         ),
-        margin=dict(t=160, b=80, l=70, r=70),
+        margin=dict(t=155, b=120, l=80, r=80),   # ← cambiado
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="white",
         font=dict(family="Arial", size=12),
         bargap=0.05
     )
 
-    fig.update_yaxes(gridcolor='lightgray', zerolinecolor='lightgray')
+    fig.update_yaxes(gridcolor='lightgray', zerolinecolor='lightgray', automargin=True)
 
-    # ── Guardar en el directorio recibido como parámetro ──────────────────────
     os.makedirs(output_path, exist_ok=True)
     safe_name = group_name.replace(' ', '_').replace('/', '_')
     file_path = os.path.join(output_path, f"{dataset_name}_num_subplots_{safe_name}.html")
@@ -317,7 +349,6 @@ def plot_numerical_subplots(df, group_name, dataset_name="Dataset", columns=None
 
     print(f"✔ Numerical subplots guardado en: {file_path}")
     fig.show()
-
 
 # ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -359,10 +390,19 @@ def plot_correlation_heatmap(
         square=True,
     )
 
+    # ── Títulos estilo Plotly ────────────────────────────────────────────────
+    plt.suptitle(
+        "Mapa de Calor de Correlaciones",
+        fontsize=22,
+        fontweight="bold",
+        y=0.97
+    )
+
     plt.title(
-        f"Mapa de Calor de Correlaciones\n{dataset_name}",
-        fontsize=16,
-        pad=20,
+        f"Cohorte: {dataset_name}",
+        fontsize=13,
+        color="gray",
+        pad=15
     )
 
     plt.xticks(rotation=45, ha="right")
@@ -380,7 +420,7 @@ def plot_correlation_heatmap(
     corr_pairs = (
         corr.where(np.tril(np.ones(corr.shape), k=-1).astype(bool))
             .stack()
-            .dropna()                          # ← elimina pares con NaN
+            .dropna()
             .reset_index()
     )
     corr_pairs.columns = ["Variable A", "Variable B", "Correlación"]
@@ -409,7 +449,7 @@ def plot_correlation_heatmap(
         par = f"{row['Variable A']}  ↔  {row['Variable B']}"
         print(f"  {'▲ Top ' + str(i+1):<10} {par:<{col_w}} {row['Correlación']:>7.4f}")
 
-    print(f"  {'·'*10} {'·'*col_w} {'·'*7}")   # separador visual entre altas y bajas
+    print(f"  {'·'*10} {'·'*col_w} {'·'*7}")
 
     for i, (_, row) in enumerate(top_low.iterrows()):
         par = f"{row['Variable A']}  ↔  {row['Variable B']}"

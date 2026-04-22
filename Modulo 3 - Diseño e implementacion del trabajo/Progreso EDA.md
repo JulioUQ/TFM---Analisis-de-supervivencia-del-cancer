@@ -1,6 +1,7 @@
-# Análisis Exploratorio de Datos (EDA) Clínicos
 
-Este *notebook* contiene el Análisis Exploratorio de Datos (EDA) para conjuntos de datos clínicos referentes al cáncer de mama y de pulmón. El objetivo de esta fase es comprender la estructura de las variables, evaluar la calidad de los datos (valores nulos, distribuciones) y explorar las variables objetivo fundamentales para el análisis de supervivencia.
+# [Dale un titulo al documento que sera un jupyter notebook]
+
+[Completa esta parte con lo que consideres conveniente]
 
 # 1. Estrategia de Adquisición de datos de cáncer de mama y de pulmón
 
@@ -144,21 +145,49 @@ A continuación, se analiza la distribución de las variables categóricas organ
   * **Identificadores Únicos (`Patient ID`, `Sample ID`):** Presentan una cardinalidad máxima (2.509 valores únicos), lo que confirma la ausencia de duplicados y una relación unívoca entre paciente y muestra.
   * **Variables de Varianza Cero (`Study ID`, `Cancer Type`, `Sample Type`, `Sex`):** Estas variables funcionan como constantes en METABRIC. El 100% de la muestra pertenece al estudio METABRIC, son tumores de mama (`Breast Cancer`), de tipo primario (`Primary`) y en pacientes femeninas (`Female`). Al no tener variabilidad, ***se excluyen del modelado***.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_categorical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Patient ID', 'Sample ID', 'Study ID', 'Cancer Type', 'Sample Type', 'Sex', 'Breast Cancer'])],
+    group_name="Identificadores y Metadatos del Estudio (Varianza Cero)",
+    dataset_name="METABRIC",
+    ncol=3, nrow=2,
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_cat_Identificadores_y_Metadatos_del_Estudio_(Varianza_Cero).png)
 
 #### **B. Perfil Clínico-Demográfico y Anatómico**
   * **Celularidad (`Cellularity`):** La mayoría de las muestras presentan una celularidad **Alta** (965) o **Moderada** (737), con una minoría de casos bajos (215).
   * **Estado Menopáusico (`Inferred Menopausal State`):** Existe una clara tendencia hacia pacientes **postmenopáusicas** (1.556 casos), lo cual es coherente con la distribución de edad observada en las variables numéricas.
   * **Lateralidad (`Primary Tumor Laterality`):** La distribución es casi simétrica entre la mama izquierda (973) y derecha (897), indicando que el origen anatómico del tumor no presenta un sesgo lateral en esta cohorte.
  
- [CODIGO Y FIGURAS]
+```python
+eda.plot_categorical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Inferred Menopausal State', 'Primary Tumor Laterality', 'Cellularity'])],
+    group_name="Perfil Clínico-Demográfico y Anatómico",
+    dataset_name="METABRIC",
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_cat_Perfil_Clínico-Demográfico_y_Anatómico.png)
 
  #### **C. Caracterización Histológica y Patológica**
   * **Clasificación de la Enfermedad (`Cancer Type Detailed`, `Oncotree Code`, `Tumor Other Histologic Subtype`):** Se observa una **dominancia masiva del Carcinoma Ductal Invasivo (IDC)** (1.865 casos), que es el subtipo más común a nivel global. Los subtipos Mixto y Lobular aparecen en frecuencias mucho menores.
 
   * **Gravedad y Estadio (`Tumor Stage`, `Neoplasm Histologic Grade`):** Aunque codificados numéricamente, actúan como categorías ordinales. El **Estadio 2** y el **Grado 3** son las categorías modales, lo que indica una cohorte donde la enfermedad se suele detectar en fases intermedias pero con características celulares agresivas.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_categorical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Cancer Type Detailed', 'Oncotree Code', 'Tumor Other Histologic Subtype', 'Tumor Stage', 'Neoplasm Histologic Grade'])],
+    group_name="Caracterización Histológica y Patológica",
+    dataset_name="METABRIC",
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_cat_Caracterización_Histológica_y_Patológica.png)
 
 #### **D. Biomarcadores Moleculares y Subtipos**
   * **Estado de Receptores (`ER Status`, `PR Status`, `HER2 Status`):** 
@@ -169,7 +198,16 @@ A continuación, se analiza la distribución de las variables categóricas organ
       * En el gráfico de `Pam50`, los subtipos **Luminal A** (700) y **Luminal B** (475) son los más frecuentes, alineándose con la positividad de los receptores de estrógeno. 
       * La variable `Integrative Cluster` muestra una distribución más fragmentada en 10 grupos, capturando la heterogeneidad genómica de la enfermedad.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_categorical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['ER Status', 'PR Status', 'HER2 Status', 'Pam50 + Claudin-low subtype', '3-Gene classifier subtype', 'Integrative Cluster'])],
+    group_name="Biomarcadores Moleculares y Subtipos",
+    dataset_name="METABRIC",
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_cat_Biomarcadores_Moleculares_y_Subtipos.png)
 
 #### **E. Intervenciones Terapéuticas**
   * **Tratamientos Adyuvantes (`Chemotherapy`, `Hormone Therapy`, `Radio Therapy`):**
@@ -177,13 +215,32 @@ A continuación, se analiza la distribución de las variables categóricas organ
       * La **Terapia Hormonal** (1.216 Sí) y la **Radioterapia** (1.173 Sí) son mucho más comunes, reflejando el estándar de cuidado para tumores Luminales/ER+.
   * **Procedimiento Quirúrgico (`Type of Breast Surgery`):** La tendencia se inclina ligeramente hacia la **Mastectomía** (1.170) frente a la cirugía conservadora (785).
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_categorical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Chemotherapy', 'Hormone Therapy', 'Radio Therapy', 'Type of Breast Surgery'])],
+    group_name="Intervenciones Terapéuticas",
+    dataset_name="METABRIC",
+    ncol=2, 
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_cat_Intervenciones_Terapéuticas.png)
 
 #### **F. Variables Estado de Supervivencia (Variables Objetivo o `Target`):**
   * **Estado de Supervivencia (`Overall Survival Status`, `Patient's Vital Status`):** Se observa una distribución informativa de eventos (aproximadamente el 58% de los pacientes fallecieron (`Decreased`)), que proporciona suficientes datos para el análisis de riesgo.
   * **Estado de Recaída (`Relapse Free Status`):** La mayoría de las pacientes se mantuvieron libres de progresión (`0:Not Recurred`), aunque existe un volumen crítico de 1.002 eventos de recaída para el modelado.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_categorical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Overall Survival Status', "Patient's Vital Status", 'Relapse Free Status'])],
+    group_name="Variables de Estado de Supervivencia",
+    dataset_name="METABRIC",
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_cat_Variables_de_Estado_de_Supervivencia.png)
 
 ### **3.2.2. Análisis de Variables Numéricas: Distribución y Tendencias**
 
@@ -194,29 +251,77 @@ A continuación, se analiza la distribución de las variables numéricas organiz
   * **`Age at Diagnosis` (Distribución Gausiana):** Es la variable con el comportamiento más cercano a una distribución normal. Muestra una madurez demográfica clara con una **media de 60.4 años**. Visualmente, el pico de moda se sitúa entre los 60 y 70 años, confirmando que es una cohorte mayoritariamente postmenopáusica, aunque la base ancha del histograma captura casos desde la juventud (21 años) hasta la longevidad extrema (96 años).
   * **`Cohort` (Discreta Multimodal):** Aunque numérica, su gráfico muestra que los datos no son continuos, sino que se agrupan en bloques. La tendencia es descendente, la gran mayoría de los datos provienen de las primeras tres cohortes de recolección, disminuyendo drásticamente en las cohortes 4 a 9.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_numerical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Age at Diagnosis', 'Cohort'])],
+    group_name="Demografía y Contexto de la Cohorte",
+    dataset_name="METABRIC",
+    ncol = 2,
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_num_subplots_Demografía_y_Contexto_de_la_Cohorte.png)
 
 #### **B. Parámetros Clínico-Patológicos**
   * **`Tumor Size` (Sesgo Positivo):** Presenta una distribución asimétrica hacia la derecha. El grueso de los tumores se concentra entre los **10 y 30 mm**, pero existe una cola larga de casos con tamaños superiores a 100 mm. Esto indica que la mayoría de los tumores son `Tumor Stage` T1/T2, pero hay casos aislados de enfermedad muy avanzada.
   * **`Lymph nodes examined positive` (Sesgo Extremo):** Visualmente, el histograma es una "pared" en el valor 0. La tendencia central es de baja afectación ganglionar, pero los valores atípicos que llegan hasta 45 ganglios positivos representan fenotipos de alta agresividad y riesgo de metástasis.
   * **`Nottingham prognostic index` (Multimodal):** A diferencia de las otras, esta variable presenta varios picos. Refleja visualmente los tres grupos de pronóstico clínico (bueno, intermedio y pobre). El pico más alto está en torno a un índice de 4, lo que sugiere un riesgo intermedio-alto predominante en la cohorte.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_numerical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Tumor Size', 'Tumor Stage', 'Lymph nodes examined positive', 'Nottingham prognostic index'])],
+    group_name="Parámetros Clínico-Patológicos",
+    dataset_name="METABRIC",
+    ncol = 2,
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_num_subplots_Parámetros_Clínico-Patológicos.png)
 
 #### **C. Métricas de Agresividad Molecular**
   * **`Mutation Count` y `TMB (nonsynonymous)`:** Ambas variables son prácticamente idénticas en forma (confirmando su correlación de 1.0). La tendencia es de **baja carga mutacional** (mediana de 5). El hecho de que la gran mayoría de los casos se amontone cerca del cero indica que el cáncer de mama primario es genómicamente "estable" en comparación con otros tejidos, aunque la presencia de outliers sugiere la existencia de un subgrupo hipermutador.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_numerical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Mutation Count', 'TMB (nonsynonymous)'])],
+    group_name="Métricas de Agresividad Molecular",
+    dataset_name="METABRIC",
+    ncol = 2,
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_num_subplots_Métricas_de_Agresividad_Molecular.png)
 
 #### **D. Variables Temporales de Supervivencia (Variables Objetivo o `Target`)**
   * **`Overall Survival (Months)` y `Relapse Free Status (Months)`:** Ambas muestran distribuciones muy similares con una base muy extensa. La frecuencia de supervivencia se mantiene relativamente alta y constante hasta los 150-200 meses, donde empieza a decaer. La cola llega hasta los **350 meses**, lo que visualmente demuestra un seguimiento clínico excepcional de casi 30 años.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_numerical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Overall Survival (Months)', 'Relapse Free Status (Months)'])],
+    group_name="Métricas de Supervivencia",
+    dataset_name="METABRIC", ncol = 2,
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_num_subplots_Métricas_de_Supervivenciaa.png)
 
 #### **E. Variables de Estructura (Varianza Cero)**
   * **`Number of Samples Per Patient`:** El histograma muestra una única barra masiva en el valor 1. Esto confirma visualmente la granularidad del dataset, un registro por paciente, eliminando la necesidad de modelos de medidas repetidas.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_numerical_subplots(
+    df=brca_metabric.loc[:, brca_metabric.columns.isin(['Number of Samples Per Patient'])],
+    group_name="Variables de Estructura (Varianza Cero)",
+    dataset_name="METABRIC", ncol=1,
+    output_path=r"..\images\EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_num_subplots_Variables_de_Estructura_(Varianza_Cero).png)
 
 ### **3.2.3. Análisis de Correlaciones (Heatmap)**
 
@@ -234,7 +339,16 @@ A continuación, se analiza las correlaciones de las variables numéricas (excep
 * **`Age at Diagnosis`:** Presenta una correlación cercana a cero con casi todas las métricas moleculares y patológicas (ej. **0.03** con `Mutation Count` o **0.06** con `Tumor Size`). Esto sugiere que la agresividad del tumor en METABRIC es independiente de la edad de la paciente al momento del diagnóstico.
 * **`Cohort`:** No muestra relaciones significativas con las variables clínicas, lo que indica que el proceso de recolección de muestras no introdujo sesgos sistemáticos en variables críticas como el tamaño o el grado tumoral.
 
-[CODIGO Y FIGURAS]
+```python
+eda.plot_correlation_heatmap(
+    df=brca_metabric.loc[:, brca_metabric.columns != "Number of Samples Per Patient"],
+    dataset_name="METABRIC",
+    output_path="../images/EDA"
+)
+```
+
+![METABRIC](images/EDA/METABRIC_heatmap_correlaciones.png)
+
 
 ════════════════════════════════════════════════════════════════════════════════
   Resumen de Correlaciones — METABRIC (Pearson)
