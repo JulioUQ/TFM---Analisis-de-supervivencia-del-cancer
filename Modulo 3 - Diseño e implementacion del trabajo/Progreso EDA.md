@@ -680,19 +680,16 @@ La necesidad del escalado varía por modelo:
 Se aplica `StandardScaler` (media=0, std=1) solo sobre las columnas numéricas originales.
 
 ```python
-# Columnas numéricas que aún están presentes tras la OHE
-NUM_COLS_FINAL = X_train.select_dtypes(include='number').columns.tolist()
-
 scaler = StandardScaler()
 
-X_train[NUM_COLS_FINAL] = scaler.fit_transform(X_train[NUM_COLS_FINAL])
-X_test[NUM_COLS_FINAL]  = scaler.transform(X_test[NUM_COLS_FINAL])
+X_train[NUM_COLS] = scaler.fit_transform(X_train[NUM_COLS])
+X_test[NUM_COLS]  = scaler.transform(X_test[NUM_COLS])
 
-print(f"Variables escaladas: {len(NUM_COLS_FINAL)}")
-eda.describe_df(X_train[NUM_COLS_FINAL])[['Column', 'mean', 'std']]
+print(f"Variables escaladas ({len(NUM_COLS)}): {NUM_COLS}")
+eda.describe_df(X_train[NUM_COLS])[['Column', 'mean', 'std']]
 ```
-Variables escaladas: 70
-Dimensiones del DataFrame: 1584 filas, 70 columnas
+Variables escaladas (7): ['Age at Diagnosis', 'Neoplasm Histologic Grade', 'Lymph nodes examined positive', 'Mutation Count', 'Nottingham prognostic index', 'Tumor Size', 'Tumor Stage']
+Dimensiones del DataFrame: 1584 filas, 7 columnas
 
 
 Column	mean	std
@@ -703,72 +700,9 @@ Column	mean	std
 4	Nottingham prognostic index	6.560409e-17	1.000316
 5	Tumor Size	8.298637e-17	1.000316
 6	Tumor Stage	-7.513631e-17	1.000316
-7	Type of Breast Surgery_MASTECTOMY	-2.018587e-17	1.000316
-8	Type of Breast Surgery_Unknown	-1.121437e-17	1.000316
-9	Cancer Type Detailed_Breast Angiosarcoma	-2.242875e-18	1.000316
-10	Cancer Type Detailed_Breast Invasive Ductal Carcinoma	-1.076580e-16	1.000316
-11	Cancer Type Detailed_Breast Invasive Lobular Carcinoma	5.831474e-17	1.000316
-12	Cancer Type Detailed_Breast Invasive Mixed Mucinous Carcinoma	-1.345725e-17	1.000316
-13	Cancer Type Detailed_Breast Mixed Ductal and Lobular Carcinoma	3.588600e-17	1.000316
-14	Cancer Type Detailed_Invasive Breast Carcinoma	-8.971499e-18	1.000316
-15	Cancer Type Detailed_Metaplastic Breast Cancer	-8.971499e-18	1.000316
-16	Cellularity_Low	-5.495043e-17	1.000316
-17	Cellularity_Moderate	8.971499e-18	1.000316
-18	Cellularity_Unknown	-2.691450e-17	1.000316
-19	Chemotherapy_Unknown	0.000000e+00	1.000316
-20	Chemotherapy_YES	8.410780e-18	1.000316
-21	Pam50 + Claudin-low subtype_Her2	-4.485750e-18	1.000316
-22	Pam50 + Claudin-low subtype_LumA	-3.140025e-17	1.000316
-23	Pam50 + Claudin-low subtype_LumB	-2.803593e-17	1.000316
-24	Pam50 + Claudin-low subtype_NC	-1.009294e-17	1.000316
-25	Pam50 + Claudin-low subtype_Normal	6.280049e-17	1.000316
-26	Pam50 + Claudin-low subtype_Unknown	0.000000e+00	1.000316
-27	Pam50 + Claudin-low subtype_claudin-low	-4.485750e-17	1.000316
-28	ER status measured by IHC_Positve	-6.167906e-17	1.000316
-29	ER status measured by IHC_Unknown	-2.242875e-18	1.000316
-30	ER Status_Positive	7.850062e-17	1.000316
-31	HER2 status measured by SNP6_LOSS	-4.149318e-17	1.000316
-32	HER2 status measured by SNP6_NEUTRAL	-1.345725e-16	1.000316
-33	HER2 status measured by SNP6_UNDEF	-4.485750e-18	1.000316
-34	HER2 status measured by SNP6_Unknown	0.000000e+00	1.000316
-35	HER2 Status_Positive	-8.971499e-18	1.000316
-36	HER2 Status_Unknown	0.000000e+00	1.000316
-37	Tumor Other Histologic Subtype_Lobular	5.831474e-17	1.000316
-38	Tumor Other Histologic Subtype_Medullary	2.467162e-17	1.000316
-39	Tumor Other Histologic Subtype_Metaplastic	-8.971499e-18	1.000316
-40	Tumor Other Histologic Subtype_Mixed	3.588600e-17	1.000316
-41	Tumor Other Histologic Subtype_Mucinous	-1.345725e-17	1.000316
-42	Tumor Other Histologic Subtype_Other	-4.822181e-17	1.000316
-43	Tumor Other Histologic Subtype_Tubular/ cribriform	-5.382900e-17	1.000316
-44	Tumor Other Histologic Subtype_Unknown	-4.485750e-17	1.000316
-45	Hormone Therapy_Unknown	0.000000e+00	1.000316
-46	Hormone Therapy_YES	-1.222367e-16	1.000316
-47	Inferred Menopausal State_Pre	-2.018587e-17	1.000316
-48	Inferred Menopausal State_Unknown	0.000000e+00	1.000316
-49	Integrative Cluster_10	-4.037175e-17	1.000316
-50	Integrative Cluster_2	-4.261462e-17	1.000316
-51	Integrative Cluster_3	-2.242875e-17	1.000316
-52	Integrative Cluster_4ER+	-3.812887e-17	1.000316
-53	Integrative Cluster_4ER-	6.055762e-17	1.000316
-54	Integrative Cluster_5	4.037175e-17	1.000316
-55	Integrative Cluster_6	1.121437e-18	1.000316
-56	Integrative Cluster_7	-4.485750e-18	1.000316
-57	Integrative Cluster_8	-8.971499e-17	1.000316
-58	Integrative Cluster_9	3.588600e-17	1.000316
-59	Integrative Cluster_Unknown	0.000000e+00	1.000316
-60	Primary Tumor Laterality_Right	9.420074e-17	1.000316
-61	Primary Tumor Laterality_Unknown	4.934325e-17	1.000316
-62	PR Status_Positive	5.607187e-17	1.000316
-63	PR Status_Unknown	0.000000e+00	1.000316
-64	Radio Therapy_Unknown	0.000000e+00	1.000316
-65	Radio Therapy_YES	4.485750e-18	1.000316
-66	3-Gene classifier subtype_ER+/HER2- Low Prolif	1.233581e-17	1.000316
-67	3-Gene classifier subtype_ER-/HER2-	4.485750e-18	1.000316
-68	3-Gene classifier subtype_HER2+	-4.485750e-18	1.000316
-69	3-Gene classifier subtype_Unknown	3.812887e-17	1.000316
 
 
-### 3.3.11. Creación del `structured array` de scikit-survival
+### 3.3.12. Creación del `structured array` de scikit-survival
 
 La librería `scikit-survival` requiere que la variable objetivo esté en un formato específico, como un **numpy structured array** con dos campos nombrados, `event` (booleano) y `time` (float). 
 
@@ -853,6 +787,590 @@ print("  └─────────────────┴────�
   │ evt_train/test  │ DeepSurv · lifelines (bool array)    │
   │ X_train (df)    │ lifelines CoxPHFitter                │
   └─────────────────┴──────────────────────────────────────┘
+
+## **3.4. Diseño e Implementación de Modelos**
+
+### **3.4.1. Estimador de Kaplan-Meier (KM)**
+
+El estimador de Kaplan-Meier permite estimar la función de supervivencia $S(t) = P(T > t)$ de forma no paramétrica, es decir, sin asumir ninguna distribución subyacente del tiempo hasta el evento. En este apartado se analiza si variables clínicas clave (agrupadas por familias lógicas) producen diferencias significativas en la supervivencia global de los 1981 pacientes con seguimiento completo. Es decir, se utiliza KM como análisis exploratorio univariante que identifica qué variables tienen valor pronóstico antes de incorporarlas a modelos multivariantes (Cox, RSF, DeepSurv).
+
+Dado el carácter descriptivo del estimador KM, el análisis se aplica sobre la **cohorte completa** (train + test). No existe riesgo de *data leakage* porque KM no aprende parámetros que se transfieran a los modelos predictivos posteriores.
+
+#### A. Hipótesis
+
+Para cada variable de estratificación $X$ con $k$ grupos, el contraste es:
+
+$$H_0: S_1(t) = S_2(t) = \cdots = S_k(t) \quad \forall t$$
+
+$$H_1: \exists \, i \neq j \text{ tal que } S_i(t) \neq S_j(t) \text{ para algún } t$$
+
+Donde $S_i(t)$ es la función de supervivencia del grupo $i$. 
+
+> Se rechaza $H_0$ si $p < 0.05$.
+
+#### B. Elección del test
+
+Para contrastar si las curvas de supervivencia difieren entre grupos se utiliza el **test log-rank** (Mantel-Cox), cuyo estadístico compara, en cada tiempo de evento $t_j$, los eventos observados frente a los esperados bajo $H_0$:
+
+$$\chi^2_{LR} = \frac{\left(\sum_j (O_{ij} - E_{ij})\right)^2}{\sum_j V_{ij}}$$
+
+Donde $O_{ij}$ son los eventos observados en el grupo $i$ en el instante $t_j$, $E_{ij}$ los esperados bajo $H_0$, y $V_{ij}$ la varianza correspondiente. Bajo $H_0$, el estadístico sigue una distribución $\chi^2$ con $k-1$ grados de libertad.
+
+El log-rank es el test más potente cuando los hazards son **proporcionales** entre grupos (cociente constante en el tiempo), que es precisamente el supuesto que evaluaremos en Cox posteriormente. 
+
+Se utiliza un nivel de significación $\alpha = 0.05$.
+
+
+#### C. Discretización de variables numéricas para el análisis de Kaplan-Meier
+
+KM requiere grupos discretos para estimar S(t) por subconjunto. Las variables continuas se discretizan siguiendo puntos de corte clínicamente establecidos en la bibliografía oncológica, no percentiles arbitrarios, para que los grupos resultantes tengan interpretación clínica directa y sean comparables con la literatura.
+
+Las variables discretizadas en este apartado se crean exclusivamente sobre `brca_prep` para el análisis descriptivo de KM. No se incorporan a `X_train` / `X_test`, que ya contienen las variables numéricas originales continuas para los modelos predictivos.
+
+```python
+df_km = brca_prep.copy()
+
+# ── 1. Age at Diagnosis ───────────────────────────────────────────────────────
+# Puntos de corte estándar en oncología mamaria:
+#   · <40      -> premenopáusica joven
+#   · 40–49    -> premenopáusica tardía
+#   · 50–59    -> transición menopáusica
+#   · 60–69    -> postmenopáusica temprana
+#   · ≥70      -> postmenopáusica tardía / anciana
+# Referencia: Partridge et al., JCO 2016; SEER Age Groups.
+
+df_km['Age Group'] = pd.cut(
+    df_km['Age at Diagnosis'],
+    bins   = [0, 40, 50, 60, 70, np.inf],
+    labels = ['<40', '40–49', '50–59', '60–69', '≥70'],
+    right  = False
+)
+
+print("── Age Group ────────────────────────────────────────")
+print(df_km['Age Group'].value_counts().sort_index())
+
+
+# ── 2. Tumor Stage ────────────────────────────────────────────────────────────
+# Los valores numéricos 0–4 corresponden directamente a los estadios TNM
+# clínicos. Se etiquetan añadiendo el prefijo "Stage " para que sean
+# interpretables en los gráficos sin transformación adicional de escala.
+# Referencia: AJCC Cancer Staging Manual, 8ª ed.
+
+df_km['Tumor Stage Cat'] = (
+    df_km['Tumor Stage']
+    .astype('Int64')           # Int64 maneja NaN; int64 no
+    .astype(str)
+    .replace('<NA>', np.nan)
+    .apply(lambda x: f'Stage {x}' if pd.notna(x) and x != 'nan' else np.nan)
+    .astype('category')
+)
+
+print("\n── Tumor Stage Cat ──────────────────────────────────")
+print(df_km['Tumor Stage Cat'].value_counts().sort_index())
+
+
+# ── 3. Neoplasm Histologic Grade ──────────────────────────────────────────────
+# El sistema de Scarff-Bloom-Richardson (SBR) / Nottingham asigna grados 1–3:
+#   · Grado I   -> bien diferenciado          -> pronóstico favorable
+#   · Grado II  -> moderadamente diferenciado -> pronóstico intermedio
+#   · Grado III -> pobremente diferenciado    -> pronóstico desfavorable
+# Es ya ordinal con 3 niveles; simplemente se etiqueta para legibilidad.
+# Referencia: Elston & Ellis, Histopathology 1991.
+
+grade_map = {
+    1.0: 'G1 — Bien diferenciado',
+    2.0: 'G2 — Moderado',
+    3.0: 'G3 — Pobremente diferenciado'
+}
+
+df_km['Histologic Grade Cat'] = (
+    df_km['Neoplasm Histologic Grade']
+    .map(grade_map)
+    .astype('category')
+)
+
+print("\n── Histologic Grade Cat ─────────────────────────────")
+print(df_km['Histologic Grade Cat'].value_counts().sort_index())
+
+
+# ── 4. Lymph nodes examined positive ─────────────────────────────────────────
+# Clasificación N del TNM para ganglios axilares positivos:
+#   · N0  → 0 ganglios          → sin afectación ganglionar
+#   · N1  → 1–3 ganglios        → afectación mínima
+#   · N2  → 4–9 ganglios        → afectación moderada
+#   · N3  → ≥10 ganglios        → afectación extensa, mal pronóstico
+# Referencia: AJCC 8ª ed.; Giuliano et al., JCO 2017.
+
+df_km['Nodal Status'] = pd.cut(
+    df_km['Lymph nodes examined positive'],
+    bins   = [-np.inf, 0, 3, 9, np.inf],
+    labels = ['N0 (0)', 'N1 (1–3)', 'N2 (4–9)', 'N3 (≥10)'],
+    right  = True
+)
+
+print("\n── Nodal Status ─────────────────────────────────────")
+print(df_km['Nodal Status'].value_counts().sort_index())
+
+
+# ── 5. Nottingham Prognostic Index ────────────────────────────────────────────
+# El NPI = (0.2 × Tumor Size) + Nodal Stage + Histologic Grade
+# Los puntos de corte de Haybittle-Galea dividen la cohorte en 3 grupos
+# pronósticos con supervivencia a 10 años significativamente diferente:
+#   · NPI ≤ 3.4  → Buen pronóstico    (~80% supervivencia 10a)
+#   · 3.4–5.4    → Pronóstico moderado (~45%)
+#   · > 5.4      → Mal pronóstico      (~15%)
+# Referencia: Galea et al., Breast Cancer Res Treat 1992;
+#             Haybittle et al., Br J Cancer 1982.
+
+df_km['NPI Group'] = pd.cut(
+    df_km['Nottingham prognostic index'],
+    bins   = [0, 3.4, 5.4, np.inf],
+    labels = ['NPI ≤3.4 (buen pronóstico)',
+              'NPI 3.4–5.4 (pronóstico moderado)',
+              'NPI >5.4 (mal pronóstico)'],
+    right  = True
+)
+
+print("\n── NPI Group ────────────────────────────────────────")
+print(df_km['NPI Group'].value_counts().sort_index())
+
+
+# ── 6. Mutation Count ─────────────────────────────────────────────────────────
+# No existe un consenso clínico establecido para cáncer de mama primario como
+# sí existe para TMB en inmunoterapia. Se usan cuartiles del propio dataset,
+# que es la práctica estándar cuando no hay puntos de corte bibliográficos:
+#   · Q1 → carga mutacional baja
+#   · Q2 → moderada-baja
+#   · Q3 → moderada-alta
+#   · Q4 → alta (subgrupo hipermutador, coherente con el EDA)
+# Referencia: Alexandrov et al., Nature 2013; Yates et al., Nat Med 2017.
+
+df_km['Mutation Burden'] = pd.qcut(
+    df_km['Mutation Count'],
+    q      = 4,
+    labels = ['Q1 — Baja', 'Q2 — Moderada-baja',
+              'Q3 — Moderada-alta', 'Q4 — Alta']
+)
+
+print("\n── Mutation Burden ──────────────────────────────────")
+print(df_km['Mutation Burden'].value_counts().sort_index())
+
+
+# ── Resumen final ─────────────────────────────────────────────────────────────
+NUEVAS_VARS_KM = [
+    'Age Group', 'Tumor Stage Cat', 'Histologic Grade Cat',
+    'Nodal Status', 'NPI Group', 'Mutation Burden'
+]
+
+print("\n" + "═" * 60)
+print("  VARIABLES DISCRETIZADAS PARA KM")
+print("═" * 60)
+for var in NUEVAS_VARS_KM:
+    n_nulos = df_km[var].isna().sum()
+    n_cats  = df_km[var].nunique()
+    print(f"  {var:<35} k={n_cats}  nulos={n_nulos}")
+print("═" * 60)
+print(f"\n  df_km shape : {df_km.shape}")
+print(f"  Estas variables NO están en X_train / X_test.")
+```
+── Age Group ────────────────────────────────────────
+Age Group
+<40      120
+40–49    304
+50–59    449
+60–69    576
+≥70      532
+Name: count, dtype: int64
+
+── Tumor Stage Cat ──────────────────────────────────
+Tumor Stage Cat
+Stage 0     12
+Stage 1    501
+Stage 2    825
+Stage 3    118
+Stage 4     10
+Name: count, dtype: int64
+
+── Histologic Grade Cat ─────────────────────────────
+Histologic Grade Cat
+G1 — Bien diferenciado          169
+G2 — Moderado                   771
+G3 — Pobremente diferenciado    953
+Name: count, dtype: int64
+
+── Nodal Status ─────────────────────────────────────
+Nodal Status
+N0 (0)      994
+N1 (1–3)    604
+N2 (4–9)    204
+N3 (≥10)    103
+Name: count, dtype: int64
+
+── NPI Group ────────────────────────────────────────
+NPI Group
+NPI ≤3.4 (buen pronóstico)            680
+NPI 3.4–5.4 (pronóstico moderado)    1101
+NPI >5.4 (mal pronóstico)             199
+Name: count, dtype: int64
+
+── Mutation Burden ──────────────────────────────────
+Mutation Burden
+Q1 — Baja             524
+Q2 — Moderada-baja    515
+Q3 — Moderada-alta    404
+Q4 — Alta             417
+Name: count, dtype: int64
+
+════════════════════════════════════════════════════════════
+  VARIABLES DISCRETIZADAS PARA KM
+════════════════════════════════════════════════════════════
+  Age Group                           k=5  nulos=0
+  Tumor Stage Cat                     k=5  nulos=515
+  Histologic Grade Cat                k=3  nulos=88
+  Nodal Status                        k=4  nulos=76
+  NPI Group                           k=3  nulos=1
+  Mutation Burden                     k=4  nulos=121
+════════════════════════════════════════════════════════════
+
+  df_km shape : (1981, 32)
+  Estas variables NO están en X_train / X_test.
+
+#### C. Desarrollo
+
+── Datos ─────────────────────────────────────────────────────────────────────
+brca_prep contiene las variables originales (pre-OHE) + duration + event
+tras eliminar los 528 registros sin endpoint (sección 3.3.4)
+
+```python
+dur_all = df_km['duration'].values
+evt_all = df_km['event'].values.astype(bool)
+
+print(f"Cohorte KM  : {len(df_km):,} pacientes")
+print(f"Eventos     : {evt_all.sum():,} ({evt_all.mean():.1%})")
+print(f"Censurados  : {(~evt_all).sum():,} ({(~evt_all).mean():.1%})")
+print(f"Seguimiento : {dur_all.min():.1f} – {dur_all.max():.1f} meses")
+```
+
+Cohorte KM  : 1,981 pacientes
+Eventos     : 1,144 (57.7%)
+Censurados  : 837 (42.3%)
+Seguimiento : 0.0 – 355.2 meses
+
+```python
+kmf_global = KM.fit_km_global(dur_all, evt_all, label='METABRIC — Cohorte completa')
+
+display(KM.km_metrics(kmf_global, horizons=[60, 120, 180, 240]))
+
+KM.plot_km_global(
+    kmf_global,
+    n_total     = len(df_km),
+    output_path = r'../images/Modelos/KM/KM_global.png'
+)
+```
+
+Métrica	Valor
+0	Mediana supervivencia (meses)	156.3
+1	S(t=60m) [5 años]	0.780
+2	S(t=120m) [10 años]	0.593
+3	S(t=180m) [15 años]	0.445
+4	S(t=240m) [20 años]	0.294
+
+![KM](images/Modelos/KM/KM_global.png)
+
+── Test log-rank ───────────────────────────
+Se incluyen todas las variables categóricas con potencial valor pronóstico identificadas en el EDA. 
+
+```python
+VARS_LOGRANK = [
+    # Biomarcadores moleculares
+    'ER Status',
+    'ER status measured by IHC',
+    'PR Status',
+    'HER2 Status',
+    'HER2 status measured by SNP6',
+    'Pam50 + Claudin-low subtype',
+    '3-Gene classifier subtype',
+    'Integrative Cluster',
+    # Patología tumoral — categóricas originales
+    'Cancer Type Detailed',
+    'Tumor Other Histologic Subtype',
+    'Cellularity',
+    # Patología tumoral — discretizadas
+    'Tumor Stage Cat',
+    'Histologic Grade Cat',
+    'Nodal Status',
+    'NPI Group',
+    # Terapéuticas
+    'Chemotherapy',
+    'Hormone Therapy',
+    'Radio Therapy',
+    'Type of Breast Surgery',
+    # Clínico-demográficas — categóricas originales
+    'Inferred Menopausal State',
+    'Primary Tumor Laterality',
+    # Clínico-demográficas — discretizadas
+    'Age Group',
+    # Moleculares — discretizadas
+    'Mutation Burden',
+]
+
+tabla_lr = KM.logrank_summary(df_km, VARS_LOGRANK)
+display(tabla_lr)
+```
+Variable	k grupos	chi²	p-valor	Significancia
+0	3-Gene classifier subtype	4	40.871	0.000000	***
+1	Integrative Cluster	11	72.636	0.000000	***
+2	Pam50 + Claudin-low subtype	7	56.036	0.000000	***
+3	Tumor Stage Cat	5	128.221	0.000000	***
+4	Nodal Status	4	205.501	0.000000	***
+5	NPI Group	3	156.127	0.000000	***
+6	Type of Breast Surgery	2	49.552	0.000000	***
+7	Inferred Menopausal State	2	40.349	0.000000	***
+8	Age Group	5	201.502	0.000000	***
+9	Histologic Grade Cat	3	26.399	0.000008	***
+10	HER2 Status	2	19.807	0.000050	***
+11	HER2 status measured by SNP6	4	20.728	0.000359	***
+12	PR Status	2	15.494	0.000432	***
+13	Hormone Therapy	2	14.458	0.000725	***
+14	Chemotherapy	2	9.749	0.007638	**
+15	Tumor Other Histologic Subtype	8	18.230	0.019569	*
+16	Radio Therapy	2	7.396	0.024772	*
+17	ER Status	2	4.443	0.035047	*
+18	Cancer Type Detailed	8	10.288	0.172842	ns
+19	ER status measured by IHC	2	2.551	0.279253	ns
+20	Primary Tumor Laterality	2	0.679	0.712292	ns
+21	Mutation Burden	4	1.831	0.766746	ns
+22	Cellularity	3	0.234	0.971876	ns
+
+
+# ── Heatmap de significancia pronóstica ───────────────────────────────────────
+
+```python
+KM.plot_logrank_heatmap(
+    tabla_lr,
+    output_path=r'../images/Modelos/KM/KM_logrank_heatmap.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_logrank_heatmap.png)
+
+#### D. Curvas KM por familia clínica
+
+# ── Grupo 1: Biomarcadores de receptor ───────────────────────────────────────
+
+```python
+KM.plot_km_groups(
+    df      = df_km,
+    grupos_config = {
+        'ER Status'               : ('ER Status',               'RdYlGn'),
+        'PR Status'               : ('PR Status',               'RdYlGn'),
+        'HER2 Status'             : ('HER2 Status',             'RdYlGn'),
+        'ER status (IHC)'         : ('ER status measured by IHC','RdYlGn'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_receptores.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_receptores.png)
+
+# ── Grupo 2: Subtipos moleculares ─────────────────────────────────────────────
+
+```python
+KM.plot_km_groups(
+    df      = df_km,
+    grupos_config = {
+        'Pam50 + Claudin-low subtype' : ('Pam50 + Claudin-low subtype', 'tab10'),
+        '3-Gene classifier subtype'   : ('3-Gene classifier subtype',   'Set2'),
+        'Integrative Cluster'         : ('Integrative Cluster',         'tab20'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_subtipos_moleculares.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_subtipos_moleculares.png)
+
+# ── Grupo 3: Caracterización histológica y estadificación ────────────────────
+
+```python
+KM.plot_km_groups(
+    df = df_km,
+    grupos_config = {
+        'Estadio Tumoral (TNM)'         : ('Tumor Stage Cat',              'RdYlGn_r'),
+        'Grado Histológico (SBR)'       : ('Histologic Grade Cat',         'RdYlGn_r'),
+        'Estado Ganglionar (N)'         : ('Nodal Status',                 'RdYlGn_r'),
+        'Cancer Type Detailed'          : ('Cancer Type Detailed',         'tab20'),
+        'Tumor Other Histologic Subtype': ('Tumor Other Histologic Subtype','tab20'),
+        'Cellularity'                   : ('Cellularity',                  'RdYlGn_r'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_estadificacion_patologia.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_histologia.png)
+
+
+# ── Grupo 4: Intervenciones terapéuticas ─────────────────────────────────────
+```python
+KM.plot_km_groups(
+    df      = df_km,
+    grupos_config = {
+        'Chemotherapy'        : ('Chemotherapy',       'Set1'),
+        'Hormone Therapy'     : ('Hormone Therapy',    'Set1'),
+        'Radio Therapy'       : ('Radio Therapy',      'Set1'),
+        'Type of Breast Surgery': ('Type of Breast Surgery', 'Set2'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_tratamientos.png'
+)
+```
+![KM](images/Modelos/KM/KM_tratamientos.png)
+
+# ── Grupo 5: Perfil clínico-demográfico ──────────────────────────────────────
+```python
+KM.plot_km_groups(
+    df = df_km,
+    grupos_config = {
+        'Grupo de Edad'               : ('Age Group',                'viridis'),
+        'Estado Menopáusico'          : ('Inferred Menopausal State','Set2'),
+        'Lateralidad del Tumor'       : ('Primary Tumor Laterality', 'Set2'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_demografico.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_demografico.png)
+
+#### E. Resultados
+
+# ── Resumen ejecutivo ─────────────────────────────────────────────────────────
+
+```python
+mediana_global = kmf_global.median_survival_time_
+
+print("═" * 65)
+print("  RESULTADOS — Kaplan-Meier  ·  METABRIC (n=1.981)")
+print("═" * 65)
+print(f"  Mediana de supervivencia global : {mediana_global:.1f} meses "
+      f"({mediana_global/12:.1f} años)")
+print(f"  S(t=60m)  — supervivencia 5a    : {kmf_global.predict(60):.3f}")
+print(f"  S(t=120m) — supervivencia 10a   : {kmf_global.predict(120):.3f}")
+print(f"  S(t=240m) — supervivencia 20a   : {kmf_global.predict(240):.3f}")
+print()
+
+sig    = tabla_lr[tabla_lr['Significancia'] != 'ns']
+no_sig = tabla_lr[tabla_lr['Significancia'] == 'ns']
+
+print(f"  Variables con diferencias significativas (p < 0.05): {len(sig)}")
+for _, row in sig.iterrows():
+    print(f"    {row['Significancia']}  {row['Variable']:<45} p = {row['p-valor']:.2e}")
+
+print()
+print(f"  Variables sin diferencias significativas: {len(no_sig)}")
+for _, row in no_sig.iterrows():
+    print(f"    ns   {row['Variable']:<45} p = {row['p-valor']:.4f}")
+print("═" * 65)
+```
+
+═════════════════════════════════════════════════════════════════
+  RESULTADOS — Kaplan-Meier  ·  METABRIC (n=1.981)
+═════════════════════════════════════════════════════════════════
+  Mediana de supervivencia global : 156.3 meses (13.0 años)
+  S(t=60m)  — supervivencia 5a    : 0.780
+  S(t=120m) — supervivencia 10a   : 0.593
+  S(t=240m) — supervivencia 20a   : 0.294
+
+  Variables con diferencias significativas (p < 0.05): 18
+    ***  3-Gene classifier subtype                     p = 0.00e+00
+    ***  Integrative Cluster                           p = 0.00e+00
+    ***  Pam50 + Claudin-low subtype                   p = 0.00e+00
+    ***  Tumor Stage Cat                               p = 0.00e+00
+    ***  Nodal Status                                  p = 0.00e+00
+    ***  NPI Group                                     p = 0.00e+00
+    ***  Type of Breast Surgery                        p = 0.00e+00
+    ***  Inferred Menopausal State                     p = 0.00e+00
+    ***  Age Group                                     p = 0.00e+00
+    ***  Histologic Grade Cat                          p = 8.00e-06
+    ***  HER2 Status                                   p = 5.00e-05
+    ***  HER2 status measured by SNP6                  p = 3.59e-04
+    ***  PR Status                                     p = 4.32e-04
+    ***  Hormone Therapy                               p = 7.25e-04
+    **  Chemotherapy                                  p = 7.64e-03
+    *  Tumor Other Histologic Subtype                p = 1.96e-02
+    *  Radio Therapy                                 p = 2.48e-02
+    *  ER Status                                     p = 3.50e-02
+
+  Variables sin diferencias significativas: 5
+    ns   Cancer Type Detailed                          p = 0.1728
+    ns   ER status measured by IHC                     p = 0.2793
+    ns   Primary Tumor Laterality                      p = 0.7123
+    ns   Mutation Burden                               p = 0.7667
+    ns   Cellularity                                   p = 0.9719
+═════════════════════════════════════════════════════════════════
+
+# ── Brier Score KM marginal — modelo de referencia nulo ──────────────────────
+# El KM sin estratificar predice la misma S(t) para todos los pacientes.
+# Su IBS es el baseline que los modelos predictivos deben superar.
+# Se guarda como variable global para reutilizarla en la sección 3.4.5.
+
+```python
+y_all      = Surv.from_arrays(evt_all.astype(bool), dur_all.astype(float))
+times_ref  = np.percentile(dur_all, np.linspace(10, 90, 100))
+times_ref  = times_ref[(times_ref > dur_all.min()) & (times_ref < dur_all.max())]
+
+# Misma S(t) para todos los pacientes en cada instante
+km_surv_probs = np.tile(
+    kmf_global.predict(times_ref),
+    (len(df_km), 1)
+)
+
+_, bs_km_temporal = brier_score(y_all, y_all, km_surv_probs, times_ref)
+ibs_km            = integrated_brier_score(y_all, y_all, km_surv_probs, times_ref)
+
+fig, ax = plt.subplots(figsize=(10, 4))
+ax.plot(times_ref, bs_km_temporal, color='gray', linewidth=2,
+        linestyle='--', label=f'KM marginal — referencia nula  (IBS={ibs_km:.3f})')
+ax.axhline(0.25, color='lightgray', linestyle=':', linewidth=1.5,
+           label='Azar puro (0.25)')
+ax.set_xlabel('Tiempo (meses)', fontsize=11)
+ax.set_ylabel('Brier Score', fontsize=11)
+ax.set_title('Brier Score temporal — KM como modelo de referencia\nMETABRIC',
+             fontsize=12, fontweight='bold')
+ax.legend(fontsize=10)
+ax.set_ylim(0, 0.30)
+ax.grid(alpha=0.3)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/KM/KM_brier_referencia.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+print(f"IBS — KM marginal (referencia nula) : {ibs_km:.4f}")
+print(f"  → Cualquier modelo con IBS < {ibs_km:.4f} mejora sobre la referencia KM")
+```
+
+
+IBS — KM marginal (referencia nula) : 0.2156
+  → Cualquier modelo con IBS < 0.2156 mejora sobre la referencia KM
+
+
+---
+
+> **Nota metodológica:** Kaplan-Meier es un análisis **univariante**: evalúa el efecto de cada variable de forma aislada, sin controlar por confusores. Por ejemplo, el efecto de `Chemotherapy` sobre la supervivencia está parcialmente confundido por `Tumor Stage` (las pacientes con estadios avanzados reciben más quimioterapia y tienen peor pronóstico). La descomposición del efecto ajustado por múltiples covariables simultáneas es precisamente la aportación del modelo de Cox en la sección 3.4.2.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 # Anexo I. Datasets
