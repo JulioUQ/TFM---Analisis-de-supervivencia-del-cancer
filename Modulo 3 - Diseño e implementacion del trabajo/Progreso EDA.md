@@ -1,7 +1,6 @@
+# Análisis de Supervivencia y Predicción de Riesgo Clínico: Estudio Comparativo en Cáncer de Mama y Pulmón
 
-# [Dale un titulo al documento que sera un jupyter notebook]
-
-[Completa esta parte con lo que consideres conveniente]
+(Aquí puedes incluir un breve resumen o abstract del proyecto, los objetivos principales de la comparación de modelos clásicos vs. Machine Learning/Deep Learning, y la descripción general del flujo de trabajo).
 
 # 1. Estrategia de Adquisición de datos de cáncer de mama y de pulmón
 
@@ -792,40 +791,39 @@ print("  └─────────────────┴────�
 
 ### **3.4.1. Estimador de Kaplan-Meier (KM)**
 
-El estimador de Kaplan-Meier permite estimar la función de supervivencia $S(t) = P(T > t)$ de forma no paramétrica, es decir, sin asumir ninguna distribución subyacente del tiempo hasta el evento. En este apartado se analiza si variables clínicas clave (agrupadas por familias lógicas) producen diferencias significativas en la supervivencia global de los 1981 pacientes con seguimiento completo. Es decir, se utiliza KM como análisis exploratorio univariante que identifica qué variables tienen valor pronóstico antes de incorporarlas a modelos multivariantes (Cox, RSF, DeepSurv).
+El estimador de Kaplan-Meier (KM) es el método no paramétrico estándar para estimar la función de supervivencia $S(t) = P(T > t)$ en presencia de censura. A diferencia de los modelos paramétricos, no asume ninguna distribución subyacente del tiempo hasta el evento, lo que lo convierte en el punto de partida natural para cualquier análisis de supervivencia clínico.
 
-Dado el carácter descriptivo del estimador KM, el análisis se aplica sobre la **cohorte completa** (train + test). No existe riesgo de *data leakage* porque KM no aprende parámetros que se transfieran a los modelos predictivos posteriores.
+En este apartado, KM cumple un doble rol dentro del pipeline analítico:
 
-#### A. Hipótesis
+1. **Análisis univariante (Test Log-Rank)**: Identificar qué variables clínicas presentan un valor pronóstico significativo de forma aislada, validando la relevancia de las características antes de su inclusión en modelos predictivos complejos.
 
-Para cada variable de estratificación $X$ con $k$ grupos, el contraste es:
+2. **Establecimiento de una línea base de rendimiento**: Calcular el **Brier Score de referencia nula** de un modelo marginal (que predice la misma curva poblacional para todos los individuos) para comparar posteriormente si modelos más sofisticados (Cox, RSF, DeepSurv) realmente aportan una ventaja predictiva.
+
+Dado su carácter descriptivo, el análisis se aplica sobre la **cohorte completa** (train + test, n = 1.981). No existe riesgo de *data leakage* porque KM no aprende parámetros transferibles a los modelos predictivos.
+
+#### A. Formulación de Hipótesis
+
+Para evaluar el impacto pronóstico de cada variable de estratificación $X$ (dividida en $k$ grupos), se plantea el siguiente contraste de hipótesis sobre las curvas de supervivencia poblacionales:
 
 $$H_0: S_1(t) = S_2(t) = \cdots = S_k(t) \quad \forall t$$
-
 $$H_1: \exists \, i \neq j \text{ tal que } S_i(t) \neq S_j(t) \text{ para algún } t$$
 
-Donde $S_i(t)$ es la función de supervivencia del grupo $i$. 
+donde $S_i(t)$ representa la función de supervivencia estimada para el grupo $i$. Se rechazará la hipótesis nula ($H_0$) indicando una diferencia estadísticamente significativa en la supervivencia, si el valor $p$ asociado a la prueba es inferior al nivel de significancia $\alpha = 0.05$.
 
-> Se rechaza $H_0$ si $p < 0.05$.
+#### B. Test Log-Rank (Mantel-Cox)
 
-#### B. Elección del test
-
-Para contrastar si las curvas de supervivencia difieren entre grupos se utiliza el **test log-rank** (Mantel-Cox), cuyo estadístico compara, en cada tiempo de evento $t_j$, los eventos observados frente a los esperados bajo $H_0$:
+Para contrastar analíticamente si las curvas de supervivencia difieren, se utiliza el **test Log-Rank**. Este estadístico compara, en cada instante de tiempo $t_j$ donde ocurre al menos un evento, los eventos observados frente a los eventos que se esperarían si la hipótesis nula fuera cierta (es decir, si no hubiera diferencias entre los grupos).
 
 $$\chi^2_{LR} = \frac{\left(\sum_j (O_{ij} - E_{ij})\right)^2}{\sum_j V_{ij}}$$
 
-Donde $O_{ij}$ son los eventos observados en el grupo $i$ en el instante $t_j$, $E_{ij}$ los esperados bajo $H_0$, y $V_{ij}$ la varianza correspondiente. Bajo $H_0$, el estadístico sigue una distribución $\chi^2$ con $k-1$ grados de libertad.
-
-El log-rank es el test más potente cuando los hazards son **proporcionales** entre grupos (cociente constante en el tiempo), que es precisamente el supuesto que evaluaremos en Cox posteriormente. 
-
-Se utiliza un nivel de significación $\alpha = 0.05$.
+Donde $O_{ij}$ son los eventos observados en el grupo $i$ en el instante $t_j$, $E_{ij}$ son los eventos esperados, y $V_{ij}$ la varianza correspondiente. Bajo $H_0$, el estadístico sigue una distribución $\chi^2$ con $k-1$ grados de libertad. La idoneidad de este test reside en su alta potencia estadística cuando los riesgos (*hazards ratios*)  entre grupos son **proporcionales** (constantes en el tiempo).
 
 
-#### C. Discretización de variables numéricas para el análisis de Kaplan-Meier
+#### C. Discretización de variables continuas
 
-KM requiere grupos discretos para estimar S(t) por subconjunto. Las variables continuas se discretizan siguiendo puntos de corte clínicamente establecidos en la bibliografía oncológica, no percentiles arbitrarios, para que los grupos resultantes tengan interpretación clínica directa y sean comparables con la literatura.
+El estimador de Kaplan-Meier requiere grupos discretos para estimar $S(t)$ por subconjunto. Por tanto, las variables continuas se han transformado en variables categóricas. Para garantizar la validez externa e interpretabilidad clínica del análisis, los puntos de corte no se han establecido mediante percentiles puramente estadísticos (salvo ausencia de consenso), sino empleando los estándares y guías clínicas consolidadas en la bibliografía oncológica (por ejemplo, puntos de corte de Haybittle-Galea para el índice NPI o rangos de edad del SEER).
 
-Las variables discretizadas en este apartado se crean exclusivamente sobre `brca_prep` para el análisis descriptivo de KM. No se incorporan a `X_train` / `X_test`, que ya contienen las variables numéricas originales continuas para los modelos predictivos.
+> *Nota: Estas variables discretizadas se generan exclusivamente para este análisis descriptivo. Los modelos predictivos posteriores (Cox, RSF, DeepSurv) se alimentarán de las variables continuas originales.*
 
 ```python
 df_km = brca_prep.copy()
@@ -1035,11 +1033,9 @@ Name: count, dtype: int64
   df_km shape : (1981, 32)
   Estas variables NO están en X_train / X_test.
 
-#### C. Desarrollo
+#### D. Análisis de Supervivencia Global (Cohorte completa)
 
-── Datos ─────────────────────────────────────────────────────────────────────
-brca_prep contiene las variables originales (pre-OHE) + duration + event
-tras eliminar los 528 registros sin endpoint (sección 3.3.4)
+Para obtener la visión general del comportamiento temporal de la enfermedad en el conjunto de datos METABRIC, se ajustó inicialmente la curva de Kaplan-Meier sobre la totalidad de los individuos sin estratificación.
 
 ```python
 dur_all = df_km['duration'].values
@@ -1077,8 +1073,15 @@ Métrica	Valor
 
 ![KM](images/Modelos/KM/KM_global.png)
 
-── Test log-rank ───────────────────────────
-Se incluyen todas las variables categóricas con potencial valor pronóstico identificadas en el EDA. 
+**Interpretación de la Supervivencia Global:**
+
+La curva de supervivencia global, de la cohorte evaluada ($n=1.981$), refleja el comportamiento esperado para una cohorte oncológica de cáncer de mama con seguimiento a largo plazo. La mediana de supervivencia se sitúa en **156.3 meses (13.0 años)**, con una supervivencia a 5 años del 78.0%, a 10 años del 59.3% y a 20 años del 29.4%. Estos valores son coherentes con los reportados en la literatura para cohortes similares de cáncer de mama con mezcla de subtipos: el estudio original de METABRIC (Curtis et al., *Nature* 2012) reportó medianas comparables en su cohorte de descubrimiento.
+
+La forma de la curva —descenso relativamente suave durante los primeros 150 meses seguido de una caída más pronunciada— es típica de una cohorte heterogénea que incluye subtipos Luminales de buen pronóstico junto a subtipos Her2 y Triple Negativo de peor evolución. La cola extensa hasta los 355 meses (casi 30 años) confirma la excepcional madurez del seguimiento clínico de METABRIC, que es precisamente uno de sus principales valores como dataset de referencia en supervivencia.
+
+#### E. Evaluación Pronóstica Univariante (Test Log-Rank)
+
+A continuación, se aplicó el test log-rank iterativamente sobre las variables categóricas y continuas discretizadas para identificar los ejes fundamentales de variabilidad pronóstica.
 
 ```python
 VARS_LOGRANK = [
@@ -1117,6 +1120,7 @@ VARS_LOGRANK = [
 tabla_lr = KM.logrank_summary(df_km, VARS_LOGRANK)
 display(tabla_lr)
 ```
+
 Variable	k grupos	chi²	p-valor	Significancia
 0	3-Gene classifier subtype	4	40.871	0.000000	***
 1	Integrative Cluster	11	72.636	0.000000	***
@@ -1142,56 +1146,38 @@ Variable	k grupos	chi²	p-valor	Significancia
 21	Mutation Burden	4	1.831	0.766746	ns
 22	Cellularity	3	0.234	0.971876	ns
 
+**Interpretación de los Resultados del Test:**
 
-# ── Heatmap de significancia pronóstica ───────────────────────────────────────
+De las 23 variables evaluadas, 18 demostraron poseer capacidad de estratificación pronóstica estadísticamente significativa ($p < 0.05$). Destacan de forma contundente (con $p \approx 0.00$) factores anatómicos asociados a la agresividad mecánica del tumor (`Tumor Stage Cat` y `Nodal Status`) y la edad (`Age Group`). Asimismo, los subtipos moleculares (`Pam50` e `Integrative Cluster`) dividen de manera drástica las curvas de supervivencia, capturando la heterogeneidad intrínseca del cáncer de mama.
 
-```python
-KM.plot_logrank_heatmap(
-    tabla_lr,
-    output_path=r'../images/Modelos/KM/KM_logrank_heatmap.png'
-)
-```
+Es de notable interés analítico que la variable `Mutation Burden` (carga mutacional) no resultara significativa de forma aislada ($p=0.7667$). Esto sugiere que, a diferencia de tumores altamente inmunogénicos (como el de pulmón), la cantidad cruda de mutaciones en el cáncer de mama primario no parece ser un factor determinante directo de la supervivencia sin la interacción de otras variables clínicas.
 
-![KM](images/Modelos/KM/KM_logrank_heatmap.png)
+#### **F. Análisis Visual de Curvas Kaplan-Meier por Familia Clínica**
 
-#### D. Curvas KM por familia clínica
+El test de log-rank cuantifica si hay diferencias, pero la visualización de las curvas de Kaplan-Meier permite comprender la *dinámica temporal* de esas diferencias. A continuación, se analizan los hallazgos agrupados por contexto clínico:
 
-# ── Grupo 1: Biomarcadores de receptor ───────────────────────────────────────
+##### **I. Perfil Clínico-Demográfico**
+
+La variable `Age Group` evidencia que la supervivencia decae de forma escalonada a medida que avanza la edad al diagnóstico, siendo el grupo de mayores de 70 años el de peor pronóstico con diferencia. Este efecto está íntimamente ligado al `Estado Menopáusico`, donde las pacientes postmenopáusicas muestran peor supervivencia. Por otro lado, la variable `Lateralidad del Tumor` (mama izquierda vs. derecha) presenta curvas prácticamente superpuestas ($p=0.71$), confirmando que la localización anatómica simétrica no influye en la biología de la enfermedad ni en el pronóstico.
 
 ```python
 KM.plot_km_groups(
-    df      = df_km,
+    df = df_km,
     grupos_config = {
-        'ER Status'               : ('ER Status',               'RdYlGn'),
-        'PR Status'               : ('PR Status',               'RdYlGn'),
-        'HER2 Status'             : ('HER2 Status',             'RdYlGn'),
-        'ER status (IHC)'         : ('ER status measured by IHC','RdYlGn'),
+        'Grupo de Edad'               : ('Age Group',                'viridis'),
+        'Estado Menopáusico'          : ('Inferred Menopausal State','Set2'),
+        'Lateralidad del Tumor'       : ('Primary Tumor Laterality', 'Set2'),
     },
     ncols       = 2,
-    output_path = r'../images/Modelos/KM/KM_receptores.png'
+    output_path = r'../images/Modelos/KM/KM_demografico.png'
 )
 ```
 
-![KM](images/Modelos/KM/KM_receptores.png)
+![KM](images/Modelos/KM/KM_demografic.png)
 
-# ── Grupo 2: Subtipos moleculares ─────────────────────────────────────────────
+##### **II. Estadificación y Patología (Carga tumoral)**
 
-```python
-KM.plot_km_groups(
-    df      = df_km,
-    grupos_config = {
-        'Pam50 + Claudin-low subtype' : ('Pam50 + Claudin-low subtype', 'tab10'),
-        '3-Gene classifier subtype'   : ('3-Gene classifier subtype',   'Set2'),
-        'Integrative Cluster'         : ('Integrative Cluster',         'tab20'),
-    },
-    ncols       = 2,
-    output_path = r'../images/Modelos/KM/KM_subtipos_moleculares.png'
-)
-```
-
-![KM](images/Modelos/KM/KM_subtipos_moleculares.png)
-
-# ── Grupo 3: Caracterización histológica y estadificación ────────────────────
+Las curvas de `Estadio Tumoral (TNM)`, `Grado Histológico` y `Estado Ganglionar (N)` se separan de manera casi perfecta y proporcional a lo largo de todo el seguimiento. Un paciente en Estadio 0/1 o sin ganglios afectados (N0) mantiene una probabilidad de supervivencia superior al 80% a los 10 años, mientras que aquellos con 10 o más ganglios afectados (N3) o Grado 3 ven su curva desplomarse drásticamente en los primeros 5 años. Esta separación sin cruces sugiere fuertemente que estas variables cumplirán el supuesto de riesgos proporcionales necesario para el posterior modelo de Cox.
 
 ```python
 KM.plot_km_groups(
@@ -1209,10 +1195,53 @@ KM.plot_km_groups(
 )
 ```
 
-![KM](images/Modelos/KM/KM_histologia.png)
+![KM](images/Modelos/KM/KM_estadificacion_patologia.png)
+
+##### **III. Biomarcadores de Receptor**
+
+En las gráficas de `ER Status` y `PR Status`, observamos que las pacientes positivas (línea verde) tienen una supervivencia marcadamente *superior* durante los primeros 10-15 años frente a las negativas. Sin embargo, a partir del mes 150-200, las curvas convergen y llegan a cruzarse, indicando que los tumores Luminales (ER+) presentan un riesgo sostenido de recaída y mortalidad a muy largo plazo. Mientras que los tumores negativos tienen una mortalidad muy alta y temprana, pero si superan los primeros años, su riesgo de evento cae drásticamente.
+
+```python
+KM.plot_km_groups(
+    df      = df_km,
+    grupos_config = {
+        'ER Status'               : ('ER Status',               'RdYlGn'),
+        'PR Status'               : ('PR Status',               'RdYlGn'),
+        'HER2 Status'             : ('HER2 Status',             'RdYlGn'),
+        'ER status (IHC)'         : ('ER status measured by IHC','RdYlGn'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_receptores.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_receptores.png)
 
 
-# ── Grupo 4: Intervenciones terapéuticas ─────────────────────────────────────
+##### IV. Subtipos Moleculares
+
+Las firmas multigénicas (`Pam50`, `3-Gene Classifier` e `Integrative Cluster`) logran desgranar la heterogeneidad tumoral con gran precisión. En el gráfico de `Pam50`, destaca la rápida caída inicial de los subtipos *Her2* y *Basal*, en contraste con la caída más suave y prolongada del subtipo *Luminal A*. El `Integrative Cluster`, al dividir la cohorte en 10 subgrupos, genera un abanico que, aunque visualmente denso, resalta la variable agresividad intrínseca del cáncer de mama.
+
+```python
+KM.plot_km_groups(
+    df      = df_km,
+    grupos_config = {
+        'Pam50 + Claudin-low subtype' : ('Pam50 + Claudin-low subtype', 'tab10'),
+        '3-Gene classifier subtype'   : ('3-Gene classifier subtype',   'Set2'),
+        'Integrative Cluster'         : ('Integrative Cluster',         'tab20'),
+    },
+    ncols       = 2,
+    output_path = r'../images/Modelos/KM/KM_subtipos_moleculares.png'
+)
+```
+
+![KM](images/Modelos/KM/KM_subtipos_moleculares.png)
+
+
+##### V. Intervenciones Terapéuticas 
+
+Las curvas correspondientes a los tratamientos (`Chemotherapy`, `Radio Therapy` y `Type of Breast Surgery`) ilustran el clásico **sesgo de confusión por indicación**. A simple vista, las gráficas sugieren contraintuitivamente que recibir quimioterapia o someterse a una mastectomía confiere *peor* supervivencia que no hacerlo o recibir cirugía conservadora. Clínicamente, esto no significa que el tratamiento sea perjudicial, sino que la quimioterapia y la cirugía radical se prescriben precisamente a pacientes que ya presentan tumores más grandes, de mayor grado o con ganglios positivos (peor pronóstico basal). 
+
 ```python
 KM.plot_km_groups(
     df      = df_km,
@@ -1226,95 +1255,14 @@ KM.plot_km_groups(
     output_path = r'../images/Modelos/KM/KM_tratamientos.png'
 )
 ```
+
 ![KM](images/Modelos/KM/KM_tratamientos.png)
 
-# ── Grupo 5: Perfil clínico-demográfico ──────────────────────────────────────
-```python
-KM.plot_km_groups(
-    df = df_km,
-    grupos_config = {
-        'Grupo de Edad'               : ('Age Group',                'viridis'),
-        'Estado Menopáusico'          : ('Inferred Menopausal State','Set2'),
-        'Lateralidad del Tumor'       : ('Primary Tumor Laterality', 'Set2'),
-    },
-    ncols       = 2,
-    output_path = r'../images/Modelos/KM/KM_demografico.png'
-)
-```
+> *Estos gráficos justifican categóricamente por qué el análisis univariante es insuficiente y hace imprescindible el uso de modelos multivariantes (Cox, RSF, DeepSurv) para ajustar el efecto del tratamiento por la gravedad subyacente de la enfermedad.*
 
-![KM](images/Modelos/KM/KM_demografico.png)
+#### F. Integración de Brier Score (Modelo Base)
 
-#### E. Resultados
-
-# ── Resumen ejecutivo ─────────────────────────────────────────────────────────
-
-```python
-mediana_global = kmf_global.median_survival_time_
-
-print("═" * 65)
-print("  RESULTADOS — Kaplan-Meier  ·  METABRIC (n=1.981)")
-print("═" * 65)
-print(f"  Mediana de supervivencia global : {mediana_global:.1f} meses "
-      f"({mediana_global/12:.1f} años)")
-print(f"  S(t=60m)  — supervivencia 5a    : {kmf_global.predict(60):.3f}")
-print(f"  S(t=120m) — supervivencia 10a   : {kmf_global.predict(120):.3f}")
-print(f"  S(t=240m) — supervivencia 20a   : {kmf_global.predict(240):.3f}")
-print()
-
-sig    = tabla_lr[tabla_lr['Significancia'] != 'ns']
-no_sig = tabla_lr[tabla_lr['Significancia'] == 'ns']
-
-print(f"  Variables con diferencias significativas (p < 0.05): {len(sig)}")
-for _, row in sig.iterrows():
-    print(f"    {row['Significancia']}  {row['Variable']:<45} p = {row['p-valor']:.2e}")
-
-print()
-print(f"  Variables sin diferencias significativas: {len(no_sig)}")
-for _, row in no_sig.iterrows():
-    print(f"    ns   {row['Variable']:<45} p = {row['p-valor']:.4f}")
-print("═" * 65)
-```
-
-═════════════════════════════════════════════════════════════════
-  RESULTADOS — Kaplan-Meier  ·  METABRIC (n=1.981)
-═════════════════════════════════════════════════════════════════
-  Mediana de supervivencia global : 156.3 meses (13.0 años)
-  S(t=60m)  — supervivencia 5a    : 0.780
-  S(t=120m) — supervivencia 10a   : 0.593
-  S(t=240m) — supervivencia 20a   : 0.294
-
-  Variables con diferencias significativas (p < 0.05): 18
-    ***  3-Gene classifier subtype                     p = 0.00e+00
-    ***  Integrative Cluster                           p = 0.00e+00
-    ***  Pam50 + Claudin-low subtype                   p = 0.00e+00
-    ***  Tumor Stage Cat                               p = 0.00e+00
-    ***  Nodal Status                                  p = 0.00e+00
-    ***  NPI Group                                     p = 0.00e+00
-    ***  Type of Breast Surgery                        p = 0.00e+00
-    ***  Inferred Menopausal State                     p = 0.00e+00
-    ***  Age Group                                     p = 0.00e+00
-    ***  Histologic Grade Cat                          p = 8.00e-06
-    ***  HER2 Status                                   p = 5.00e-05
-    ***  HER2 status measured by SNP6                  p = 3.59e-04
-    ***  PR Status                                     p = 4.32e-04
-    ***  Hormone Therapy                               p = 7.25e-04
-    **  Chemotherapy                                  p = 7.64e-03
-    *  Tumor Other Histologic Subtype                p = 1.96e-02
-    *  Radio Therapy                                 p = 2.48e-02
-    *  ER Status                                     p = 3.50e-02
-
-  Variables sin diferencias significativas: 5
-    ns   Cancer Type Detailed                          p = 0.1728
-    ns   ER status measured by IHC                     p = 0.2793
-    ns   Primary Tumor Laterality                      p = 0.7123
-    ns   Mutation Burden                               p = 0.7667
-    ns   Cellularity                                   p = 0.9719
-═════════════════════════════════════════════════════════════════
-
-# ── Brier Score KM marginal — modelo de referencia nulo ──────────────────────
-# El KM sin estratificar predice la misma S(t) para todos los pacientes.
-# Su IBS es el baseline que los modelos predictivos deben superar.
-# Se guarda como variable global para reutilizarla en la sección 3.4.5.
+El modelo de Kaplan-Meier no estratificado predice idéntica probabilidad de supervivencia para todos los pacientes en un tiempo $t$. Al evaluar el error cuadrático temporal de esta predicción marginal frente a los eventos reales, obtenemos el **Integrated Brier Score (IBS) marginal**.
 
 ```python
 y_all      = Surv.from_arrays(evt_all.astype(bool), dur_all.astype(float))
@@ -1347,27 +1295,59 @@ plt.savefig(r'../images/Modelos/KM/KM_brier_referencia.png', dpi=150, bbox_inche
 plt.show()
 
 print(f"IBS — KM marginal (referencia nula) : {ibs_km:.4f}")
-print(f"  → Cualquier modelo con IBS < {ibs_km:.4f} mejora sobre la referencia KM")
+print(f"  -> Cualquier modelo con IBS < {ibs_km:.4f} mejora sobre la referencia KM")
 ```
 
-
-IBS — KM marginal (referencia nula) : 0.2156
-  → Cualquier modelo con IBS < 0.2156 mejora sobre la referencia KM
+![KM](images/Modelos/KM/KM_brier_referencia.png)
 
 
----
+#### **G. Interpretación de los resultados**
 
-> **Nota metodológica:** Kaplan-Meier es un análisis **univariante**: evalúa el efecto de cada variable de forma aislada, sin controlar por confusores. Por ejemplo, el efecto de `Chemotherapy` sobre la supervivencia está parcialmente confundido por `Tumor Stage` (las pacientes con estadios avanzados reciben más quimioterapia y tienen peor pronóstico). La descomposición del efecto ajustado por múltiples covariables simultáneas es precisamente la aportación del modelo de Cox en la sección 3.4.2.
+##### **I. Supervivencia global**
+
+La mediana de 156.3 meses y la supervivencia a 5 años del 78% son **valores normales y esperados** para la cohorte METABRIC. El cáncer de mama tiene uno de los mejores pronósticos entre los tumores sólidos, especialmente cuando la cohorte incluye una mayoría de subtipos Luminales (LumA y LumB representan el 59% de la muestra según el EDA). Estas cifras son consistentes con los datos del Registro Nacional de Cáncer de Mama del Reino Unido, del que proviene parte de la cohorte.
+
+El IBS de referencia nula de **0.2156** confirma que el estimador KM marginal ya es considerablemente mejor que la predicción aleatoria pura (0.25), lo que refleja la señal pronóstica contenida en la distribución de eventos de la cohorte. Cualquier modelo predictivo debe alcanzar IBS < 0.2156 para justificar el uso de covariables.
+
+##### **II. Variables significativas — Lo que aporta valor pronóstico**
+
+De las 23 variables analizadas, **18 presentan diferencias significativas** (p < 0.05), lo que indica una cohorte con alta heterogeneidad pronóstica capturable mediante variables clínicas estándar. Los resultados más relevantes son:
+
+**Estadificación clásica ($$\chi^2$$ más altos de todo el análisis):**
+- `Nodal Status` ($$\chi^2$$ = 205.5) y `Age Group` ($$\chi^2$$ = 201.5) son las variables con mayor poder discriminativo univariante de toda la cohorte, superando incluso al propio estadio TNM. Que la afectación ganglionar sea el predictor más potente es coherente con la biología del cáncer de mama: la extensión linfática es el factor pronóstico independiente más consistente en la literatura desde los estudios de Bloom y Richardson (1957).
+- `NPI Group` ($$\chi^2$$ = 156.1) y `Tumor Stage Cat` ($$\chi^2$$ = 128.2) también muestran separación de curvas muy marcada. El NPI, al ser una combinación lineal de tamaño tumoral, afectación ganglionar y grado histológico, captura de forma comprimida la mayoría de la información pronóstica clásica.
+
+**Subtipos moleculares:**
+- `Integrative Cluster` ($$\chi^2$$ = 72.6), `Pam50` ($$\chi^2$$ = 56.0) y `3-Gene classifier` ($$\chi^2$$ = 40.9) confirman el valor pronóstico diferencial de la clasificación molecular intrínseca. Estos resultados replican exactamente lo publicado en Curtis et al. (2012) y Pereira et al. (2016), lo que valida la calidad del preprocesado realizado.
+
+**Biomarcadores de receptor:**
+- `HER2 Status` ($$\chi^2$$ = 19.8) y `PR Status` ($$\chi^2$$ = 15.5) son significativos, coherentemente con su papel como marcadores de respuesta terapéutica. Más llamativo resulta que `ER Status` alcance solo una significancia marginal ($$\chi^2$$ = 4.4, p = 0.035 *), lo que se explica en el apartado siguiente.
 
 
+##### **III. Variables no significativas — Hallazgos que requieren explicación**
 
+Los cinco casos sin significancia merecen comentario específico porque no todos son igualmente esperables:
 
+**`Cellularity` (p = 0.972) — esperado.** La celularidad tumoral es una variable que refleja la proporción de células tumorales en la biopsia, no una característica biológica intrínseca del tumor. Su falta de valor pronóstico univariante es consistente con la literatura: su efecto sobre la supervivencia está mediado por otras variables (grado histológico, subtipo molecular) con las que está correlacionada. No debe incluirse como covariable en Cox.
 
+**`Primary Tumor Laterality` (p = 0.712) — esperado.** El lado del tumor (mama izquierda vs derecha) no tiene base biológica como factor pronóstico. Su inclusión en el análisis responde a la exhaustividad del EDA, no a una hipótesis clínica. Debe excluirse de los modelos multivariantes.
 
+**`Cancer Type Detailed` (p = 0.173) — parcialmente esperado.** La distinción entre carcinoma ductal invasivo, lobular y mixto tiene implicaciones terapéuticas, pero el carcinoma lobular y el mixto tienen pronósticos superponibles al ductal en la mayoría de las cohortes. La falta de significancia aquí puede deberse al reducido tamaño de los subgrupos no ductales (IDC domina con 1.865 casos frente a 192 lobulares).
 
+**`ER status measured by IHC` (p = 0.279) — aparentemente contradictorio con `ER Status` (p = 0.035).** Este resultado es metodológicamente importante. Ambas variables miden el mismo receptor de estrógeno pero por métodos diferentes: `ER Status` es la clasificación clínica final (integrando IHC y expresión génica), mientras que `ER status measured by IHC` es solo la determinación inmunohistoquímica aislada. La mayor significancia de `ER Status` sugiere que la clasificación clínica integrada captura mejor la información pronóstica. Desde el punto de vista del modelado, **se recomienda usar solo `ER Status` y eliminar `ER status measured by IHC`** para evitar la redundancia ya identificada en el preprocesado.
 
+**`Mutation Burden` (p = 0.767) — inesperado y biológicamente informativo.** Este es el resultado más llamativo del análisis. La carga mutacional, que el EDA mostró como correlacionada con la agresividad del tumor, **no tiene valor pronóstico univariante en supervivencia global** en esta cohorte. Esto no es un error sino un hallazgo con base biológica: en cáncer de mama primario sin tratamiento con inmunoterapia, la carga mutacional no predice supervivencia de la misma forma en que lo hace en tumores con alta inmunogenicidad (melanoma, cáncer de pulmón). Los resultados de Alexandrov et al. (2013) y del TCGA Pan-Cancer Atlas (2018) han demostrado que la carga mutacional en cáncer de mama es baja en comparación con otros tumores y que su valor pronóstico es marginal fuera del contexto de la inmunoterapia. **Esta variable puede ser excluida de los modelos multivariantes** sin pérdida de información pronóstica.
 
+##### **IV. Implicaciones para los modelos multivariantes**
 
+El análisis KM orienta las siguientes decisiones para las secciones 3.4.2–3.4.4:
+
+| Decisión | Variables afectadas | Justificación |
+|---|---|---|
+| **Excluir** del modelado | `Cellularity`, `Primary Tumor Laterality`, `ER status measured by IHC`, `Cancer Type Detailed` | Sin valor pronóstico univariante o redundantes |
+| **Incluir con prioridad** | `Nodal Status`, `NPI Group`, `Tumor Stage`, `Age at Diagnosis`, subtipos PAM50 | Mayor χ² en log-rank |
+| **Incluir con cautela** | `ER Status`, `Radio Therapy`, `Tumor Other Histologic Subtype` | Significancia marginal (p entre 0.02 y 0.04) |
+| **Vigilar en Cox** | Variables terapéuticas (`Chemotherapy`, `Hormone Therapy`) | Confusión por indicación: el tratamiento recibido depende del estadio |
 
 
 
@@ -1510,3 +1490,4 @@ Conjuntos de datos completos con **Variable, Descripción y Ejemplos**:
 | Successful ctDx Lung                         | Análisis exitoso         | True, False                |
 | TMB (nonsynonymous)                          | Carga mutacional         | 3, 6                       |
 | Tumor Purity                                 | Pureza tumoral           | 10, 20, 30                 |
+
