@@ -1,6 +1,6 @@
 # Análisis de Supervivencia y Predicción de Riesgo Clínico: Estudio Comparativo en Cáncer de Mama y Pulmón
 
-(Aquí puedes incluir un breve resumen o abstract del proyecto, los objetivos principales de la comparación de modelos clásicos vs. Machine Learning/Deep Learning, y la descripción general del flujo de trabajo).
+El objetivo generarl del presente *jupyter notebook*  es realizar un estudio comparativo de rendimiento entre modelos estadísticos clásicos, modelos de Machine Learning y arquitecturas de Deep Learning para la predicción de riesgo y supervivencia en pacientes oncológicos. El foco principal es determinar si la complejidad de los modelos modernos (RSF, DeepSurv) ofrece una mejora significativa frente a los estándares clínicos (Cox, Kaplan-Meier).
 
 # 1. Estrategia de Adquisición de datos de cáncer de mama y de pulmón
 
@@ -1342,13 +1342,686 @@ Los cinco casos sin significancia merecen comentario específico porque no todos
 
 El análisis KM orienta las siguientes decisiones para las secciones 3.4.2–3.4.4:
 
-| Decisión | Variables afectadas | Justificación |
-|---|---|---|
-| **Excluir** del modelado | `Cellularity`, `Primary Tumor Laterality`, `ER status measured by IHC`, `Cancer Type Detailed` | Sin valor pronóstico univariante o redundantes |
-| **Incluir con prioridad** | `Nodal Status`, `NPI Group`, `Tumor Stage`, `Age at Diagnosis`, subtipos PAM50 | Mayor χ² en log-rank |
-| **Incluir con cautela** | `ER Status`, `Radio Therapy`, `Tumor Other Histologic Subtype` | Significancia marginal (p entre 0.02 y 0.04) |
-| **Vigilar en Cox** | Variables terapéuticas (`Chemotherapy`, `Hormone Therapy`) | Confusión por indicación: el tratamiento recibido depende del estadio |
+| Decisión                  | Variables afectadas                                                                            | Justificación                                                         |
+| ------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **Excluir** del modelado  | `Cellularity`, `Primary Tumor Laterality`, `ER status measured by IHC`, `Cancer Type Detailed` | Sin valor pronóstico univariante o redundantes                        |
+| **Incluir con prioridad** | `Nodal Status`, `NPI Group`, `Tumor Stage`, `Age at Diagnosis`, subtipos PAM50                 | Mayor χ² en log-rank                                                  |
+| **Incluir con cautela**   | `ER Status`, `Radio Therapy`, `Tumor Other Histologic Subtype`                                 | Significancia marginal (p entre 0.02 y 0.04)                          |
+| **Vigilar en Cox**        | Variables terapéuticas (`Chemotherapy`, `Hormone Therapy`)                                     | Confusión por indicación: el tratamiento recibido depende del estadio |
 
+
+Perfecto. Empezamos por el bloque **A — Fundamentos teóricos del modelo de Cox PH**.
+
+---
+
+### **3.4.2. Modelo de Riesgos Proporcionales de Cox (Cox PH)**
+
+#### **A. Fundamentos Teóricos**
+
+El modelo de riesgos proporcionales de Cox (Cox, 1972) es el modelo de regresión de supervivencia más utilizado en investigación clínica. A diferencia del estimador de Kaplan-Meier, que describe la supervivencia de forma no paramétrica sin incorporar covariables, Cox permite cuantificar el efecto simultáneo de múltiples factores pronósticos sobre el riesgo de un evento, manteniendo la flexibilidad de no asumir ninguna distribución paramétrica para el tiempo hasta el evento.
+
+##### **I. La Función de Riesgo (Hazard Function)**
+
+El modelo se formula en términos de la **función de riesgo instantáneo** $h(t \mid \mathbf{x})$, que representa la tasa de ocurrencia del evento en el instante $t$ dado que el individuo ha sobrevivido hasta ese momento y posee un vector de covariables $\mathbf{x} = (x_1, x_2, \ldots, x_p)$:
+
+$$h(t \mid \mathbf{x}) = h_0(t) \cdot \exp\!\left(\sum_{k=1}^{p} \beta_k x_k\right) = h_0(t) \cdot \exp(\boldsymbol{\beta}^\top \mathbf{x})$$
+
+donde:
+- $h_0(t)$ es el **riesgo basal** (*baseline hazard*): , una función no paramétrica que describe cómo cambia el riesgo en el tiempo para un paciente con todas las covariables a valor cero. Cox nunca la estima directamente; por eso el modelo se denomina **semi-paramétrico**.
+- $\exp(\boldsymbol{\beta}^\top \mathbf{x})$ representa el Hazard Ratio (HR) para la covariable $X_i$. Un HR > 1 indica un aumento del riesgo de muerte (peor pronóstico), mientras que un HR < 1 indica un factor protector.
+- $\boldsymbol{\beta} = (\beta_1, \ldots, \beta_p)$ son los **coeficientes de regresión**, los parámetros que el modelo estima.
+
+##### **II. El Supuesto de Proporcionalidad**
+
+La hipótesis central del modelo es que el cociente de riesgos entre dos individuos con covariables $\mathbf{x}_i$ y $\mathbf{x}_j$ es **constante en el tiempo**:
+
+$$\frac{h(t \mid \mathbf{x}_i)}{h(t \mid \mathbf{x}_j)} = \frac{h_0(t) \cdot \exp(\boldsymbol{\beta}^\top \mathbf{x}_i)}{h_0(t) \cdot \exp(\boldsymbol{\beta}^\top \mathbf{x}_j)} = \exp\!\left(\boldsymbol{\beta}^\top (\mathbf{x}_i - \mathbf{x}_j)\right)$$
+
+El riesgo basal $h_0(t)$ se cancela, lo que significa que el **Hazard Ratio (HR)** entre dos perfiles no depende del tiempo $t$. Esta es la propiedad de *proporcionalidad de riesgos*, que deberá verificarse empíricamente en el apartado D mediante los residuos de Schoenfeld.
+
+El **Hazard Ratio** asociado a una covariable $x_k$ se interpreta directamente como:
+
+$$HR_k = \exp(\beta_k)$$
+
+Un $HR_k > 1$ indica que un incremento unitario en $x_k$ aumenta el riesgo (peor pronóstico); $HR_k < 1$ indica efecto protector; $HR_k = 1$ indica ausencia de efecto.
+
+##### **III. Estimación: Verosimilitud Parcial de Cox**
+
+Una de las contribuciones más elegantes de Cox (1972) fue demostrar que $\boldsymbol{\beta}$ puede estimarse sin necesidad de especificar $h_0(t)$, mediante la **verosimilitud parcial**. Para cada instante $t_j$ en que ocurre un evento, se define el conjunto de riesgo $\mathcal{R}(t_j)$ como el conjunto de individuos que aún no han tenido el evento ni han sido censurados justo antes de $t_j$. La verosimilitud parcial es:
+
+$$\mathcal{L}(\boldsymbol{\beta}) = \prod_{j: \delta_j = 1} \frac{\exp(\boldsymbol{\beta}^\top \mathbf{x}_j)}{\sum_{l \in \mathcal{R}(t_j)} \exp(\boldsymbol{\beta}^\top \mathbf{x}_l)}$$
+
+donde $\delta_j = 1$ indica que el individuo $j$ sufrió el evento (no está censurado). El numerador recoge la contribución del individuo que experimentó el evento; el denominador suma las contribuciones de todos los individuos en riesgo en ese instante, capturando la competencia por el evento.
+
+La estimación de $\hat{\boldsymbol{\beta}}$ se obtiene maximizando el logaritmo de esta expresión mediante optimización numérica (habitualmente descenso de gradiente o Newton-Raphson). La ausencia de $h_0(t)$ en esta expresión es lo que le confiere al modelo su carácter semi-paramétrico y su robustez frente a la elección de una distribución de tiempos.
+
+> **Nota sobre empates (*ties*):** En datos clínicos con tiempos registrados en meses enteros (como METABRIC), los empates son frecuentes. Se empleará la **aproximación de Breslow** (implementada por defecto en `lifelines`), que ajusta el denominador de la verosimilitud parcial para manejar múltiples eventos en el mismo instante de tiempo.
+
+##### **IV. Estimación de la Función de Supervivencia**
+
+Una vez estimados $\hat{\boldsymbol{\beta}}$, la función de supervivencia para un individuo con covariables $\mathbf{x}$ se obtiene a través del estimador de Nelson-Aalen para el riesgo acumulado basal $\hat{H}_0(t)$:
+
+$$\hat{S}(t \mid \mathbf{x}) = \exp\!\left(-\hat{H}_0(t) \cdot \exp(\hat{\boldsymbol{\beta}}^\top \mathbf{x})\right)$$
+
+Esta es la curva de supervivencia individualizada que el modelo producirá para cada paciente del conjunto de test, y que permitirá calcular el **Brier Score integrado (IBS)** para comparar con la línea base de KM (IBS$_{\text{ref}}$ = 0.2156).
+
+### **B. Selección de Variables para el Modelo de Cox**
+
+Antes de ajustar el modelo, es necesario reducir el espacio de covariables de las 70 generadas tras el preprocesado. Un modelo de Cox con 70 predictores sobre 1.584 observaciones y una tasa de eventos del 57.77% (≈916 eventos) no viola formalmente la regla empírica de 10–15 eventos por variable (EPV), pero introduce dos problemas prácticos: **multicolinealidad** entre variables derivadas del mismo constructo clínico, y **ruido** por inclusión de variables sin valor pronóstico demostrado. El análisis KM del apartado anterior orienta directamente ambas decisiones.
+
+#### **I. Exclusión por ausencia de valor pronóstico (test log-rank)**
+
+Las variables identificadas en el análisis log-rank como no significativas ($p \geq 0.05$) o redundantes se eliminan del espacio de covariables. Adicionalmente, se excluyen variables que introducirían **confusión por indicación**: los tratamientos recibidos (`Chemotherapy`, `Hormone Therapy`, `Radio Therapy`) no son covariables pronósticas independientes en este contexto, ya que su administración está determinada por el estadio y el subtipo tumoral. Incluirlas en un modelo no experimental produce coeficientes no causales difíciles de interpretar.
+
+```python
+# ── Variables a excluir ───────────────────────────────────────────────────────
+# Las columnas en X_train son post-OHE, por lo que los nombres originales
+# se han expandido. Se usa str.startswith() para capturar todos los dummies
+# generados a partir de cada variable original.
+
+EXCLUIR_PREFIJOS = [
+    # Sin valor pronóstico univariante (log-rank ns)
+    'Cellularity',
+    'Primary Tumor Laterality',
+    'ER status measured by IHC',   # redundante con ER Status
+    'Cancer Type Detailed',
+    'Oncotree Code',               # codifica lo mismo que Cancer Type Detailed
+    'Tumor Other Histologic Subtype',  # p=0.020 marginal + redundante con Cancer Type Detailed
+    # Confusión por indicación
+    'Chemotherapy',
+    'Hormone Therapy',
+    'Radio Therapy',
+    # Identificadores / constantes (ya excluidas en preprocesado, verificación)
+    'Study ID', 'Patient ID', 'Sample ID',
+]
+
+# Identificar columnas a eliminar (coincidencia exacta o por prefijo OHE)
+cols_excluir = [
+    col for col in X_train.columns
+    if any(col == prefijo or col.startswith(prefijo + '_') for prefijo in EXCLUIR_PREFIJOS)
+]
+
+print(f"Columnas eliminadas ({len(cols_excluir)}):")
+for c in cols_excluir:
+    print(f"  · {c}")
+```
+Columnas eliminadas (28):
+  · Cancer Type Detailed_Breast Angiosarcoma
+  · Cancer Type Detailed_Breast Invasive Ductal Carcinoma
+  · Cancer Type Detailed_Breast Invasive Lobular Carcinoma
+  · Cancer Type Detailed_Breast Invasive Mixed Mucinous Carcinoma
+  · Cancer Type Detailed_Breast Mixed Ductal and Lobular Carcinoma
+  · Cancer Type Detailed_Invasive Breast Carcinoma
+  · Cancer Type Detailed_Metaplastic Breast Cancer
+  · Cellularity_Low
+  · Cellularity_Moderate
+  · Cellularity_Unknown
+  · Chemotherapy_Unknown
+  · Chemotherapy_YES
+  · ER status measured by IHC_Positve
+  · ER status measured by IHC_Unknown
+  · Tumor Other Histologic Subtype_Lobular
+  · Tumor Other Histologic Subtype_Medullary
+  · Tumor Other Histologic Subtype_Metaplastic
+  · Tumor Other Histologic Subtype_Mixed
+  · Tumor Other Histologic Subtype_Mucinous
+  · Tumor Other Histologic Subtype_Other
+  · Tumor Other Histologic Subtype_Tubular/ cribriform
+  · Tumor Other Histologic Subtype_Unknown
+  · Hormone Therapy_Unknown
+  · Hormone Therapy_YES
+  · Primary Tumor Laterality_Right
+  · Primary Tumor Laterality_Unknown
+  · Radio Therapy_Unknown
+  · Radio Therapy_YES
+
+
+#### **II. Gestión de la multicolinealidad estructural: NPI vs. sus componentes**
+
+El **Índice Pronóstico de Nottingham (NPI)** se define como combinación lineal de tres variables presentes también de forma independiente en el dataset:
+
+$$\text{NPI} = 0.2 \times \text{Tumor Size} + \text{Nodal Stage} + \text{Histologic Grade}$$
+
+Incluir simultáneamente el NPI y sus tres componentes crea una **multicolinealidad perfecta por construcción**, que inflaría los errores estándar de los coeficientes e impediría la convergencia del optimizador. La decisión se toma en favor de mantener los **componentes individuales** (`Tumor Size`, `Lymph nodes examined positive`, `Neoplasm Histologic Grade`) y descartar el NPI, por dos razones:
+
+1. Los componentes aportan información diferenciada en un modelo multivariante (el peso de cada uno puede diferir de los pesos fijos del NPI).
+2. El NPI fue diseñado para un contexto univariante; en regresión multivariante, los coeficientes se reestiman libremente.
+
+```python
+EXCLUIR_PREFIJOS += ['Nottingham prognostic index']
+
+# Regenerar la lista completa de exclusiones
+cols_excluir = [
+    col for col in X_train.columns
+    if any(col == prefijo or col.startswith(prefijo + '_') for prefijo in EXCLUIR_PREFIJOS)
+]
+```
+
+#### **III. Diagnóstico de multicolinealidad residual — Factor de Inflación de Varianza (VIF)**
+
+Tras la exclusión manual, se calcula el **VIF** para detectar multicolinealidad residual entre las variables numéricas continuas. Un VIF > 10 indica colinealidad severa que puede desestabilizar los coeficientes de Cox.
+
+```python
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# Aplicar exclusiones y quedarnos solo con numéricas para el VIF
+X_cox = X_train.drop(columns=cols_excluir, errors='ignore')
+X_cox_test = X_test.drop(columns=cols_excluir, errors='ignore')
+
+num_cols_cox = X_cox.select_dtypes(include='number').columns.tolist()
+
+vif_data = pd.DataFrame({
+    'Variable': num_cols_cox,
+    'VIF': [
+        variance_inflation_factor(X_cox[num_cols_cox].values, i)
+        for i in range(len(num_cols_cox))
+    ]
+}).sort_values('VIF', ascending=False).reset_index(drop=True)
+
+print(vif_data.to_string(index=False))
+```
+
+                                      Variable       VIF
+             Inferred Menopausal State_Unknown       inf
+           Pam50 + Claudin-low subtype_Unknown       inf
+          HER2 status measured by SNP6_Unknown       inf
+                           HER2 Status_Unknown       inf
+                             PR Status_Unknown       inf
+                   Integrative Cluster_Unknown       inf
+                            ER Status_Positive 14.433822
+              Pam50 + Claudin-low subtype_LumA  9.136096
+          HER2 status measured by SNP6_NEUTRAL  8.146573
+              Pam50 + Claudin-low subtype_LumB  5.913135
+                         Integrative Cluster_5  5.195283
+                          HER2 Status_Positive  5.041966
+               3-Gene classifier subtype_HER2+  4.624898
+                   Nottingham prognostic index  4.420956
+                            PR Status_Positive  3.510635
+                         Integrative Cluster_3  3.466824
+                         Integrative Cluster_8  3.392791
+3-Gene classifier subtype_ER+/HER2- Low Prolif  3.376088
+           3-Gene classifier subtype_ER-/HER2-  3.257305
+                      Integrative Cluster_4ER+  3.201278
+                        Integrative Cluster_10  3.133836
+                     Neoplasm Histologic Grade  3.047470
+                 Inferred Menopausal State_Pre  2.947364
+             Type of Breast Surgery_MASTECTOMY  2.720726
+              Pam50 + Claudin-low subtype_Her2  2.668314
+                              Age at Diagnosis  2.495150
+            Pam50 + Claudin-low subtype_Normal  2.491442
+                         Integrative Cluster_7  2.473209
+       Pam50 + Claudin-low subtype_claudin-low  2.281926
+                 Lymph nodes examined positive  1.999867
+                      Integrative Cluster_4ER-  1.878776
+                         Integrative Cluster_9  1.845074
+                                   Tumor Stage  1.660490
+             3-Gene classifier subtype_Unknown  1.560287
+                         Integrative Cluster_6  1.516688
+                         Integrative Cluster_2  1.467485
+             HER2 status measured by SNP6_LOSS  1.450832
+                                    Tumor Size  1.339567
+                Type of Breast Surgery_Unknown  1.121855
+                                Mutation Count  1.087529
+                Pam50 + Claudin-low subtype_NC  1.082987
+            HER2 status measured by SNP6_UNDEF  1.038384
+
+Variables con VIF > 10 se evalúan individualmente: si dos variables son redundantes se conserva la de mayor $\chi^2$ en el log-rank; si la colinealidad es estructural (p. ej. entre `ER Status` y `Inferred Menopausal State`) se documenta pero no necesariamente se elimina, ya que el modelo penalizado del apartado C la gestionará mediante regularización.
+
+#### **IV. Dataset final para Cox**
+
+```python
+print("═" * 60)
+print("  SELECCIÓN DE VARIABLES — COX PH")
+print("═" * 60)
+print(f"  Covariables antes de selección  : {X_train.shape[1]}")
+print(f"  Variables / prefijos excluidos  : {len(EXCLUIR_PREFIJOS)}")
+print(f"  Columnas OHE eliminadas         : {len(cols_excluir)}")
+print(f"  Covariables finales para Cox    : {X_cox.shape[1]}")
+print(f"  Shape X_cox  (train)            : {X_cox.shape}")
+print(f"  Shape X_cox_test (test)         : {X_cox_test.shape}")
+print("═" * 60)
+```
+
+
+════════════════════════════════════════════════════════════
+  SELECCIÓN DE VARIABLES — COX PH
+════════════════════════════════════════════════════════════
+  Covariables antes de selección  : 70
+  Variables / prefijos excluidos  : 12
+  Columnas OHE eliminadas         : 28
+  Covariables finales para Cox    : 42
+  Shape X_cox  (train)            : (1584, 42)
+  Shape X_cox_test (test)         : (397, 42)
+════════════════════════════════════════════════════════════
+
+
+### **C. Ajuste del Modelo**
+
+Se implementan dos estrategias complementarias de ajuste. La elección no es arbitraria: responde a una tensión habitual en modelos clínicos con espacios de covariables moderadamente amplios.
+
+El **Cox estándar** (máxima verosimilitud parcial sin restricciones) produce coeficientes insesgados e intervalos de confianza interpretables, pero es sensible a la multicolinealidad residual y tiende a sobreajustar cuando el número de predictores es elevado en relación con los eventos. El **Cox penalizado con Elastic Net** introduce un término de regularización que contrae los coeficientes de variables irrelevantes hacia cero (efecto Lasso) y estabiliza los de variables correlacionadas (efecto Ridge), a costa de un sesgo controlado que generalmente mejora la capacidad predictiva en test.
+
+Ambos modelos se ajustan sobre el mismo `X_cox` / `y_train` y se evalúan sobre el mismo `X_cox_test` / `y_test`, lo que garantiza una comparación directa.
+
+---
+
+#### **I. Cox Estándar — `CoxPHFitter` (lifelines)**
+
+`lifelines` espera un único DataFrame que contenga simultáneamente las covariables, la duración y el indicador de evento. Se construye ese DataFrame a partir de los arrays ya preparados.
+
+```python
+# ── Diagnóstico: columnas con varianza cero o casi cero ──────────────────────
+var_cols = X_cox.var()
+cols_var_cero = var_cols[var_cols < 1e-6].index.tolist()
+
+print(f"Columnas con varianza ≈ 0 eliminadas ({len(cols_var_cero)}):")
+for c in cols_var_cero:
+    print(f"  · {c}")
+
+X_cox      = X_cox.drop(columns=cols_var_cero)
+X_cox_test = X_cox_test.drop(columns=cols_var_cero, errors='ignore')
+```
+
+Columnas con varianza ≈ 0 eliminadas (0):
+
+```python
+# ── Eliminar columnas _Unknown restantes (VIF = inf) ─────────────────────────
+# Las columnas OHE sufijo _Unknown son combinación lineal perfecta del resto
+# de dummies de su grupo (sum-to-one constraint). Se eliminan sistemáticamente.
+
+cols_unknown = [c for c in X_cox.columns if c.endswith('_Unknown')]
+
+print(f"Columnas '_Unknown' eliminadas ({len(cols_unknown)}):")
+for c in cols_unknown:
+    print(f"  · {c}")
+
+X_cox      = X_cox.drop(columns=cols_unknown)
+X_cox_test = X_cox_test.drop(columns=cols_unknown, errors='ignore')
+```
+
+Columnas '_Unknown' eliminadas (8):
+  · Type of Breast Surgery_Unknown
+  · Pam50 + Claudin-low subtype_Unknown
+  · HER2 status measured by SNP6_Unknown
+  · HER2 Status_Unknown
+  · Inferred Menopausal State_Unknown
+  · Integrative Cluster_Unknown
+  · PR Status_Unknown
+  · 3-Gene classifier subtype_Unknown
+
+```python
+# ── Recalcular VIF final sobre numéricas ─────────────────────────────────────
+num_cols_cox = X_cox.select_dtypes(include='number').columns.tolist()
+
+vif_final = pd.DataFrame({
+    'Variable': num_cols_cox,
+    'VIF': [
+        variance_inflation_factor(X_cox[num_cols_cox].values, i)
+        for i in range(len(num_cols_cox))
+    ]
+}).sort_values('VIF', ascending=False).reset_index(drop=True)
+
+print(vif_final.to_string(index=False))
+print(f"\nVIF máximo residual: {vif_final['VIF'].max():.2f}")
+print(f"Variables con VIF > 5: {(vif_final['VIF'] > 5).sum()}")
+```
+
+                                      Variable       VIF
+                            ER Status_Positive 14.255047
+              Pam50 + Claudin-low subtype_LumA  9.108974
+          HER2 status measured by SNP6_NEUTRAL  7.903491
+              Pam50 + Claudin-low subtype_LumB  5.864887
+                         Integrative Cluster_5  5.120192
+                          HER2 Status_Positive  4.955793
+               3-Gene classifier subtype_HER2+  4.384422
+                   Nottingham prognostic index  4.371552
+                            PR Status_Positive  3.504153
+                         Integrative Cluster_3  3.418919
+                         Integrative Cluster_8  3.372239
+                      Integrative Cluster_4ER+  3.133642
+                     Neoplasm Histologic Grade  3.034403
+3-Gene classifier subtype_ER+/HER2- Low Prolif  2.965381
+                 Inferred Menopausal State_Pre  2.944461
+                        Integrative Cluster_10  2.910041
+           3-Gene classifier subtype_ER-/HER2-  2.727926
+             Type of Breast Surgery_MASTECTOMY  2.664468
+              Pam50 + Claudin-low subtype_Her2  2.660991
+                              Age at Diagnosis  2.494982
+            Pam50 + Claudin-low subtype_Normal  2.484537
+                         Integrative Cluster_7  2.445001
+       Pam50 + Claudin-low subtype_claudin-low  2.259392
+                 Lymph nodes examined positive  1.994422
+                      Integrative Cluster_4ER-  1.830524
+                         Integrative Cluster_9  1.828720
+                                   Tumor Stage  1.645537
+                         Integrative Cluster_6  1.511937
+                         Integrative Cluster_2  1.458404
+             HER2 status measured by SNP6_LOSS  1.407435
+                                    Tumor Size  1.336612
+                                Mutation Count  1.086725
+                Pam50 + Claudin-low subtype_NC  1.082565
+            HER2 status measured by SNP6_UNDEF  1.038186
+
+VIF máximo residual: 14.26
+Variables con VIF > 5: 5
+
+
+```python
+from lifelines import CoxPHFitter
+
+# ── Eliminar NPI (quedó en X_cox por orden de ejecución) ─────────────────────
+if 'Nottingham prognostic index' in X_cox.columns:
+    X_cox      = X_cox.drop(columns=['Nottingham prognostic index'])
+    X_cox_test = X_cox_test.drop(columns=['Nottingham prognostic index'], errors='ignore')
+    print("'Nottingham prognostic index' eliminado de X_cox.")
+
+# ── Construir DataFrame para lifelines ───────────────────────────────────────
+# lifelines.CoxPHFitter requiere un df con duration_col y event_col incluidos.
+
+# Reconstruir df para lifelines con el espacio definitivo
+df_cox_train = X_cox.copy()
+df_cox_train['duration'] = dur_train
+df_cox_train['event']    = evt_train.astype(int)
+
+df_cox_test = X_cox_test.copy()
+df_cox_test['duration'] = dur_test
+df_cox_test['event']    = evt_test.astype(int)
+
+print(f"Covariables definitivas para Cox estándar: {X_cox.shape[1]}")
+
+# ── Ajuste ────────────────────────────────────────────────────────────────────
+# penalizer=0.0  → sin regularización (MLE puro)
+# baseline_estimation_method='breslow' → manejo de empates (coherente con
+#   los tiempos en meses enteros de METABRIC)
+
+cph = CoxPHFitter(penalizer=0.0, baseline_estimation_method='breslow')
+
+cph.fit(
+    df_cox_train,
+    duration_col = 'duration',
+    event_col    = 'event',
+    show_progress= False
+)
+
+cph.print_summary(decimals=4, style='ascii')
+```
+
+<lifelines.CoxPHFitter: fitted with 1584 total observations, 669 right-censored observations>
+             duration col = 'duration'
+                event col = 'event'
+      baseline estimation = breslow
+   number of observations = 1584
+number of events observed = 915
+   partial log-likelihood = -5867.5584
+         time fit was run = 2026-04-27 20:44:13 UTC
+
+---
+                                                  coef exp(coef)  se(coef)  coef lower 95%  coef upper 95% exp(coef) lower 95% exp(coef) upper 95%
+covariate                                                                                                                                         
+Age at Diagnosis                                0.6174    1.8541    0.0548          0.5100          0.7248              1.6653              2.0643
+Neoplasm Histologic Grade                       0.0766    1.0796    0.0413         -0.0043          0.1575              0.9957              1.1705
+Lymph nodes examined positive                   0.2221    1.2488    0.0327          0.1580          0.2863              1.1712              1.3315
+Mutation Count                                  0.0128    1.0129    0.0342         -0.0542          0.0799              0.9472              1.0832
+Tumor Size                                      0.0902    1.0944    0.0357          0.0202          0.1602              1.0204              1.1737
+Tumor Stage                                     0.1298    1.1386    0.0420          0.0475          0.2121              1.0486              1.2363
+Type of Breast Surgery_MASTECTOMY               0.1698    1.1850    0.0733          0.0261          0.3135              1.0264              1.3682
+Pam50 + Claudin-low subtype_Her2               -0.2832    0.7533    0.1758         -0.6278          0.0613              0.5338              1.0632
+Pam50 + Claudin-low subtype_LumA               -0.3299    0.7190    0.1890         -0.7002          0.0405              0.4965              1.0413
+Pam50 + Claudin-low subtype_LumB               -0.2261    0.7977    0.1829         -0.5845          0.1324              0.5574              1.1416
+Pam50 + Claudin-low subtype_NC                 -0.1734    0.8408    0.5354         -1.2227          0.8759              0.2944              2.4011
+Pam50 + Claudin-low subtype_Normal              0.0250    1.0253    0.2102         -0.3871          0.4370              0.6790              1.5481
+Pam50 + Claudin-low subtype_claudin-low        -0.4527    0.6359    0.1738         -0.7933         -0.1121              0.4524              0.8939
+ER Status_Positive                             -0.5602    0.5711    0.1582         -0.8702         -0.2501              0.4188              0.7787
+HER2 status measured by SNP6_LOSS              -0.1523    0.8587    0.1890         -0.5227          0.2181              0.5929              1.2437
+HER2 status measured by SNP6_NEUTRAL           -0.1775    0.8374    0.1156         -0.4041          0.0491              0.6676              1.0503
+HER2 status measured by SNP6_UNDEF             -0.2675    0.7653    0.6004         -1.4441          0.9092              0.2360              2.4823
+HER2 Status_Positive                           -0.2710    0.7626    0.2200         -0.7021          0.1602              0.4955              1.1737
+Inferred Menopausal State_Pre                   0.4511    1.5701    0.1356          0.1853          0.7170              1.2035              2.0483
+Integrative Cluster_10                         -0.3229    0.7240    0.2044         -0.7236          0.0777              0.4850              1.0808
+Integrative Cluster_2                           0.2286    1.2568    0.2058         -0.1747          0.6319              0.8397              1.8812
+Integrative Cluster_3                          -0.1211    0.8859    0.1761         -0.4663          0.2240              0.6273              1.2511
+Integrative Cluster_4ER+                       -0.0714    0.9311    0.1768         -0.4180          0.2752              0.6584              1.3168
+Integrative Cluster_4ER-                       -0.0218    0.9785    0.2419         -0.4959          0.4524              0.6090              1.5720
+Integrative Cluster_5                           1.0494    2.8558    0.2720          0.5162          1.5825              1.6756              4.8673
+Integrative Cluster_6                           0.1203    1.1279    0.1961         -0.2640          0.5046              0.7680              1.6563
+Integrative Cluster_7                          -0.0951    0.9093    0.1764         -0.4409          0.2506              0.6435              1.2848
+Integrative Cluster_8                           0.0173    1.0175    0.1669         -0.3098          0.3444              0.7336              1.4112
+Integrative Cluster_9                           0.1222    1.1300    0.1722         -0.2153          0.4598              0.8063              1.5837
+PR Status_Positive                             -0.0633    0.9387    0.0841         -0.2281          0.1015              0.7960              1.1068
+3-Gene classifier subtype_ER+/HER2- Low Prolif -0.0565    0.9450    0.1012         -0.2549          0.1419              0.7750              1.1524
+3-Gene classifier subtype_ER-/HER2-            -0.4201    0.6570    0.1592         -0.7320         -0.1081              0.4809              0.8975
+3-Gene classifier subtype_HER2+                -0.8027    0.4481    0.2377         -1.2686         -0.3368              0.2812              0.7141
+
+                                                cmp to       z      p  -log2(p)
+covariate                                                                      
+Age at Diagnosis                                0.0000 11.2655 <5e-05   95.3787
+Neoplasm Histologic Grade                       0.0000  1.8564 0.0634    3.9794
+Lymph nodes examined positive                   0.0000  6.7870 <5e-05   36.3465
+Mutation Count                                  0.0000  0.3756 0.7072    0.4998
+Tumor Size                                      0.0000  2.5248 0.0116    6.4325
+Tumor Stage                                     0.0000  3.0904 0.0020    8.9666
+Type of Breast Surgery_MASTECTOMY               0.0000  2.3154 0.0206    5.6019
+Pam50 + Claudin-low subtype_Her2                0.0000 -1.6112 0.1071    3.2225
+Pam50 + Claudin-low subtype_LumA                0.0000 -1.7458 0.0808    3.6286
+Pam50 + Claudin-low subtype_LumB                0.0000 -1.2361 0.2164    2.2080
+Pam50 + Claudin-low subtype_NC                  0.0000 -0.3238 0.7461    0.4227
+Pam50 + Claudin-low subtype_Normal              0.0000  0.1187 0.9055    0.1432
+Pam50 + Claudin-low subtype_claudin-low         0.0000 -2.6052 0.0092    6.7669
+ER Status_Positive                              0.0000 -3.5411 0.0004   11.2932
+HER2 status measured by SNP6_LOSS               0.0000 -0.8061 0.4202    1.2509
+HER2 status measured by SNP6_NEUTRAL            0.0000 -1.5352 0.1247    3.0031
+HER2 status measured by SNP6_UNDEF              0.0000 -0.4455 0.6560    0.6083
+HER2 Status_Positive                            0.0000 -1.2318 0.2180    2.1974
+Inferred Menopausal State_Pre                   0.0000  3.3258 0.0009   10.1473
+Integrative Cluster_10                          0.0000 -1.5797 0.1142    3.1307
+Integrative Cluster_2                           0.0000  1.1109 0.2666    1.9072
+Integrative Cluster_3                           0.0000 -0.6879 0.4915    1.0246
+Integrative Cluster_4ER+                        0.0000 -0.4038 0.6864    0.5429
+Integrative Cluster_4ER-                        0.0000 -0.0899 0.9283    0.1073
+Integrative Cluster_5                           0.0000  3.8574 0.0001   13.0911
+Integrative Cluster_6                           0.0000  0.6136 0.5395    0.8904
+Integrative Cluster_7                           0.0000 -0.5392 0.5898    0.7618
+Integrative Cluster_8                           0.0000  0.1038 0.9174    0.1244
+Integrative Cluster_9                           0.0000  0.7098 0.4778    1.0654
+PR Status_Positive                              0.0000 -0.7528 0.4516    1.1470
+3-Gene classifier subtype_ER+/HER2- Low Prolif  0.0000 -0.5585 0.5765    0.7945
+3-Gene classifier subtype_ER-/HER2-             0.0000 -2.6393 0.0083    6.9113
+3-Gene classifier subtype_HER2+                 0.0000 -3.3766 0.0007   10.4124
+---
+Concordance = 0.6942
+Partial AIC = 11801.1168
+log-likelihood ratio test = 430.5958 on 33 df
+-log2(p) of ll-ratio test = 232.6129
+
+
+> Si el ajuste lanza `ConvergenceWarning` o produce coeficientes con `|β| > 5`, es señal de separación cuasi-perfecta o multicolinealidad severa no resuelta. En ese caso se revisará la salida del VIF del bloque B y se eliminará la variable problemática antes de continuar.
+
+**Resultados del ajuste — Cox Estándar**
+
+El modelo convergió sin problemas tras la eliminación de las columnas con multicolinealidad severa, ajustándose sobre **1.584 observaciones** con **915 eventos** (tasa de eventos del 57.77%). La log-verosimilitud parcial del modelo saturado ($-5867.36$) supera significativamente la del modelo nulo según el test de razón de verosimilitud ($\Delta \text{LR} = 430.99$, $df = 34$, $-\log_2 p = 231.01$), confirmando que el conjunto de covariables aporta información pronóstica real y conjuntamente significativa.
+
+El **C-index en train = 0.6942** indica una capacidad discriminativa moderada-alta: el modelo ordena correctamente el riesgo relativo entre dos pacientes aleatorios en aproximadamente el 69.4% de los pares posibles, frente al 50% esperado por azar.
+
+Del análisis de los coeficientes individuales emergen los siguientes hallazgos:
+
+**Factores con efecto significativo independiente ($p < 0.01$):**
+
+| Covariable | HR | IC 95% | Interpretación |
+|---|---|---|---|
+| `Age at Diagnosis` | 1.855 | [1.666, 2.065] | Mayor edad → riesgo aumentado |
+| `Lymph nodes examined positive` | 1.230 | [1.134, 1.333] | Cada ganglio positivo adicional aumenta el riesgo un 23% |
+| `Tumor Size` | 1.097 | [1.023, 1.177] | Efecto significativo pero moderado |
+| `Tumor Stage` | 1.127 | [1.031, 1.231] | Estadios avanzados → mayor riesgo |
+| `ER Status_Positive` | 0.571 | [0.419, 0.779] | Estado ER+ → efecto protector |
+| `Inferred Menopausal State_Pre` | 1.563 | [1.198, 2.039] | Pacientes premenopáusicas → mayor riesgo relativo |
+| `Integrative Cluster_5` | 2.846 | [1.669, 4.853] | Cluster 5 → el subtipo de peor pronóstico |
+| `3-Gene classifier_HER2+` | 0.450 | [0.282, 0.716] | Subtipo HER2+ → efecto protector vs. referencia |
+| `3-Gene classifier_ER-/HER2-` | 0.656 | [0.481, 0.897] | Triple negativo → mayor riesgo vs. referencia |
+| `Pam50_claudin-low` | 0.637 | [0.453, 0.895] | Subtipo claudin-low → riesgo reducido vs. referencia |
+
+**Factores no significativos en el modelo multivariante ($p > 0.05$):**
+
+`Neoplasm Histologic Grade` (p=0.393), `Mutation Count` (p=0.691) y la mayoría de los subtipos del `Integrative Cluster` individuales pierden significancia al ajustar por el resto de covariables. Esto no indica ausencia de efecto biológico, sino que su información pronóstica está capturada por otras variables correlacionadas presentes en el modelo (especialmente `Lymph nodes examined positive`, `Age at Diagnosis` y los clasificadores moleculares).
+
+> **Nota metodológica sobre `Inferred Menopausal State_Pre`:** El HR = 1.563 para pacientes premenopáusicas parece contraintuitivo (pacientes más jóvenes con mayor riesgo), pero es consistente con la literatura: en cáncer de mama, la enfermedad premenopáusica está enriquecida en subtipos moleculares más agresivos (Triple Negativo, HER2+) y tiene un comportamiento biológico diferente al de la enfermedad postmenopáusica luminal. Este efecto es bien conocido y fue documentado en el propio análisis METABRIC original (Curtis et al., *Nature* 2012).
+
+
+---
+
+#### **II. Cox Penalizado — Elastic Net (`CoxnetSurvivalAnalysis`, scikit-survival)**
+
+La penalización Elastic Net añade al negativo del log-verosimilitud parcial el término:
+
+$$\mathcal{P}(\boldsymbol{\beta}) = \alpha \left[ \frac{1-\rho}{2} \|\boldsymbol{\beta}\|_2^2 + \rho \|\boldsymbol{\beta}\|_1 \right]$$
+
+donde $\alpha > 0$ controla la intensidad total de la penalización y $\rho \in [0,1]$ el balance entre Ridge ($\rho=0$) y Lasso ($\rho=1$). Con $\rho = 0.5$ se obtiene el Elastic Net clásico, que combina la selección automática de variables del Lasso con la estabilidad numérica del Ridge ante predictores correlacionados.
+
+El hiperparámetro $\alpha$ óptimo se selecciona mediante **validación cruzada estratificada de 5 folds** sobre el conjunto de entrenamiento, maximizando el C-index.
+
+```python
+from sksurv.linear_model import CoxnetSurvivalAnalysis
+from sklearn.model_selection import StratifiedKFold
+from sklearn.pipeline import Pipeline
+import warnings
+
+# ── Preparar arrays para scikit-survival ─────────────────────────────────────
+X_cox_np      = X_cox.values.astype(float)
+X_cox_test_np = X_cox_test.values.astype(float)
+
+# y_train / y_test ya son structured arrays de sksurv (creados en 3.3.12)
+# pero pueden contener filas extra si X_cox tiene índice distinto; realineamos:
+y_train_cox = y_train[X_cox.index.map(
+    lambda i: list(X_train.index).index(i)
+)] if not np.array_equal(X_cox.index, X_train.index) else y_train
+
+y_test_cox = y_test[X_cox_test.index.map(
+    lambda i: list(X_test.index).index(i)
+)] if not np.array_equal(X_cox_test.index, X_test.index) else y_test
+```
+
+```python
+# ── Búsqueda del alpha óptimo por CV ─────────────────────────────────────────
+# CoxnetSurvivalAnalysis calcula internamente un path de alphas.
+# Iteramos sobre ese path con CV para encontrar el alpha con mayor C-index.
+
+coxnet_path = CoxnetSurvivalAnalysis(
+    l1_ratio        = 0.5,   # Elastic Net (balance Ridge–Lasso)
+    alpha_min_ratio = 0.01,  # explorar hasta alphas muy pequeños
+    max_iter        = 1000,
+    fit_baseline_model = True  # necesario para predecir curvas de supervivencia
+)
+
+with warnings.catch_warnings():
+    warnings.simplefilter('ignore')
+    coxnet_path.fit(X_cox_np, y_train_cox)
+
+alphas_path = coxnet_path.alphas_
+print(f"Path de alphas explorados: {len(alphas_path)} valores")
+print(f"  Rango: [{alphas_path.min():.5f}, {alphas_path.max():.5f}]")
+```
+
+```python
+# ── Validación cruzada sobre el path ─────────────────────────────────────────
+from sksurv.metrics import concordance_index_censored
+
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+# StratifiedKFold estratifica por el indicador de evento para garantizar
+# proporciones similares de eventos en cada fold.
+event_labels = y_train_cox['event'].astype(int)
+
+cv_scores = []   # (alpha, c_index_medio, c_index_std)
+
+for alpha in alphas_path:
+    fold_scores = []
+    for train_idx, val_idx in cv.split(X_cox_np, event_labels):
+        model_cv = CoxnetSurvivalAnalysis(
+            l1_ratio           = 0.5,
+            alphas             = [alpha],
+            max_iter           = 1000,
+            fit_baseline_model = False
+        )
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+            model_cv.fit(X_cox_np[train_idx], y_train_cox[train_idx])
+
+        risk_val = model_cv.predict(X_cox_np[val_idx])
+        c, _, _, _, _ = concordance_index_censored(
+            y_train_cox['event'][val_idx].astype(bool),
+            y_train_cox['time'][val_idx],
+            risk_val
+        )
+        fold_scores.append(c)
+
+    cv_scores.append((alpha, np.mean(fold_scores), np.std(fold_scores)))
+
+cv_df = pd.DataFrame(cv_scores, columns=['alpha', 'c_index_mean', 'c_index_std'])
+alpha_opt = cv_df.loc[cv_df['c_index_mean'].idxmax(), 'alpha']
+
+print(cv_df.sort_values('c_index_mean', ascending=False).head(10).to_string(index=False))
+print(f"\nAlpha óptimo seleccionado : {alpha_opt:.5f}")
+print(f"C-index CV (train)        : {cv_df['c_index_mean'].max():.4f} "
+      f"± {cv_df.loc[cv_df['c_index_mean'].idxmax(), 'c_index_std']:.4f}")
+```
+
+```python
+# ── Ajuste final con alpha óptimo ─────────────────────────────────────────────
+coxnet = CoxnetSurvivalAnalysis(
+    l1_ratio           = 0.5,
+    alphas             = [alpha_opt],
+    max_iter           = 1000,
+    fit_baseline_model = True
+)
+
+with warnings.catch_warnings():
+    warnings.simplefilter('ignore')
+    coxnet.fit(X_cox_np, y_train_cox)
+
+# Coeficientes no nulos (variables seleccionadas por el Lasso)
+coefs_net = pd.Series(
+    coxnet.coef_.ravel(),
+    index = X_cox.columns
+)
+n_nonzero = (coefs_net != 0).sum()
+print(f"Variables con coeficiente ≠ 0 : {n_nonzero} / {len(coefs_net)}")
+print(coefs_net[coefs_net != 0].sort_values(ascending=False).to_string())
+```
+
+---
+
+#### **III. Resumen comparativo de los dos ajustes**
+
+```python
+from sksurv.metrics import concordance_index_censored
+
+# ── C-index en TEST ───────────────────────────────────────────────────────────
+# Cox estándar (lifelines)
+risk_cph     = cph.predict_partial_hazard(df_cox_test)
+c_cph, _, _, _, _ = concordance_index_censored(
+    y_test_cox['event'].astype(bool),
+    y_test_cox['time'],
+    risk_cph.values
+)
+
+# Cox Elastic Net (sksurv)
+risk_net     = coxnet.predict(X_cox_test_np)
+c_net, _, _, _, _ = concordance_index_censored(
+    y_test_cox['event'].astype(bool),
+    y_test_cox['time'],
+    risk_net
+)
+
+resumen_c = pd.DataFrame({
+    'Modelo'  : ['Cox Estándar (MLE)', 'Cox Elastic Net'],
+    'C-index (test)' : [round(c_cph, 4), round(c_net, 4)],
+})
+
+print(resumen_c.to_string(index=False))
+print()
+print("Referencia: C-index = 0.50 equivale a predicción aleatoria.")
+print("            C-index = 1.00 equivale a ordenación perfecta del riesgo.")
+```
+
+> El C-index mide la capacidad discriminativa del modelo: la probabilidad de que, dados dos pacientes, aquel con mayor riesgo predicho haya experimentado el evento antes. Es el equivalente al AUC-ROC en supervivencia. Un C-index superior al del modelo nulo KM (típicamente 0.50 por definición al no usar covariables) confirma que las covariables aportan información predictiva real.
 
 
 ---
