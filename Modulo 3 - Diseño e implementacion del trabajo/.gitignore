@@ -1,0 +1,10 @@
+# Ignorar modelos pesados
+*.pkl
+outputs/
+**/outputs/
+
+# Ignorar archivos temporales de Word
+~$*
+
+# Ignorar carpetas de datos procesados pesados si fuera necesario
+data/processed/

@@ -2301,3 +2301,1244 @@ Desde el punto de vista interpretativo, el modelo selecciona predictores coheren
 Sin embargo, el test de Schoenfeld muestra que algunas covariables violan parcialmente el supuesto de riesgos proporcionales. Por tanto, los hazard ratios de esas variables deben interpretarse como efectos promedio durante el seguimiento. Esta limitación no invalida el modelo, pero sí indica que pueden existir patrones temporales y no lineales que Cox-LASSO no captura completamente.
 
 En conclusión, el Cox-LASSO constituye un modelo multivariante robusto, interpretable y predictivamente superior al Kaplan-Meier marginal. No obstante, sus limitaciones metodológicas justifican avanzar hacia modelos más flexibles, como Random Survival Forest y DeepSurv, para evaluar si capturan mejor la complejidad pronóstica de METABRIC.
+
+---
+---
+
+# **1.3. Random Survival Forest (RSF)**
+
+Los dos modelos previos —Kaplan-Meier y Cox-LASSO— comparten una limitación estructural: ambos operan bajo el supuesto de **riesgos proporcionales** o, en el caso de KM, directamente sin covariables. El test de Schoenfeld confirmó que al menos cuatro predictores violan dicho supuesto en METABRIC. Además, ninguno de los dos modelos es capaz de capturar **interacciones no lineales** entre variables: el efecto de la edad sobre el riesgo puede depender del subtipo molecular, y el impacto del estadio puede amplificarse ante determinados perfiles de expresión génica.
+
+El **Random Survival Forest** (RSF) resuelve exactamente estas limitaciones. Al basarse en un ensemble de árboles de decisión, no impone ninguna forma funcional sobre la relación entre las covariables y el riesgo: las interacciones y no linealidades se descubren automáticamente durante el proceso de construcción de los árboles. Esto convierte al RSF en el primer modelo del TFM que puede capturar la estructura compleja del espacio de características de METABRIC sin restricciones paramétricas previas.
+
+Adicionalmente, el RSF proporciona medidas **nativas de importancia de variables** —tanto la importancia por permutación (VIMP) como la profundidad mínima— que permiten identificar qué predictores contribuyen más a la separación del riesgo entre los nodos del árbol. Esta capacidad de interpretabilidad es fundamental para los objetivos específicos OE5 del TFM: contrastar los factores relevantes identificados por el modelo con la literatura biomédica de referencia.
+
+## **1.3.1. Fundamentos teóricos del Random Survival Forest**
+
+### **I. De Random Forest a Random Survival Forest**
+
+El Random Survival Forest fue propuesto por Ishwaran et al. (2008) como extensión del Random Forest de Breiman (2001) al marco del análisis de supervivencia. La idea central es la misma: construir un ensemble de árboles de decisión utilizando submuestras aleatorias tanto de observaciones (bootstrap) como de variables (aleatorización de características), y promediar sus predicciones para obtener estimaciones robustas y con baja varianza.
+
+La diferencia crítica respecto al Random Forest clásico reside en tres elementos:
+
+1. **Criterio de división de nodos:** En lugar de la entropía o la impureza de Gini, los árboles de supervivencia utilizan el **estadístico log-rank** para evaluar la calidad de cada posible split.
+2. **Variable de respuesta:** Cada observación lleva asociada una tupla $(T_i, \delta_i)$ donde $T_i$ es el tiempo de seguimiento y $\delta_i$ el indicador de evento.
+3. **Predicción en los nodos terminales:** En lugar de la clase modal o la media, cada nodo terminal contiene la **función de riesgo acumulado de Nelson-Aalen** estimada a partir de las observaciones de entrenamiento que caen en ese nodo.
+
+
+### **II. Algoritmo de construcción**
+
+Dado el conjunto de entrenamiento $\{(\mathbf{x}_i, T_i, \delta_i)\}_{i=1}^n$:
+
+**Para cada árbol** $b = 1, \dots, B$:
+
+1. **Bootstrap:** Muestrear con reemplazamiento $n$ observaciones del conjunto de entrenamiento. Las observaciones no muestreadas forman el conjunto OOB (out-of-bag).
+
+2. **Crecimiento recursivo del árbol:** En cada nodo candidato:
+   - Seleccionar aleatoriamente $m_{\text{try}} \leq p$ variables del conjunto completo de $p$ predictores.
+   - Encontrar el split $(x_j, c)$ que maximiza la separación del riesgo entre los dos nodos hijo según el estadístico log-rank:
+
+$$\mathcal{L}(j, c) = \frac{\left[\sum_{t_k \leq \tau} (d_{L,k} - e_{L,k})\right]^2}{\sum_{t_k \leq \tau} v_k}$$
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;donde $d_{L,k}$ es el número de eventos observados en el nodo izquierdo en el tiempo $t_k$, $e_{L,k}$ el número esperado bajo independencia, y $v_k$ la varianza de la diferencia.
+
+3. **Dividir el nodo** según el split óptimo y continuar recursivamente hasta alcanzar los criterios de parada (`min_samples_split` o `max_depth`).
+
+4. **Estimar en nodos terminales:** En cada nodo terminal $\ell$, calcular el estimador de Nelson-Aalen de la función de riesgo acumulado:
+
+$$\hat{H}_{\ell}(t) = \sum_{t_k \leq t} \frac{d_{\ell,k}}{n_{\ell,k}}$$
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;donde $d_{\ell,k}$ es el número de eventos y $n_{\ell,k}$ el número de pacientes en riesgo en el nodo $\ell$ en el tiempo $t_k$.
+
+
+### **III. Predicción del ensemble**
+
+Para una nueva observación $\mathbf{x}$, el RSF la hace descender por cada árbol $b$ hasta el nodo terminal $\ell_b(\mathbf{x})$. La función de riesgo acumulado predicha es el promedio de los estimadores de Nelson-Aalen de todos los árboles:
+
+$$\hat{H}(t \mid \mathbf{x}) = \frac{1}{B} \sum_{b=1}^{B} \hat{H}_{\ell_b(\mathbf{x})}(t)$$
+
+A partir de $\hat{H}(t \mid \mathbf{x})$, la probabilidad de supervivencia se obtiene como:
+
+$$\hat{S}(t \mid \mathbf{x}) = \exp\left(-\hat{H}(t \mid \mathbf{x})\right)$$
+
+El score de riesgo individual (necesario para el C-index) se define como el riesgo acumulado integrado:
+
+$$\hat{\eta}(\mathbf{x}) = \sum_{t_k} \hat{H}(t_k \mid \mathbf{x})$$
+
+
+### **IV. Importancia de variables (VIMP)**
+
+El RSF estima la importancia de cada variable $j$ mediante el **Variable Importance by Permutation** (VIMP) calculado sobre las observaciones OOB:
+
+$$\text{VIMP}_j = \hat{C}_{\text{OOB}} - \hat{C}_{\text{OOB}}^{(j, \text{permutado})}$$
+
+donde $\hat{C}_{\text{OOB}}$ es el C-index calculado con los datos OOB originales, y $\hat{C}_{\text{OOB}}^{(j, \text{permutado})}$ el C-index cuando los valores de la variable $j$ se permutar aleatoriamente (rompiendo cualquier relación entre $x_j$ y la supervivencia). Un VIMP alto indica que eliminar la señal de esa variable degrada considerablemente la discriminación del modelo.
+
+
+### **V. Ventajas del RSF frente a Cox y Kaplan-Meier**
+
+| Propiedad | Kaplan-Meier | Cox-LASSO | RSF |
+|---|:---:|:---:|:---:|
+| Multivariante | ✗ | ✓ | ✓ |
+| Sin supuesto de proporcionalidad | ✓ | ✗ | ✓ |
+| Captura no linealidades | ✗ | ✗ | ✓ |
+| Captura interacciones entre variables | ✗ | ✗ (parcial) | ✓ |
+| Importancia de variables nativa | ✗ | ✗ | ✓ (VIMP) |
+| Robusto ante outliers y datos atípicos | ✓ | Parcial | ✓ |
+| Maneja datos de alta dimensionalidad | N/A | ✓ (LASSO) | ✓ |
+| Interpretabilidad directa de coeficientes | ✗ | ✓ | ✗ |
+
+> **Nota sobre covariables:** A diferencia del Cox-LASSO, que utilizó un subconjunto reducido de 28 covariables (filtradas por criterios clínicos y estadísticos), el RSF emplea las **62 covariables preprocesadas completas** (post-OHE). El RSF gestiona internamente la selección de variables relevantes a través del parámetro `max_features` y la estructura de los árboles, sin necesidad de un filtrado previo manual. Esto permite evaluar si el modelo descubre señales pronósticas adicionales que el Cox-LASSO podría haber descartado durante el proceso de selección.
+>
+> ## **1.3.4. Optimización de Hiperparámetros**
+
+El rendimiento del RSF depende críticamente de cuatro hiperparámetros:
+
+| Hiperparámetro | Descripción | Efecto |
+|---|---|---|
+| `n_estimators` | Número de árboles en el ensemble | Más árboles → mayor estabilidad pero mayor coste computacional |
+| `max_features` | Variables candidatas por nodo ($m_{\text{try}}$) | Controla la decorrelación entre árboles |
+| `min_samples_split` | Mínimo de observaciones para dividir un nodo | Controla la profundidad y el sobreajuste |
+| `max_depth` | Profundidad máxima de cada árbol | `None` = árboles completamente crecidos (default RSF) |
+
+Se utiliza una búsqueda en rejilla (**Grid Search**) con **validación cruzada estratificada** de $k=5$ folds, exactamente la misma estrategia aplicada al Cox-LASSO. La estratificación se realiza por el indicador de evento para garantizar una distribución homogénea de censuras entre folds.
+
+```python
+# ── Definición de la rejilla de hiperparámetros ──────────────────────────────
+# La rejilla se diseña para ser computacionalmente manejable en CPU.
+# Referencias: Ishwaran et al. (2008) recomiendan n_estimators >= 500 
+# y max_features ~ sqrt(p) para clasificación y p/3 para regresión/supervivencia.
+
+P = X_train.shape[1]  # número total de covariables
+
+param_grid = {
+    'n_estimators'    : [200, 500],
+    'max_features'    : ['sqrt', 'log2', int(P / 3)],
+    'min_samples_split': [6, 10, 20],
+}
+
+print('Rejilla de hiperparámetros RSF:')
+for k, v in param_grid.items():
+    print(f'  {k:<22} : {v}')
+
+total_fits = (len(param_grid['n_estimators']) * 
+              len(param_grid['max_features']) * 
+              len(param_grid['min_samples_split']) * 5)  # 5-fold CV
+print(f'\n  Total de ajustes : {total_fits}')
+```
+
+Rejilla de hiperparámetros RSF:
+  n_estimators           : [200, 500]
+  max_features           : ['sqrt', 'log2', 18]
+  min_samples_split      : [6, 10, 20]
+
+  Total de ajustes : 90
+
+  ```python
+  import time
+
+# ── Grid Search con CV estratificada ─────────────────────────────────────────
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
+
+# Estratificación por evento
+strat_labels = evt_train.astype(int)
+
+results_gs = []
+
+start_total = time.time()
+
+for n_est in param_grid['n_estimators']:
+    for max_f in param_grid['max_features']:
+        for min_sp in param_grid['min_samples_split']:
+            ci_folds = []
+            
+            for fold, (tr_idx, va_idx) in enumerate(
+                cv.split(X_train_np, strat_labels)
+            ):
+                X_tr, X_va = X_train_np[tr_idx], X_train_np[va_idx]
+                y_tr = y_train[tr_idx]
+                y_va = y_train[va_idx]
+
+                rsf_cv = RandomSurvivalForest(
+                    n_estimators      = n_est,
+                    max_features      = max_f,
+                    min_samples_split = min_sp,
+                    max_depth         = None,
+                    n_jobs            = -1,
+                    random_state      = RANDOM_STATE,
+                    oob_score         = False,
+                )
+                rsf_cv.fit(X_tr, y_tr)
+
+                risk_va = rsf_cv.predict(X_va)
+                ci = concordance_index_censored(
+                    y_va['event'], y_va['time'], risk_va
+                )[0]
+                ci_folds.append(ci)
+
+            results_gs.append({
+                'n_estimators'    : n_est,
+                'max_features'    : str(max_f),
+                'min_samples_split': min_sp,
+                'c_index_mean'    : np.mean(ci_folds),
+                'c_index_std'     : np.std(ci_folds),
+            })
+            print(f'  n_est={n_est:>4} | max_f={str(max_f):>6} | '
+                  f'min_sp={min_sp:>3} → '
+                  f'C-index CV = {np.mean(ci_folds):.4f} ± {np.std(ci_folds):.4f}')
+
+elapsed = time.time() - start_total
+print(f'\n✓ Grid Search completado en {elapsed/60:.1f} minutos.')
+
+df_gs = pd.DataFrame(results_gs).sort_values('c_index_mean', ascending=False)
+display(df_gs.head(10).reset_index(drop=True))
+  ```
+
+  n_est= 200 | max_f=  sqrt | min_sp=  6 → C-index CV = 0.6935 ± 0.0166
+  n_est= 200 | max_f=  sqrt | min_sp= 10 → C-index CV = 0.6910 ± 0.0170
+  n_est= 200 | max_f=  sqrt | min_sp= 20 → C-index CV = 0.6929 ± 0.0170
+  n_est= 200 | max_f=  log2 | min_sp=  6 → C-index CV = 0.6900 ± 0.0169
+  n_est= 200 | max_f=  log2 | min_sp= 10 → C-index CV = 0.6922 ± 0.0158
+  n_est= 200 | max_f=  log2 | min_sp= 20 → C-index CV = 0.6912 ± 0.0150
+  n_est= 200 | max_f=    18 | min_sp=  6 → C-index CV = 0.6897 ± 0.0154
+  n_est= 200 | max_f=    18 | min_sp= 10 → C-index CV = 0.6884 ± 0.0162
+  n_est= 200 | max_f=    18 | min_sp= 20 → C-index CV = 0.6880 ± 0.0141
+  n_est= 500 | max_f=  sqrt | min_sp=  6 → C-index CV = 0.6919 ± 0.0166
+  n_est= 500 | max_f=  sqrt | min_sp= 10 → C-index CV = 0.6916 ± 0.0166
+  n_est= 500 | max_f=  sqrt | min_sp= 20 → C-index CV = 0.6930 ± 0.0169
+  n_est= 500 | max_f=  log2 | min_sp=  6 → C-index CV = 0.6914 ± 0.0157
+  n_est= 500 | max_f=  log2 | min_sp= 10 → C-index CV = 0.6936 ± 0.0163
+  n_est= 500 | max_f=  log2 | min_sp= 20 → C-index CV = 0.6928 ± 0.0155
+  n_est= 500 | max_f=    18 | min_sp=  6 → C-index CV = 0.6888 ± 0.0180
+  n_est= 500 | max_f=    18 | min_sp= 10 → C-index CV = 0.6879 ± 0.0168
+  n_est= 500 | max_f=    18 | min_sp= 20 → C-index CV = 0.6880 ± 0.0149
+
+✓ Grid Search completado en 28.3 minutos.
+
+
+n_estimators	max_features	min_samples_split	c_index_mean	c_index_std
+0	500	log2	10	0.693578	0.016310
+1	200	sqrt	6	0.693472	0.016600
+2	500	sqrt	20	0.693046	0.016944
+3	200	sqrt	20	0.692913	0.016967
+4	500	log2	20	0.692769	0.015527
+5	200	log2	10	0.692202	0.015782
+6	500	sqrt	6	0.691890	0.016627
+7	500	sqrt	10	0.691569	0.016598
+8	500	log2	6	0.691398	0.015674
+9	200	log2	20	0.691243	0.014964
+
+```python
+# ── Selección de los mejores hiperparámetros ──────────────────────────────────
+best_row = df_gs.iloc[0]
+
+BEST_N_EST = int(best_row['n_estimators'])
+BEST_MAX_F = best_row['max_features']
+BEST_MIN_SP = int(best_row['min_samples_split'])
+
+# Convertir max_features de string a tipo correcto
+try:
+    BEST_MAX_F_PARSED = int(BEST_MAX_F)
+except ValueError:
+    BEST_MAX_F_PARSED = BEST_MAX_F  # 'sqrt' o 'log2'
+
+print('═' * 55)
+print('  HIPERPARÁMETROS ÓPTIMOS — RSF')
+print('═' * 55)
+print(f'  n_estimators      : {BEST_N_EST}')
+print(f'  max_features      : {BEST_MAX_F}')
+print(f'  min_samples_split : {BEST_MIN_SP}')
+print(f'  max_depth         : None (árboles completamente crecidos)')
+print(f'  C-index CV medio  : {best_row["c_index_mean"]:.4f} ± {best_row["c_index_std"]:.4f}')
+print('═' * 55)
+```
+═══════════════════════════════════════════════════════
+  HIPERPARÁMETROS ÓPTIMOS — RSF
+═══════════════════════════════════════════════════════
+  n_estimators      : 500
+  max_features      : log2
+  min_samples_split : 10
+  max_depth         : None (árboles completamente crecidos)
+  C-index CV medio  : 0.6936 ± 0.0163
+═══════════════════════════════════════════════════════
+
+## **1.3.5. Ajuste del Modelo Final**
+
+Con los hiperparámetros óptimos identificados en la búsqueda en rejilla, se entrena el modelo RSF final sobre el conjunto completo de entrenamiento (`X_train`, `y_train`). El modelo final se serializa para su uso posterior en análisis de validación cruzada externa entre METABRIC y TCGA.
+
+```python
+# ── Entrenamiento del modelo final ───────────────────────────────────────────
+print(f'Entrenando RSF final con {BEST_N_EST} árboles...')
+t0 = time.time()
+
+rsf = RandomSurvivalForest(
+    n_estimators      = BEST_N_EST,
+    max_features      = BEST_MAX_F_PARSED,
+    min_samples_split = BEST_MIN_SP,
+    max_depth         = None,
+    oob_score         = True,   # C-index out-of-bag para monitoreo interno
+    n_jobs            = -1,
+    random_state      = RANDOM_STATE,
+)
+
+rsf.fit(X_train_np, y_train)
+
+elapsed = time.time() - t0
+print(f'✓ Modelo entrenado en {elapsed:.1f} s')
+print(f'  OOB C-index (estimación interna) : {rsf.oob_score_:.4f}')
+
+# Serializar modelo
+MODEL_PATH = r'../outputs/rsf_final.pkl'
+joblib.dump(rsf, MODEL_PATH)
+print(f'✓ Modelo guardado en: {MODEL_PATH}')
+```
+Entrenando RSF final con 500 árboles...
+✓ Modelo entrenado en 64.4 s
+  OOB C-index (estimación interna) : 0.6891
+✓ Modelo guardado en: ../outputs/rsf_final.pkl
+
+## **1.3.6. Evaluación del Modelo — Métricas de Discriminación y Calibración**
+
+Se evalúa el RSF con las mismas métricas utilizadas para Cox-LASSO, permitiendo la comparación directa:
+
+- **C-index de Harrell:** Discriminación del score de riesgo individual.
+- **Integrated Brier Score (IBS):** Calibración + discriminación temporal.
+- **Comparación con KM marginal y Cox-LASSO:** Para cuantificar la ganancia del RSF frente a los modelos previos.
+
+```python
+# ── C-index en train y test ──────────────────────────────────────────────────
+risk_train_rsf = rsf.predict(X_train_np)
+risk_test_rsf  = rsf.predict(X_test_np)
+
+cindex_train_rsf = concordance_index_censored(
+    y_train['event'], y_train['time'], risk_train_rsf
+)[0]
+cindex_test_rsf = concordance_index_censored(
+    y_test['event'], y_test['time'], risk_test_rsf
+)[0]
+
+print(f'C-index OOB   (interno) : {rsf.oob_score_:.4f}')
+print(f'C-index train           : {cindex_train_rsf:.4f}')
+print(f'C-index test            : {cindex_test_rsf:.4f}')
+print(f'Diferencia train-test   : {cindex_train_rsf - cindex_test_rsf:.4f}  '
+      '(estimación sobreajuste)')
+```
+
+C-index OOB   (interno) : 0.6891
+C-index train           : 0.8171
+C-index test            : 0.7060
+Diferencia train-test   : 0.1112  (estimación sobreajuste)
+
+```python
+# ── Integrated Brier Score ────────────────────────────────────────────────────
+# Tiempos de evaluación dentro del rango observable
+times_eval = np.percentile(dur_train, np.linspace(10, 90, 80))
+times_eval = np.unique(times_eval)
+times_eval = times_eval[
+    (times_eval > y_test['time'].min()) &
+    (times_eval < y_test['time'].max()) &
+    (times_eval < y_train['time'].max())
+]
+
+# Probabilidades de supervivencia predichas por RSF
+surv_fns_rsf  = rsf.predict_survival_function(X_test_np)
+surv_probs_rsf = np.row_stack([
+    fn(times_eval) for fn in surv_fns_rsf
+])
+
+_, bs_rsf = brier_score(y_train, y_test, surv_probs_rsf, times_eval)
+ibs_rsf   = integrated_brier_score(y_train, y_test, surv_probs_rsf, times_eval)
+
+# Referencia KM marginal (ajustada en train)
+from lifelines import KaplanMeierFitter
+kmf_train = KaplanMeierFitter()
+kmf_train.fit(dur_train, evt_train)
+km_surv_probs = np.tile(kmf_train.predict(times_eval).values, (len(y_test), 1))
+_, bs_km = brier_score(y_train, y_test, km_surv_probs, times_eval)
+ibs_km   = integrated_brier_score(y_train, y_test, km_surv_probs, times_eval)
+
+# ─── Cox-LASSO IBS (referencia del modelo anterior) ──────────────────────────
+# Se carga el valor previamente calculado; si no existe, se imputa con NaN.
+IBS_COX_REF  = 0.1863   # valor obtenido en la sección 1.2.8
+CINDEX_COX_TEST = 0.6761
+
+print(f'IBS — KM marginal  : {ibs_km:.4f}')
+print(f'IBS — Cox-LASSO    : {IBS_COX_REF:.4f}')
+print(f'IBS — RSF          : {ibs_rsf:.4f}')
+print(f'Mejora RSF vs KM   : {ibs_km  - ibs_rsf:.4f} ({(ibs_km  - ibs_rsf)/ibs_km*100:.1f}%)')
+print(f'Mejora RSF vs Cox  : {IBS_COX_REF - ibs_rsf:.4f} ({(IBS_COX_REF - ibs_rsf)/IBS_COX_REF*100:.1f}%)')
+```
+
+IBS — KM marginal  : 0.2177
+IBS — Cox-LASSO    : 0.1863
+IBS — RSF          : 0.1796
+Mejora RSF vs KM   : 0.0381 (17.5%)
+Mejora RSF vs Cox  : 0.0067 (3.6%)
+
+```python
+PALETTE = {
+    'km':  '#95a5a6',  # Gris azulado
+    'rsf': '#4878d0',  # Azul vibrante
+    'cox': '#ee854a'   # Naranja suave
+}
+
+# ── Visualización Brier Score temporal ───────────────────────────────────────
+fig, ax = plt.subplots(figsize=(10, 5))
+
+ax.plot(times_eval, bs_km,  linestyle='--', linewidth=2,
+        color=PALETTE['km'],  label=f'KM marginal   | IBS = {ibs_km:.3f}')
+ax.plot(times_eval, bs_rsf, linestyle='-',  linewidth=2.5,
+        color=PALETTE['rsf'], label=f'RSF           | IBS = {ibs_rsf:.3f}')
+
+# Añadir Cox como referencia con línea punteada adicional (valor escalar, no array)
+ax.axhline(IBS_COX_REF, linestyle=':', linewidth=1.8,
+           color=PALETTE['cox'], label=f'Cox-LASSO IBS = {IBS_COX_REF:.3f} (referencia escalar)')
+ax.axhline(0.25, linestyle=':', linewidth=1.2, color='lightgray',
+           label='Azar puro (0.25)')
+
+ax.set_xlabel('Tiempo desde diagnóstico (meses)', fontsize=11)
+ax.set_ylabel('Brier Score', fontsize=11)
+ax.set_title('Brier Score temporal — RSF vs KM marginal vs Cox-LASSO\nMETABRIC (n_test = 397)',
+             fontsize=12, fontweight='bold')
+ax.set_ylim(0, 0.30)
+ax.legend(fontsize=10)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_brier_vs_km_cox.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+## **1.3.7. Validación Cruzada k-fold (k=5)**
+
+Para obtener una estimación más robusta de la variabilidad del rendimiento y verificar la consistencia del C-index entre folds, se aplica una validación cruzada estratificada con los hiperparámetros óptimos. Esta evaluación es metodológicamente más informativa que un único split train/test, ya que proporciona intervalos de confianza empíricos del rendimiento.
+
+```python
+# ── Validación cruzada 5-fold sobre el conjunto completo de entrenamiento ─────
+K_FOLDS = 5
+cv = StratifiedKFold(n_splits=K_FOLDS, shuffle=True, random_state=RANDOM_STATE)
+
+ci_cv, ibs_cv = [], []
+
+for fold, (tr_idx, va_idx) in enumerate(cv.split(X_train_np, evt_train.astype(int))):
+
+    X_tr, X_va = X_train_np[tr_idx], X_train_np[va_idx]
+    y_tr, y_va = y_train[tr_idx], y_train[va_idx]
+
+    rsf_fold = RandomSurvivalForest(
+        n_estimators      = BEST_N_EST,
+        max_features      = BEST_MAX_F_PARSED,
+        min_samples_split = BEST_MIN_SP,
+        max_depth         = None,
+        n_jobs            = -1,
+        random_state      = RANDOM_STATE,
+    )
+
+    rsf_fold.fit(X_tr, y_tr)
+
+    # ── C-index: se puede calcular con todo el fold de validación ─────────────
+    risk_va = rsf_fold.predict(X_va)
+
+    ci_fold = concordance_index_censored(
+        y_va["event"],
+        y_va["time"],
+        risk_va
+    )[0]
+
+    ci_cv.append(ci_fold)
+
+    # ── IBS: filtrar validación para que sus tiempos estén dentro de train ────
+    max_time_train = y_tr["time"].max()
+    min_time_train = y_tr["time"].min()
+
+    mask_ibs = (
+        (y_va["time"] > min_time_train) &
+        (y_va["time"] < max_time_train)
+    )
+
+    X_va_ibs = X_va[mask_ibs]
+    y_va_ibs = y_va[mask_ibs]
+
+    # Rejilla temporal segura
+    lower = max(
+        np.percentile(y_tr["time"], 10),
+        np.percentile(y_va_ibs["time"], 10)
+    )
+
+    upper = min(
+        np.percentile(y_tr["time"], 90),
+        np.percentile(y_va_ibs["time"], 90),
+        max_time_train
+    )
+
+    t_eval_fold = np.linspace(lower, upper, 60)
+
+    # Por seguridad adicional
+    t_eval_fold = t_eval_fold[
+        (t_eval_fold > y_va_ibs["time"].min()) &
+        (t_eval_fold < y_va_ibs["time"].max()) &
+        (t_eval_fold < y_tr["time"].max())
+    ]
+
+    if len(t_eval_fold) < 2:
+        print(f"  Fold {fold+1}: C-index = {ci_fold:.4f} | IBS = no calculable")
+        continue
+
+    surv_va = np.row_stack([
+        fn(t_eval_fold)
+        for fn in rsf_fold.predict_survival_function(X_va_ibs)
+    ])
+
+    ibs_fold = integrated_brier_score(
+        y_tr,
+        y_va_ibs,
+        surv_va,
+        t_eval_fold
+    )
+
+    ibs_cv.append(ibs_fold)
+
+    print(f"  Fold {fold+1}: C-index = {ci_fold:.4f} | IBS = {ibs_fold:.4f}")
+
+print(f"\n  C-index CV : {np.mean(ci_cv):.4f} ± {np.std(ci_cv):.4f}")
+print(f"  IBS CV     : {np.mean(ibs_cv):.4f} ± {np.std(ibs_cv):.4f}")
+```
+
+  Fold 1: C-index = 0.6717 | IBS = 0.1877
+  Fold 2: C-index = 0.6907 | IBS = 0.1848
+  Fold 3: C-index = 0.7083 | IBS = 0.1716
+  Fold 4: C-index = 0.6817 | IBS = 0.1841
+  Fold 5: C-index = 0.7155 | IBS = 0.1756
+
+  C-index CV : 0.6936 ± 0.0163
+  IBS CV     : 0.1808 ± 0.0061
+
+  ```python
+# ── Visualización de los resultados por fold ──────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+for ax, values, label, color, ymin, ymax in zip(
+    axes,
+    [ci_cv,  ibs_cv],
+    ['C-index', 'IBS'],
+    [PALETTE['rsf'], PALETTE['km']],
+    [0.60, 0.14],
+    [0.80, 0.26],
+):
+    folds = [f'Fold {i+1}' for i in range(K_FOLDS)]
+    bars  = ax.bar(folds, values, color=color, alpha=0.75, width=0.5)
+    ax.axhline(np.mean(values), linestyle='--', linewidth=1.8,
+               color='black', label=f'Media = {np.mean(values):.4f}')
+    ax.fill_between(
+        range(K_FOLDS),
+        np.mean(values) - np.std(values),
+        np.mean(values) + np.std(values),
+        alpha=0.15, color='black', label=f'± 1 std = {np.std(values):.4f}'
+    )
+    for bar, val in zip(bars, values):
+        ax.text(bar.get_x() + bar.get_width()/2, val + 0.001,
+                f'{val:.3f}', ha='center', va='bottom', fontsize=9)
+    ax.set_title(f'{label} por fold — RSF\n5-fold CV estratificada', fontweight='bold')
+    ax.set_ylabel(label)
+    ax.set_ylim(ymin, ymax)
+    ax.legend(fontsize=9)
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_cv_folds.png', dpi=150, bbox_inches='tight')
+plt.show()
+  ```
+
+## **1.3.8. Importancia de Variables (Feature Importance)**
+
+El RSF proporciona importancia de variables a través de **Permutation importance:** Calcula la degradación del C-index cuando los valores de una variable se permutan aleatoriamente. Más costoso pero más fiable metodológicamente.
+
+```python
+# ── Importancia con RSF reducido (proxy rápido) ───────────────────────────────
+# El RSF grande tiene problemas de predicción en bucle en Windows+Jupyter.
+# Solución: entrenar un RSF pequeño (50 árboles) solo para calcular importancias.
+# Los rankings de importancia son estables con pocos árboles.
+
+print('Entrenando RSF reducido para importancias (50 árboles)...')
+t0 = time.time()
+
+rsf_small = RandomSurvivalForest(
+    n_estimators      = 50,
+    max_features      = BEST_MAX_F_PARSED,
+    min_samples_split = BEST_MIN_SP,
+    max_depth         = None,
+    n_jobs            = 1,        # sin paralelismo → estable en Windows
+    random_state      = RANDOM_STATE,
+)
+rsf_small.fit(X_train_np, y_train)
+print(f'✓ Entrenado en {time.time()-t0:.1f} s')
+
+# ── Permutation Importance con el modelo pequeño ──────────────────────────────
+print('Calculando importancias...')
+t0 = time.time()
+
+N_REPEATS = 5
+rng = np.random.default_rng(RANDOM_STATE)
+
+risk_base = rsf_small.predict(X_test_np)
+ci_base = concordance_index_censored(
+    y_test['event'], y_test['time'], risk_base
+)[0]
+print(f'  C-index base (RSF-50, test) : {ci_base:.4f}')
+
+n_features = X_test_np.shape[1]
+perm_means = np.zeros(n_features)
+perm_stds  = np.zeros(n_features)
+
+for j in range(n_features):
+    ci_perms = np.zeros(N_REPEATS)
+    for r in range(N_REPEATS):
+        X_perm = X_test_np.copy()
+        X_perm[:, j] = rng.permutation(X_perm[:, j])
+        risk_perm = rsf_small.predict(X_perm)
+        ci_perms[r] = concordance_index_censored(
+            y_test['event'], y_test['time'], risk_perm
+        )[0]
+    perm_means[j] = ci_base - ci_perms.mean()
+    perm_stds[j]  = ci_perms.std()
+
+    if (j + 1) % 10 == 0 or j == n_features - 1:
+        elapsed = time.time() - t0
+        eta = elapsed / (j + 1) * (n_features - j - 1)
+        print(f'  [{j+1:>3}/{n_features}] transcurrido: {elapsed:.0f}s  ETA: {eta:.0f}s')
+
+print(f'\n✓ Listo en {time.time()-t0:.1f} s')')
+```
+Entrenando RSF reducido para importancias (50 árboles)...
+✓ Entrenado en 15.5 s
+Calculando importancias...
+  C-index base (RSF-50, test) : 0.7003
+  [ 10/56] transcurrido: 118s  ETA: 544s
+  [ 20/56] transcurrido: 200s  ETA: 360s
+  [ 30/56] transcurrido: 276s  ETA: 239s
+  [ 40/56] transcurrido: 354s  ETA: 141s
+  [ 50/56] transcurrido: 426s  ETA: 51s
+  [ 56/56] transcurrido: 471s  ETA: 0s
+
+✓ Listo en 470.7 s
+
+**RESULTADOS**
+
+La aplicación del modelo RSF sobre el conjunto de test de METABRIC (n=397) generó scores de riesgo individuales en el rango [85.5, 1037.2], con una mediana de 376.4 y un rango intercuartílico de [271.8, 547.1]. La distribución de los scores presenta una asimetría positiva característica, con la mayoría de pacientes concentrados en valores bajos-moderados (200–400) y una cola derecha que representa los casos de peor pronóstico estimado.La división de la cohorte en dos grupos mediante la mediana del score produjo grupos con separación casi completa: el grupo de bajo riesgo presentó una mediana de score de aproximadamente 260 con un rango intercuartílico estrecho [200–290], mientras que el grupo de alto riesgo mostró una mediana de aproximadamente 570 con mayor dispersión [450–670] y valores extremos superiores a 1000. La ausencia de solapamiento entre las cajas de ambos grupos indica que el modelo asigna scores cualitativamente distintos a pacientes con diferente pronóstico, y no simplemente una separación estadística artificial derivada del punto de corte.
+
+```python
+df_perm = pd.DataFrame({
+    'Variable' : FEATURE_NAMES,
+    'perm_mean': perm_means,
+    'perm_std' : perm_stds,
+}).sort_values('perm_mean', ascending=False).reset_index(drop=True)
+
+TOP_N = 25
+df_perm_top = df_perm.head(TOP_N)
+
+fig, ax = plt.subplots(figsize=(10, 9))
+
+ax.barh(
+    y     = df_perm_top['Variable'][::-1],
+    width = df_perm_top['perm_mean'][::-1],
+    xerr  = df_perm_top['perm_std'][::-1],
+    color = PALETTE['rsf'], 
+    alpha=0.75,
+    capsize=3, 
+    error_kw={'linewidth': 1.2},
+    edgecolor='white',
+    linewidth=0.5
+)
+ax.axvline(0, color='black', linewidth=1)
+
+ax.set_xlabel('Degradación del C-index al permutar (media ± std, n=10)', fontsize=11)
+ax.set_title(
+    f'Top {TOP_N} Variables — Permutation Importance (RSF)\nMETABRIC · Evaluado sobre test',
+    fontsize=12, fontweight='bold', pad=10
+)
+ax.tick_params(axis='y', labelsize=9)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_permutation_importance.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+print('Variables por Permutation Importance:')
+display(df_perm)
+```
+
+
+Variable	perm_mean	perm_std
+0	Age at Diagnosis	0.050458	0.008202
+1	Lymph nodes examined positive	0.025221	0.005439
+2	Nottingham prognostic index	0.017358	0.003297
+3	Integrative Cluster_5	0.011796	0.006225
+4	Tumor Size	0.007371	0.004925
+5	Tumor Stage	0.005220	0.001416
+6	3-Gene classifier subtype_ER+/HER2- Low Prolif	0.004114	0.003554
+7	Pam50 + Claudin-low subtype_LumA	0.003904	0.004124
+8	Chemotherapy_YES	0.003386	0.001550
+9	Inferred Menopausal State_Pre	0.003301	0.002686
+10	TMB (nonsynonymous)	0.003150	0.001927
+11	Type of Breast Surgery_MASTECTOMY	0.002706	0.002383
+12	Hormone Therapy_YES	0.002257	0.001437
+13	PR Status_Positive	0.002051	0.001312
+14	Neoplasm Histologic Grade	0.001790	0.001899
+15	Primary Tumor Laterality_Right	0.001728	0.001037
+16	Pam50 + Claudin-low subtype_LumB	0.001665	0.002103
+17	Cellularity_Moderate	0.001540	0.001929
+18	Integrative Cluster_2	0.000831	0.000526
+19	Integrative Cluster_8	0.000518	0.000380
+20	Integrative Cluster_7	0.000368	0.000489
+21	Type of Breast Surgery_Unknown	0.000279	0.000222
+22	Cancer Type Detailed_Invasive Breast Carcinoma	0.000235	0.000111
+23	HER2 Status_Positive	0.000154	0.001061
+24	Cancer Type Detailed_Breast Invasive Lobular Carcinoma	0.000143	0.000571
+25	Integrative Cluster_4ER-	0.000136	0.000576
+26	Primary Tumor Laterality_Unknown	0.000125	0.001355
+27	Cellularity_Low	0.000085	0.001339
+28	Inferred Menopausal State_Unknown	0.000000	0.000000
+29	Cancer Type Detailed_Metaplastic Breast Cancer	0.000000	0.000000
+30	Chemotherapy_Unknown	0.000000	0.000000
+31	Cancer Type Detailed_Breast Angiosarcoma	0.000000	0.000000
+32	Radio Therapy_Unknown	0.000000	0.000000
+33	PR Status_Unknown	0.000000	0.000000
+34	Hormone Therapy_Unknown	0.000000	0.000000
+35	Integrative Cluster_Unknown	0.000000	0.000000
+36	HER2 Status_Unknown	0.000000	0.000000
+37	Pam50 + Claudin-low subtype_NC	0.000000	0.000000
+38	Pam50 + Claudin-low subtype_Unknown	0.000000	0.000000
+39	Cancer Type Detailed_Breast Mixed Ductal and Lobular Carcinoma	-0.000022	0.000503
+40	ER Status_Positive	-0.000037	0.000959
+41	Integrative Cluster_9	-0.000199	0.000804
+42	Cancer Type Detailed_Breast Invasive Ductal Carcinoma	-0.000261	0.001582
+43	Integrative Cluster_3	-0.000268	0.001263
+44	Cancer Type Detailed_Breast Invasive Mixed Mucinous Carcinoma	-0.000272	0.000115
+45	Cellularity_Unknown	-0.000279	0.000258
+46	3-Gene classifier subtype_Unknown	-0.000732	0.000610
+47	Pam50 + Claudin-low subtype_Her2	-0.001290	0.000822
+48	Pam50 + Claudin-low subtype_Normal	-0.001533	0.000698
+49	Integrative Cluster_4ER+	-0.001588	0.000831
+50	Integrative Cluster_6	-0.001588	0.000451
+51	Radio Therapy_YES	-0.001662	0.001672
+52	Integrative Cluster_10	-0.001952	0.000427
+53	3-Gene classifier subtype_ER-/HER2-	-0.002106	0.000715
+54	Pam50 + Claudin-low subtype_claudin-low	-0.002239	0.001301
+55	3-Gene classifier subtype_HER2+	-0.003687	0.000456
+
+
+```python
+# 1. Organizar los datos
+feature_names = [f"Var_{i}" for i in range(56)] # Usa tus nombres reales aquí
+df_imp = pd.DataFrame({
+    'feature': feature_names,
+    'importance_mean': perm_imp.importances_mean,
+    'importance_std': perm_imp.importances_std
+})
+
+# 2. Ordenar y tomar las mejores (ejemplo: Top 20)
+df_imp = df_imp.sort_values(by='importance_mean', ascending=True).tail(20)
+
+# 3. Graficar (Horizontal es mejor para leer nombres)
+plt.figure(figsize=(10, 8))
+plt.barh(df_imp['feature'], df_imp['importance_mean'], 
+         xerr=df_imp['importance_std'], color='#2c3e50', alpha=0.8)
+
+plt.xlabel('Caída en el $C$-index', fontsize=11)
+plt.title('Permutation Importance (Top 20 variables)\nRSF - Dataset METABRIC', 
+          fontsize=13, fontweight='bold')
+plt.grid(axis='x', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+Los resultados son muy informativos, explico por bloques:
+
+**Bloque 1 — Variables realmente importantes (perm_mean alto y perm_std bajo)**
+
+Las tres primeras destacan claramente sobre el resto:
+
+- **Age at Diagnosis (0.050)** — es con diferencia la variable más importante. Si la destruyes, el C-index cae 5 puntos. Coincide con lo que ya mostró el Cox-LASSO y el KM.
+- **Lymph nodes examined positive (0.025)** — segunda más importante, la afectación ganglionar es el factor anatomopatológico clásico de peor pronóstico.
+- **Nottingham prognostic index (0.017)** — índice que combina tamaño tumoral, ganglios y grado histológico. Tiene sentido que aparezca aquí porque resume información de varias variables.
+
+
+**Bloque 2 — Variables con contribución moderada**
+
+Filas 3 a 17, valores entre 0.001 y 0.012. Contribuyen pero su `perm_std` es comparable a su `perm_mean`, lo que indica cierta inestabilidad:
+
+- `Integrative Cluster_5`, `Tumor Size`, `Tumor Stage` — factores clínicos estándar esperables.
+- `Chemotherapy_YES`, `Hormone Therapy_YES` — el tratamiento recibido tiene valor pronóstico independiente, lo cual es relevante para tu TFM.
+- `TMB (nonsynonymous)` — carga mutacional tumoral, interesante porque valida que los datos genómicos aportan señal adicional.
+
+
+**Bloque 3 — Variables con perm_mean = 0**
+
+Filas 28 a 38. Son categorías poco frecuentes codificadas como `_Unknown` o tipos de cáncer muy raros. El modelo simplemente no las usa porque tienen muy poca variabilidad en los datos.
+
+
+**Bloque 4 — Variables con perm_mean negativo**
+
+Filas 39 a 55. Esto es lo más llamativo. Valores negativos significan que **al permutar esa variable el C-index mejora ligeramente**, es decir, esa variable está añadiendo ruido al modelo en lugar de señal útil. Los casos más pronunciados:
+
+- `3-Gene classifier subtype_HER2+` (-0.0037)
+- `Pam50_claudin-low` (-0.0022)
+- `Integrative Cluster_10`, `_6`, `_4ER+` (-0.001 a -0.002)
+
+Esto ocurre porque estas categorías están **correlacionadas con otras variables más informativas** ya presentes en el modelo (como `Age at Diagnosis` o `Lymph nodes`), y añaden colinealidad que confunde al RSF.
+
+## **1.3.9. Estratificación de Riesgo y Curvas Kaplan-Meier**
+
+Una de las aplicaciones clínicas más directas del RSF es la generación de scores de riesgo individuales. Estos scores permiten estratificar a los pacientes en grupos de riesgo y verificar, mediante curvas de Kaplan-Meier y el test log-rank, si las diferencias de supervivencia entre grupos son clínicamente y estadísticamente significativas.
+
+Se construyen dos estratificaciones:
+- **Binaría (Alto/Bajo riesgo):** División por la mediana del score.
+- **Cuartiles (Q1–Q4):** Mayor granularidad pronóstica.
+```python
+# ── Scores de riesgo en el conjunto de test ───────────────────────────────────
+risk_scores_test = rsf.predict(X_test_np)
+
+mediana_risk = np.median(risk_scores_test)
+grupo_binary = np.where(risk_scores_test >= mediana_risk, 'Alto riesgo', 'Bajo riesgo')
+
+q25, q75 = np.percentile(risk_scores_test, [25, 75])
+grupo_cuartil = pd.cut(
+    risk_scores_test,
+    bins   = [-np.inf, q25, mediana_risk, q75, np.inf],
+    labels = ['Q1 — Muy bajo', 'Q2 — Bajo-moderado',
+              'Q3 — Moderado-alto', 'Q4 — Muy alto']
+).astype(str)
+
+print(f'Score de riesgo — test:')
+print(f'  Min : {risk_scores_test.min():.3f}')
+print(f'  Q25 : {q25:.3f}')
+print(f'  Med : {mediana_risk:.3f}')
+print(f'  Q75 : {q75:.3f}')
+print(f'  Max : {risk_scores_test.max():.3f}')
+
+# ── Distribución del score ────────────────────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+
+# Histograma del score de riesgo
+ax = axes[0]
+ax.hist(risk_scores_test, bins=40, color=PALETTE['rsf'], alpha=0.75, edgecolor='white')
+ax.axvline(mediana_risk, color='red', linestyle='--', linewidth=2,
+           label=f'Mediana = {mediana_risk:.2f}')
+ax.axvline(q25, color='orange', linestyle=':', linewidth=1.5, label=f'Q25 = {q25:.2f}')
+ax.axvline(q75, color='orange', linestyle=':', linewidth=1.5, label=f'Q75 = {q75:.2f}')
+ax.set_xlabel('Score de riesgo RSF (riesgo acumulado integrado)', fontsize=11)
+ax.set_ylabel('Número de pacientes', fontsize=11)
+ax.set_title('Distribución del Score de Riesgo RSF\n(conjunto de test)', fontsize=11, fontweight='bold')
+ax.legend(fontsize=9)
+
+# Boxplot por grupo binario
+ax = axes[1]
+data_plot = [risk_scores_test[grupo_binary == g] for g in ['Bajo riesgo', 'Alto riesgo']]
+bp = ax.boxplot(data_plot, labels=['Bajo riesgo', 'Alto riesgo'],
+                patch_artist=True, widths=0.4)
+for patch, color in zip(bp['boxes'], [PALETTE['prot'], PALETTE['riesgo']]):
+    patch.set_facecolor(color)
+    patch.set_alpha(0.7)
+ax.set_ylabel('Score de riesgo RSF', fontsize=11)
+ax.set_title('Score de riesgo por grupo\n(división por mediana)', fontsize=11, fontweight='bold')
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_score_distribution.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+Score de riesgo — test:
+  Min : 85.482
+  Q25 : 271.789
+  Med : 376.406
+  Q75 : 547.100
+  Max : 1037.192
+
+**DISCUSIÓN**
+
+La capacidad del RSF para estratificar a los pacientes en grupos de riesgo con scores claramente diferenciados tiene implicaciones directas en su potencial utilidad clínica. A diferencia del índice de concordancia, que cuantifica la discriminación global del modelo de forma abstracta, la distribución del score de riesgo y la separación entre grupos ilustra de forma intuitiva lo que el modelo haría en la práctica: asignar a cada paciente una puntuación que refleja su riesgo relativo de mortalidad a partir de su perfil genómico y clínico.
+Este planteamiento es conceptualmente análogo al de herramientas validadas clínicamente como Oncotype DX o MammaPrint, que generan scores de riesgo a partir de firmas multigénicas para orientar decisiones terapéuticas en cáncer de mama. La diferencia fundamental es que el RSF integra un conjunto más amplio de variables, tanto clínicas como moleculares, y no impone restricciones lineales sobre la relación entre estas variables y el riesgo, lo que le permite capturar heterogeneidad pronóstica que los sistemas de puntuación convencionales podrían no detectar.
+No obstante, la utilidad clínica real de este tipo de modelos no puede establecerse únicamente a partir de métricas de rendimiento estadístico. Requeriría validación prospectiva en cohortes independientes con mayor diversidad poblacional que METABRIC, cuya sobrerrepresentación de pacientes de ascendencia europea limita la generalización de los resultados a otras poblaciones. Asimismo, la interpretabilidad del score individual sigue siendo una limitación relevante: a diferencia del modelo de Cox, cuyo hazard ratio por variable es directamente comprensible para el clínico, el score del RSF es una cantidad compuesta cuya descomposición en contribuciones individuales requiere técnicas adicionales de explicabilidad, como el análisis SHAP implementado en la sección siguiente con DeepSurv.
+
+**RESULTADOS**
+
+La estratificación de los 397 pacientes del conjunto de test mediante el score RSF produjo diferencias de supervivencia altamente significativas en ambas aproximaciones. En la división binaria, los grupos de bajo y alto riesgo (n≈200 cada uno) se separan desde los primeros meses sin cruzarse en ningún punto del seguimiento: a los 150 meses, el grupo de bajo riesgo mantiene una supervivencia superior al 70% frente a menos del 30% en el grupo de alto riesgo (log-rank p = 9.99×10⁻¹⁹). La estratificación por cuartiles confirma una separación monótona y ordenada entre los cuatro grupos, con el Q1 superando el 45% de supervivencia a los 300 meses y el Q4 cayendo por debajo del 10% antes de los 200 meses (log-rank multivariante p = 6.34×10⁻²²).
+```python
+# ── Curvas KM estratificadas por score RSF ────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# --- Estratificación binaria (Alto / Bajo riesgo) ---
+ax = axes[0]
+grupos_bin   = ['Bajo riesgo', 'Alto riesgo']
+colores_bin  = [PALETTE['prot'], PALETTE['riesgo']]
+ls_bin       = ['-', '--']
+kmf_list_bin = []
+
+for grupo, color, ls in zip(grupos_bin, colores_bin, ls_bin):
+    mask = grupo_binary == grupo
+    kmf  = KaplanMeierFitter(label=f'{grupo} (n={mask.sum()})')
+    kmf.fit(dur_test[mask], evt_test[mask].astype(bool))
+    kmf.plot_survival_function(ax=ax, color=color, linestyle=ls,
+                               linewidth=2.0, ci_show=True, ci_alpha=0.10)
+    kmf_list_bin.append((dur_test[mask], evt_test[mask]))
+
+# Log-rank test
+lr_bin = logrank_test(
+    kmf_list_bin[0][0], kmf_list_bin[1][0],
+    kmf_list_bin[0][1], kmf_list_bin[1][1]
+)
+p_bin = lr_bin.p_value
+sig_str = '***' if p_bin < 0.001 else '**' if p_bin < 0.01 else '*' if p_bin < 0.05 else 'ns'
+
+ax.set_title(
+    f'Supervivencia por grupo de riesgo RSF (binario)\n'
+    f'Log-rank χ² p = {p_bin:.2e} {sig_str}  |  METABRIC test (n={len(dur_test)})',
+    fontsize=10, fontweight='bold'
+)
+ax.set_xlabel('Tiempo (meses)', fontsize=10)
+ax.set_ylabel('Probabilidad de supervivencia S(t)', fontsize=10)
+ax.set_ylim(0, 1.05)
+ax.legend(fontsize=9)
+
+# --- Estratificación por cuartiles ---
+ax = axes[1]
+grupos_q   = ['Q1 — Muy bajo', 'Q2 — Bajo-moderado', 'Q3 — Moderado-alto', 'Q4 — Muy alto']
+colores_q  = ['#1a9641', '#a6d96a', '#fdae61', '#d73027']
+kmf_data_q = []
+
+for grupo, color in zip(grupos_q, colores_q):
+    mask = grupo_cuartil == grupo
+    if mask.sum() < 5:
+        continue
+    kmf = KaplanMeierFitter(label=f'{grupo} (n={mask.sum()})')
+    kmf.fit(dur_test[mask], evt_test[mask].astype(bool))
+    kmf.plot_survival_function(ax=ax, color=color, linewidth=2.0,
+                               ci_show=False)
+    kmf_data_q.append((dur_test[mask], evt_test[mask]))
+
+from lifelines.statistics import multivariate_logrank_test
+lr_q = multivariate_logrank_test(
+    dur_test, grupo_cuartil, evt_test.astype(bool)
+)
+p_q = lr_q.p_value
+sig_q = '***' if p_q < 0.001 else '**' if p_q < 0.01 else '*' if p_q < 0.05 else 'ns'
+
+ax.set_title(
+    f'Supervivencia por cuartil de riesgo RSF\n'
+    f'Log-rank multivariante p = {p_q:.2e} {sig_q}  |  METABRIC test',
+    fontsize=10, fontweight='bold'
+)
+ax.set_xlabel('Tiempo (meses)', fontsize=10)
+ax.set_ylabel('Probabilidad de supervivencia S(t)', fontsize=10)
+ax.set_ylim(0, 1.05)
+ax.legend(fontsize=8.5)
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_km_risk_groups.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+**DISCUSIÓN**
+
+La ausencia de cruces de curvas en toda la ventana temporal indica que el score RSF mantiene su capacidad discriminativa de forma consistente a lo largo del tiempo, condición necesaria para que un modelo pronóstico tenga utilidad clínica real. La diferencia de más de 50 puntos porcentuales en la probabilidad de supervivencia entre los extremos del espectro de riesgo ilustra el potencial del modelo para orientar decisiones terapéuticas diferenciadas desde el diagnóstico. No obstante, los valores p extremadamente bajos deben interpretarse con cautela, ya que la validación real de esta capacidad estratificadora requiere su evaluación en cohortes completamente independientes, aspecto que se aborda en la sección de validación cruzada entre METABRIC y TCGA-BRCA.
+
+## **1.3.10. Curvas de Supervivencia Individuales**
+
+A diferencia de Kaplan-Meier y Cox-LASSO (que proporcionan curvas de supervivencia individuales basadas en un hazard ratio único y una función basal compartida), el RSF genera curvas $\hat{S}(t \mid \mathbf{x})$ completamente individualizadas para cada paciente. 
+
+Se visualizan curvas de supervivencia predichas para pacientes representativos de cada cuartil de riesgo, ilustrando la capacidad del RSF para personalizar la predicción pronóstica.
+
+```python
+# ── Curvas de supervivencia individuales ─────────────────────────────────────
+# Seleccionar 3 pacientes representativos por cuartil (los más cercanos al percentil 50 de cada grupo)
+np.random.seed(RANDOM_STATE)
+
+# Tiempos de evaluación
+t_grid = np.linspace(dur_test.min(), dur_test.max(), 200)
+
+fig, ax = plt.subplots(figsize=(11, 6))
+
+cuartil_colors = {
+    'Q1 — Muy bajo'       : ('#1a9641', '-'),
+    'Q2 — Bajo-moderado'  : ('#a6d96a', '--'),
+    'Q3 — Moderado-alto'  : ('#fdae61', '-.'),
+    'Q4 — Muy alto'       : ('#d73027', ':'),
+}
+
+plotted_labels = set()
+
+for grupo, (color, ls) in cuartil_colors.items():
+    mask = np.where(grupo_cuartil == grupo)[0]
+    if len(mask) == 0:
+        continue
+    # Seleccionar el paciente más cercano al percentil 50 del score de ese cuartil
+    risk_grupo = risk_scores_test[mask]
+    mediana_local = np.percentile(risk_grupo, 50)
+    idx_sel = mask[np.argsort(np.abs(risk_grupo - mediana_local))[:3]]  # 3 pacientes
+    
+    surv_fns_grupo = rsf.predict_survival_function(X_test_np[idx_sel])
+    
+    for i, fn in enumerate(surv_fns_grupo):
+        label = grupo if i == 0 and grupo not in plotted_labels else None
+        ax.plot(t_grid, fn(t_grid), color=color, linestyle=ls,
+                alpha=0.85, linewidth=1.8, label=label)
+        plotted_labels.add(grupo)
+
+ax.set_xlabel('Tiempo desde diagnóstico (meses)', fontsize=11)
+ax.set_ylabel('Probabilidad de supervivencia S(t)', fontsize=11)
+ax.set_title(
+    'Curvas de Supervivencia Individuales — RSF\n'
+    'Pacientes representativos por cuartil de riesgo (3 por grupo) | METABRIC',
+    fontsize=12, fontweight='bold'
+)
+ax.set_ylim(0, 1.05)
+ax.legend(fontsize=10, loc='lower left')
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_individual_surv_curves.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+## **1.3.11. Tabla Comparativa de Modelos**
+
+Se construye la tabla resumen que sintetiza el rendimiento de todos los modelos implementados hasta este punto, permitiendo la comparación directa de su capacidad discriminativa (C-index) y de calibración temporal (IBS).
+
+```python
+# ── Tabla comparativa de modelos ─────────────────────────────────────────────
+# Valores de KM y Cox obtenidos en secciones anteriores del notebook principal.
+
+tabla_modelos = pd.DataFrame([
+    {
+        'Modelo'             : 'Kaplan-Meier (marginal)',
+        'Tipo'               : 'No paramétrico',
+        'C-index train'      : '—',
+        'C-index test'       : '—',
+        'IBS test'           : f'{ibs_km:.4f}',
+        'Covariables usadas' : 0,
+    },
+    {
+        'Modelo'             : 'Cox-LASSO',
+        'Tipo'               : 'Semiparamétrico',
+        'C-index train'      : '0.6864',
+        'C-index test'       : f'{CINDEX_COX_TEST:.4f}',
+        'IBS test'           : f'{IBS_COX_REF:.4f}',
+        'Covariables usadas' : 23,
+    },
+    {
+        'Modelo'             : f'RSF (n_est={BEST_N_EST}, max_f={BEST_MAX_F})',
+        'Tipo'               : 'Machine Learning',
+        'C-index train'      : f'{cindex_train_rsf:.4f}',
+        'C-index test'       : f'{cindex_test_rsf:.4f}',
+        'IBS test'           : f'{ibs_rsf:.4f}',
+        'Covariables usadas' : X_train.shape[1],
+    },
+])
+
+print('═' * 90)
+print('  COMPARATIVA DE MODELOS — METABRIC (OS endpoint)')
+print('═' * 90)
+display(tabla_modelos)
+
+print(f'\n  Mejora C-index RSF vs Cox-LASSO : '
+      f'{cindex_test_rsf - CINDEX_COX_TEST:+.4f}')
+print(f'  Mejora IBS RSF vs Cox-LASSO     : '
+      f'{IBS_COX_REF - ibs_rsf:+.4f} ({(IBS_COX_REF - ibs_rsf)/IBS_COX_REF*100:.1f}% reducción)')
+```
+
+
+Modelo	Tipo	C-index train	C-index test	IBS test	Covariables usadas
+0	Kaplan-Meier (marginal)	No paramétrico	—	—	0.2177	0
+1	Cox-LASSO	Semiparamétrico	0.6864	0.6761	0.1863	23
+2	RSF (n_est=500, max_f=log2)	Machine Learning	0.8171	0.7060	0.1796	56
+
+
+  Mejora C-index RSF vs Cox-LASSO : +0.0299
+  Mejora IBS RSF vs Cox-LASSO     : +0.0067 (3.6% reducción)
+
+```python
+# ── Gráfico comparativo de C-index y IBS ─────────────────────────────────────
+modelos  = ['KM\n(marginal)', 'Cox\nLASSO', 'RSF']
+cindex_v = [0.500, CINDEX_COX_TEST, cindex_test_rsf]   # 0.5 como placeholder para KM
+ibs_v    = [ibs_km, IBS_COX_REF, ibs_rsf]
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# C-index
+ax = axes[0]
+colors_m = [PALETTE['km'], PALETTE['cox'], PALETTE['rsf']]
+bars = ax.bar(modelos, cindex_v, color=colors_m, alpha=0.75, width=0.5, edgecolor='white')
+ax.axhline(0.5, linestyle=':', color='gray', linewidth=1.5, label='Azar (0.5)')
+for bar, val in zip(bars, cindex_v):
+    ax.text(bar.get_x() + bar.get_width()/2, val + 0.003,
+            f'{val:.3f}', ha='center', fontsize=10, fontweight='bold')
+ax.set_ylabel('C-index (test)', fontsize=11)
+ax.set_title('C-index por modelo\n(test set, n=397)', fontsize=11, fontweight='bold')
+ax.set_ylim(0.45, 0.85)
+ax.legend(fontsize=9)
+ax.annotate('KM no tiene\nC-index multiv.', xy=(0, 0.5), xytext=(0.15, 0.52),
+            fontsize=7.5, color='gray', style='italic')
+
+# IBS
+ax = axes[1]
+bars = ax.bar(modelos, ibs_v, color=colors_m, alpha=0.75, width=0.5, edgecolor='white')
+ax.axhline(0.25, linestyle=':', color='gray', linewidth=1.5, label='Azar puro (0.25)')
+for bar, val in zip(bars, ibs_v):
+    ax.text(bar.get_x() + bar.get_width()/2, val + 0.002,
+            f'{val:.3f}', ha='center', fontsize=10, fontweight='bold')
+ax.set_ylabel('IBS (test) — menor es mejor', fontsize=11)
+ax.set_title('Integrated Brier Score por modelo\n(test set, n=397)', fontsize=11, fontweight='bold')
+ax.set_ylim(0, 0.28)
+ax.invert_yaxis()  # Invertir para que "mejor" esté arriba
+ax.legend(fontsize=9)
+
+fig.suptitle('Comparativa de rendimiento — KM / Cox-LASSO / RSF | METABRIC',
+             fontsize=13, fontweight='bold', y=1.02)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/RSF/rsf_comparativa_modelos.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+
+Aquí tienes los apartados completados **solo con los resultados que has adjuntado**, sin añadir métricas no calculadas ni afirmaciones no respaldadas por tus salidas.
+
+---
+
+## **1.3.12. Interpretación completa del modelo RSF**
+
+### **I. Rendimiento predictivo**
+
+El RSF alcanza un **C-index en test de 0.7060**, lo que supone una mejora de **+0.0299 puntos** respecto al Cox-LASSO (**0.6761**). Este resultado indica que el modelo RSF discrimina mejor entre pacientes con distinto riesgo que el modelo Cox-LASSO.
+
+La diferencia entre train y test refleja cierto grado de sobreajuste. El C-index en entrenamiento fue de **0.8171**, mientras que en test fue de **0.7060**, con una diferencia de **0.1112**. Este comportamiento es esperable en modelos basados en árboles completamente crecidos (`max_depth=None`). Aun así, el rendimiento en test sigue siendo superior al del Cox-LASSO.
+
+El C-index OOB del modelo final fue de **0.6891**, cercano al resultado medio obtenido en validación cruzada (**0.6936 ± 0.0163**), lo que indica que la estimación interna del modelo es coherente con la validación cruzada.
+
+En calibración temporal, el RSF obtiene un **IBS de 0.1796**, mejorando al Cox-LASSO (**0.1863**) y al Kaplan-Meier marginal (**0.2177**). La mejora frente a Cox-LASSO es de **0.0067 puntos**, equivalente a una reducción del **3.6%**, mientras que frente a Kaplan-Meier es de **0.0381 puntos**, equivalente a una reducción del **17.5%**.
+
+---
+
+### **II. Importancia de variables**
+
+La importancia por permutación se calculó utilizando un RSF reducido de **50 árboles**, entrenado específicamente para evitar problemas de ejecución con el modelo completo. Este modelo reducido obtuvo un **C-index base en test de 0.7003**, próximo al C-index del modelo final (**0.7060**), por lo que sus importancias pueden utilizarse como aproximación razonable.
+
+Las variables con mayor importancia fueron:
+
+| Variable                        | Permutation importance |
+| ------------------------------- | ---------------------: |
+| `Age at Diagnosis`              |                 0.0505 |
+| `Lymph nodes examined positive` |                 0.0252 |
+| `Nottingham prognostic index`   |                 0.0174 |
+| `Integrative Cluster_5`         |                 0.0118 |
+| `Tumor Size`                    |                 0.0074 |
+| `Tumor Stage`                   |                 0.0052 |
+
+La variable más importante fue **`Age at Diagnosis`**, con una caída media del C-index de **0.0505** al permutarla. Esto indica que la edad al diagnóstico es el predictor que más contribuye a la capacidad discriminativa del RSF.
+
+La segunda variable más importante fue **`Lymph nodes examined positive`** (**0.0252**), seguida de **`Nottingham prognostic index`** (**0.0174**). Estos resultados muestran que las variables clínicas y anatomopatológicas clásicas siguen concentrando gran parte de la señal pronóstica.
+
+También aparecen variables relacionadas con la carga tumoral y la estadificación, como **`Tumor Size`** (**0.0074**) y **`Tumor Stage`** (**0.0052**). Además, el modelo asigna importancia positiva a variables moleculares o genómicas como **`Integrative Cluster_5`** (**0.0118**) y **`TMB (nonsynonymous)`** (**0.0032**), aunque con menor peso que las variables clínicas principales.
+
+Algunas variables presentan importancia nula, especialmente categorías `Unknown` o tipos tumorales poco frecuentes. Esto indica que, en este ajuste, su permutación no modifica el C-index del modelo.
+
+Por último, varias variables presentan importancia negativa, como **`3-Gene classifier subtype_HER2+`** (**−0.0037**), **`Pam50 + Claudin-low subtype_claudin-low`** (**−0.0022**) o **`Integrative Cluster_10`** (**−0.0020**). Estos valores indican que, al permutar dichas variables, el rendimiento no empeora e incluso mejora ligeramente, por lo que en este modelo concreto no aportan señal predictiva útil.
+
+---
+
+### **III. Estratificación de riesgo**
+
+El score de riesgo del RSF en el conjunto de test presentó el siguiente rango:
+
+| Estadístico |    Valor |
+| ----------- | -------: |
+| Mínimo      |   85.482 |
+| Q25         |  271.789 |
+| Mediana     |  376.406 |
+| Q75         |  547.100 |
+| Máximo      | 1037.192 |
+
+La distribución muestra una separación clara entre pacientes de bajo y alto riesgo al dividir por la mediana del score. El grupo de bajo riesgo concentra valores más bajos, mientras que el grupo de alto riesgo presenta scores claramente superiores y mayor dispersión.
+
+Las curvas Kaplan-Meier estratificadas por el score RSF muestran diferencias de supervivencia altamente significativas. En la estratificación binaria, el test log-rank obtuvo **p = 9.99 × 10⁻¹⁹**. En la estratificación por cuartiles, el test log-rank multivariante obtuvo **p = 6.34 × 10⁻²²**.
+
+La estratificación por cuartiles muestra una separación ordenada entre grupos de riesgo. Los pacientes del cuartil de menor riesgo presentan mayor supervivencia observada, mientras que los pacientes del cuartil de mayor riesgo presentan peor supervivencia. Esto confirma que el score RSF permite ordenar a los pacientes según su pronóstico.
+
+---
+
+### **IV. Ventajas y limitaciones del RSF**
+
+**Ventajas:**
+
+* Obtiene el mejor rendimiento predictivo de los modelos comparados hasta esta sección.
+* Mejora el C-index frente al Cox-LASSO: **0.7060 vs. 0.6761**.
+* Mejora el IBS frente al Cox-LASSO: **0.1796 vs. 0.1863**.
+* Mejora claramente el IBS frente al Kaplan-Meier marginal: **0.1796 vs. 0.2177**.
+* Permite generar scores de riesgo individuales con buena capacidad de estratificación.
+* Las curvas Kaplan-Meier por grupos de riesgo muestran diferencias altamente significativas.
+* Permite calcular importancia de variables mediante permutación.
+
+**Limitaciones:**
+
+* Presenta sobreajuste: **C-index train = 0.8171** frente a **C-index test = 0.7060**.
+* La interpretación es menos directa que en Cox-LASSO, ya que no proporciona hazard ratios ni coeficientes.
+* La importancia por permutación indica qué variables afectan al rendimiento, pero no la dirección del efecto.
+* El cálculo de importancias fue costoso: el RSF reducido tardó **470.7 s** en completar la permutación de las 56 variables.
+* La búsqueda de hiperparámetros requirió **90 ajustes** y se completó en **28.3 minutos**.
+* El entrenamiento final del modelo con 500 árboles tardó **64.4 s**.
+
+---
+
+## **1.3.13. Resumen Ejecutivo — RSF**
+
+El Random Survival Forest constituye el primer modelo no paramétrico y no lineal implementado en este TFM. Frente a Kaplan-Meier y Cox-LASSO, el RSF permite modelar relaciones más flexibles entre las covariables y el riesgo.
+
+La búsqueda en rejilla identificó los siguientes hiperparámetros óptimos:
+
+| Hiperparámetro      | Valor óptimo |
+| ------------------- | -----------: |
+| `n_estimators`      |          500 |
+| `max_features`      |       `log2` |
+| `min_samples_split` |           10 |
+| `max_depth`         |       `None` |
+
+Con estos hiperparámetros, el modelo final alcanzó los siguientes resultados:
+
+| Métrica              | Kaplan-Meier |   Cox-LASSO   |         RSF         | Mejora RSF vs Cox |
+| -------------------- | :----------: | :-----------: | :-----------------: | :---------------: |
+| C-index test         |       —      |     0.6761    |      **0.7060**     |    **+0.0299**    |
+| IBS test             |    0.2177    |     0.1863    |      **0.1796**     |    **+0.0067**    |
+| Reducción IBS vs Cox |       —      |       —       |          —          |      **3.6%**     |
+| C-index CV           |       —      | 0.679 ± 0.014 | **0.6936 ± 0.0163** |         —         |
+| IBS CV               |       —      |       —       | **0.1808 ± 0.0061** |         —         |
+
+El modelo final obtuvo un **OOB C-index de 0.6891**, un **C-index train de 0.8171** y un **C-index test de 0.7060**. La diferencia train-test de **0.1112** indica presencia de sobreajuste, aunque el rendimiento en test continúa siendo superior al de Cox-LASSO.
+
+La estratificación de riesgo mediante el score RSF produjo diferencias de supervivencia altamente significativas tanto en la división binaria (**p = 9.99 × 10⁻¹⁹**) como en la división por cuartiles (**p = 6.34 × 10⁻²²**).
+
+El análisis de importancia por permutación identificó como variables más relevantes **`Age at Diagnosis`**, **`Lymph nodes examined positive`**, **`Nottingham prognostic index`**, **`Integrative Cluster_5`**, **`Tumor Size`** y **`Tumor Stage`**.
+
+En conjunto, el RSF mejora a Cox-LASSO en discriminación y calibración temporal, aunque a costa de mayor sobreajuste, mayor coste computacional y menor interpretabilidad directa.
+
+---
+
+## **1.3.14. Respuesta a la pregunta de investigación — RSF**
+
+> **¿Mejora el Random Survival Forest la capacidad predictiva del modelo Cox-LASSO en la cohorte METABRIC, y qué factores genómicos y clínicos identifica como más relevantes para el pronóstico?**
+
+**Respuesta:**
+
+Sí. El RSF mejora al Cox-LASSO tanto en discriminación como en calibración temporal.
+
+Desde el punto de vista predictivo, el RSF alcanza un **C-index en test de 0.7060**, frente a **0.6761** en Cox-LASSO. Esto supone una mejora absoluta de **+0.0299 puntos**. En calibración temporal, el RSF obtiene un **IBS de 0.1796**, inferior al de Cox-LASSO (**0.1863**) y al de Kaplan-Meier marginal (**0.2177**). La reducción del IBS frente a Cox-LASSO es de **0.0067 puntos**, equivalente a una mejora relativa del **3.6%**.
+
+La validación cruzada también respalda estos resultados, con un **C-index medio de 0.6936 ± 0.0163** y un **IBS medio de 0.1808 ± 0.0061**. Además, el OOB C-index del modelo final fue de **0.6891**, próximo al valor medio de validación cruzada.
+
+Desde el punto de vista de los factores relevantes, el RSF identifica como principales predictores:
+
+* **`Age at Diagnosis`**: 0.0505.
+* **`Lymph nodes examined positive`**: 0.0252.
+* **`Nottingham prognostic index`**: 0.0174.
+* **`Integrative Cluster_5`**: 0.0118.
+* **`Tumor Size`**: 0.0074.
+* **`Tumor Stage`**: 0.0052.
+
+Estos resultados muestran que las variables clínicas y anatomopatológicas concentran la mayor parte de la importancia predictiva, aunque también aparecen variables moleculares/genómicas con importancia positiva, como **`Integrative Cluster_5`** y **`TMB (nonsynonymous)`**.
+
+La principal limitación del RSF es que mejora la capacidad predictiva a costa de una menor interpretabilidad directa. A diferencia de Cox-LASSO, no proporciona coeficientes ni hazard ratios, y la importancia por permutación solo indica cuánto afecta cada variable al rendimiento del modelo, pero no la dirección de su efecto. Además, el modelo muestra cierto sobreajuste, con una diferencia train-test de **0.1112** en C-index.
+
+
+---
+---
+
+
