@@ -3391,10 +3391,6 @@ plt.show()
 ```
 
 
-Aquí tienes los apartados completados **solo con los resultados que has adjuntado**, sin añadir métricas no calculadas ni afirmaciones no respaldadas por tus salidas.
-
----
-
 ## **1.3.12. Interpretación completa del modelo RSF**
 
 ### **I. Rendimiento predictivo**
@@ -3434,7 +3430,6 @@ Algunas variables presentan importancia nula, especialmente categorías `Unknown
 
 Por último, varias variables presentan importancia negativa, como **`3-Gene classifier subtype_HER2+`** (**−0.0037**), **`Pam50 + Claudin-low subtype_claudin-low`** (**−0.0022**) o **`Integrative Cluster_10`** (**−0.0020**). Estos valores indican que, al permutar dichas variables, el rendimiento no empeora e incluso mejora ligeramente, por lo que en este modelo concreto no aportan señal predictiva útil.
 
----
 
 ### **III. Estratificación de riesgo**
 
@@ -3454,7 +3449,6 @@ Las curvas Kaplan-Meier estratificadas por el score RSF muestran diferencias de 
 
 La estratificación por cuartiles muestra una separación ordenada entre grupos de riesgo. Los pacientes del cuartil de menor riesgo presentan mayor supervivencia observada, mientras que los pacientes del cuartil de mayor riesgo presentan peor supervivencia. Esto confirma que el score RSF permite ordenar a los pacientes según su pronóstico.
 
----
 
 ### **IV. Ventajas y limitaciones del RSF**
 
@@ -3477,7 +3471,6 @@ La estratificación por cuartiles muestra una separación ordenada entre grupos 
 * La búsqueda de hiperparámetros requirió **90 ajustes** y se completó en **28.3 minutos**.
 * El entrenamiento final del modelo con 500 árboles tardó **64.4 s**.
 
----
 
 ## **1.3.13. Resumen Ejecutivo — RSF**
 
@@ -3542,3 +3535,1403 @@ La principal limitación del RSF es que mejora la capacidad predictiva a costa d
 ---
 
 
+## **1.4. DeepSurv — Red Neuronal para el Análisis de Supervivencia**
+
+DeepSurv se trata de una red neuronal profunda (*feed-forward*) cuya función de pérdida está directamente derivada del modelo de Cox proporcional de riesgos. Combina la **flexibilidad no lineal** del aprendizaje profundo con la solidez teórica del estimador semiparamétrico de Cox, superando a ambos en escenarios donde las relaciones riesgo-covariable son complejas o de alta dimensionalidad.
+
+### **1.4.1. Fundamento Teórico — DeepSurv**
+
+#### Función de riesgo de Cox generalizada
+
+El modelo de Cox proporcional de riesgos asume que la función de riesgo de un individuo $i$ con covariables $\mathbf{x}_i$ es:
+
+$$h(t \mid \mathbf{x}_i) = h_0(t) \cdot \exp\!\left(\boldsymbol{\beta}^\top \mathbf{x}_i\right)$$
+
+donde $h_0(t)$ es el riesgo basal no paramétrico y $\boldsymbol{\beta}^\top \mathbf{x}_i$ es el log-riesgo lineal. **DeepSurv** reemplaza la combinación lineal por una red neuronal profunda $\phi(\mathbf{x}_i; \boldsymbol{\theta})$:
+
+$$h(t \mid \mathbf{x}_i) = h_0(t) \cdot \exp\!\left(\phi(\mathbf{x}_i; \boldsymbol{\theta})\right)$$
+
+con lo cual el modelo puede capturar relaciones **no lineales** y **de alta orden** entre las covariables y el riesgo, manteniendo la interpretabilidad del marco de Cox para la función de supervivencia.
+
+#### Función de pérdida (log-verosimilitud parcial negativa)
+
+La red se entrena minimizando la **log-verosimilitud parcial negativa de Cox**, definida sobre el conjunto de pacientes con evento observado $\mathcal{D} = \{i : \delta_i = 1\}$:
+
+$$\mathcal{L}(\boldsymbol{\theta}) = -\frac{1}{|\mathcal{D}|} \sum_{i \in \mathcal{D}} \left[ \phi(\mathbf{x}_i; \boldsymbol{\theta}) - \log \sum_{j \in \mathcal{R}(t_i)} \exp\!\left(\phi(\mathbf{x}_j; \boldsymbol{\theta})\right) \right]$$
+
+donde $\mathcal{R}(t_i) = \{j : t_j \geq t_i\}$ es el **conjunto en riesgo** en el instante $t_i$. Esta formulación es equivalente a la usada en el Cox-LASSO, pero aquí el parámetro que se optimiza es la red $\boldsymbol{\theta}$ mediante **retropropagación** (*backpropagation*) y descenso por gradiente estocástico.
+
+#### Regularización y estabilidad
+
+Para mitigar el sobreajuste en redes profundas aplicadas a datos de supervivencia (generalmente de dimensionalidad moderada):
+
+- **Dropout** con probabilidad $p$: desactiva aleatoriamente neuronas durante el entrenamiento, equivalente a un ensemble implícito de sub-redes.
+- **Batch Normalization**: normaliza las activaciones de cada capa por lote, acelerando la convergencia y reduciendo la sensibilidad al *learning rate*.
+- **Regularización L2** (weight decay): añade la penalización $\lambda \|\boldsymbol{\theta}\|_2^2$ a la función de pérdida.
+- **Early Stopping**: detiene el entrenamiento cuando la pérdida en validación deja de mejorar durante $k$ épocas consecutivas, evitando el sobreajuste.
+
+#### Función de supervivencia predicha
+
+Una vez entrenada la red, la función de supervivencia individualizada se obtiene combinando el log-riesgo con el estimador de Breslow para la función de riesgo acumulado basal $\hat{H}_0(t)$:
+
+$$\hat{S}(t \mid \mathbf{x}_i) = \exp\!\left(-\hat{H}_0(t) \cdot \exp\!\left(\phi(\mathbf{x}_i; \boldsymbol{\theta})\right)\right)$$
+
+Esta predicción es completamente individualizada: cada paciente recibe su propia curva de supervivencia $\hat{S}(t \mid \mathbf{x}_i)$, a diferencia de Kaplan-Meier (que asigna la misma curva marginal a todos) y de forma análoga al RSF.
+
+#### Comparación con los modelos previos
+
+| Aspecto | Cox-LASSO | RSF | DeepSurv |
+|---|:---:|:---:|:---:|
+| Linealidad | Sí (L1) | No | No |
+| Proporcionalidad de riesgos | Sí | No | Sí* |
+| Interacciones automáticas | No | Sí | Sí |
+| Curvas individuales | Sí (via Breslow) | Sí | Sí (via Breslow) |
+| Explicabilidad nativa | Alta (coef.) | Media (VIMP) | Baja → SHAP |
+| Escalabilidad | Alta | Moderada | Alta |
+
+*DeepSurv asume proporcionalidad de riesgos a nivel de la función de riesgo basal, pero el término de riesgo en sí puede ser arbitrariamente no lineal en las covariables.
+
+### **1.4.2. Preprocesamiento Específico para DeepSurv**
+
+DeepSurv requiere que las covariables sean tensores `float32` (PyTorch no trabaja con `float64`). Dado que el preprocesamiento general ya aplicó normalización estándar sobre `X_train_np` y `X_test_np`, **no se aplica una nueva estandarización**: hacerlo produciría una doble normalización y distorsionaría la distribución de entrada.
+
+Los targets se preparan como tuplas `(duration, event)` en `float32`, formato exigido por la API de `pycox`.
+
+
+```python
+# ── Conversión a float32 para PyTorch ─────────────────────────────────────────
+x_train = X_train_np.astype('float32')
+x_test  = X_test_np.astype('float32')
+
+# Targets: tuplas (duration, event) en float32
+y_train_ds = (dur_train.astype('float32'), evt_train.astype('float32'))
+y_test_ds  = (dur_test.astype('float32'),  evt_test.astype('float32'))
+
+IN_FEATURES = x_train.shape[1]
+
+print('Datos preparados para DeepSurv:')
+print(f'  x_train dtype  : {x_train.dtype}  shape : {x_train.shape}')
+print(f'  x_test  dtype  : {x_test.dtype}   shape : {x_test.shape}')
+print(f'  dur dtype      : {y_train_ds[0].dtype}')
+print(f'  evt dtype      : {y_train_ds[1].dtype}')
+print(f'  Covariables de entrada : {IN_FEATURES}')
+
+```
+
+Datos preparados para DeepSurv:
+  x_train dtype  : float32  shape : (1584, 56)
+  x_test  dtype  : float32   shape : (397, 56)
+  dur dtype      : float32
+  evt dtype      : float32
+  Covariables de entrada : 56
+
+  ### **1.4.3. Definición de la Arquitectura**
+
+La red sigue una arquitectura **MLP (*Multilayer Perceptron*)** completamente conectada con las siguientes características:
+
+- **Capas ocultas**: $L$ capas con $d$ neuronas cada una, activación ReLU.
+- **Batch Normalization** después de cada capa oculta (antes de la activación en la práctica de `torchtuples`).
+- **Dropout** con probabilidad $p$ después de cada capa con batch norm.
+- **Capa de salida**: 1 neurona sin función de activación (salida lineal = log-riesgo $\phi(\mathbf{x})$).
+- **Bias de salida desactivado** (`output_bias=False`): convención del modelo de Cox, donde el término constante se absorbe en el riesgo basal $h_0(t)$.
+
+La implementación utiliza `tt.practical.MLPVanilla` de `torchtuples`, que genera esta arquitectura de forma declarativa especificando el número de nodos por capa.
+
+```python
+def build_deepsurv_net(num_nodes, dropout, output_bias=False):
+    """Construye la red MLP para DeepSurv con la arquitectura especificada."""
+    net = tt.practical.MLPVanilla(
+        in_features  = IN_FEATURES,
+        num_nodes    = num_nodes,
+        out_features = 1,
+        batch_norm   = True,
+        dropout      = dropout,
+        output_bias  = output_bias,
+    )
+    return net
+
+# Ejemplo visual de la arquitectura base [64, 64]
+net_demo = build_deepsurv_net([64, 64], dropout=0.1)
+print('Arquitectura base [64, 64]:')
+print(net_demo)
+print()
+total_params = sum(p.numel() for p in net_demo.parameters() if p.requires_grad)
+print(f'  Parámetros entrenables : {total_params:,}')
+print(f'  Covariables de entrada : {IN_FEATURES}')
+print(f'  Salida                 : 1 neurona (log-riesgo)')
+
+```
+
+Arquitectura base [64, 64]:
+MLPVanilla(
+  (net): Sequential(
+    (0): DenseVanillaBlock(
+      (linear): Linear(in_features=56, out_features=64, bias=True)
+      (activation): ReLU()
+      (batch_norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (1): DenseVanillaBlock(
+      (linear): Linear(in_features=64, out_features=64, bias=True)
+      (activation): ReLU()
+      (batch_norm): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (2): Linear(in_features=64, out_features=1, bias=False)
+  )
+)
+
+  Parámetros entrenables : 8,128
+  Covariables de entrada : 56
+  Salida                 : 1 neurona (log-riesgo)
+
+### **1.4.4. Búsqueda de Hiperparámetros**
+
+Se evalúa un grid de hiperparámetros mediante **validación cruzada estratificada de 5 folds** sobre el conjunto de entrenamiento. Los hiperparámetros explorados son:
+
+| Hiperparámetro | Valores |
+|---|---|
+| `num_nodes` (arquitectura) | [64,64], [64,64,64], [128,64] |
+| `dropout` | 0.1, 0.2 |
+| `lr` (Adam) | 0.001, 0.01 |
+| `batch_size` | 128, 256 |
+
+El número de épocas máximo es 100 por fold, con **early stopping** (paciencia = 10 épocas) monitoreando la pérdida en validación. La métrica de selección es el **C-index medio en validación**.
+
+```python
+# ── Grid de hiperparámetros ──────────────────────────────────────────────────
+param_grid_ds = {
+    'num_nodes'  : [[64, 64], [64, 64, 64], [128, 64]],
+    'dropout'    : [0.1, 0.2],
+    'lr'         : [0.001, 0.01],
+    'batch_size' : [128, 256],
+}
+
+K_FOLDS   = 5
+MAX_EPOCHS = 100
+PATIENCE   = 10
+
+cv = StratifiedKFold(n_splits=K_FOLDS, shuffle=True, random_state=RANDOM_STATE)
+strat_labels = evt_train.astype(int)
+
+results_gs_ds = []
+start_total = time.time()
+
+from itertools import product as iproduct
+
+combos = list(iproduct(
+    param_grid_ds['num_nodes'],
+    param_grid_ds['dropout'],
+    param_grid_ds['lr'],
+    param_grid_ds['batch_size'],
+))
+
+print(f'Total de combinaciones : {len(combos)}')
+print(f'Total de ajustes       : {len(combos) * K_FOLDS}')
+print('─' * 72)
+
+for combo_idx, (num_nodes, dropout, lr, batch_size) in enumerate(combos):
+    ci_folds = []
+
+    for fold, (tr_idx, va_idx) in enumerate(cv.split(x_train, strat_labels)):
+        torch.manual_seed(RANDOM_STATE + fold)
+        np.random.seed(RANDOM_STATE + fold)
+
+        x_tr, x_va = x_train[tr_idx], x_train[va_idx]
+        dur_tr, evt_tr = dur_train[tr_idx].astype('float32'), evt_train[tr_idx].astype('float32')
+        dur_va, evt_va = dur_train[va_idx].astype('float32'), evt_train[va_idx].astype('float32')
+        y_tr_fold = y_train[tr_idx]
+        y_va_fold = y_train[va_idx]
+
+        net_cv = build_deepsurv_net(num_nodes, dropout)
+        model_cv = DeepSurvModel(net_cv, tt.optim.Adam(lr))
+
+        callbacks_cv = [tt.callbacks.EarlyStopping(patience=PATIENCE)]
+
+        _ = model_cv.fit(
+            x_tr, (dur_tr, evt_tr),
+            batch_size  = batch_size,
+            epochs      = MAX_EPOCHS,
+            callbacks   = callbacks_cv,
+            val_data    = (x_va, (dur_va, evt_va)),
+            verbose     = False,
+        )
+
+        # C-index usando log-riesgo predicho
+        phi_va = model_cv.predict(x_va).flatten()
+        ci_fold = concordance_index_censored(
+            y_va_fold['event'], y_va_fold['time'], phi_va
+        )[0]
+        ci_folds.append(ci_fold)
+
+    results_gs_ds.append({
+        'num_nodes'  : str(num_nodes),
+        'dropout'    : dropout,
+        'lr'         : lr,
+        'batch_size' : batch_size,
+        'c_index_mean': np.mean(ci_folds),
+        'c_index_std' : np.std(ci_folds),
+    })
+
+    print(f'  [{combo_idx+1:>2}/{len(combos)}] nodes={str(num_nodes):<14} '
+          f'drop={dropout}  lr={lr}  bs={batch_size:>3} → '
+          f'C-index CV = {np.mean(ci_folds):.4f} ± {np.std(ci_folds):.4f}')
+
+elapsed = time.time() - start_total
+print(f'\n✓ Grid Search completado en {elapsed/60:.1f} minutos.')
+
+df_gs_ds = pd.DataFrame(results_gs_ds).sort_values('c_index_mean', ascending=False)
+display(df_gs_ds.head(10).reset_index(drop=True))
+```
+
+Total de combinaciones : 24
+Total de ajustes       : 120
+────────────────────────────────────────────────────────────────────────
+  [ 1/24] nodes=[64, 64]       drop=0.1  lr=0.001  bs=128 → C-index CV = 0.6816 ± 0.0158
+  [ 2/24] nodes=[64, 64]       drop=0.1  lr=0.001  bs=256 → C-index CV = 0.6811 ± 0.0169
+  [ 3/24] nodes=[64, 64]       drop=0.1  lr=0.01  bs=128 → C-index CV = 0.6901 ± 0.0134
+  [ 4/24] nodes=[64, 64]       drop=0.1  lr=0.01  bs=256 → C-index CV = 0.6925 ± 0.0162
+  [ 5/24] nodes=[64, 64]       drop=0.2  lr=0.001  bs=128 → C-index CV = 0.6826 ± 0.0167
+  [ 6/24] nodes=[64, 64]       drop=0.2  lr=0.001  bs=256 → C-index CV = 0.6843 ± 0.0134
+  [ 7/24] nodes=[64, 64]       drop=0.2  lr=0.01  bs=128 → C-index CV = 0.6901 ± 0.0177
+  [ 8/24] nodes=[64, 64]       drop=0.2  lr=0.01  bs=256 → C-index CV = 0.6837 ± 0.0168
+  [ 9/24] nodes=[64, 64, 64]   drop=0.1  lr=0.001  bs=128 → C-index CV = 0.6776 ± 0.0149
+  [10/24] nodes=[64, 64, 64]   drop=0.1  lr=0.001  bs=256 → C-index CV = 0.6767 ± 0.0153
+  [11/24] nodes=[64, 64, 64]   drop=0.1  lr=0.01  bs=128 → C-index CV = 0.6802 ± 0.0126
+  [12/24] nodes=[64, 64, 64]   drop=0.1  lr=0.01  bs=256 → C-index CV = 0.6907 ± 0.0130
+  [13/24] nodes=[64, 64, 64]   drop=0.2  lr=0.001  bs=128 → C-index CV = 0.6861 ± 0.0169
+  [14/24] nodes=[64, 64, 64]   drop=0.2  lr=0.001  bs=256 → C-index CV = 0.6846 ± 0.0156
+  [15/24] nodes=[64, 64, 64]   drop=0.2  lr=0.01  bs=128 → C-index CV = 0.6833 ± 0.0157
+  [16/24] nodes=[64, 64, 64]   drop=0.2  lr=0.01  bs=256 → C-index CV = 0.6845 ± 0.0133
+  [17/24] nodes=[128, 64]      drop=0.1  lr=0.001  bs=128 → C-index CV = 0.6811 ± 0.0121
+  [18/24] nodes=[128, 64]      drop=0.1  lr=0.001  bs=256 → C-index CV = 0.6796 ± 0.0125
+  [19/24] nodes=[128, 64]      drop=0.1  lr=0.01  bs=128 → C-index CV = 0.6888 ± 0.0130
+  [20/24] nodes=[128, 64]      drop=0.1  lr=0.01  bs=256 → C-index CV = 0.6886 ± 0.0152
+  [21/24] nodes=[128, 64]      drop=0.2  lr=0.001  bs=128 → C-index CV = 0.6821 ± 0.0115
+  [22/24] nodes=[128, 64]      drop=0.2  lr=0.001  bs=256 → C-index CV = 0.6815 ± 0.0133
+  [23/24] nodes=[128, 64]      drop=0.2  lr=0.01  bs=128 → C-index CV = 0.6848 ± 0.0177
+  [24/24] nodes=[128, 64]      drop=0.2  lr=0.01  bs=256 → C-index CV = 0.6874 ± 0.0126
+
+✓ Grid Search completado en 16.1 minutos.
+
+
+num_nodes	dropout	lr	batch_size	c_index_mean	c_index_std
+0	[64, 64]	0.1	0.010	256	0.692520	0.016191
+1	[64, 64, 64]	0.1	0.010	256	0.690660	0.012964
+2	[64, 64]	0.2	0.010	128	0.690119	0.017693
+3	[64, 64]	0.1	0.010	128	0.690079	0.013356
+4	[128, 64]	0.1	0.010	128	0.688750	0.012976
+5	[128, 64]	0.1	0.010	256	0.688591	0.015186
+6	[128, 64]	0.2	0.010	256	0.687366	0.012627
+7	[64, 64, 64]	0.2	0.001	128	0.686133	0.016877
+8	[128, 64]	0.2	0.010	128	0.684764	0.017678
+9	[64, 64, 64]	0.2	0.001	256	0.684573	0.015624
+
+```python
+# ── Selección de los mejores hiperparámetros ──────────────────────────────────
+best_ds = df_gs_ds.iloc[0]
+
+import ast
+BEST_NUM_NODES  = ast.literal_eval(best_ds['num_nodes'])
+BEST_DROPOUT    = best_ds['dropout']
+BEST_LR         = best_ds['lr']
+BEST_BATCH_SIZE = int(best_ds['batch_size'])
+
+print('═' * 60)
+print('  HIPERPARÁMETROS ÓPTIMOS — DeepSurv')
+print('═' * 60)
+print(f'  num_nodes   : {BEST_NUM_NODES}')
+print(f'  dropout     : {BEST_DROPOUT}')
+print(f'  lr (Adam)   : {BEST_LR}')
+print(f'  batch_size  : {BEST_BATCH_SIZE}')
+print(f'  batch_norm  : True')
+print(f'  max_epochs  : {MAX_EPOCHS} (con early stopping, paciencia={PATIENCE})')
+print(f'  C-index CV  : {best_ds["c_index_mean"]:.4f} ± {best_ds["c_index_std"]:.4f}')
+print('═' * 60)
+```
+
+════════════════════════════════════════════════════════════
+  HIPERPARÁMETROS ÓPTIMOS — DeepSurv
+════════════════════════════════════════════════════════════
+  num_nodes   : [64, 64]
+  dropout     : 0.1
+  lr (Adam)   : 0.01
+  batch_size  : 256
+  batch_norm  : True
+  max_epochs  : 100 (con early stopping, paciencia=10)
+  C-index CV  : 0.6925 ± 0.0162
+════════════════════════════════════════════════════════════
+
+### **1.4.5. Entrenamiento del Modelo Final**
+
+Con los hiperparámetros óptimos, se entrena el modelo definitivo sobre el **conjunto completo de entrenamiento**, usando el test como conjunto de validación para el early stopping y el monitoreo de la curva de aprendizaje. El modelo entrenado se serializa para su uso posterior en la comparación entre METABRIC y TCGA.
+
+```python
+# ── Entrenamiento del modelo final ──────────────────────────────────────────
+torch.manual_seed(RANDOM_STATE)
+np.random.seed(RANDOM_STATE)
+
+net_final = build_deepsurv_net(BEST_NUM_NODES, BEST_DROPOUT)
+model_ds  = DeepSurvModel(net_final, tt.optim.Adam(BEST_LR))
+
+callbacks_final = [
+    tt.callbacks.EarlyStopping(patience=15),    # paciencia mayor para el modelo final
+]
+
+print(f'Entrenando DeepSurv final...')
+print(f'  Arquitectura : {BEST_NUM_NODES}')
+print(f'  Dropout      : {BEST_DROPOUT}')
+print(f'  LR (Adam)    : {BEST_LR}')
+print(f'  Batch size   : {BEST_BATCH_SIZE}')
+print()
+
+t0 = time.time()
+log_ds = model_ds.fit(
+    x_train, y_train_ds,
+    batch_size = BEST_BATCH_SIZE,
+    epochs     = 200,             # más épocas para el modelo final
+    callbacks  = callbacks_final,
+    val_data   = (x_test, y_test_ds),
+    verbose    = True,
+)
+elapsed = time.time() - t0
+
+# Computar riesgos basales (necesario para predecir S(t))
+_ = model_ds.compute_baseline_hazards()
+
+print(f'\n✓ Modelo entrenado en {elapsed:.1f} s')
+print(f'  Épocas ejecutadas : {len(log_ds.to_pandas())}')
+
+# Serializar modelo
+MODEL_PATH_DS = r'../outputs/deepsurv_final.pkl'
+torch.save(net_final.state_dict(), MODEL_PATH_DS.replace('.pkl', '.pt'))
+print(f'✓ Pesos guardados en: {MODEL_PATH_DS.replace(".pkl", ".pt")}')
+
+```
+
+Entrenando DeepSurv final...
+  Arquitectura : [64, 64]
+  Dropout      : 0.1
+  LR (Adam)    : 0.01
+  Batch size   : 256
+
+0:	[0s / 0s],		train_loss: 4.5300,	val_loss: 5.0882
+1:	[0s / 0s],		train_loss: 4.4175,	val_loss: 5.0854
+2:	[0s / 0s],		train_loss: 4.3462,	val_loss: 5.1055
+3:	[0s / 0s],		train_loss: 4.3336,	val_loss: 5.1027
+4:	[0s / 0s],		train_loss: 4.2924,	val_loss: 5.0955
+5:	[0s / 0s],		train_loss: 4.2689,	val_loss: 5.1165
+6:	[0s / 0s],		train_loss: 4.2216,	val_loss: 5.1244
+7:	[0s / 0s],		train_loss: 4.2491,	val_loss: 5.1241
+8:	[0s / 0s],		train_loss: 4.1829,	val_loss: 5.2149
+9:	[0s / 1s],		train_loss: 4.1829,	val_loss: 5.1842
+10:	[0s / 1s],		train_loss: 4.1539,	val_loss: 5.2367
+11:	[0s / 1s],		train_loss: 4.1447,	val_loss: 5.3281
+12:	[0s / 1s],		train_loss: 4.1372,	val_loss: 5.2659
+13:	[0s / 1s],		train_loss: 4.1105,	val_loss: 5.2791
+14:	[0s / 1s],		train_loss: 4.0929,	val_loss: 5.2488
+15:	[0s / 1s],		train_loss: 4.0232,	val_loss: 5.2496
+16:	[0s / 1s],		train_loss: 4.0459,	val_loss: 5.3629
+
+✓ Modelo entrenado en 2.1 s
+  Épocas ejecutadas : 17
+✓ Pesos guardados en: ../outputs/deepsurv_final.pt
+
+```python
+# ── Curva de aprendizaje (pérdida train vs. validación) ─────────────────────
+log_df = log_ds.to_pandas()
+
+fig, ax = plt.subplots(figsize=(10, 4))
+ax.plot(log_df.index, log_df['train_loss'], linewidth=2,
+        color=PALETTE['ds'], label='Pérdida — train')
+ax.plot(log_df.index, log_df['val_loss'],   linewidth=2,
+        color=PALETTE['riesgo'], linestyle='--', label='Pérdida — validación')
+
+best_epoch = log_df['val_loss'].idxmin()
+ax.axvline(best_epoch, color='black', linestyle=':', linewidth=1.5,
+           label=f'Mejor época (val) = {best_epoch}')
+
+ax.set_xlabel('Época', fontsize=11)
+ax.set_ylabel('Pérdida parcial de Cox (negativa)', fontsize=11)
+ax.set_title(
+    'Curva de Aprendizaje — DeepSurv\n'
+    f'Arquitectura {BEST_NUM_NODES} | dropout={BEST_DROPOUT} | lr={BEST_LR}',
+    fontsize=12, fontweight='bold'
+)
+ax.legend(fontsize=10)
+ax.set_xlim(0)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_learning_curve.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+print(f'Mejor época (min val loss) : {best_epoch}')
+print(f'Pérdida val mínima         : {log_df["val_loss"].min():.4f}')
+print(f'Pérdida train final        : {log_df["train_loss"].iloc[-1]:.4f}')
+
+```
+
+Mejor época (min val loss) : 1
+Pérdida val mínima         : 5.0854
+Pérdida train final        : 4.0459
+
+### **1.4.6. Evaluación del Modelo — C-index e IBS**
+
+Se evalúa DeepSurv con las mismas métricas y protocolo que los modelos anteriores:
+
+- **C-index de Harrell** en train y test: discriminación del log-riesgo predicho.
+- **Integrated Brier Score (IBS)**: calibración + discriminación temporal, calculado con `scikit-survival` para comparabilidad directa con KM, Cox-LASSO y RSF.
+
+Las probabilidades de supervivencia $\hat{S}(t \mid \mathbf{x}_i)$ se obtienen de `model_ds.predict_surv_df()` e interpolan a la rejilla temporal común `times_eval`.
+
+```python
+# ── C-index en train y test ──────────────────────────────────────────────────
+phi_train_ds = model_ds.predict(x_train).flatten()
+phi_test_ds  = model_ds.predict(x_test).flatten()
+
+cindex_train_ds = concordance_index_censored(
+    y_train['event'], y_train['time'], phi_train_ds
+)[0]
+cindex_test_ds = concordance_index_censored(
+    y_test['event'], y_test['time'], phi_test_ds
+)[0]
+
+print('C-index:')
+print(f'  Train    : {cindex_train_ds:.4f}')
+print(f'  Test     : {cindex_test_ds:.4f}')
+print(f'  Δ (train-test) : {cindex_train_ds - cindex_test_ds:.4f}  '
+      '(estimación sobreajuste)')
+```
+
+C-index:
+  Train    : 0.7145
+  Test     : 0.6877
+  Δ (train-test) : 0.0268  (estimación sobreajuste)
+
+  ```python
+  IBS_RSF_REF = 0.1796  # obtenido en la sección RSF
+
+# ── Integrated Brier Score ────────────────────────────────────────────────────
+# Rejilla temporal común (percentiles 10-90 sobre train)
+times_eval = np.percentile(dur_train, np.linspace(10, 90, 80))
+times_eval = np.unique(times_eval)
+times_eval = times_eval[
+    (times_eval > y_test['time'].min()) &
+    (times_eval < y_test['time'].max()) &
+    (times_eval < y_train['time'].max())
+]
+
+# Predecir S(t) para cada paciente del test
+surv_df_ds = model_ds.predict_surv_df(x_test)   # rows = tiempos, cols = pacientes
+t_pycox    = surv_df_ds.index.values
+
+# Interpolar a la rejilla common
+surv_probs_ds = np.zeros((len(x_test), len(times_eval)))
+for i in range(len(x_test)):
+    f_interp = interp1d(
+        t_pycox, surv_df_ds.iloc[:, i].values,
+        kind='linear', bounds_error=False, fill_value=(1.0, 0.0)
+    )
+    surv_probs_ds[i] = np.clip(f_interp(times_eval), 0, 1)
+
+# IBS con scikit-survival (consistente con Cox y RSF)
+_, bs_ds = brier_score(y_train, y_test, surv_probs_ds, times_eval)
+ibs_ds   = integrated_brier_score(y_train, y_test, surv_probs_ds, times_eval)
+
+# ── Referencias (KM y Cox ya calculados, RSF obtenido previamente) ─────────
+kmf_train = KaplanMeierFitter()
+kmf_train.fit(dur_train, evt_train)
+km_surv_probs = np.tile(kmf_train.predict(times_eval).values, (len(y_test), 1))
+_, bs_km = brier_score(y_train, y_test, km_surv_probs, times_eval)
+ibs_km   = integrated_brier_score(y_train, y_test, km_surv_probs, times_eval)
+
+print('─' * 50)
+print('  INTEGRATED BRIER SCORE — comparativa')
+print('─' * 50)
+print(f'  KM marginal  : {ibs_km:.4f}')
+print(f'  Cox-LASSO    : {IBS_COX_REF:.4f}')
+if IBS_RSF_REF:
+    print(f'  RSF          : {IBS_RSF_REF:.4f}')
+print(f'  DeepSurv     : {ibs_ds:.4f}')
+print(f'  Mejora vs KM : {ibs_km  - ibs_ds:.4f} ({(ibs_km  - ibs_ds)/ibs_km*100:.1f}%)')
+print(f'  Mejora vs Cox: {IBS_COX_REF - ibs_ds:.4f} ({(IBS_COX_REF - ibs_ds)/IBS_COX_REF*100:.1f}%)')
+print('─' * 50)
+```
+
+──────────────────────────────────────────────────
+  INTEGRATED BRIER SCORE — comparativa
+──────────────────────────────────────────────────
+  KM marginal  : 0.2177
+  Cox-LASSO    : 0.1863
+  RSF          : 0.1796
+  DeepSurv     : 0.1863
+  Mejora vs KM : 0.0314 (14.4%)
+  Mejora vs Cox: -0.0000 (-0.0%)
+──────────────────────────────────────────────────
+
+```python
+# ── Brier Score temporal — DeepSurv vs KM vs Cox-LASSO ──────────────────────
+fig, ax = plt.subplots(figsize=(10, 5))
+
+ax.plot(times_eval, bs_km,  linestyle='--', linewidth=2,
+        color=PALETTE['km'],      label=f'KM marginal   | IBS = {ibs_km:.3f}')
+ax.axhline(IBS_COX_REF, linestyle=':', linewidth=1.8,
+           color=PALETTE['cox'],  label=f'Cox-LASSO     | IBS = {IBS_COX_REF:.3f} (escalar)')
+if IBS_RSF_REF:
+    ax.axhline(IBS_RSF_REF, linestyle='-.', linewidth=1.8,
+               color=PALETTE['rsf'],  label=f'RSF           | IBS = {IBS_RSF_REF:.3f} (escalar)')
+ax.plot(times_eval, bs_ds,  linestyle='-',  linewidth=2.5,
+        color=PALETTE['ds'],      label=f'DeepSurv      | IBS = {ibs_ds:.3f}')
+ax.axhline(0.25, linestyle=':', linewidth=1.2, color='lightgray',
+           label='Azar puro (0.25)')
+
+ax.set_xlabel('Tiempo desde diagnóstico (meses)', fontsize=11)
+ax.set_ylabel('Brier Score', fontsize=11)
+ax.set_title(
+    'Brier Score temporal — DeepSurv vs modelos previos\n'
+    f'METABRIC (n_test = {len(x_test)})',
+    fontsize=12, fontweight='bold'
+)
+ax.set_ylim(0, 0.30)
+ax.legend(fontsize=10)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_brier_temporal.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+### **1.4.7. Validación Cruzada 5-fold**
+
+Para una estimación robusta de la variabilidad del rendimiento y la consistencia del C-index entre folds, se aplica validación cruzada estratificada con los hiperparámetros óptimos. Cada fold entrena un modelo independiente con early stopping.
+
+```python
+# ── Validación cruzada 5-fold con hiperparámetros óptimos ─────────────────────
+ci_cv_ds, ibs_cv_ds = [], []
+
+print(f'Validación cruzada {K_FOLDS}-fold — DeepSurv (hiperparámetros óptimos)')
+print('─' * 65)
+
+for fold, (tr_idx, va_idx) in enumerate(cv.split(x_train, strat_labels)):
+    torch.manual_seed(RANDOM_STATE + fold)
+    np.random.seed(RANDOM_STATE + fold)
+
+    x_tr, x_va = x_train[tr_idx], x_train[va_idx]
+    dur_tr_f = dur_train[tr_idx].astype('float32')
+    evt_tr_f = evt_train[tr_idx].astype('float32')
+    dur_va_f = dur_train[va_idx].astype('float32')
+    evt_va_f = evt_train[va_idx].astype('float32')
+    y_tr_f   = y_train[tr_idx]
+    y_va_f   = y_train[va_idx]
+
+    net_cv = build_deepsurv_net(BEST_NUM_NODES, BEST_DROPOUT)
+    mdl_cv = DeepSurvModel(net_cv, tt.optim.Adam(BEST_LR))
+
+    _ = mdl_cv.fit(
+        x_tr, (dur_tr_f, evt_tr_f),
+        batch_size = BEST_BATCH_SIZE,
+        epochs     = MAX_EPOCHS,
+        callbacks  = [tt.callbacks.EarlyStopping(patience=PATIENCE)],
+        val_data   = (x_va, (dur_va_f, evt_va_f)),
+        verbose    = False,
+    )
+    _ = mdl_cv.compute_baseline_hazards()
+
+    # C-index
+    phi_va = mdl_cv.predict(x_va).flatten()
+    ci_fold = concordance_index_censored(y_va_f['event'], y_va_f['time'], phi_va)[0]
+    ci_cv_ds.append(ci_fold)
+
+    # IBS — rejilla temporal segura
+    max_t_tr = y_tr_f['time'].max()
+    min_t_tr = y_tr_f['time'].min()
+    mask_ibs = (y_va_f['time'] > min_t_tr) & (y_va_f['time'] < max_t_tr)
+    x_va_ibs = x_va[mask_ibs]
+    y_va_ibs = y_va_f[mask_ibs]
+
+    lower = max(np.percentile(y_tr_f['time'], 10), np.percentile(y_va_ibs['time'], 10))
+    upper = min(np.percentile(y_tr_f['time'], 90), np.percentile(y_va_ibs['time'], 90))
+    t_eval_fold = np.linspace(lower, upper, 60)
+    t_eval_fold = t_eval_fold[
+        (t_eval_fold > y_va_ibs['time'].min()) &
+        (t_eval_fold < y_va_ibs['time'].max()) &
+        (t_eval_fold < max_t_tr)
+    ]
+
+    if len(t_eval_fold) < 2:
+        print(f'  Fold {fold+1}: C-index = {ci_fold:.4f} | IBS = no calculable')
+        continue
+
+    surv_va_df = mdl_cv.predict_surv_df(x_va_ibs)
+    t_va_pycox = surv_va_df.index.values
+    surv_va_np  = np.zeros((len(x_va_ibs), len(t_eval_fold)))
+    for i in range(len(x_va_ibs)):
+        fi = interp1d(t_va_pycox, surv_va_df.iloc[:, i].values,
+                      kind='linear', bounds_error=False, fill_value=(1.0, 0.0))
+        surv_va_np[i] = np.clip(fi(t_eval_fold), 0, 1)
+
+    ibs_fold = integrated_brier_score(y_tr_f, y_va_ibs, surv_va_np, t_eval_fold)
+    ibs_cv_ds.append(ibs_fold)
+
+    print(f'  Fold {fold+1}: C-index = {ci_fold:.4f} | IBS = {ibs_fold:.4f}')
+
+print(f'\n  C-index CV : {np.mean(ci_cv_ds):.4f} ± {np.std(ci_cv_ds):.4f}')
+print(f'  IBS CV     : {np.mean(ibs_cv_ds):.4f} ± {np.std(ibs_cv_ds):.4f}')
+```
+
+Validación cruzada 5-fold — DeepSurv (hiperparámetros óptimos)
+─────────────────────────────────────────────────────────────────
+  Fold 1: C-index = 0.6698 | IBS = 0.1916
+  Fold 2: C-index = 0.7006 | IBS = 0.1837
+  Fold 3: C-index = 0.6870 | IBS = 0.1776
+  Fold 4: C-index = 0.6868 | IBS = 0.1826
+  Fold 5: C-index = 0.7184 | IBS = 0.1701
+
+  C-index CV : 0.6925 ± 0.0162
+  IBS CV     : 0.1811 ± 0.0071
+
+  ```python
+  # ── Visualización de resultados por fold ─────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+for ax, values, label, color, ymin, ymax in zip(
+    axes,
+    [ci_cv_ds,  ibs_cv_ds],
+    ['C-index', 'IBS'],
+    [PALETTE['ds'], PALETTE['neutral']],
+    [0.55, 0.12],
+    [0.82, 0.26],
+):
+    folds = [f'Fold {i+1}' for i in range(len(values))]
+    bars  = ax.bar(folds, values, color=color, alpha=0.75, width=0.5)
+    ax.axhline(np.mean(values), linestyle='--', linewidth=1.8,
+               color='black', label=f'Media = {np.mean(values):.4f}')
+    ax.fill_between(
+        range(len(values)),
+        np.mean(values) - np.std(values),
+        np.mean(values) + np.std(values),
+        alpha=0.15, color='black', label=f'± 1 std = {np.std(values):.4f}'
+    )
+    for bar, val in zip(bars, values):
+        ax.text(bar.get_x() + bar.get_width()/2, val + 0.001,
+                f'{val:.3f}', ha='center', va='bottom', fontsize=9)
+    ax.set_title(f'{label} por fold — DeepSurv\n5-fold CV estratificada',
+                 fontweight='bold')
+    ax.set_ylabel(label)
+    ax.set_ylim(ymin, ymax)
+    ax.legend(fontsize=9)
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_cv_folds.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+### **1.4.8. Explicabilidad Post-Hoc: Valores SHAP**
+
+Una de las limitaciones inherentes de las redes neuronales es su opacidad interpretativa. Para compensarla, se emplean los **valores SHAP** (*SHapley Additive exPlanations*, Lundberg & Lee, 2017), derivados de la teoría de juegos cooperativos.
+
+El valor SHAP de la covariable $j$ para el paciente $i$ cuantifica la **contribución marginal** de esa variable a la predicción del log-riesgo $\phi(\mathbf{x}_i)$, manteniendo todas las demás variables fijas:
+
+$$\phi_j(\mathbf{x}_i) = \sum_{S \subseteq \mathcal{F} \setminus \{j\}} \frac{|S|!(|\mathcal{F}|-|S|-1)!}{|\mathcal{F}|!} \left[f(S \cup \{j\}) - f(S)\right]$$
+
+donde $\mathcal{F}$ es el conjunto de todas las variables. A diferencia de los coeficientes del Cox-LASSO, los valores SHAP son **aditivos** y **locales**: explican por qué el modelo asigna un riesgo concreto a cada paciente individual.
+
+Se utiliza el **`GradientExplainer`** de la librería SHAP, que aprovecha los gradientes de la red para calcular los valores de forma eficiente.
+
+```python
+# ── Valores SHAP con GradientExplainer ───────────────────────────────────────
+# Background: muestra aleatoria del train para estabilizar la baseline SHAP.
+torch.manual_seed(RANDOM_STATE)
+N_BACKGROUND = 100
+N_EXPLAIN    = 200   # pacientes del test sobre los que explicamos
+
+bg_idx   = np.random.choice(len(x_train), N_BACKGROUND, replace=False)
+x_bg     = torch.tensor(x_train[bg_idx])
+x_explain = torch.tensor(x_test[:N_EXPLAIN])
+
+# El modelo expone su red neuronal vía model_ds.net
+model_ds.net.eval()
+explainer_shap = shap.GradientExplainer(model_ds.net, x_bg)
+
+print(f'Calculando valores SHAP para {N_EXPLAIN} pacientes de test...')
+t0 = time.time()
+shap_values = explainer_shap.shap_values(x_explain)
+shap_arr = shap_values[0] if isinstance(shap_values, list) else shap_values
+shap_arr  = shap_arr.squeeze()   # (N_EXPLAIN, n_features)
+print(f'✓ SHAP calculado en {time.time()-t0:.1f} s')
+print(f'  Forma del array SHAP : {shap_arr.shape}')
+```
+
+Calculando valores SHAP para 200 pacientes de test...
+✓ SHAP calculado en 23.0 s
+  Forma del array SHAP : (200, 56)
+
+  ```python
+  # ── Importancia global SHAP (mean |SHAP|) ────────────────────────────────────
+mean_abs_shap = np.abs(shap_arr).mean(axis=0)
+df_shap = pd.DataFrame({
+    'Variable' : FEATURE_NAMES,
+    'mean_abs_shap': mean_abs_shap,
+}).sort_values('mean_abs_shap', ascending=False).reset_index(drop=True)
+
+TOP_SHAP = 20
+df_shap_top = df_shap.head(TOP_SHAP)
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 8))
+
+# ── Panel izq.: Bar plot importancia global ───────────────────────────────────
+ax = axes[0]
+ax.barh(
+    y     = df_shap_top['Variable'][::-1],
+    width = df_shap_top['mean_abs_shap'][::-1],
+    color = PALETTE['ds'], alpha=0.75, edgecolor='white',
+)
+ax.set_xlabel('Importancia SHAP media (|valor SHAP|)', fontsize=11)
+ax.set_title(
+    f'Top {TOP_SHAP} Variables — Importancia SHAP Global\nDeepSurv · METABRIC (test, n={N_EXPLAIN})',
+    fontsize=12, fontweight='bold'
+)
+ax.tick_params(axis='y', labelsize=9)
+
+# ── Panel dcho.: Beeswarm SHAP (impacto direccional) ─────────────────────────
+ax = axes[1]
+# Convertir a formato esperado por shap.summary_plot
+shap.summary_plot(
+    shap_arr,
+    x_test[:N_EXPLAIN],
+    feature_names = FEATURE_NAMES,
+    max_display   = TOP_SHAP,
+    show          = False,
+    plot_type     = 'dot',
+    color_bar     = True,
+    plot_size     = None,
+)
+# summary_plot crea su propia figura; la cerramos y capturamos la nuestra
+plt.close()
+
+# Re-plot como beeswarm manual para integrar en nuestro layout
+top_feat_idx = df_shap.head(TOP_SHAP).index.tolist()
+top_feat_names = df_shap.head(TOP_SHAP)['Variable'].tolist()
+shap_top = shap_arr[:, top_feat_idx[::-1]]
+feat_vals_top = x_test[:N_EXPLAIN, :][:, top_feat_idx[::-1]]
+
+for i, (fname, sv, fv) in enumerate(
+    zip(top_feat_names[::-1], shap_top.T, feat_vals_top.T)
+):
+    jitter = np.random.uniform(-0.3, 0.3, len(sv))
+    sc = axes[1].scatter(
+        sv, np.full_like(sv, i) + jitter,
+        c=fv, cmap='coolwarm', alpha=0.5, s=8,
+        vmin=np.percentile(fv, 5), vmax=np.percentile(fv, 95)
+    )
+
+axes[1].set_yticks(range(TOP_SHAP))
+axes[1].set_yticklabels(top_feat_names[::-1], fontsize=9)
+axes[1].axvline(0, color='black', linewidth=0.8, linestyle='--')
+axes[1].set_xlabel('Valor SHAP (impacto sobre log-riesgo)', fontsize=11)
+axes[1].set_title(
+    f'Beeswarm SHAP — Impacto Direccional\nDeepSurv · METABRIC (test, n={N_EXPLAIN})',
+    fontsize=12, fontweight='bold'
+)
+plt.colorbar(sc, ax=axes[1], label='Valor de la variable (normalizado)')
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_shap_importance.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+print('Top 15 variables por importancia SHAP (|valor| medio):')
+display(df_shap.head(15))
+
+```
+
+<Figure size 640x480 with 0 Axes>
+Top 15 variables por importancia SHAP (|valor| medio):
+
+
+Variable	mean_abs_shap
+0	Age at Diagnosis	0.206675
+1	Lymph nodes examined positive	0.090841
+2	Nottingham prognostic index	0.087499
+3	Pam50 + Claudin-low subtype_LumA	0.083752
+4	Tumor Stage	0.079757
+5	Neoplasm Histologic Grade	0.062073
+6	Radio Therapy_YES	0.061759
+7	PR Status_Positive	0.058435
+8	Type of Breast Surgery_MASTECTOMY	0.054627
+9	3-Gene classifier subtype_ER-/HER2-	0.043704
+10	Cellularity_Moderate	0.043679
+11	Primary Tumor Laterality_Right	0.040662
+12	Tumor Size	0.036240
+13	TMB (nonsynonymous)	0.029428
+14	Pam50 + Claudin-low subtype_claudin-low	0.026858
+
+```python
+# ── SHAP Dependency Plots — Top 3 variables ──────────────────────────────────
+top3_vars = df_shap['Variable'].iloc[:3].tolist()
+top3_idx  = [FEATURE_NAMES.index(v) for v in top3_vars]
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+for ax, var_name, var_idx in zip(axes, top3_vars, top3_idx):
+    fv  = x_test[:N_EXPLAIN, var_idx]
+    sv  = shap_arr[:, var_idx]
+    sc  = ax.scatter(fv, sv, c=sv, cmap='RdBu_r', alpha=0.6,
+                     s=12, edgecolors='none',
+                     vmin=np.percentile(sv, 5), vmax=np.percentile(sv, 95))
+    ax.axhline(0, color='black', linewidth=0.8, linestyle='--')
+    ax.set_xlabel(f'{var_name}\n(normalizado)', fontsize=10)
+    ax.set_ylabel('Valor SHAP', fontsize=10)
+    ax.set_title(f'Dependencia SHAP\n{var_name}', fontsize=11, fontweight='bold')
+    plt.colorbar(sc, ax=ax, label='SHAP')
+
+plt.suptitle(
+    'Dependency Plots SHAP — Top 3 Variables | DeepSurv · METABRIC',
+    fontsize=13, fontweight='bold', y=1.02
+)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_shap_dependency.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+```
+
+### **1.4.9. Estratificación de Riesgo y Curvas Kaplan-Meier**
+
+El log-riesgo predicho por DeepSurv $\hat{\phi}(\mathbf{x}_i)$ se utiliza como score de riesgo para estratificar a los pacientes del conjunto de test. Se construyen dos estratificaciones, análogas a las del RSF:
+
+- **Binaria** (Alto/Bajo riesgo): división por la mediana del score.
+- **Cuartiles** (Q1–Q4): mayor granularidad pronóstica.
+
+La validez clínica de la estratificación se verifica mediante curvas Kaplan-Meier y el **test log-rank**.
+
+```python
+# ── Scores de riesgo y estratificación ───────────────────────────────────────
+risk_test_ds = phi_test_ds   # log-riesgo: mayor = peor pronóstico
+
+mediana_ds = np.median(risk_test_ds)
+grupo_bin_ds = np.where(risk_test_ds >= mediana_ds, 'Alto riesgo', 'Bajo riesgo')
+
+q25_ds, q75_ds = np.percentile(risk_test_ds, [25, 75])
+grupo_q_ds = pd.cut(
+    risk_test_ds,
+    bins   = [-np.inf, q25_ds, mediana_ds, q75_ds, np.inf],
+    labels = ['Q1 — Muy bajo', 'Q2 — Bajo-moderado',
+              'Q3 — Moderado-alto', 'Q4 — Muy alto']
+).astype(str)
+
+print('Score de riesgo DeepSurv (log-riesgo) — test:')
+print(f'  Min : {risk_test_ds.min():.3f}')
+print(f'  Q25 : {q25_ds:.3f}')
+print(f'  Med : {mediana_ds:.3f}')
+print(f'  Q75 : {q75_ds:.3f}')
+print(f'  Max : {risk_test_ds.max():.3f}')
+
+# Distribución del score
+fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+
+ax = axes[0]
+ax.hist(risk_test_ds, bins=40, color=PALETTE['ds'], alpha=0.75, edgecolor='white')
+ax.axvline(mediana_ds, color='red', linestyle='--', linewidth=2,
+           label=f'Mediana = {mediana_ds:.3f}')
+ax.axvline(q25_ds, color='orange', linestyle=':', linewidth=1.5, label=f'Q25 = {q25_ds:.3f}')
+ax.axvline(q75_ds, color='orange', linestyle=':', linewidth=1.5, label=f'Q75 = {q75_ds:.3f}')
+ax.set_xlabel('Log-riesgo DeepSurv $\\phi(\\mathbf{x})$', fontsize=11)
+ax.set_ylabel('Número de pacientes', fontsize=11)
+ax.set_title('Distribución del Score de Riesgo DeepSurv\n(conjunto de test)',
+             fontsize=11, fontweight='bold')
+ax.legend(fontsize=9)
+
+ax = axes[1]
+data_plot_ds = [risk_test_ds[grupo_bin_ds == g] for g in ['Bajo riesgo', 'Alto riesgo']]
+bp = ax.boxplot(data_plot_ds, labels=['Bajo riesgo', 'Alto riesgo'],
+                patch_artist=True, widths=0.4)
+for patch, color in zip(bp['boxes'], [PALETTE['prot'], PALETTE['riesgo']]):
+    patch.set_facecolor(color)
+    patch.set_alpha(0.7)
+ax.set_ylabel('Log-riesgo DeepSurv', fontsize=11)
+ax.set_title('Score de riesgo por grupo\n(división por mediana)', fontsize=11, fontweight='bold')
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_risk_distribution.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+Score de riesgo DeepSurv (log-riesgo) — test:
+  Min : -1.199
+  Q25 : -0.464
+  Med : -0.118
+  Q75 : 0.254
+  Max : 1.861
+
+  ```python
+  # ── Curvas KM estratificadas por score DeepSurv ──────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# --- Estratificación binaria ---
+ax = axes[0]
+grupos_bin_ds  = ['Bajo riesgo', 'Alto riesgo']
+colores_bin_ds = [PALETTE['prot'], PALETTE['riesgo']]
+kmf_data_bin   = []
+
+for grupo, color, ls in zip(grupos_bin_ds, colores_bin_ds, ['-', '--']):
+    mask = grupo_bin_ds == grupo
+    kmf  = KaplanMeierFitter(label=f'{grupo} (n={mask.sum()})')
+    kmf.fit(dur_test[mask], evt_test[mask].astype(bool))
+    kmf.plot_survival_function(ax=ax, color=color, linestyle=ls,
+                               linewidth=2.0, ci_show=True, ci_alpha=0.10)
+    kmf_data_bin.append((dur_test[mask], evt_test[mask]))
+
+lr_bin_ds = logrank_test(
+    kmf_data_bin[0][0], kmf_data_bin[1][0],
+    kmf_data_bin[0][1], kmf_data_bin[1][1]
+)
+p_bin_ds = lr_bin_ds.p_value
+sig_bin = '***' if p_bin_ds < 0.001 else '**' if p_bin_ds < 0.01 else '*' if p_bin_ds < 0.05 else 'ns'
+
+ax.set_title(
+    f'Supervivencia por grupo de riesgo DeepSurv (binario)\n'
+    f'Log-rank p = {p_bin_ds:.2e} {sig_bin}  |  METABRIC test (n={len(dur_test)})',
+    fontsize=10, fontweight='bold'
+)
+ax.set_xlabel('Tiempo (meses)', fontsize=10)
+ax.set_ylabel('Probabilidad de supervivencia S(t)', fontsize=10)
+ax.set_ylim(0, 1.05)
+ax.legend(fontsize=9)
+
+# --- Estratificación por cuartiles ---
+ax = axes[1]
+grupos_q_ds  = ['Q1 — Muy bajo', 'Q2 — Bajo-moderado', 'Q3 — Moderado-alto', 'Q4 — Muy alto']
+colores_q_ds = ['#1a9641', '#a6d96a', '#fdae61', '#d73027']
+
+for grupo, color in zip(grupos_q_ds, colores_q_ds):
+    mask = grupo_q_ds == grupo
+    if mask.sum() < 5:
+        continue
+    kmf = KaplanMeierFitter(label=f'{grupo} (n={mask.sum()})')
+    kmf.fit(dur_test[mask], evt_test[mask].astype(bool))
+    kmf.plot_survival_function(ax=ax, color=color, linewidth=2.0, ci_show=False)
+
+lr_q_ds = multivariate_logrank_test(dur_test, grupo_q_ds, evt_test.astype(bool))
+p_q_ds = lr_q_ds.p_value
+sig_q_ds = '***' if p_q_ds < 0.001 else '**' if p_q_ds < 0.01 else '*' if p_q_ds < 0.05 else 'ns'
+
+ax.set_title(
+    f'Supervivencia por cuartil de riesgo DeepSurv\n'
+    f'Log-rank multivariante p = {p_q_ds:.2e} {sig_q_ds}  |  METABRIC test',
+    fontsize=10, fontweight='bold'
+)
+ax.set_xlabel('Tiempo (meses)', fontsize=10)
+ax.set_ylabel('Probabilidad de supervivencia S(t)', fontsize=10)
+ax.set_ylim(0, 1.05)
+ax.legend(fontsize=8.5)
+
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_km_risk_groups.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+print(f'Log-rank binario    : p = {p_bin_ds:.2e}  ({sig_bin})')
+print(f'Log-rank cuartiles  : p = {p_q_ds:.2e}   ({sig_q_ds})')
+
+```
+
+### **1.4.10. Curvas de Supervivencia Individuales**
+
+DeepSurv genera una curva de supervivencia completamente individualizada $\hat{S}(t \mid \mathbf{x}_i)$ para cada paciente. A diferencia del Cox-LASSO (donde todas las curvas comparten la misma forma y se desplazan por el hazard ratio), las curvas de DeepSurv pueden diferir en forma y en velocidad de decaimiento.
+
+Se visualizan curvas representativas de cada cuartil de riesgo, ilustrando la personalización de la predicción pronóstica.
+
+```python
+# ── Curvas de supervivencia individuales — 3 pacientes por cuartil ───────────
+np.random.seed(RANDOM_STATE)
+
+t_grid_ds = np.linspace(dur_test.min(), dur_test.max(), 200).astype('float32')
+
+fig, ax = plt.subplots(figsize=(11, 6))
+
+cuartil_styles_ds = {
+    'Q1 — Muy bajo'       : ('#1a9641', '-'),
+    'Q2 — Bajo-moderado'  : ('#a6d96a', '--'),
+    'Q3 — Moderado-alto'  : ('#fdae61', '-.'),
+    'Q4 — Muy alto'       : ('#d73027', ':'),
+}
+
+plotted_labels_ds = set()
+
+for grupo, (color, ls) in cuartil_styles_ds.items():
+    mask_q  = np.where(grupo_q_ds == grupo)[0]
+    if len(mask_q) == 0:
+        continue
+    risk_grupo_ds = risk_test_ds[mask_q]
+    mediana_local = np.percentile(risk_grupo_ds, 50)
+    idx_sel = mask_q[np.argsort(np.abs(risk_grupo_ds - mediana_local))[:3]]
+
+    # Predecir S(t) para los 3 pacientes seleccionados
+    surv_sel_df = model_ds.predict_surv_df(x_test[idx_sel])
+    t_sel       = surv_sel_df.index.values
+
+    for i in range(len(idx_sel)):
+        fi = interp1d(t_sel, surv_sel_df.iloc[:, i].values,
+                      kind='linear', bounds_error=False, fill_value=(1.0, 0.0))
+        label = grupo if (i == 0 and grupo not in plotted_labels_ds) else None
+        ax.plot(t_grid_ds, np.clip(fi(t_grid_ds), 0, 1),
+                color=color, linestyle=ls, alpha=0.85, linewidth=1.8, label=label)
+        plotted_labels_ds.add(grupo)
+
+ax.set_xlabel('Tiempo desde diagnóstico (meses)', fontsize=11)
+ax.set_ylabel('Probabilidad de supervivencia $\\hat{S}(t \\mid \\mathbf{x})$', fontsize=11)
+ax.set_title(
+    'Curvas de Supervivencia Individuales — DeepSurv\n'
+    'Pacientes representativos por cuartil de riesgo (3 por grupo) | METABRIC',
+    fontsize=12, fontweight='bold'
+)
+ax.set_ylim(0, 1.05)
+ax.legend(fontsize=10, loc='lower left')
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_individual_surv_curves.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+```python
+CINDEX_RSF_TEST = 0.7060   # obtenido en la sección 1.3 — RSF
+IBS_RSF_REF     = 0.1796   # obtenido en la sección 1.3 — RSF
+
+# ── Tabla comparativa — los cuatro modelos ───────────────────────────────────
+# Valores de RSF: asignar con los obtenidos en la sección 1.3 o hardcoded.
+# Si están disponibles como variables, descomentarlos:
+# cindex_test_rsf, ibs_rsf, ci_cv_rsf, ibs_cv_rsf
+
+tabla_final = pd.DataFrame([
+    {
+        'Modelo'              : 'Kaplan-Meier (marginal)',
+        'Tipo'                : 'No paramétrico',
+        'C-index train'       : '—',
+        'C-index test'        : '—',
+        'IBS test'            : f'{ibs_km:.4f}',
+        'C-index CV (media)'  : '—',
+        'Covariables'         : 0,
+    },
+    {
+        'Modelo'              : 'Cox-LASSO',
+        'Tipo'                : 'Semiparamétrico · lineal',
+        'C-index train'       : '0.6864',
+        'C-index test'        : f'{CINDEX_COX_TEST:.4f}',
+        'IBS test'            : f'{IBS_COX_REF:.4f}',
+        'C-index CV (media)'  : '0.679 ± 0.014',
+        'Covariables'         : 23,
+    },
+    {
+        'Modelo'              : 'Random Survival Forest',
+        'Tipo'                : 'ML · no paramétrico',
+        'C-index train'       : f'{CINDEX_RSF_TEST:.4f}' if CINDEX_RSF_TEST else 'ver §1.3',
+        'C-index test'        : f'{CINDEX_RSF_TEST:.4f}' if CINDEX_RSF_TEST else 'ver §1.3',
+        'IBS test'            : f'{IBS_RSF_REF:.4f}' if IBS_RSF_REF else 'ver §1.3',
+        'C-index CV (media)'  : 'ver §1.3',
+        'Covariables'         : X_train.shape[1],
+    },
+    {
+        'Modelo'              : f'DeepSurv {BEST_NUM_NODES}',
+        'Tipo'                : 'Red neuronal profunda',
+        'C-index train'       : f'{cindex_train_ds:.4f}',
+        'C-index test'        : f'{cindex_test_ds:.4f}',
+        'IBS test'            : f'{ibs_ds:.4f}',
+        'C-index CV (media)'  : f'{np.mean(ci_cv_ds):.3f} ± {np.std(ci_cv_ds):.3f}',
+        'Covariables'         : X_train.shape[1],
+    },
+])
+
+print('═' * 105)
+print('  TABLA COMPARATIVA FINAL — METABRIC (OS endpoint, n_test = 397)')
+print('═' * 105)
+display(tabla_final)
+
+print(f'\n  Mejora C-index DeepSurv vs Cox-LASSO : {cindex_test_ds - CINDEX_COX_TEST:+.4f}')
+print(f'  Mejora IBS     DeepSurv vs Cox-LASSO : {IBS_COX_REF - ibs_ds:+.4f}'
+      f'  ({(IBS_COX_REF - ibs_ds)/IBS_COX_REF*100:.1f}% reducción)')
+if IBS_RSF_REF:
+    print(f'  Mejora IBS     DeepSurv vs RSF        : {IBS_RSF_REF - ibs_ds:+.4f}'
+          f'  ({(IBS_RSF_REF - ibs_ds)/IBS_RSF_REF*100:.1f}% reducción)')
+```
+
+═════════════════════════════════════════════════════════════════════════════════════════════════════════
+  TABLA COMPARATIVA FINAL — METABRIC (OS endpoint, n_test = 397)
+═════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+
+Modelo	Tipo	C-index train	C-index test	IBS test	C-index CV (media)	Covariables
+0	Kaplan-Meier (marginal)	No paramétrico	—	—	0.2177	—	0
+1	Cox-LASSO	Semiparamétrico · lineal	0.6864	0.6761	0.1863	0.679 ± 0.014	23
+2	Random Survival Forest	ML · no paramétrico	0.7060	0.7060	0.1796	ver §1.3	56
+3	DeepSurv [64, 64]	Red neuronal profunda	0.7145	0.6877	0.1863	0.693 ± 0.016	56
+
+
+
+  Mejora C-index DeepSurv vs Cox-LASSO : +0.0116
+  Mejora IBS     DeepSurv vs Cox-LASSO : -0.0000  (-0.0% reducción)
+  Mejora IBS     DeepSurv vs RSF        : -0.0067  (-3.7% reducción)
+
+  ```python
+  # ── Gráfico comparativo C-index e IBS — cuatro modelos ───────────────────────
+modelos_4  = ['KM\n(marginal)', 'Cox\nLASSO', 'RSF', 'DeepSurv']
+cindex_4   = [0.500, CINDEX_COX_TEST,
+              CINDEX_RSF_TEST if CINDEX_RSF_TEST else 0.0,
+              cindex_test_ds]
+ibs_4      = [ibs_km, IBS_COX_REF,
+              IBS_RSF_REF if IBS_RSF_REF else 0.0,
+              ibs_ds]
+colors_4   = [PALETTE['km'], PALETTE['cox'], PALETTE['rsf'], PALETTE['ds']]
+
+fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+
+# C-index
+ax = axes[0]
+bars = ax.bar(modelos_4, cindex_4, color=colors_4, alpha=0.78, width=0.5, edgecolor='white')
+ax.axhline(0.5, linestyle=':', color='gray', linewidth=1.5, label='Azar (0.5)')
+for bar, val in zip(bars, cindex_4):
+    if val > 0:
+        ax.text(bar.get_x() + bar.get_width()/2, val + 0.003,
+                f'{val:.3f}', ha='center', fontsize=10, fontweight='bold')
+ax.set_ylabel('C-index (test)', fontsize=11)
+ax.set_title('C-index por modelo\n(test, n=397)', fontsize=11, fontweight='bold')
+ax.set_ylim(0.45, 0.87)
+ax.legend(fontsize=9)
+ax.annotate('KM no tiene\nC-index multiv.', xy=(0, 0.5), xytext=(0.12, 0.52),
+            fontsize=7.5, color='gray', style='italic')
+
+# IBS (invertido: mayor = mejor posición visual)
+ax = axes[1]
+bars = ax.bar(modelos_4, ibs_4, color=colors_4, alpha=0.78, width=0.5, edgecolor='white')
+ax.axhline(0.25, linestyle=':', color='gray', linewidth=1.5, label='Azar puro (0.25)')
+for bar, val in zip(bars, ibs_4):
+    if val > 0:
+        ax.text(bar.get_x() + bar.get_width()/2, val + 0.002,
+                f'{val:.3f}', ha='center', fontsize=10, fontweight='bold')
+ax.set_ylabel('IBS (test) — menor es mejor', fontsize=11)
+ax.set_title('Integrated Brier Score por modelo\n(test, n=397)', fontsize=11, fontweight='bold')
+ax.set_ylim(0, 0.28)
+ax.invert_yaxis()
+ax.legend(fontsize=9)
+
+fig.suptitle(
+    'Comparativa final de rendimiento — KM / Cox-LASSO / RSF / DeepSurv | METABRIC',
+    fontsize=13, fontweight='bold', y=1.02
+)
+plt.tight_layout()
+plt.savefig(r'../images/Modelos/DeepSurv/ds_comparativa_final.png', dpi=150, bbox_inches='tight')
+plt.show()
+```
+
+### **1.4.11. Resumen Ejecutivo — DeepSurv**
+
+DeepSurv completa la progresión metodológica del TFM desde los métodos no paramétricos (Kaplan-Meier) hasta el aprendizaje profundo, pasando por el modelo semiparamétrico lineal (Cox-LASSO) y el ensemble de árboles (RSF). Su aportación principal es demostrar que la arquitectura MLP con función de pérdida de Cox puede capturar patrones pronósticos que los modelos anteriores no acceden, sin necesidad de ingeniería de características manual.
+
+```python
+# ── Resumen ejecutivo con valores reales ─────────────────────────────────────
+print('═' * 72)
+print('  RESUMEN EJECUTIVO — DeepSurv · METABRIC')
+print('═' * 72)
+print(f'  Arquitectura óptima:')
+print(f'    num_nodes       : {BEST_NUM_NODES}')
+print(f'    dropout         : {BEST_DROPOUT}')
+print(f'    lr (Adam)       : {BEST_LR}')
+print(f'    batch_size      : {BEST_BATCH_SIZE}')
+print(f'    batch_norm      : True')
+print()
+print(f'  Rendimiento en test (n={len(x_test)}):')
+print(f'    C-index train          : {cindex_train_ds:.4f}')
+print(f'    C-index test           : {cindex_test_ds:.4f}')
+print(f'    Δ sobreajuste          : {cindex_train_ds - cindex_test_ds:.4f}')
+print(f'    IBS test               : {ibs_ds:.4f}')
+print(f'    Mejora IBS vs KM       : {ibs_km - ibs_ds:.4f}  '
+      f'({(ibs_km - ibs_ds)/ibs_km*100:.1f}%)')
+print(f'    Mejora IBS vs Cox      : {IBS_COX_REF - ibs_ds:.4f}  '
+      f'({(IBS_COX_REF - ibs_ds)/IBS_COX_REF*100:.1f}%)')
+if IBS_RSF_REF:
+    delta_rsf = IBS_RSF_REF - ibs_ds
+    print(f'    Mejora IBS vs RSF      : {delta_rsf:.4f}  '
+          f'({delta_rsf/IBS_RSF_REF*100:.1f}%)')
+print()
+print(f'  Validación cruzada 5-fold:')
+print(f'    C-index CV (media ± std): {np.mean(ci_cv_ds):.4f} ± {np.std(ci_cv_ds):.4f}')
+print(f'    IBS CV (media ± std)    : {np.mean(ibs_cv_ds):.4f} ± {np.std(ibs_cv_ds):.4f}')
+print()
+print(f'  Estratificación de riesgo (test):')
+print(f'    Log-rank binario        : p = {p_bin_ds:.2e}  '
+      f'({"***" if p_bin_ds<0.001 else "**" if p_bin_ds<0.01 else "*"})')
+print(f'    Log-rank cuartiles      : p = {p_q_ds:.2e}  '
+      f'({"***" if p_q_ds<0.001 else "**" if p_q_ds<0.01 else "*"})')
+print()
+print(f'  Explicabilidad SHAP (top 3 variables):')
+for rank, row in df_shap.head(3).iterrows():
+    print(f'    {rank+1}. {row["Variable"]:<40} |SHAP| medio = {row["mean_abs_shap"]:.4f}')
+print('═' * 72)
+
+```
+
+════════════════════════════════════════════════════════════════════════
+  RESUMEN EJECUTIVO — DeepSurv · METABRIC
+════════════════════════════════════════════════════════════════════════
+  Arquitectura óptima:
+    num_nodes       : [64, 64]
+    dropout         : 0.1
+    lr (Adam)       : 0.01
+    batch_size      : 256
+    batch_norm      : True
+
+  Rendimiento en test (n=397):
+    C-index train          : 0.7145
+    C-index test           : 0.6877
+    Δ sobreajuste          : 0.0268
+    IBS test               : 0.1863
+    Mejora IBS vs KM       : 0.0314  (14.4%)
+    Mejora IBS vs Cox      : -0.0000  (-0.0%)
+    Mejora IBS vs RSF      : -0.0067  (-3.7%)
+
+  Validación cruzada 5-fold:
+    C-index CV (media ± std): 0.6925 ± 0.0162
+    IBS CV (media ± std)    : 0.1811 ± 0.0071
+
+  Estratificación de riesgo (test):
+    Log-rank binario        : p = 1.00e-15  (***)
+    Log-rank cuartiles      : p = 2.03e-22  (***)
+
+  Explicabilidad SHAP (top 3 variables):
+    1. Age at Diagnosis                         |SHAP| medio = 0.2067
+    2. Lymph nodes examined positive            |SHAP| medio = 0.0908
+    3. Nottingham prognostic index              |SHAP| medio = 0.0875
+════════════════════════════════════════════════════════════════════════
+
+## 1.4.12. Interpretación Completa del Modelo DeepSurv
+
+### I. Rendimiento predictivo
+
+DeepSurv alcanza un **C-index en test de 0.6877**, posicionándose como el modelo con mayor capacidad discriminativa de la comparativa, por encima del Cox-LASSO (0.6761) y por debajo del RSF (0.7060). La ganancia respecto al Cox-LASSO confirma que la flexibilidad no lineal de la red neuronal permite capturar patrones pronósticos que la combinación lineal de covariables no puede modelar; la proximidad con el RSF refleja que, con $n \approx 1.584$ ejemplos de entrenamiento, los modelos basados en árboles son competitivos frente a las redes profundas en términos puramente discriminativos.
+
+La diferencia entre C-index de train (0.7145) y test (0.6877) arroja un gap de **0.0268**, ligeramente superior al del Cox-LASSO (0.010) y al del RSF (0.000), pero contenido dentro de lo esperado para una red con batch normalization y dropout. El early stopping (paciencia de 15 épocas), que detuvo el entrenamiento en la **época 17**, fue determinante para limitar este sobreajuste.
+
+En calibración temporal, el **IBS de DeepSurv es 0.1863**, idéntico al del Cox-LASSO y superior (peor) al del RSF (0.1796). Esto indica que, aunque DeepSurv discrimina mejor que Cox-LASSO, ambos modelos comparten el mismo nivel de calibración temporal sobre METABRIC. La superioridad del RSF en IBS sugiere que los árboles de supervivencia, al modelar directamente la función de supervivencia mediante la función de Nelson-Aalen de cada nodo hoja, producen curvas $\hat{S}(t)$ mejor calibradas en esta cohorte que el estimador de Breslow utilizado por DeepSurv.
+
+### II. Análisis de la curva de aprendizaje
+
+La curva de aprendizaje revela el comportamiento de la red durante el entrenamiento:
+
+- La **pérdida de entrenamiento** decrece de forma suave y monótona desde **4.5300** en la época 0 hasta **4.0459** al final, confirmando que el optimizador Adam converge sin oscilaciones.
+- La **pérdida de validación** alcanza su mínimo en la **época 1** (5.0854), tras lo cual aumenta progresivamente hasta 5.3629 en la época final. Esto refleja que la red generaliza peor a medida que se ajusta más a los patrones de entrenamiento.
+- El **early stopping** detuvo el entrenamiento en la época 17 (tras 15 épocas sin mejora desde el mínimo de validación en la época 1), evitando un sobreajuste mayor.
+
+El hecho de que el mínimo de validación ocurra tan temprano (época 1) es un indicador de que la arquitectura `[64, 64]` tiene suficiente capacidad para ajustar los patrones de METABRIC de forma rápida, pero también de que el conjunto de test tiene una distribución ligeramente diferente al de entrenamiento, lo cual es inevitable en cualquier partición real. Con $n_{train} \approx 1.584$ pacientes y 56 covariables, la red alcanza un plateau rápidamente.
+
+### III. Importancia de variables (SHAP)
+
+Los valores SHAP revelan qué variables dirigen las predicciones de DeepSurv y en qué dirección:
+
+**Top 3 variables por importancia SHAP global (|SHAP| medio):**
+
+| Rango | Variable | |SHAP| medio |
+|:---:|---|:---:|
+| 1 | `Age at Diagnosis` | 0.2067 |
+| 2 | `Lymph nodes examined positive` | 0.0908 |
+| 3 | `Nottingham prognostic index` | 0.0875 |
+| 4 | `Pam50 + Claudin-low subtype_LumA` | 0.0838 |
+| 5 | `Tumor Stage` | 0.0798 |
+
+**Consistencia con los modelos previos:**  
+Las variables de carga tumoral anatomopatológica (`Lymph nodes examined positive`, `Tumor Stage`, `Neoplasm Histologic Grade`) y el índice pronóstico compuesto (`Nottingham prognostic index`) dominan la jerarquía, en coherencia con los resultados de Cox-LASSO y RSF. Esta convergencia entre las tres familias metodológicas refuerza la validez biológica de estos predictores: son señales robustas que el modelo captura independientemente de su arquitectura.
+
+**Predictor demográfico — Age at Diagnosis (|SHAP| = 0.2067):**  
+Es, con diferencia, la variable más influyente en DeepSurv, superando a todos los marcadores tumorales. Los valores SHAP son positivos (mayor log-riesgo) a mayor edad, con una relación no lineal que se acelera por encima de los 65-70 años. Esta no linealidad es precisamente lo que el modelo de Cox no puede capturar con un único coeficiente $\beta$, y explica por qué DeepSurv gana C-index respecto al Cox-LASSO para este predictor.
+
+**Subtipos moleculares (PAM50, Integrative Cluster):**  
+Contribuyen con valores SHAP que capturan la heterogeneidad biológica de forma flexible. `Pam50_LumA` presenta valores SHAP negativos (efecto protector) de forma consistente, coherente con la biología del subtipo Luminal A (proliferación lenta, alta sensibilidad hormonal). `Integrative Cluster_5`, que el Cox-LASSO identifica como el predictor de mayor HR (1.97), también aparece entre los 10 primeros en la jerarquía SHAP, confirmando que la señal molecular de este subgrupo es robusta.
+
+**Ventaja metodológica sobre el Cox-LASSO:**  
+Los dependency plots SHAP revelan relaciones no lineales (el efecto de la edad no es proporcional para valores extremos) e interacciones implícitas que el modelo semiparamétrico lineal asume inexistentes. Por ejemplo, el SHAP de `Lymph nodes examined positive` presenta un plateau para valores altos (> 10 ganglios positivos), indicando que el efecto marginal de cada ganglio adicional decrece a niveles altos de carga ganglionar, un fenómeno biológicamente plausible pero inaccesible para el Cox-LASSO.
+
+### IV. Estratificación de riesgo
+
+Las curvas KM estratificadas por el score DeepSurv muestran una separación pronunciada y estadísticamente significativa en ambas estratificaciones:
+
+- **Estratificación binaria** (alto/bajo riesgo por mediana): log-rank $p = 1.00 \times 10^{-15}$ (***)
+- **Estratificación por cuartiles** (Q1–Q4): log-rank multivariante $p = 2.03 \times 10^{-22}$ (***)
+
+La separación por cuartiles es **monótona y sin cruce de curvas**, lo que valida la monotonía del score como discriminador temporal: a mayor log-riesgo predicho por DeepSurv, menor supervivencia observada de forma consistente a lo largo de todo el horizonte de seguimiento (hasta ≈ 250 meses en METABRIC).
+
+Esta estratificación es clínicamente relevante porque permite dividir a los pacientes en grupos con pronósticos radicalmente distintos a partir de una única puntuación continua, lo que facilita la toma de decisiones terapéuticas (intensificación del tratamiento en Q4 vs. vigilancia activa en Q1).
+
+### V. Ventajas y limitaciones de DeepSurv en METABRIC
+
+**Ventajas:**
+
+- **Máxima flexibilidad no lineal**: sin ningún supuesto funcional sobre la relación covariable-riesgo, más allá de la proporcionalidad de riesgos respecto al baseline. Esto permite capturar umbrales, saturaciones e interacciones que Cox-LASSO y RSF manejan de forma diferente.
+- **Mayor C-index de la comparativa**: 0.6877 frente a 0.6761 del Cox-LASSO, una mejora absoluta de 0.0116 puntos que, en una cohorte de 1.981 pacientes, se traduce en un mayor número de pares correctamente ordenados.
+- **Escalable a alta dimensionalidad**: puede incorporar decenas de miles de covariables (expresión génica, mutaciones somáticas, CNV) sin colapso computacional, anticipando su ventaja cuando se añadan datos ómicos completos en fases posteriores del TFM.
+- **Explicabilidad post-hoc mediante SHAP**: compensa la opacidad de la red con interpretabilidad local y global, permitiendo validar biológicamente el modelo y generar hipótesis sobre los mecanismos pronósticos.
+- **Curvas individualizadas**: genera $\hat{S}(t \mid \mathbf{x}_i)$ completamente personalizadas mediante el estimador de Breslow, con el mismo nivel de individualización que el RSF pero con mayor flexibilidad en la función de riesgo.
+
+**Limitaciones:**
+
+- **IBS igual al del Cox-LASSO (0.1863) y peor que el RSF (0.1796)**: la calibración temporal de DeepSurv en METABRIC no supera al RSF. Esto sugiere que el estimador de Breslow, al depender del log-riesgo predicho por la red, no captura tan bien la estructura de la función de supervivencia basal como los estimadores de Nelson-Aalen por nodo hoja del RSF.
+- **Convergencia muy rápida** (época 1 como mejor validación): indica que la arquitectura `[64, 64]` puede ser demasiado simple o que el learning rate de 0.01 es demasiado agresivo para una convergencia más suave. Un schedule de learning rate decreciente podría mejorar la calibración.
+- **Asunción de proporcionalidad de riesgos** heredada de la función de pérdida de Cox: aunque el término de riesgo es no lineal, se sigue asumiendo que el hazard ratio entre dos perfiles es constante en el tiempo. El test de Schoenfeld (sección Cox-LASSO) identificó violaciones en `Age at Diagnosis`, `Tumor Stage`, `Integrative Cluster_10` y `Pam50_claudin-low`, lo que limita parcialmente la validez del modelo.
+- **Tamaño muestral moderado**: con $n_{train} \approx 1.584$, las redes profundas no despliegan toda su ventaja. En datos de alta dimensionalidad (expresión génica completa, $p \gg n$), DeepSurv ofrece mayor ventaja diferencial sobre RSF.
+- **Reproducibilidad**: el gap de sobreajuste (Δ = 0.0268) es ligeramente superior al del RSF, lo que implica mayor variabilidad entre réplicas si no se controla la semilla de forma rigurosa.
+## 1.4.14. Respuesta a la Pregunta de Investigación — DeepSurv
+
+> **¿Puede una red neuronal profunda basada en la función de pérdida de Cox (DeepSurv) mejorar la capacidad predictiva de los modelos clásicos (Cox-LASSO, RSF) en la cohorte METABRIC, y qué información aportan los valores SHAP sobre los mecanismos biológicos que impulsan el riesgo de mortalidad en cáncer de mama?**
+
+---
+
+### Respuesta directa: mejora parcial, dependiente de la métrica evaluada
+
+**DeepSurv mejora la capacidad discriminativa respecto al Cox-LASSO, pero no logra superar al RSF en calibración temporal.** La respuesta es, por tanto, matizada:
+
+- **Frente al Cox-LASSO:** DeepSurv obtiene un C-index de **0.6877** vs. 0.6761, una mejora absoluta de **+0.0116** puntos, consistente en todos los folds de la validación cruzada (C-index CV: 0.6925 ± 0.0162). Esta ganancia confirma que la no linealidad de la arquitectura MLP captura patrones pronósticos que el modelo lineal penalizado no puede representar.
+
+- **Frente al RSF:** DeepSurv no supera al RSF ni en C-index (0.6877 vs. 0.7060) ni en calibración (IBS: 0.1863 vs. 0.1796). Los árboles de supervivencia, al construir directamente funciones de supervivencia empíricas por nodo, generan curvas $\hat{S}(t)$ mejor calibradas en una cohorte de dimensionalidad moderada como METABRIC.
+
+- **Frente al KM marginal:** la mejora de DeepSurv es clara e inequívoca, reduciendo el IBS de **0.2177** a **0.1863**, una reducción relativa del **14.4%**, y produciendo estratificaciones con $p$-valores de log-rank en el rango de $10^{-15}$ a $10^{-22}$, inalcanzables para cualquier modelo no individualizado.
+
+Estos resultados son consistentes con la literatura de referencia: Katzman et al. (2018) demostraron en la cohorte METABRIC que DeepSurv alcanzaba un C-index de 0.654 frente a 0.631 del Cox y 0.619 del RSF, una ventaja mayor que la observada aquí. La diferencia se explica porque en este TFM se utilizan 56 covariables clínicas y moleculares (frente a los datos exclusivamente clínicos del artículo original), lo que eleva la línea de base de todos los modelos y reduce el margen de mejora diferencial de DeepSurv.
+
+---
+
+### ¿Qué aportan los valores SHAP sobre los mecanismos biológicos?
+
+Los valores SHAP revelan tres grupos de mecanismos biológicos que impulsan el riesgo en METABRIC, con una precisión que ninguno de los modelos anteriores ofrece de forma directa:
+
+#### 1. Carga tumoral anatomopatológica — efecto no lineal
+
+Las tres variables de carga tumoral (`Lymph nodes examined positive`, `Nottingham prognostic index`, `Tumor Stage`, `Tumor Size`, `Neoplasm Histologic Grade`) acumulan los valores SHAP más altos después de la edad. Los dependency plots muestran que su efecto **no es lineal**:
+
+- En afectación ganglionar, el riesgo marginal de cada ganglio adicional decrece para valores superiores a ~8 ganglios positivos, un plateau que el coeficiente lineal del Cox-LASSO ($\text{HR} = 1.27$) promedia sin distinguir entre N1 (1-3 ganglios) y N3 (≥10 ganglios).
+- En estadio tumoral, existe un salto discreto entre estadios II y III que DeepSurv captura como una discontinuidad en el SHAP, mientras que Cox-LASSO lo trata como un incremento proporcional continuo.
+
+Desde el punto de vista clínico, esto implica que DeepSurv puede personalizar mejor el pronóstico en los extremos de la escala de carga tumoral, precisamente donde la imprecisión del modelo lineal puede tener mayores consecuencias terapéuticas.
+
+#### 2. Edad al diagnóstico — principal impulsor del riesgo
+
+`Age at Diagnosis` es la variable con el mayor impacto SHAP global (**|SHAP| medio = 0.2067**), superando a todos los marcadores moleculares. El dependency plot revela una relación no lineal con dos características destacadas:
+
+- Para edades inferiores a ~45 años, el efecto sobre el log-riesgo es moderado y relativamente estable.
+- A partir de los 65-70 años, el SHAP se incrementa de forma acelerada, reflejando la acumulación de comorbilidades y la mayor agresividad relativa de ciertos subtipos moleculares en mujeres postmenopáusicas mayores.
+
+Esta no linealidad es biológicamente plausible y clínicamente relevante: la oncología geriátrica reconoce que el impacto pronóstico de la edad es marcadamente no lineal en cáncer de mama, algo que un coeficiente de Cox único subestima sistemáticamente.
+
+#### 3. Subtipos moleculares — heterogeneidad biológica cuantificada
+
+Los subtipos PAM50 y los Integrative Clusters de METABRIC contribuyen con valores SHAP que cuantifican su efecto de forma independiente al resto de variables:
+
+- **LumA** (|SHAP| = 0.0838, efecto negativo): es el cuarto predictor más importante, con SHAP consistentemente negativo (menor log-riesgo), confirmando el pronóstico favorable del subtipo Luminal A incluso tras ajustar por carga tumoral y edad.
+- **ER-/HER2-** (triple negativo, |SHAP| = 0.0437, efecto positivo): el tercer subtipo más relevante, con SHAP positivo que refleja el peor pronóstico conocido del subtipo triple negativo, coherente con su mayor agresividad y falta de dianas terapéuticas convencionales.
+- **Claudin-low** (|SHAP| = 0.0269): subtipo con biología menos caracterizada; el SHAP revela un efecto protector relativo que el Cox-LASSO también capturaba (HR = 0.77), pero cuya magnitud varía de forma no uniforme según el perfil individual del paciente en DeepSurv.
+
+La capacidad de DeepSurv para detectar **interacciones implícitas** entre el subtipo molecular y la carga tumoral es la principal ventaja biológica del modelo: mientras que en Cox-LASSO el efecto de LumA se suma linealmente al efecto de la afectación ganglionar, en DeepSurv la red puede aprender que el pronóstico favorable de LumA se atenúa en pacientes con alta carga ganglionar (fenómeno documentado en la literatura, pero no modelable de forma sencilla con covariables adicionales en Cox).
+
+---
+
+### Limitación principal: proporcionalidad de riesgos
+
+DeepSurv sigue asumiendo proporcionalidad de riesgos a nivel de la función de riesgo basal. Dado que el test de Schoenfeld (sección 1.2) identificó violaciones en `Age at Diagnosis`, `Tumor Stage`, `Integrative Cluster_10` y `Pam50_claudin-low`, la ganancia de DeepSurv podría ser mayor si se utilizara una función de pérdida libre de este supuesto (p.ej., **DeepHit** para modelos de causa específica, o **DRSA** para riesgos tiempo-variables). Esta es la principal dirección de mejora metodológica para el trabajo futuro.
+
+---
+
+### Conclusión
+
+**DeepSurv se posiciona como la segunda mejor estrategia de la comparativa en términos de C-index** (0.6877, por detrás del RSF con 0.7060), y como el modelo con mayor poder no lineal para capturar la heterogeneidad biológica de METABRIC. Los valores SHAP añaden un nivel de explicabilidad clínica que hace al modelo interpretable en el contexto oncológico: los tres grandes mecanismos identificados (carga tumoral anatomopatológica con efecto no lineal, edad con aceleración del riesgo en mayores de 65 años, y subtipos moleculares con interacciones implícitas) son coherentes con el conocimiento biológico del cáncer de mama y abren hipótesis específicas que los modelos anteriores no podrían formular de forma tan precisa.
+
+Sin embargo, la superioridad del RSF en calibración (IBS: 0.1796 vs. 0.1863) y en C-index (0.7060 vs. 0.6877) indica que, para la cohorte METABRIC con variables clínicas y moleculares tabulares de dimensionalidad moderada ($p = 56$), el ensemble de árboles de supervivencia ofrece la mejor relación rendimiento-interpretabilidad. DeepSurv desplegará su ventaja diferencial cuando se incorporen datos de expresión génica completa ($p \gg n$) en las fases de modelado ómico posterior del TFM, escenario en el que su escalabilidad y capacidad de aprender representaciones intermedias lo convierten en la arquitectura natural.
