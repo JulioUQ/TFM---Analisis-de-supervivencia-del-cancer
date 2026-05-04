@@ -142,7 +142,7 @@ def plot_categorical_subplots(
     ncol=3, nrow=None
 ):
     if columns is None:
-        valid_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
+        valid_cols = df.select_dtypes(include=["object", "category", "bool"]).columns.tolist()
     else:
         valid_cols = [col for col in columns if col in df.columns]
 
