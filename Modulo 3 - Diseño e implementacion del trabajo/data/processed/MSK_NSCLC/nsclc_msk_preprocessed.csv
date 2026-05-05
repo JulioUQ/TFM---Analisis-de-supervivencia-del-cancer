@@ -1,0 +1,1128 @@
+Patient Current Age,Cancer Type Detailed,Ethnicity Category,Extrapulmonary,Fraction Genome Altered,Gene Panel,Metabolic Tumor Volume,Metastatic Site,MSI Score,MSI Type,Primary Tumor Site,Prior Treatment,Race Category,Sample Class,Sample Type,Sex,Smoking Status,TMB (nonsynonymous),Tumor Purity_numeric,duration,event
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,14.58607096,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,55.55190539,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,21.4848883,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,11.20236531,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,61.66228647,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,33.90275953,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,83.18002628,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,8.869908016,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.149802891,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.018396846,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,21.84625493,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,59.46123522,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,54.86202365,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,2.463863338,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,35.90670171,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,5.519053876,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,2.890932983,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,1.773981603,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,4.336399474,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,16.81997372,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,0.755584757,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,6.274638633,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,16.7542707,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,15.50591327,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,12.45072273,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,4.730617608,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,24.44152431,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,5.814717477,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,11.43232589,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,12.02365309,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,53.41655716,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,52.29960578,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,16.88567674,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,1.609724047,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,22.70039422,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,4.402102497,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,23.35742444,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.938239159,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,8.771353482,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,35.97240473,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,15.76872536,1.0
+,Lung Squamous Cell Carcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,6.865965834,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,10.21681997,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,0.032851511,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,3.64651774,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,1.051248357,1.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,23.25886991,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,2.562417871,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,22.86465177,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,22.70039422,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,10.84099869,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,28.71222076,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,18.79106439,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,0.886990802,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,1.248357424,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,2.890932983,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,3.94218134,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,22.56898817,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,23.39027595,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,6.241787122,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,9.724047306,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,3.679369251,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,8.377135348,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,3.38370565,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,2.496714849,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,2.628120894,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,2.890932983,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,16.42575558,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,6.603153745,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,5.256241787,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,1.609724047,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,3.285151117,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,50.72273325,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,4.270696452,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,10.51248357,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,68.79106439,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,44.90801577,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,2.463863338,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,33.5413929,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,2.496714849,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,61.89224704,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,18.79106439,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,2.036793693,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,3.810775296,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,18.5282523,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,3.613666229,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,33.86990802,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,1.872536137,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,9.395532194,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,4.270696452,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,12.08935611,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,48.55453351,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,44.80946124,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,21.09067017,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,45.49934297,0.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,5.420499343,1.0
+,Non-Small Cell Lung Cancer,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,11.89224704,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,0.919842313,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,21.12352168,0.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,0.591327201,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,15.80157687,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.262812089,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,33.96846255,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,63.60052562,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,31.83311432,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,11.20236531,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,4.106438896,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,13.69908016,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,8.70565046,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,18.16688568,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.427069645,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,4.894875164,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,16.68856767,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,33.8370565,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,7.358738502,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,19.28383706,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,35.41392904,1.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,2.759526938,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,2.496714849,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,27.89093298,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,4.106438896,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,10.93955322,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,10.21681997,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,55.84756899,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,23.8173456,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,6.767411301,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,41.88567674,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,1.346911958,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,7.490144547,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,10.41392904,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,28.61366623,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,0.624178712,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,12.22076216,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,1.741130092,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,9.855453351,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,5.387647832,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,4.369250986,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,32.26018397,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,3.94218134,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,17.54270696,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,8.344283837,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,0.952693824,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.478318003,1.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,2.956636005,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,11.39947438,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,15.04599212,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,0.952693824,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,0.459921156,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,28.5151117,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,6.931668857,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,6.143232589,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,2.069645204,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,47.20762155,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,14.88173456,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,9.26412615,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,4.303547963,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,1.215505913,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,33.21287779,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,18.29829172,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,19.7109067,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,1.018396846,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,21.38633377,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,51.51116951,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,18.00262812,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,14.78318003,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,10.8738502,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,19.44809461,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,5.124835742,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,11.03810775,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,21.51773982,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,15.3088042,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,35.11826544,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,35.24967148,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,34.06701708,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,2.266754271,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.459921156,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,35.97240473,0.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,3.186596583,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,4.237844941,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.065703022,0.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,0.131406045,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,33.57424442,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,11.43232589,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,29.9934297,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,39.29040736,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,33.44283837,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,23.78449409,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,1.248357424,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,36.10381078,0.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,6.208935611,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,20.72930355,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,5.913272011,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.445466491,0.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,17.37844941,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,10.21681997,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,33.60709593,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,7.260183968,1.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,10.90670171,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,1.839684625,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,3.08804205,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,35.24967148,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,2.299605782,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,20.26938239,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,18.00262812,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,31.86596583,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,41.39290407,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,1.379763469,0.0
+,Non-Small Cell Lung Cancer,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,21.1892247,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,6.931668857,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,25.36136662,1.0
+,Non-Small Cell Lung Cancer,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,1.938239159,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,12.74638633,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,1.773981603,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,11.03810775,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,69.21813403,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,5.387647832,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,0.755584757,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,1.018396846,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.032851511,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,46.12352168,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,2.825229961,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,3.843626807,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,20.43363995,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,2.003942181,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,,,cfDNA,Metastasis,,,,,3.482260184,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,34.75689882,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,17.18134034,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,107.8515112,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,25.2956636,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,5.256241787,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,14.15900131,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,33.73850197,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,6.274638633,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,30.32194481,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,8.114323259,1.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,31.53745072,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,25.06570302,0.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,28.87647832,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,38.66622865,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.67542707,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,43.03547963,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,66.95137976,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,10.05256242,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,25.03285151,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,26.21550591,0.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,0.952693824,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,16.85282523,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,2.332457293,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,2.956636005,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,18.49540079,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,10.54533509,0.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,8.475689882,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,1.281208936,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,25.03285151,0.0
+,Non-Small Cell Lung Cancer,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,11.26806833,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,27.92378449,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,90.83442838,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,90.40735874,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,41.55716163,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.624178712,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,60.5781866,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,32.16162943,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,8.245729304,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,12.02365309,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,49.63863338,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,50.0,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,69.25098555,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,42.50985545,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,55.84756899,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,21.02496715,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,31.80026281,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,39.09329829,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,59.59264126,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,15.37450723,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,6.800262812,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,12.61498029,0.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,21.45203679,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,3.843626807,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,60.15111695,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,98.12746386,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,16.55716163,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,31.93166886,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,9.165571616,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,25.91984231,1.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,9.756898817,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,1.051248357,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,0.262812089,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,2.628120894,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,41.4586071,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,40.76872536,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,17.0499343,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,5.650459921,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,54.46780552,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,8.14717477,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,8.541392904,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,0.952693824,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,48.55453351,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,7.457293035,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.295663601,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,10.8738502,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,12.61498029,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,36.95795007,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,14.48751643,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,0.492772668,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,27.89093298,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,48.29172142,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,28.38370565,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,44.97371879,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,2.003942181,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,44.90801577,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,43.10118265,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,39.4218134,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,11.59658344,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,38.10775296,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,11.23521682,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,37.77923784,1.0
+,Non-Small Cell Lung Cancer,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,35.74244415,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,16.55716163,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,17.67411301,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,100.2628121,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,19.90801577,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,1.149802891,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,32.42444152,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,37.87779238,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,11.07095926,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,33.67279895,1.0
+,Lung Squamous Cell Carcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,21.28777924,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,15.3088042,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,30.48620237,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,10.77529566,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,14.58607096,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,12.31931669,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,33.37713535,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,55.12483574,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,22.60183968,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,35.90670171,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,11.62943495,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,28.77792378,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,11.85939553,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,8.015768725,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,6.73455979,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,31.83311432,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,28.38370565,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,27.62812089,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,26.93823916,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,26.34691196,1.0
+,Lung Squamous Cell Carcinoma,,,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,12.51642576,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,41.1629435,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,17.54270696,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,17.37844941,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,16.85282523,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,20.66360053,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,10.51248357,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,22.14191853,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,118.2325887,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,37.0565046,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,7.917214192,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,10.15111695,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,True,,,8.409986859,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,11.4651774,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,26.93823916,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,1.741130092,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,15.73587385,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,49.14586071,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,False,,,19.64520368,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,29.73061761,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,37.87779238,1.0
+,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,32.75295664,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,False,,,3.810775296,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,59.19842313,0.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,20.40078844,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,23.68593955,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,25.09855453,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,0.886990802,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Female,True,,,6.4717477,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,42.90407359,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,True,,,18.5282523,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,145.8278581,1.0
+,Lung Adenocarcinoma,,False,,ctDx_lung_panel,,,,,,False,,cfDNA,Metastasis,Male,True,,,15.90013141,1.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Female,False,,,11.99080158,0.0
+,Lung Adenocarcinoma,,True,,ctDx_lung_panel,,,,,,True,,cfDNA,Metastasis,Male,False,,,22.66754271,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0301,IMPACT341,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,4.43662120239,25.0,60.282523,1.0
+53.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.1181,IMPACT468,,,0.14,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,1.72939618997,80.0,24.57293035,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2184,IMPACT468,,,1.02,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,9.51167904482,30.0,86.4651774,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0616,IMPACT341,,,0.49,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,3.32746590179,30.0,50.72273325,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4891,IMPACT341,,Lymph Node,0.61,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,4.43662120239,50.0,89.02759527,0.0
+75.0,Lung Adenocarcinoma,South/Central America (except Brazil),False,0.2222,IMPACT341,,Brain,0.0,Stable,Lung,True,NATIVE AMERICAN-AM IND/ALASKA,Tumor,Metastasis,Female,False,5.54577650299,60.0,87.45072273,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2164,IMPACT410,,Lymph Node,0.25,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,7.82975758092,60.0,38.86333771,1.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1324,IMPACT410,,Lymph Node,0.16,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,0.978719697615,40.0,81.20893561,0.0
+76.0,Lung Adenocarcinoma,South/Central America (except Brazil),True,0.026,IMPACT410,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,2.93615909284,10.0,62.22076216,1.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3242,IMPACT410,,,1.22,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,5.87231818569,20.0,44.31668857,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.045,IMPACT410,,,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,0.978719697615,30.0,82.91721419,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT410,,Liver,0.26,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,1.95743939523,60.0,60.70959264,0.0
+79.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0067,IMPACT410,,,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.93615909284,10.0,40.76872536,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2257,IMPACT410,,,0.28,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,7.82975758092,50.0,84.52693824,1.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1356,IMPACT410,,,0.16,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,5.87231818569,30.0,1.544021025,0.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4268,IMPACT410,,Soft Tissue,0.78,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,1.95743939523,70.0,50.13140604,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0425,IMPACT410,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.91487879046,40.0,1.281208936,0.0
+71.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.1588,IMPACT410,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,5.87231818569,20.0,35.41392904,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0982,IMPACT468,,,0.13,Do not report,Lung,True,WHITE,Tumor,Primary,Female,False,5.1881885699,30.0,42.14848883,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0593,IMPACT410,,Lymph Node,0.78,Stable,Lung,True,UNKNOWN,Tumor,Metastasis,Male,False,0.978719697615,,75.22996058,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0174,IMPACT410,,,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,2.93615909284,40.0,69.7109067,1.0
+47.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2829,IMPACT410,,,1.53,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,4.89359848807,60.0,55.09198423,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2075,IMPACT410,,Lymph Node,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,7.82975758092,40.0,16.85282523,0.0
+73.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.0108,IMPACT410,,,0.15,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,0.978719697615,20.0,52.6609724,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0521,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,2.59409428495,20.0,26.14980289,0.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0247,IMPACT468,,,0.23,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,18.79106439,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6961,IMPACT410,,Liver,3.04,Indeterminate,Lung,True,WHITE,Tumor,Metastasis,Male,False,1.95743939523,80.0,51.7739816,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0994,IMPACT410,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,7.82975758092,50.0,54.04073587,1.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4175,IMPACT468,,,1.02,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,16.4292638047,40.0,54.33639947,1.0
+62.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.0379,IMPACT410,,Pleural Fluid,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,1.95743939523,30.0,17.24704336,0.0
+45.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.0859,IMPACT410,,,0.25,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,4.89359848807,20.0,85.97240473,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.032,IMPACT410,,,0.08,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,4.89359848807,40.0,54.23784494,0.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0277,IMPACT410,,,0.15,Stable,Lung,,WHITE,Tumor,Primary,Female,,1.95743939523,50.0,67.60840999,0.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1261,IMPACT410,,,0.74,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,3.91487879046,50.0,6.767411301,0.0
+87.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0049,IMPACT410,,,0.16,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,0.978719697615,20.0,37.0565046,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0652,IMPACT410,,,0.26,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,True,2.93615909284,80.0,85.47963206,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.117,IMPACT410,151.58,,0.07,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,7.82975758092,80.0,14.48751643,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.004,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,1.72939618997,60.0,33.96846255,1.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0539,IMPACT410,,,0.51,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,5.87231818569,15.0,48.85019711,1.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.04,IMPACT410,,,0.33,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,3.91487879046,20.0,35.93955322,1.0
+46.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0002,IMPACT410,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,0.978719697615,15.0,89.4218134,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0014,IMPACT410,,,0.0,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Male,True,0.978719697615,10.0,42.70696452,0.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4637,IMPACT410,,Brain,2.17,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,0.978719697615,60.0,33.47568988,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0179,IMPACT410,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,3.91487879046,30.0,14.02759527,1.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3335,IMPACT410,,,0.71,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,1.95743939523,70.0,29.17214192,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3763,IMPACT410,,,0.84,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.93615909284,,63.5348226,1.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0772,IMPACT410,,Soft tissue,1.23,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,6.8510378833,30.0,19.74375821,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1299,IMPACT410,,Bone,0.14,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,5.87231818569,30.0,35.74244415,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0009,IMPACT410,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,0.0,10.0,33.80420499,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0775,IMPACT410,,,0.0,Do not report,Lung,True,WHITE,Tumor,Primary,Male,False,0.978719697615,10.0,118.0354796,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.4628,IMPACT410,,Lymph Node,1.79,Do not report,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,34.2551894165,60.0,10.15111695,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0026,IMPACT410,,,0.0,Do not report,Lung,True,WHITE,Tumor,Primary,Male,True,0.978719697615,20.0,24.34296978,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,,,Lung,True,WHITE,Tumor,Primary,Male,True,5.1881885699,30.0,25.09855453,0.0
+41.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.325,IMPACT468,,,0.16,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,3.45879237993,60.0,16.06438896,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0537,IMPACT468,,,0.0,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,27.49671485,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0346,IMPACT468,,,0.15,Do not report,Lung,True,WHITE,Tumor,Primary,Male,False,1.72939618997,40.0,17.24704336,0.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3777,IMPACT468,,,0.93,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,10.3763771398,30.0,27.79237845,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0311,IMPACT468,,,0.08,Do not report,Lung,True,WHITE,Tumor,Primary,Female,False,4.32349047492,30.0,26.87253614,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0149,IMPACT468,,,0.15,Do not report,Lung,False,WHITE,Tumor,Primary,Female,True,2.59409428495,10.0,3.94218134,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2964,IMPACT468,,,0.29,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,4.32349047492,40.0,79.82917214,1.0
+51.0,Large Cell Neuroendocrine Carcinoma,Non-Spanish; Non-Hispanic,True,0.5608,IMPACT468,,Adrenal,3.47,Do not report,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,40.6408104642,70.0,65.86727989,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0017,IMPACT468,69.63,Pleural Fluid,0.0,Do not report,Lung,False,WHITE,Tumor,Metastasis,Male,True,0.864698094984,10.0,7.752956636,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0386,IMPACT468,2.84,,0.36,Do not report,Lung,False,WHITE,Tumor,Primary,Female,True,10.3763771398,10.0,56.20893561,0.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0793,IMPACT468,,Lymph Node,0.0,Do not report,Lung,False,WHITE,Tumor,Metastasis,Male,True,12.1057733298,20.0,9.26412615,1.0
+67.0,Lung Adenocarcinoma,South/Central America (except Brazil),,0.09,IMPACT468,,,1.05,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,6.05288666489,60.0,21.78055191,0.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1482,IMPACT468,,,,,Lung,True,WHITE,Tumor,Primary,Female,True,2.59409428495,20.0,12.0565046,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3276,IMPACT468,,,0.14,Do not report,Lung,False,WHITE,Tumor,Primary,Male,False,1.72939618997,20.0,24.83574244,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.16,IMPACT468,,,0.06,Do not report,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,6.05288666489,20.0,18.2325887,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0001,IMPACT468,,Lymph Node,0.0,Do not report,Lung,True,PT REFUSED TO ANSWER,Tumor,Metastasis,Female,False,0.864698094984,10.0,45.95926413,1.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2796,IMPACT468,,Lymph Node,2.1,Do not report,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,4.32349047492,40.0,21.15637319,0.0
+47.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.5131,IMPACT468,,Lymph node,2.24,Do not report,Lung,True,WHITE,Tumor,Metastasis,Female,False,2.59409428495,30.0,16.7542707,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1932,IMPACT468,,,0.31,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,5.1881885699,30.0,154.0407359,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0162,IMPACT468,,,0.0,Do not report,Lung,False,WHITE,Tumor,Primary,Female,True,6.91758475987,40.0,1.905387648,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1143,IMPACT468,,,0.0,Do not report,Lung,False,WHITE,Tumor,Primary,Male,False,1.72939618997,40.0,12.97634691,1.0
+82.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.1646,IMPACT410,,Axilla,0.15,Do not report,Lung,True,WHITE,Tumor,Metastasis,Male,True,2.93615909284,60.0,46.84625493,1.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2534,IMPACT468,,,0.15,Do not report,Lung,True,WHITE,Tumor,Primary,Male,False,5.1881885699,40.0,49.1130092,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0013,IMPACT468,,,0.06,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,1.72939618997,10.0,7.227332457,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3192,IMPACT468,,,1.3,Do not report,Lung,True,WHITE,Tumor,Primary,Female,False,6.05288666489,30.0,59.13272011,0.0
+62.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0245,IMPACT468,,Lymph Node,0.33,Do not report,Lung,True,WHITE,Tumor,Metastasis,Female,False,5.1881885699,20.0,29.07358739,1.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3435,IMPACT468,246.06,,1.9,Do not report,Lung,False,WHITE,Tumor,Primary,Female,True,2.59409428495,50.0,0.689881735,0.0
+45.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0025,IMPACT468,,Liver,0.13,Do not report,Lung,True,WHITE,Tumor,Metastasis,Female,False,1.72939618997,10.0,20.33508541,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0764,IMPACT468,,,0.86,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,21.28777924,1.0
+54.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.2875,IMPACT468,,Lymph Node,0.37,Do not report,Lung,True,WHITE,Tumor,Metastasis,Female,True,2.59409428495,50.0,35.54533509,1.0
+84.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.001,IMPACT468,,,0.42,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,3.45879237993,20.0,18.2325887,1.0
+74.0,Lung Adenocarcinoma,Other Spanish/Hispanic(incl European; excl Dom Rep,,0.0176,IMPACT468,,,13.38,Do not report,Lung,True,OTHER,Tumor,Primary,Male,False,9.51167904482,10.0,52.69382392,0.0
+88.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0011,IMPACT468,29.05,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.59409428495,10.0,58.44283837,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0174,IMPACT468,,Pleura,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,4.32349047492,20.0,31.04467806,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1407,IMPACT468,,,0.13,Stable,Lung,False,OTHER,Tumor,Primary,Female,False,4.32349047492,50.0,46.71484888,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0906,IMPACT468,,,0.07,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,6.05288666489,20.0,77.13534823,0.0
+70.0,Large Cell Neuroendocrine Carcinoma,Non-Spanish; Non-Hispanic,,0.0092,IMPACT468,,,0.0,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,True,9.51167904482,20.0,3.318002628,0.0
+71.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.2137,IMPACT468,,Lymph Node,0.71,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,16.4292638047,60.0,35.51248357,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6213,IMPACT468,,Liver,3.42,Indeterminate,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,6.05288666489,50.0,32.52299606,1.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1359,IMPACT468,753.23,,0.23,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,4.32349047492,10.0,14.91458607,1.0
+54.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.4312,IMPACT468,,Lymph Node,0.93,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,False,3.45879237993,30.0,25.49277267,1.0
+60.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.1907,IMPACT468,,,2.19,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,7.78228285485,60.0,2.660972405,0.0
+31.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0281,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,1.72939618997,20.0,9.888304862,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5249,IMPACT468,,Brain,2.86,Stable,Lung,,WHITE,Tumor,Metastasis,Female,,6.05288666489,80.0,41.06438896,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2584,IMPACT468,,,0.46,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,5.1881885699,30.0,22.86465177,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0884,IMPACT468,,Lymph node,0.82,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,30.0,8.804204993,1.0
+80.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.5186,IMPACT468,,,3.02,Indeterminate,Lung,True,WHITE,Tumor,Primary,Female,False,7.78228285485,60.0,25.13140604,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1306,IMPACT468,,,0.47,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,5.1881885699,30.0,94.77660972,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0872,IMPACT468,,,0.2,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,3.45879237993,30.0,1.642575558,0.0
+51.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1114,IMPACT468,,,0.43,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,7.78228285485,10.0,57.85151117,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0784,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,0.0,20.0,54.07358739,0.0
+77.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,54.17214192,0.0
+42.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0384,IMPACT468,118.14,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,2.59409428495,20.0,54.04073587,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0539,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,3.45879237993,30.0,28.84362681,0.0
+86.0,Pleomorphic Carcinoma of the Lung,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.0,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,2.59409428495,10.0,20.20367937,0.0
+61.0,Large Cell Neuroendocrine Carcinoma,Non-Spanish; Non-Hispanic,False,0.3069,IMPACT468,,,0.9,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,5.1881885699,50.0,48.94875164,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0033,IMPACT468,,Soft Tissue,0.44,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,0.0,40.0,128.7779238,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0929,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,6.05288666489,40.0,57.42444152,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.057,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,2.59409428495,30.0,53.31800263,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.09,IMPACT468,536.81,Lymph Node,0.24,Stable,Lung,False,OTHER,Tumor,Metastasis,Female,False,7.78228285485,10.0,53.31800263,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3154,IMPACT468,,,3.53,Indeterminate,Lung,False,WHITE,Tumor,Primary,Male,False,0.0,40.0,11.20236531,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0559,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,3.45879237993,10.0,19.94086728,1.0
+57.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0007,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,1.72939618997,10.0,53.02233903,0.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4412,IMPACT468,,Thyroid,0.88,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,40.0,4.402102497,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1879,IMPACT468,,,0.07,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,0.864698094984,20.0,2.398160315,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3906,IMPACT468,516.27,Bone,0.45,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,20.0,13.27201051,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0071,IMPACT468,,,0.05,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,0.864698094984,10.0,6.241787122,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0205,IMPACT468,,Lymph Node,0.06,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,7.78228285485,30.0,39.32325887,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3922,IMPACT468,,,0.73,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Female,False,9.51167904482,30.0,48.25886991,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2055,IMPACT468,,,0.62,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,6.05288666489,30.0,99.44152431,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2011,IMPACT468,,,0.12,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,1.72939618997,30.0,24.34296978,0.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4087,IMPACT468,,Bone,0.91,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,3.45879237993,30.0,1.839684625,0.0
+67.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",False,0.001,IMPACT468,251.63,Chest Wall,0.07,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Metastasis,Male,True,6.91758475987,20.0,10.18396846,1.0
+84.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.162,IMPACT468,,Liver,0.32,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,7.78228285485,40.0,0.85413929,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0401,IMPACT468,,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,4.32349047492,20.0,51.80683311,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1246,IMPACT468,,,0.0,Stable,Lung,True,PT REFUSED TO ANSWER,Tumor,Primary,Female,False,2.59409428495,30.0,60.70959264,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.3186,IMPACT468,,Lymph Node,0.6,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,10.3763771398,40.0,22.83180026,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2298,IMPACT468,,,3.0,Do not report,Lung,False,WHITE,Tumor,Primary,Male,True,8.64698094984,40.0,2.332457293,1.0
+71.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,1.281208936,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3988,IMPACT468,,Lymph Node,1.98,Do not report,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,6.05288666489,30.0,5.814717477,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0134,IMPACT468,51.93,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,3.45879237993,10.0,16.49145861,1.0
+35.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,7.950065703,1.0
+33.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0115,IMPACT468,,,0.06,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,4.32349047492,10.0,48.85019711,0.0
+69.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,19.1195795,1.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.7938,IMPACT468,55.55,Cerebellum,4.82,Indeterminate,Lung,False,WHITE,Tumor,Metastasis,Male,True,11.2410752348,40.0,0.624178712,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,1.938239159,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.26,IMPACT468,,Flank,0.6,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,30.0,4.270696452,1.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.001,IMPACT468,52.22,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.05288666489,10.0,31.11038108,1.0
+70.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0027,IMPACT468,,Lymph node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,6.05288666489,10.0,2.463863338,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0001,IMPACT468,87.63,,0.0,Do not report,Lung,False,WHITE,Tumor,Primary,Male,False,0.0,10.0,50.55847569,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0079,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,0.864698094984,10.0,50.85413929,0.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.005,IMPACT468,,,0.06,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,6.91758475987,20.0,13.33771353,1.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.387,IMPACT468,,Liver,2.25,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,5.1881885699,50.0,18.29829172,1.0
+54.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.2911,IMPACT468,,Pericardium,0.23,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,5.1881885699,40.0,40.67017083,0.0
+88.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0006,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,0.864698094984,10.0,4.829172142,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2706,IMPACT468,1145.59,Pleura,0.46,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.05288666489,30.0,0.788436268,0.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2434,IMPACT468,,,0.78,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,1.72939618997,40.0,14.84888305,1.0
+82.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,49.73718791,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4913,IMPACT468,,,0.46,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,3.45879237993,30.0,0.624178712,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0003,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,0.0,20.0,0.919842313,0.0
+46.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2205,IMPACT468,,Lymph Node,0.16,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,2.59409428495,20.0,0.624178712,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1055,IMPACT468,,Lymph node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,12.1057733298,20.0,30.94612352,1.0
+61.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0152,IMPACT468,,,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,0.864698094984,10.0,35.61103811,1.0
+90.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0045,IMPACT468,45.08,Lymph node,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,6.05288666489,30.0,13.14060447,1.0
+52.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4923,IMPACT468,,Liver,0.47,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,6.05288666489,40.0,43.46254928,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0233,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,6.05288666489,20.0,22.01051248,1.0
+31.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.2654,IMPACT468,59.85,Lymph Node,0.07,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,0.0,40.0,50.42706965,0.0
+64.0,Poorly Differentiated Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0508,IMPACT468,460.92,Brain,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,4.32349047492,20.0,41.13009198,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,0.0,20.0,32.29303548,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3767,IMPACT468,,,1.3,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,4.32349047492,40.0,0.722733246,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1653,IMPACT468,,Liver,0.19,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,2.59409428495,30.0,20.40078844,1.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0038,IMPACT468,,Pleura,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.864698094984,10.0,49.4086728,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0009,IMPACT468,152.76,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,0.864698094984,10.0,49.86859396,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2604,IMPACT468,,,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,2.59409428495,30.0,100.9198423,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0022,IMPACT468,,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,20.0,0.952693824,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0013,IMPACT468,,Lymph node,0.0,Stable,Lung,True,OTHER,Tumor,Metastasis,Female,False,6.91758475987,20.0,16.13009198,0.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1052,IMPACT468,,Rib,0.2,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,6.05288666489,30.0,0.525624179,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.365,IMPACT468,483.21,Lymph node,0.94,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,24.2115466595,30.0,0.657030223,0.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1035,IMPACT468,,,0.69,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,3.45879237993,30.0,50.98554534,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0142,IMPACT468,,Pleural Fluid,0.92,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,1.72939618997,20.0,71.97766097,1.0
+38.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4476,IMPACT468,,Bone,1.12,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,2.59409428495,50.0,11.26806833,1.0
+81.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,69.31668857,1.0
+56.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.1808,IMPACT468,,Soft tissue back,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,7.78228285485,40.0,5.880420499,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3065,IMPACT468,,Lymph node,0.32,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,True,3.45879237993,40.0,44.90801577,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0582,IMPACT468,41.07,Lymph Node,0.06,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,4.32349047492,20.0,45.33508541,0.0
+38.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0647,IMPACT468,,Liver,0.05,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,2.59409428495,20.0,27.3653088,1.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.3872,IMPACT468,,,0.86,Do not report,Lung,True,WHITE,Tumor,Primary,Female,False,4.32349047492,20.0,25.36136662,0.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0585,IMPACT468,95.94,,0.2,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,4.32349047492,20.0,38.86333771,1.0
+42.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0346,IMPACT468,,Lymph node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,3.45879237993,10.0,0.919842313,0.0
+71.0,Pleomorphic Carcinoma of the Lung,Non-Spanish; Non-Hispanic,True,0.1062,IMPACT468,2880.7,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,3.45879237993,30.0,8.935611038,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4018,IMPACT468,,,0.74,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,4.32349047492,40.0,36.99080158,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2502,IMPACT468,,,0.14,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,12.1057733298,30.0,22.83180026,0.0
+73.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.3511,IMPACT468,,,3.79,Indeterminate,Lung,True,WHITE,Tumor,Primary,Male,False,6.05288666489,80.0,12.12220762,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1239,IMPACT468,,Soft Tissue,0.2,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,3.45879237993,30.0,21.74770039,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,1.478318003,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0016,IMPACT468,276.67,Pericardium,0.07,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,1.72939618997,10.0,47.47043364,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5477,IMPACT468,,Liver,0.81,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,5.1881885699,60.0,37.51642576,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0018,IMPACT468,4.4,Pleura,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,1.72939618997,10.0,1.149802891,0.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,490.35,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,3.318002628,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.3824,IMPACT468,8.21,,0.94,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Primary,Female,False,4.32349047492,30.0,28.87647832,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.4699,IMPACT468,,Lymph Node,0.37,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,0.864698094984,40.0,53.74507227,0.0
+77.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.4801,IMPACT468,,,0.3,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,4.32349047492,40.0,27.56241787,1.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0121,IMPACT468,,,0.21,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,0.864698094984,10.0,14.65177398,1.0
+65.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.4984,IMPACT468,,,0.63,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,2.59409428495,10.0,55.15768725,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0003,IMPACT468,,Pleural Fluid,0.07,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,1.72939618997,20.0,108.0486202,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0032,IMPACT468,,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,6.05288666489,10.0,16.29434954,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0718,IMPACT468,,,0.0,Stable,Lung,True,OTHER,Tumor,Primary,Male,False,5.1881885699,,40.50591327,1.0
+79.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5687,IMPACT468,,Lymph node,1.23,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,11.2410752348,50.0,47.50328515,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3012,IMPACT468,161.07,Bone,0.07,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,3.45879237993,30.0,14.88173456,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6018,IMPACT468,,Lymph Node,2.78,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,1.72939618997,50.0,39.15900131,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5638,IMPACT468,,Liver,1.29,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,6.91758475987,60.0,1.11695138,1.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0515,IMPACT468,,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,5.1881885699,30.0,1.11695138,0.0
+63.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0015,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,1.72939618997,30.0,13.50197109,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,122.25,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,2.726675427,1.0
+65.0,Poorly Differentiated Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0118,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,0.0,10.0,13.17345598,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0118,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,0.0,10.0,3.482260184,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0314,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,4.32349047492,10.0,26.34691196,1.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0729,IMPACT468,,,0.15,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,1.72939618997,40.0,55.32194481,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0248,IMPACT468,889.85,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,5.1881885699,20.0,9.067017083,1.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0003,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.0,10.0,9.526938239,1.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5757,IMPACT468,,,4.91,Indeterminate,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,6.91758475987,40.0,36.39947438,0.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0016,IMPACT468,,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,3.45879237993,20.0,18.79106439,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1801,IMPACT468,,Neck,0.07,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,60.0,11.33377135,1.0
+47.0,Lung Adenocarcinoma,Other Spanish/Hispanic(incl European; excl Dom Rep,True,0.0,IMPACT468,,,0.0,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Female,True,0.864698094984,10.0,28.58081472,1.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1779,IMPACT468,,Bone,0.3,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,11.2410752348,30.0,1.97109067,1.0
+68.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0624,IMPACT468,,Brain,0.27,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,18.1586599947,20.0,47.24047306,0.0
+51.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0148,IMPACT468,,,0.43,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,6.05288666489,40.0,31.04467806,0.0
+74.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,0.0029,IMPACT468,,,0.0,Do not report,Lung,True,WHITE,Tumor,Primary,Male,True,0.0,10.0,25.49277267,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2636,IMPACT468,1597.51,Lymph Node,0.21,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,12.1057733298,30.0,6.800262812,1.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0239,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,8.64698094984,20.0,25.49277267,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3731,IMPACT468,,Pleural Fluid,1.11,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,3.45879237993,30.0,33.96846255,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2163,IMPACT468,117.65,,0.14,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,4.32349047492,30.0,10.67674113,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3165,IMPACT468,,,0.05,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,3.45879237993,70.0,12.45072273,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.5715,IMPACT468,5390.35,Liver,1.81,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,3.45879237993,40.0,0.065703022,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3165,IMPACT468,,,0.13,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,6.91758475987,30.0,8.409986859,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.5333,IMPACT468,108.65,Lymph Node,2.02,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,12.9704714248,70.0,12.18791064,0.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0007,IMPACT468,0.0,Pleural Fluid,0.0,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,False,0.0,30.0,2.036793693,0.0
+61.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0,IMPACT-HEME-400,44.2,,-1.0,,Unknown,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,True,0.0,,12.22076216,1.0
+79.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.016,IMPACT468,,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,5.1881885699,30.0,3.94218134,0.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2732,IMPACT468,,,0.07,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.59409428495,40.0,19.7109067,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,2.59409428495,10.0,35.38107753,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0004,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,2.59409428495,10.0,30.91327201,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0016,IMPACT468,,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,7.78228285485,20.0,23.55453351,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0029,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,1.72939618997,20.0,2.299605782,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2944,IMPACT468,,,0.21,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,21.6174523746,40.0,35.90670171,0.0
+48.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6583,IMPACT468,,Brain,2.88,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,26.8056409445,70.0,32.22733246,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0114,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,45.36793693,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,2.59409428495,10.0,17.57555848,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2432,IMPACT468,,,,Do not report,Lung,False,WHITE,Tumor,Primary,Female,True,9.51167904482,30.0,48.39027595,1.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1098,IMPACT468,,Pleural Fluid,0.12,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,11.2410752348,50.0,44.87516426,0.0
+47.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",False,0.0579,IMPACT468,,Pleura,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,2.59409428495,10.0,29.56636005,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3118,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.864698094984,30.0,1.084099869,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0002,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,1.72939618997,20.0,39.58607096,1.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.008,IMPACT468,,,0.07,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.59409428495,20.0,24.50722733,1.0
+62.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.5205,IMPACT468,,Lymph node,4.04,Indeterminate,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.05288666489,50.0,18.56110381,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1113,IMPACT468,,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.59409428495,30.0,1.41261498,0.0
+46.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.2536,IMPACT468,,Bone,0.21,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,50.0,25.68988173,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0805,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,1.72939618997,30.0,2.956636005,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0097,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,4.32349047492,10.0,25.95269382,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4443,IMPACT468,,Pleural Fliud,0.4,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,10.3763771398,50.0,45.5978975,0.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4596,IMPACT468,167.72,Pleura,1.12,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,3.45879237993,50.0,1.346911958,0.0
+48.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,BLACK OR AFRICAN AMERICAN,cfDNA,Metastasis,Female,True,,,3.712220762,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Male,True,,,45.82785808,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0399,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,7.78228285485,30.0,48.19316689,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.596,IMPACT468,1337.27,Pericardium,1.35,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,12.9704714248,50.0,44.18528252,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0748,IMPACT468,,,0.11,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,0.864698094984,40.0,43.65965834,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,6.05288666489,10.0,5.814717477,1.0
+68.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,32.0630749,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3133,IMPACT468,122.25,Pericardium,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,1.72939618997,40.0,3.416557162,0.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1162,IMPACT468,,Pleura,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,5.1881885699,30.0,7.555847569,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0003,IMPACT468,,,0.12,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,0.864698094984,10.0,13.27201051,1.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1371,IMPACT468,97.01,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,8.64698094984,40.0,6.668856767,1.0
+76.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.7328,IMPACT468,,,2.1,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,5.1881885699,50.0,6.077529566,1.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,257.99,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,4.32349047492,20.0,7.03022339,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0001,IMPACT468,2588.29,,0.12,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,0.0,10.0,1.938239159,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0053,IMPACT468,,Lymph node,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.864698094984,20.0,43.65965834,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3303,IMPACT468,,Lymph node,0.23,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,5.1881885699,20.0,10.34822602,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1972,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,7.78228285485,30.0,43.59395532,0.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.217,IMPACT468,,Soft Tissue,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,8.64698094984,40.0,2.693823916,1.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0098,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,20.0,6.668856767,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0666,IMPACT468,60.14,Lymph node,0.26,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,12.1057733298,20.0,43.00262812,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3265,IMPACT468,,,3.45,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,15.5645657097,40.0,36.30091984,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.158,IMPACT468,,,0.12,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,9.51167904482,30.0,27.89093298,0.0
+37.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1158,IMPACT468,11.93,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.59409428495,,2.496714849,0.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0736,IMPACT468,45.87,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,5.1881885699,10.0,41.26149803,1.0
+63.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0956,IMPACT468,,Epidural,0.28,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,2.59409428495,20.0,7.260183968,1.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5942,IMPACT468,,,0.93,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,3.45879237993,60.0,35.31537451,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0003,IMPACT468,3260.05,Bone,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,8.64698094984,20.0,2.069645204,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5925,IMPACT468,,Brain,0.96,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,12.9704714248,40.0,1.084099869,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1226,IMPACT468,,,0.19,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,2.102496715,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2006,IMPACT468,531.72,Bone,0.81,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,11.2410752348,30.0,17.90407359,1.0
+68.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.3379,IMPACT468,2457.82,,0.19,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,5.1881885699,40.0,17.41130092,1.0
+55.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.4934,IMPACT468,,,2.01,Stable,Lung,False,UNKNOWN,Tumor,Primary,Female,True,9.51167904482,60.0,15.76872536,1.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2165,IMPACT468,,Lymph Node,0.11,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,1.72939618997,40.0,29.59921156,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Female,True,,,5.091984231,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0,IMPACT468,112.79,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.864698094984,40.0,2.036793693,0.0
+31.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3218,IMPACT468,,,0.25,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Female,False,3.45879237993,30.0,9.00131406,0.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0016,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.0,10.0,41.55716163,0.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.6582,IMPACT468,602.82,Lymph node,2.99,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,23.3468485646,50.0,1.872536137,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0094,IMPACT468,,Soft Tissue,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,0.864698094984,20.0,50.68988173,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0294,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,4.32349047492,10.0,1.544021025,0.0
+83.0,Lung Adenocarcinoma,Unknown whether Spanish or not,True,0.0043,IMPACT468,,Bone,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,0.0,,21.02496715,1.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2606,IMPACT468,358.03,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,3.45879237993,,1.018396846,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0072,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,6.91758475987,10.0,2.956636005,1.0
+70.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.7241,IMPACT468,,Pericardium,0.6,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Metastasis,Male,True,16.4292638047,30.0,2.431011827,1.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0389,IMPACT468,,,0.0,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Male,True,2.59409428495,20.0,13.04204993,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1221,IMPACT468,29.73,Adrenal Gland,0.05,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,17.2939618997,20.0,38.00919842,1.0
+64.0,Poorly Differentiated Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,0.0932,IMPACT468,,,0.8,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.45879237993,60.0,18.46254928,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0133,IMPACT468,403.41,Chest Wall,0.0,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,False,3.45879237993,10.0,38.66622865,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1891,IMPACT468,377.79,,0.43,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.45879237993,40.0,1.182654402,0.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.001,IMPACT468,587.46,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,0.0,5.0,35.34822602,0.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.099,IMPACT468,125.38,,0.24,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,6.05288666489,20.0,0.361366623,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4903,IMPACT468,142.1,,2.05,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,12.9704714248,60.0,38.60052562,1.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0067,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,20.0,31.27463863,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0867,IMPACT468,,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,4.32349047492,20.0,11.39947438,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2263,IMPACT468,,,0.35,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,3.45879237993,70.0,2.365308804,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0903,IMPACT468,,,0.29,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,4.32349047492,70.0,8.212877792,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.3936,IMPACT468,267.67,,0.11,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,2.59409428495,40.0,9.592641261,1.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,Adrenal,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,1.72939618997,20.0,16.09724047,1.0
+48.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.2834,IMPACT468,296.23,Liver,0.47,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,5.1881885699,40.0,41.29434954,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1904,IMPACT468,57.31,,0.26,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.91758475987,30.0,1.544021025,1.0
+69.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.3162,IMPACT468,,,0.94,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,15.5645657097,30.0,4.960578187,1.0
+79.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,False,0.063,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,10.3763771398,30.0,26.1826544,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1033,IMPACT468,,Abdomen,0.43,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,1.72939618997,30.0,18.29829172,0.0
+64.0,Poorly Differentiated Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.347,IMPACT468,,Liver,0.12,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,74.3640361686,30.0,4.369250986,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5497,IMPACT468,,Brain,1.51,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,60.0,36.1695138,1.0
+46.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.5099,IMPACT468,122.73,Lymph Node,1.05,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,7.78228285485,60.0,0.657030223,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.001,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,4.32349047492,20.0,4.073587385,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.239,IMPACT468,108.36,Pubic Mass,0.72,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,9.51167904482,50.0,12.68068331,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0019,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,5.1881885699,20.0,12.68068331,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0128,IMPACT468,,,0.83,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,12.9704714248,30.0,41.13009198,0.0
+59.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.1786,IMPACT468,,Soft Tissue,0.29,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,13.8351695197,50.0,11.760841,1.0
+64.0,Lung Adenocarcinoma,,,0.1946,IMPACT468,,Bone,0.86,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,4.32349047492,50.0,4.402102497,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2774,IMPACT468,,Spine (Bone),0.06,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,5.1881885699,30.0,50.78843627,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6321,IMPACT468,,Lymph node,0.62,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,3.45879237993,70.0,0.229960578,0.0
+47.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.6193,IMPACT468,428.45,Lymph node,1.83,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,4.32349047492,40.0,39.35611038,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4873,IMPACT468,,Lymph node,2.18,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,7.78228285485,40.0,41.49145861,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.001,IMPACT468,77.75,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,1.72939618997,10.0,10.97240473,1.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1991,IMPACT468,,Bone,0.18,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,40.0,16.19579501,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,13.79,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,1.72939618997,10.0,22.96320631,1.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0097,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,2.59409428495,10.0,131.3074901,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0879,IMPACT468,,,0.11,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,6.05288666489,30.0,5.486202365,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.613,IMPACT468,,Pleura,1.47,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,8.64698094984,60.0,10.05256242,0.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2781,IMPACT468,,Lymph Node,0.26,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,0.0,50.0,39.61892247,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2164,IMPACT468,,Pleural Fluid,0.06,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,6.91758475987,30.0,12.31931669,1.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5854,IMPACT468,,Lymph Node,1.46,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,9.51167904482,50.0,1.609724047,1.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4747,IMPACT468,,Lymph Node,0.23,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,12.9704714248,60.0,18.8239159,1.0
+63.0,Non-Small Cell Lung Cancer,Unknown whether Spanish or not,,0.6154,IMPACT468,,Lymph Node,0.71,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,10.0,7.063074901,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.005,IMPACT468,,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,3.45879237993,20.0,2.463863338,0.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2495,IMPACT468,,Liver,0.74,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,8.64698094984,30.0,27.85808147,1.0
+66.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,IMPACT468,,Lymph Node,0.82,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,24.2115466595,10.0,22.70039422,1.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.5877,IMPACT468,,Lymph Node,0.4,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,3.45879237993,60.0,23.62023653,1.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0001,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.91758475987,30.0,39.09329829,0.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3239,IMPACT468,,,0.64,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,7.78228285485,50.0,31.1760841,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2933,IMPACT468,,Bone,0.51,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,19.8880561846,30.0,11.20236531,1.0
+50.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,3.975032852,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0069,IMPACT468,,,0.16,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,13.8351695197,10.0,24.67148489,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1327,IMPACT468,709.42,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.91758475987,30.0,27.72667543,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2195,IMPACT468,,,-1.0,Do not report,Lung,False,WHITE,Tumor,Primary,Male,True,67.4464514087,40.0,39.06044678,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4744,IMPACT468,,Epidural,1.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,37.1820180843,60.0,8.409986859,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0809,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,7.78228285485,30.0,22.60183968,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,12.9704714248,10.0,14.1261498,1.0
+71.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,0.0025,IMPACT468,110.61,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,5.1881885699,10.0,38.46911958,0.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0001,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,25.9409428495,30.0,27.79237845,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2313,IMPACT468,,,0.06,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,9.51167904482,30.0,58.2457293,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0001,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,2.59409428495,20.0,1.018396846,0.0
+78.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,BLACK OR AFRICAN AMERICAN,cfDNA,Metastasis,Female,False,,,9.034165572,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.036,IMPACT468,,,0.05,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,4.32349047492,30.0,31.1760841,0.0
+66.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0004,IMPACT-HEME-400,,,-1.0,,Unknown,False,WHITE,Tumor,Primary,Female,True,0.0,0.0,2.660972405,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.3035,IMPACT468,3258.97,Axilla,0.51,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,10.3763771398,50.0,21.55059133,1.0
+65.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.001,IMPACT468,,Pleura,0.0,Do not report,Lung,False,WHITE,Tumor,Metastasis,Female,True,0.0,10.0,1.97109067,0.0
+90.0,Lung Adenocarcinoma,Unknown whether Spanish or not,False,0.0033,IMPACT468,,Vertebrate,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,0.864698094984,10.0,37.74638633,0.0
+57.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,0.0,5.0,5.453350854,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1278,IMPACT468,,Bone,0.05,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,6.05288666489,20.0,9.658344284,1.0
+49.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3127,IMPACT468,,Lymph Node,0.3,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,True,0.864698094984,60.0,37.9434954,1.0
+78.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.1047,IMPACT468,398.33,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,0.0,10.0,1.445466491,0.0
+66.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.475,IMPACT468,,,0.72,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,10.3763771398,20.0,6.636005256,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3011,IMPACT468,,Soft Tissue,0.65,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,70.0,4.76346912,1.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0069,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,10.0,1.018396846,0.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2558,IMPACT468,,,0.11,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,10.34822602,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0424,IMPACT468,,Bone,0.11,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,1.72939618997,30.0,3.449408673,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1236,IMPACT468,,Adrenal,0.36,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,1.72939618997,30.0,6.636005256,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.206,IMPACT468,,Lymph Node,0.22,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,16.4292638047,30.0,37.28646518,0.0
+48.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.001,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,0.0,10.0,34.92115637,1.0
+76.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.0075,IMPACT468,,Lymph node,0.11,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,10.0,19.87516426,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6073,IMPACT468,,,0.72,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,4.32349047492,50.0,37.15505913,1.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1652,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,2.59409428495,40.0,2.562417871,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3933,IMPACT468,,,-1.0,Do not report,Lung,True,WHITE,Tumor,Primary,Female,False,9.51167904482,50.0,27.3653088,1.0
+40.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0272,IMPACT468,,Lymph Node,0.24,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,5.1881885699,30.0,29.33639947,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4884,IMPACT468,1391.06,Lymph node,1.1,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,8.64698094984,30.0,12.0565046,1.0
+62.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.4547,IMPACT468,,,0.34,Stable,Lung,False,NO VALUE ENTERED,Tumor,Primary,Female,True,18.1586599947,40.0,2.759526938,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.081,IMPACT468,,,0.46,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,5.1881885699,10.0,14.91458607,1.0
+52.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.2305,IMPACT468,,Liver,0.29,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,False,3.45879237993,40.0,18.10118265,1.0
+55.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.541,IMPACT468,,Adrenal Gland,1.05,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,50.0,25.32851511,0.0
+90.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0891,IMPACT468,,Adrenal Gland,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,1.72939618997,30.0,0.459921156,0.0
+77.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.1905,IMPACT468,,,0.93,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,4.32349047492,20.0,1.314060447,1.0
+55.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.0768,IMPACT468,,Flank,0.28,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,False,12.1057733298,30.0,14.84888305,1.0
+87.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3216,IMPACT468,,Lymph Node,1.09,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,2.59409428495,20.0,1.642575558,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,1.544021025,0.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0495,IMPACT468,96.94,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,8.64698094984,10.0,14.48751643,0.0
+66.0,Lung Adenocarcinoma,,,0.0386,IMPACT468,,Pleura,0.0,Stable,Lung,False,UNKNOWN,Tumor,Metastasis,Male,True,2.59409428495,20.0,7.128777924,0.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.001,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,0.864698094984,,61.95795007,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0218,IMPACT468,,Spine (Bone),0.17,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,1.72939618997,20.0,1.609724047,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.5186,IMPACT468,,Adrenal,1.83,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,14.6998676147,40.0,35.70959264,0.0
+70.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.0,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,16.4292638047,40.0,2.299605782,0.0
+48.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,13.04204993,1.0
+51.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.079,IMPACT468,,Brain - Dura,0.32,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,1.72939618997,30.0,55.42049934,0.0
+57.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.2438,IMPACT468,,,0.26,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,6.05288666489,50.0,67.80551905,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1246,IMPACT468,,Pleura,0.17,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,4.32349047492,40.0,1.379763469,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0011,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,11.2410752348,20.0,5.781865966,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0,IMPACT468,369.64,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,0.864698094984,10.0,35.47963206,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2381,IMPACT468,37.26,,0.89,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Primary,Female,True,6.91758475987,50.0,15.17739816,0.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Primary,Female,False,0.0,,47.96320631,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5109,IMPACT468,,,0.65,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,6.05288666489,30.0,66.62286465,1.0
+63.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,32.62155059,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1169,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,3.45879237993,20.0,11.89224704,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4761,IMPACT468,,Brain,1.45,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,10.3763771398,60.0,25.62417871,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.374,IMPACT468,49.88,,0.39,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,6.05288666489,60.0,9.296977661,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0235,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,10.3763771398,30.0,45.17082786,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,,Pleura,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,2.59409428495,10.0,13.73193167,0.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0346,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,3.45879237993,20.0,0.624178712,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0853,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,6.05288666489,30.0,168.0683311,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0215,IMPACT468,,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,2.59409428495,30.0,103.2522996,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1153,IMPACT468,186.5,Soft Tissue,0.18,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,2.59409428495,50.0,1.41261498,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.9386,IMPACT468,1034.39,Soft Tissue,1.16,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,3.45879237993,40.0,0.952693824,1.0
+71.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.2586,IMPACT468,,Soft Tissue,0.52,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,4.32349047492,10.0,3.679369251,1.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2651,IMPACT468,,Pleural Fluid,0.75,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,60.0,1.938239159,1.0
+70.0,Lung Squamous Cell Carcinoma,Unknown whether Spanish or not,,0.0014,IMPACT468,,,0.0,Stable,Lung,,WHITE,Tumor,Primary,Male,,0.864698094984,10.0,4.632063075,1.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1478,IMPACT468,192.89,,0.11,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,4.32349047492,50.0,19.57950066,0.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3269,IMPACT468,,Pleura,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,2.59409428495,10.0,16.36005256,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,0.722733246,1.0
+74.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.3455,IMPACT468,,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,7.78228285485,50.0,0.788436268,1.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0283,IMPACT468,394.51,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.91758475987,60.0,3.219448095,0.0
+70.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.0002,IMPACT468,,,,,Lung,False,WHITE,Tumor,Primary,Male,True,0.0,10.0,4.139290407,1.0
+76.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,0.1575,IMPACT468,,,0.21,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,10.3763771398,30.0,16.88567674,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,False,OTHER,cfDNA,Primary,Female,False,2.79684292371,,33.77135348,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,True,0.864698094984,10.0,85.70959264,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0562,IMPACT468,,Lymph Node,0.11,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,5.1881885699,30.0,36.59658344,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.143,IMPACT468,,Rib,0.23,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,7.78228285485,20.0,5.223390276,0.0
+79.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0035,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,4.32349047492,10.0,6.208935611,1.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,0.864698094984,10.0,26.11695138,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2272,IMPACT468,,,-1.0,Do not report,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,13.8351695197,60.0,24.34296978,0.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3361,IMPACT468,428.35,Pleural Fluid,0.47,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,50.0,12.91064389,0.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0837,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,8.64698094984,20.0,33.27858081,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1281,IMPACT468,204.2,,0.0,Stable,Lung,False,UNKNOWN,Tumor,Primary,Female,False,0.864698094984,20.0,0.624178712,0.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0135,IMPACT468,,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.05288666489,30.0,33.31143233,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0215,IMPACT468,,CSF,,,Lung,False,WHITE,Tumor,Metastasis,Female,False,0.0,,74.44152431,0.0
+77.0,Lung Adenocarcinoma,Unknown whether Spanish or not,True,0.1603,IMPACT468,61.03,Lymph node,,,Lung,False,WHITE,Tumor,Metastasis,Female,True,4.32349047492,,18.59395532,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,4.434954008,1.0
+60.0,Lung Adenocarcinoma,Unknown whether Spanish or not,False,0.0,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,0.0,,25.75558476,1.0
+73.0,Large Cell Neuroendocrine Carcinoma,Non-Spanish; Non-Hispanic,True,0.3161,IMPACT468,,,0.88,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,3.45879237993,70.0,1.872536137,1.0
+82.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,0.886990802,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0031,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,1.72939618997,20.0,31.93166886,1.0
+52.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0474,IMPACT468,,,0.06,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,6.05288666489,10.0,3.909329829,1.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2487,IMPACT468,198.23,,0.12,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,0.864698094984,40.0,9.756898817,1.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0701,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,7.78228285485,30.0,20.53219448,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.5613,IMPACT468,1393.5,Liver,1.42,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,20.0,13.40341656,1.0
+57.0,Large Cell Neuroendocrine Carcinoma,Non-Spanish; Non-Hispanic,,0.6643,IMPACT468,,Liver,,,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.91758475987,90.0,28.54796321,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2521,IMPACT468,,,0.17,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,2.59409428495,20.0,0.427069645,0.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0018,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,3.45879237993,10.0,40.14454665,1.0
+46.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1822,IMPACT468,,Pleura,0.07,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,6.05288666489,40.0,8.639947438,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4083,IMPACT468,747.36,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,6.91758475987,30.0,0.459921156,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,475.49,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,13.66622865,1.0
+89.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,3.022339028,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1002,IMPACT468,,,0.05,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Primary,Female,True,4.32349047492,20.0,7.128777924,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2058,IMPACT468,,Spine,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,3.45879237993,30.0,6.241787122,0.0
+66.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.0472,IMPACT468,,Lymph node,0.06,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,4.32349047492,10.0,36.07095926,0.0
+65.0,Lung Neuroendocrine Tumor,Non-Spanish; Non-Hispanic,,0.4242,IMPACT468,,Pleura,1.24,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,12.9704714248,40.0,12.54927727,1.0
+32.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0263,IMPACT468,,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,0.864698094984,50.0,1.445466491,0.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0061,IMPACT468,,,,,Lung,False,WHITE,Tumor,Primary,Male,False,0.0,,67.80551905,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0014,IMPACT468,,Ovary,,,Lung,False,WHITE,Tumor,Metastasis,Female,True,0.0,10.0,1.938239159,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3013,IMPACT468,,,1.18,Stable,Lung,,WHITE,Tumor,Primary,Male,,27.6703390395,20.0,62.22076216,1.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0265,IMPACT468,142.97,,0.12,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,7.78228285485,30.0,32.88436268,0.0
+90.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.0053,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.05288666489,10.0,4.237844941,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2937,IMPACT468,,Lung,0.58,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,4.32349047492,40.0,0.952693824,0.0
+59.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.5058,IMPACT468,,Lymph Node,1.22,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,32.8585276094,70.0,32.32588699,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0042,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,0.0,20.0,1.576872536,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.078,IMPACT468,2006.1,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,1.72939618997,30.0,0.492772668,0.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.228,IMPACT468,,,0.12,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,7.78228285485,30.0,56.20893561,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2682,IMPACT468,,Neck,0.63,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,19.8880561846,80.0,34.78975033,0.0
+61.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.2994,IMPACT468,,Scapula,0.84,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,9.51167904482,30.0,19.1195795,0.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3375,IMPACT468,,Lymph Node,0.12,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,11.2410752348,40.0,15.80157687,1.0
+59.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.0124,IMPACT468,,Pelvis,0.0,Stable,Lung,True,OTHER,Tumor,Metastasis,Male,False,0.864698094984,,100.7227332,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1181,IMPACT468,,Mediastinum,0.72,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,6.05288666489,30.0,34.92115637,0.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1258,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,8.64698094984,20.0,32.32588699,0.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0018,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,False,1.72939618997,50.0,29.73061761,0.0
+50.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.3118,IMPACT468,,Epidural,0.11,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,0.864698094984,50.0,5.190538765,0.0
+77.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.1965,IMPACT468,,,0.13,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,8.64698094984,10.0,3.120893561,1.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.145,IMPACT468,15.13,Pleura,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,4.32349047492,40.0,27.95663601,1.0
+47.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0076,IMPACT468,,,0.0,Stable,Lung,False,UNKNOWN,Tumor,Primary,Male,True,1.72939618997,10.0,22.56898817,1.0
+40.0,Lung Adenocarcinoma,Unknown whether Spanish or not,False,0.0,IMPACT468,153.64,,0.06,Stable,Lung,False,OTHER,Tumor,Primary,Female,False,1.72939618997,20.0,1.609724047,0.0
+58.0,Poorly Differentiated Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.364,IMPACT468,,Lymph Node,2.64,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,5.1881885699,70.0,4.402102497,1.0
+51.0,Lung Adenocarcinoma,Dominican Republic,,0.0,IMPACT468,,Pleura,0.0,Stable,Lung,False,OTHER,Tumor,Metastasis,Female,False,2.59409428495,10.0,36.03810775,0.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3532,IMPACT468,389.13,Spine (Bone),1.25,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,5.1881885699,50.0,19.90801577,1.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0831,IMPACT468,318.72,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,5.1881885699,20.0,1.938239159,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0019,IMPACT468,1186.08,pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.91758475987,20.0,31.07752957,0.0
+54.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4877,IMPACT468,403.12,Lymph Node,2.55,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,1.72939618997,70.0,11.82654402,0.0
+65.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",False,,ctDx_lung_panel,198.14,,,,,False,OTHER,cfDNA,Metastasis,Male,False,,,12.22076216,1.0
+49.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0208,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,True,6.05288666489,20.0,2.956636005,1.0
+52.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.5893,IMPACT468,205.67,Lymph Node,1.24,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,29.3997352294,30.0,9.099868594,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.038,IMPACT468,156.57,Pleura,0.0,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,3.45879237993,30.0,9.034165572,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3153,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,20.7527542796,40.0,29.6977661,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2062,IMPACT468,,,0.15,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,4.32349047492,30.0,12.84494087,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2681,IMPACT468,,,0.82,Stable,Lung,True,WHITE,Tumor,Primary,Male,True,15.5645657097,30.0,24.08015769,1.0
+84.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1178,IMPACT468,953.56,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,3.45879237993,20.0,26.05124836,1.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2674,IMPACT468,,,0.12,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,8.64698094984,40.0,11.30091984,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0,IMPACT468,292.12,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,0.864698094984,10.0,12.87779238,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Male,True,,,53.77792378,1.0
+31.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,3.45879237993,20.0,27.62812089,1.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0353,IMPACT468,,,0.06,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,2.59409428495,30.0,181.2746386,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5134,IMPACT468,,Liver,0.71,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,6.91758475987,60.0,26.7739816,1.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0051,IMPACT468,,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,0.864698094984,10.0,14.98028909,0.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0087,IMPACT468,1405.77,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,6.91758475987,30.0,1.609724047,1.0
+87.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Male,False,22.3747433897,,1.609724047,1.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1299,IMPACT468,,Pleural Fluid,0.07,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.91758475987,,1.576872536,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2449,IMPACT468,,Liver,0.13,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,6.91758475987,20.0,19.31668857,1.0
+68.0,Non-Small Cell Lung Cancer,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.0443,IMPACT468,,Lymph Node,0.06,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,8.64698094984,20.0,8.475689882,1.0
+72.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.1935,IMPACT468,,Brain,0.22,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,8.64698094984,30.0,34.46123522,0.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5921,IMPACT468,,Soft Tissue,0.59,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,1.72939618997,10.0,30.71616294,0.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.018,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,6.91758475987,10.0,3.843626807,0.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,,Soft Tissue,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,16.4292638047,20.0,29.66491459,0.0
+72.0,Lung Adenocarcinoma,Unknown whether Spanish or not,True,0.001,IMPACT468,20.44,,0.0,Stable,Lung,False,UNKNOWN,Tumor,Primary,Female,True,14.6998676147,10.0,20.26938239,1.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0854,IMPACT468,,,0.1,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,12.1057733298,20.0,16.13009198,1.0
+56.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Unknown,False,WHITE,cfDNA,Primary,Male,False,2.79684292371,,5.716162943,0.0
+62.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.3454,IMPACT468,,Femur,0.87,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,10.3763771398,30.0,31.07752957,0.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0629,IMPACT468,,Bone,0.06,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,10.3763771398,20.0,4.862023653,1.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2383,IMPACT468,,,0.54,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,8.64698094984,40.0,3.547963206,1.0
+74.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.0566,IMPACT468,,,0.0,Stable,Lung,True,PT REFUSED TO ANSWER,Tumor,Primary,Female,True,4.32349047492,30.0,31.07752957,0.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0055,IMPACT468,,Liver,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,1.72939618997,10.0,46.41918528,1.0
+66.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,False,,ACCESS129,,,-1.0,,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Primary,Female,True,5.59368584742,,29.46780552,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,True,16.7810575422,,30.42049934,0.0
+79.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0708,IMPACT468,,,0.05,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,2.59409428495,20.0,27.26675427,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0061,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,4.32349047492,10.0,2.102496715,1.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2858,IMPACT468,,,0.18,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,4.32349047492,30.0,1.839684625,0.0
+37.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.1363,IMPACT468,,Lymph Node,0.22,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,9.51167904482,50.0,5.091984231,1.0
+59.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.4411,IMPACT468,,Brain,2.19,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,5.1881885699,60.0,3.613666229,1.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0087,IMPACT468,,Lymph Node,,,Lung,False,WHITE,Tumor,Metastasis,Female,True,0.0,10.0,2.726675427,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.106,IMPACT468,,Peritoneum,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,6.91758475987,30.0,9.034165572,0.0
+74.0,Lung Squamous Cell Carcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.1193,IMPACT468,,,0.26,Stable,Lung,False,OTHER,Tumor,Primary,Male,True,1.72939618997,20.0,16.59001314,1.0
+66.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,,ACCESS129,,,-1.0,,Lung,,WHITE,cfDNA,Primary,Female,,11.1873716948,,21.25492773,1.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Male,True,5.59368584742,,1.839684625,1.0
+44.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3555,IMPACT468,,,0.81,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,6.05288666489,60.0,8.311432326,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0296,IMPACT468,,,0.17,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,2.59409428495,20.0,0.131406045,0.0
+59.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.3884,IMPACT468,,Liver,0.19,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,51.017187604,70.0,30.38764783,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3073,IMPACT468,,Lymph Node,0.06,Stable,Lung,,WHITE,Tumor,Metastasis,Female,,9.51167904482,70.0,28.48226018,0.0
+64.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Male,True,,,27.95663601,1.0
+44.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.7708,IMPACT468,,Lymph node,0.46,Do not report,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,3.45879237993,,28.74507227,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0741,IMPACT468,,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,4.32349047492,30.0,9.526938239,1.0
+68.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.1603,IMPACT468,,Lymph Node,0.2,Stable,Lung,False,OTHER,Tumor,Metastasis,Male,True,3.45879237993,20.0,9.724047306,1.0
+56.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,2.168199737,1.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0827,IMPACT468,,Chest Wall,0.16,Stable,Lung,,WHITE,Tumor,Metastasis,Female,,9.51167904482,20.0,3.120893561,1.0
+78.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0002,IMPACT468,210.16,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,10.3763771398,20.0,2.923784494,1.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0768,IMPACT468,,,0.24,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,True,5.1881885699,40.0,30.35479632,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,False,,,37.48357424,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,5.584756899,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6053,IMPACT468,,Brain,0.69,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,40.0,29.56636005,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1097,IMPACT468,156.57,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.05288666489,10.0,9.625492773,1.0
+84.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.3026,IMPACT468,,,0.4,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,8.64698094984,30.0,5.190538765,1.0
+46.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4354,IMPACT468,,Bone,0.82,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,30.0,28.74507227,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0028,IMPACT468,,,0.17,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,6.91758475987,20.0,36.56373193,0.0
+44.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,6.91758475987,30.0,8.508541393,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0027,IMPACT468,,Pleural Fluid,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,1.72939618997,10.0,29.46780552,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,9.099868594,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4818,IMPACT468,,,1.51,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,6.91758475987,20.0,4.073587385,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0401,IMPACT468,46.45,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,0.864698094984,10.0,10.24967148,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0002,IMPACT468,19.95,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,2.59409428495,20.0,15.90013141,0.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Primary,Male,True,0.0,,1.346911958,0.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.6039,IMPACT468,924.37,Bone,2.57,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,7.78228285485,50.0,28.74507227,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.117,IMPACT468,,,13.28,Instable,Lung,False,WHITE,Tumor,Primary,Male,True,29.3997352294,,44.1195795,0.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0036,IMPACT468,,Lymph Node,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,1.72939618997,10.0,23.55453351,1.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0002,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,0.864698094984,10.0,2.825229961,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.4716,IMPACT468,128.54,Pleura,3.33,Indeterminate,Lung,False,WHITE,Tumor,Metastasis,Male,False,2.59409428495,60.0,0.689881735,0.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Male,True,,,11.72798949,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0295,IMPACT468,,Abdomen,0.0,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Metastasis,Male,False,6.05288666489,10.0,32.3587385,0.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0168,IMPACT468,,,0.15,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,10.3763771398,10.0,20.23653088,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3138,IMPACT468,,Liver,0.63,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,2.59409428495,60.0,29.13929041,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0008,IMPACT468,244.09,Lymph Node,0.08,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,1.72939618997,20.0,30.94612352,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0115,IMPACT468,108.55,Vertebrate,0.0,Stable,Lung,False,PT REFUSED TO ANSWER,Tumor,Metastasis,Female,True,0.864698094984,10.0,24.86859396,0.0
+57.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0219,IMPACT468,,,0.67,Stable,Lung,True,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,True,2.59409428495,10.0,24.37582129,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.5056,IMPACT468,485.17,Vertebrate,0.21,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,1.72939618997,10.0,2.660972405,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2868,IMPACT468,,,1.28,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,12.1057733298,30.0,16.32720105,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0586,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,2.59409428495,20.0,62.38501971,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1526,IMPACT468,14.08,,0.0,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,1.72939618997,20.0,0.229960578,0.0
+,Lung Adenocarcinoma,,,0.4069,IMPACT468,,Lymph Node,0.32,Stable,Lung,False,,Tumor,Metastasis,Female,True,13.8351695197,50.0,0.755584757,0.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.3054,IMPACT468,,Scalp,0.47,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,6.91758475987,30.0,29.33639947,0.0
+60.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,11.69513798,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0072,IMPACT468,,Liver,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,3.45879237993,10.0,20.0065703,0.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4374,IMPACT468,,Brain,0.36,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,6.05288666489,40.0,12.84494087,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1538,IMPACT468,,Vertebrate,0.78,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,45.8289990341,40.0,52.39816032,1.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.294,IMPACT468,283.9,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,5.1881885699,40.0,28.90932983,0.0
+63.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4871,IMPACT468,,,2.26,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,5.1881885699,30.0,67.90407359,0.0
+88.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.049,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,3.45879237993,20.0,4.467805519,1.0
+57.0,Lung Adenocarcinoma,,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,True,,,0.85413929,0.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6779,IMPACT468,,Pleura,2.32,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,True,7.78228285485,70.0,1.67542707,0.0
+69.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,False,,,170.4336399,0.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0017,IMPACT468,,,0.0,Do not report,Lung,False,WHITE,Tumor,Primary,Female,True,0.0,10.0,19.54664915,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4223,IMPACT468,,,1.57,Do not report,Lung,True,WHITE,Tumor,Primary,Female,True,6.05288666489,30.0,28.8107753,0.0
+59.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Male,True,,,11.07095926,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1027,IMPACT468,,Lymph Node,0.23,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,0.864698094984,5.0,18.03547963,1.0
+75.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.642,IMPACT468,,Brain,1.92,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,12.9704714248,50.0,1.379763469,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Female,True,,,1.511169514,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0834,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,12.1057733298,20.0,1.97109067,1.0
+61.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4043,IMPACT468,,Brain,1.3,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,18.1586599947,60.0,19.21813403,1.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.6734,IMPACT468,,Liver,1.26,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,5.1881885699,60.0,2.036793693,0.0
+52.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.0016,IMPACT468,,,0.0,Stable,Lung,True,OTHER,Tumor,Primary,Female,True,0.864698094984,10.0,7.29303548,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.008,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,5.1881885699,30.0,6.274638633,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0515,IMPACT468,,,0.1,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,2.59409428495,40.0,15.63731932,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0021,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,1.72939618997,20.0,4.862023653,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.027,IMPACT468,,,0.07,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,13.8351695197,20.0,2.956636005,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1164,IMPACT468,,,0.18,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,9.51167904482,40.0,22.73324573,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,13.69908016,0.0
+51.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2426,IMPACT505,,Soft Tissue,0.48,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,4.92208341947,60.0,33.40998686,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2288,IMPACT468,,Sacrum,0.05,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,3.45879237993,10.0,3.515111695,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0006,IMPACT468,,Pleura,0.11,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,20.0,26.64257556,0.0
+84.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,25.39421813,0.0
+79.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1984,IMPACT468,,Liver,0.18,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,80.0,1.11695138,0.0
+85.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2073,IMPACT468,,Lymph Node,0.17,Stable,Lung,True,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,38.9114142743,40.0,148.6202365,1.0
+54.0,Lung Adenosquamous Carcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,,WHITE,cfDNA,Unknown,Female,,16.7810575422,,5.453350854,1.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Male,True,,,23.94875164,0.0
+67.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.5377,IMPACT468,,Bone,1.73,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,8.64698094984,10.0,2.759526938,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,4.829172142,1.0
+57.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,,WHITE,cfDNA,Unknown,Female,,2.79684292371,,21.91195795,1.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0516,IMPACT468,3814.26,,0.34,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,2.59409428495,30.0,0.788436268,0.0
+83.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,27.10249671,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5371,IMPACT468,,CSF,1.45,Do not report,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,True,10.3763771398,,17.73981603,1.0
+52.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0071,IMPACT468,,,0.05,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,1.72939618997,10.0,25.98554534,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3597,IMPACT468,,Vertebrate,0.31,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,5.1881885699,10.0,3.712220762,0.0
+55.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Female,False,,,17.27989488,1.0
+44.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.166,IMPACT468,,Lymph Node,0.19,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,3.45879237993,40.0,14.61892247,1.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0516,IMPACT468,163.21,,0.18,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,5.1881885699,30.0,10.80814717,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Male,True,,,26.28120894,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.001,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,1.72939618997,,39.65177398,1.0
+65.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.2123,IMPACT468,,,0.06,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Female,False,2.59409428495,60.0,5.387647832,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0001,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,2.59409428495,10.0,26.74113009,0.0
+85.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.1916,IMPACT468,,,0.46,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,8.64698094984,40.0,8.541392904,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2918,IMPACT468,1123.68,Liver,0.56,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,True,9.51167904482,30.0,3.38370565,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0032,IMPACT468,,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,12.1057733298,10.0,27.03679369,0.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3541,IMPACT468,,Adrenal Gland,0.4,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,6.91758475987,50.0,18.65965834,1.0
+52.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,7.128777924,1.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.5222,IMPACT468,,Soft Tissue,0.86,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,12.9704714248,30.0,6.110381078,1.0
+50.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0017,IMPACT468,,,0.94,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,6.05288666489,10.0,11.53088042,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.2986,IMPACT468,616.12,Pleura,0.31,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,False,3.45879237993,40.0,8.442838371,0.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Male,False,8.39052877112,,26.31406045,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,4.862023653,0.0
+78.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0734,IMPACT468,,Bone,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,5.1881885699,40.0,22.73324573,1.0
+40.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3888,IMPACT468,,Lymph Node,0.64,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,2.59409428495,20.0,44.25098555,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,3.515111695,1.0
+47.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0074,IMPACT468,,Pleural Fluid,-1.0,Do not report,Lung,,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,,8.64698094984,20.0,20.63074901,0.0
+51.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,7.785808147,1.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2406,IMPACT468,56.62,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,2.59409428495,10.0,20.82785808,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,PT REFUSED TO ANSWER,cfDNA,Metastasis,Female,True,,,34.72404731,0.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0129,IMPACT468,80.98,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,19.8880561846,10.0,8.738501971,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,False,,,1.839684625,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,BLACK OR AFRICAN AMERICAN,cfDNA,Metastasis,Male,True,,,24.73718791,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.1903,IMPACT468,,,0.64,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,6.05288666489,30.0,2.168199737,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0004,IMPACT468,89.33,Lymph node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,1.72939618997,10.0,28.28515112,0.0
+36.0,Sarcomatoid Carcinoma of the Lung,Non-Spanish; Non-Hispanic,True,0.1846,IMPACT468,,,0.1,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Male,False,2.59409428495,40.0,0.525624179,0.0
+65.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,False,0.0603,IMPACT468,,Lymph node,0.0,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,31.1291314194,30.0,0.919842313,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1237,IMPACT468,204.3,Hilar LN,0.22,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,14.6998676147,10.0,24.63863338,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,True,,,24.54007884,0.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,True,8.39052877112,,0.689881735,0.0
+50.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.339,IMPACT468,,,0.89,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,5.1881885699,40.0,26.90538765,0.0
+89.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,21.55059133,1.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2935,IMPACT468,2497.14,Pleural Fluid,0.1,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Female,True,1.72939618997,20.0,0.459921156,0.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,"bone, adrenal, lymph nodes",-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,False,0.0,,22.37187911,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,False,,,0.657030223,0.0
+64.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.4987,IMPACT468,,,2.0,Stable,Lung,,WHITE,Tumor,Primary,Female,,16.4292638047,20.0,1.379763469,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3693,IMPACT468,,,0.47,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,11.2410752348,40.0,0.328515112,0.0
+73.0,Poorly Differentiated Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.4836,IMPACT468,,Lymph node,0.92,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,7.78228285485,30.0,2.792378449,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,574.36,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,23.71879106,0.0
+40.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,1.708278581,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2074,IMPACT468,,Lymph node,0.06,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,True,6.05288666489,30.0,1.478318003,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1749,IMPACT468,,Brain,0.21,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,4.32349047492,40.0,24.04730618,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,True,11.2410752348,20.0,11.72798949,0.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,True,5.59368584742,,19.4152431,1.0
+86.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,21.94480946,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0174,IMPACT468,,,0.41,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,6.05288666489,40.0,23.35742444,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,True,WHITE,Tumor,Primary,Female,False,5.1881885699,30.0,65.11169514,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0843,IMPACT468,,Soft Tissue,0.27,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,60.0,1.872536137,0.0
+80.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0075,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,3.45879237993,20.0,5.453350854,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,BLACK OR AFRICAN AMERICAN,cfDNA,Metastasis,Male,True,,,14.48751643,0.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,0.131406045,0.0
+72.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.115,IMPACT468,,Pleura,2.19,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,True,5.1881885699,50.0,4.237844941,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,8.409986859,0.0
+67.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.05,Stable,Lung,False,WHITE,Tumor,Primary,Male,True,0.0,10.0,4.730617608,1.0
+90.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2937,IMPACT468,,Pleura,0.98,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,False,2.59409428495,,39.09329829,1.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1136,IMPACT468,,Lymph Node,0.05,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,5.1881885699,10.0,26.478318,0.0
+65.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,False,,,0.262812089,0.0
+82.0,Lung Adenosquamous Carcinoma,Non-Spanish; Non-Hispanic,,0.0946,IMPACT468,,,0.22,Stable,Lung,False,WHITE,Tumor,Primary,Female,True,3.45879237993,20.0,1.281208936,1.0
+47.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,22.17477004,0.0
+49.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.6719,IMPACT468,,,2.58,Stable,Lung,,WHITE,Tumor,Primary,Male,,5.1881885699,50.0,19.21813403,1.0
+56.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,False,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,7.785808147,1.0
+66.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0188,IMPACT468,,,0.05,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,7.78228285485,30.0,25.52562418,0.0
+61.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,0.2625,IMPACT468,,Lymph Node,0.23,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,4.32349047492,40.0,22.30617608,0.0
+58.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0013,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,0.0,10.0,20.69645204,0.0
+82.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.1575,IMPACT468,,Adrenal Gland,0.26,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,12.1057733298,40.0,2.52956636,0.0
+48.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,1.149802891,1.0
+68.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.071,IMPACT468,,Liver,0.05,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,3.45879237993,20.0,1.248357424,0.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,12.22076216,1.0
+84.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0098,IMPACT468,,Bone,0.1,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,21.6174523746,20.0,10.38107753,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,Skin,0.51,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,28.5350371345,30.0,8.902759527,0.0
+44.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.4298,IMPACT468,,Liver,1.97,Stable,Lung,True,WHITE,Tumor,Metastasis,Male,False,8.64698094984,40.0,15.3088042,1.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,False,0.0,,28.77792378,1.0
+78.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Male,False,2.79684292371,,18.36399474,0.0
+71.0,Lung Squamous Cell Carcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",,0.0288,IMPACT468,,,0.33,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Male,False,2.59409428495,60.0,8.015768725,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1666,IMPACT468,,Bone,0.1,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,3.45879237993,60.0,7.358738502,1.0
+55.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.054,IMPACT468,,,0.11,Stable,Lung,True,WHITE,Tumor,Primary,Female,True,46.6936971291,10.0,21.55059133,0.0
+72.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0682,IMPACT468,371.33,,0.05,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,12.9704714248,10.0,1.872536137,1.0
+60.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.2384,IMPACT468,469.23,Lymph Node,0.26,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,2.59409428495,10.0,2.858081472,1.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.173,IMPACT468,,,0.46,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,6.05288666489,40.0,46.64914586,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0893,IMPACT468,1776.28,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,6.91758475987,20.0,3.94218134,1.0
+77.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.003,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,6.05288666489,20.0,18.33114323,1.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.2798,IMPACT468,,,0.4,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,15.5645657097,30.0,14.91458607,1.0
+62.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,737.29,,,,,False,ASIAN-FAR EAST/INDIAN SUBCONT,cfDNA,Metastasis,Female,False,,,6.603153745,1.0
+73.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Female,True,,,44.54664915,1.0
+56.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,BLACK OR AFRICAN AMERICAN,cfDNA,Metastasis,Male,False,,,1.773981603,1.0
+65.0,Lung Adenocarcinoma,Unknown whether Spanish or not,,,ctDx_lung_panel,,,,,,False,UNKNOWN,cfDNA,Metastasis,Male,False,,,1.018396846,0.0
+54.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.7238,IMPACT468,,Lymph Node,3.07,Do not report,Lung,True,WHITE,Tumor,Metastasis,Male,True,5.1881885699,50.0,5.420499343,1.0
+79.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.0614,IMPACT468,487.22,Lymph Node,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,11.2410752348,50.0,5.091984231,0.0
+70.0,Lung Adenosquamous Carcinoma,Non-Spanish; Non-Hispanic,,0.345,IMPACT468,,Lymph Node,0.44,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,12.9704714248,50.0,5.190538765,1.0
+69.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,21.09067017,0.0
+66.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,False,,,9.789750329,1.0
+64.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Male,False,,,11.760841,1.0
+58.0,Large Cell Neuroendocrine Carcinoma,Non-Spanish; Non-Hispanic,,0.5642,IMPACT468,,Lymph Node,1.16,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Metastasis,Male,False,10.3763771398,90.0,10.74244415,1.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,True,WHITE,cfDNA,Metastasis,Female,False,,,21.94480946,0.0
+52.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.1495,IMPACT468,124.01,Lymph Node,0.06,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Female,False,2.59409428495,20.0,0.492772668,0.0
+79.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,False,0.3621,IMPACT468,,Lymph Node,0.22,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,6.91758475987,10.0,4.172141919,0.0
+70.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,True,0.0,IMPACT468,,,0.06,Stable,Lung,False,BLACK OR AFRICAN AMERICAN,Tumor,Primary,Female,False,3.45879237993,30.0,2.463863338,1.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4063,IMPACT468,,,0.99,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Primary,Female,False,4.32349047492,40.0,0.525624179,0.0
+53.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Female,False,,,17.6412615,1.0
+72.0,Lung Adenocarcinoma,,,0.0559,IMPACT468,,Abdomen,0.0,Stable,Lung,True,OTHER,Tumor,Metastasis,Male,False,6.05288666489,50.0,17.70696452,1.0
+71.0,Lung Neuroendocrine Tumor,Non-Spanish; Non-Hispanic,,0.0228,IMPACT468,,Pleura,0.0,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,3.45879237993,30.0,24.34296978,0.0
+58.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.096,IMPACT468,,Adrenal Gland,0.34,Stable,Lung,False,ASIAN-FAR EAST/INDIAN SUBCONT,Tumor,Metastasis,Male,False,6.05288666489,20.0,18.65965834,0.0
+80.0,Lung Adenosquamous Carcinoma,Non-Spanish; Non-Hispanic,True,0.2128,IMPACT468,,,0.55,Stable,Lung,False,WHITE,Tumor,Primary,Male,False,9.51167904482,50.0,5.354796321,0.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.4027,IMPACT468,,Spine,0.78,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,True,1.72939618997,60.0,28.58081472,0.0
+81.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,0.0785,IMPACT468,,,0.2,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,7.78228285485,20.0,17.70696452,0.0
+76.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT468,,,0.0,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,2.59409428495,10.0,42.21419185,0.0
+71.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,True,0.555,IMPACT468,,Lymph node,1.05,Stable,Lung,True,WHITE,Tumor,Metastasis,Female,True,8.64698094984,50.0,66.85282523,0.0
+52.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Male,False,0.0,,8.508541393,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.3068,IMPACT468,,Pleural Fluid,1.02,Stable,Lung,,WHITE,Tumor,Unknown,Female,,0.0,40.0,14.35611038,1.0
+43.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,0.0496,IMPACT468,,Lymph Node,0.05,Stable,Lung,,WHITE,Tumor,Metastasis,Female,,38.0467161793,30.0,18.98817346,0.0
+81.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,,WHITE,cfDNA,Primary,Male,,8.39052877112,,24.83574244,1.0
+77.0,Lung Squamous Cell Carcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,LN,-1.0,,Lung,False,WHITE,cfDNA,Primary,Male,False,8.39052877112,,3.38370565,0.0
+74.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1144,IMPACT468,,,0.64,Stable,Lung,False,WHITE,Tumor,Primary,Female,False,3.45879237993,,1.314060447,0.0
+51.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.1616,IMPACT468,,Paraspinal,0.16,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,3.45879237993,,29.27069645,0.0
+63.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,0.0928,IMPACT468,,Pleural Fluid,0.13,Stable,Lung,False,WHITE,Tumor,Metastasis,Male,False,7.78228285485,10.0,3.120893561,1.0
+71.0,Lung Adenocarcinoma,Unknown whether Spanish or not,True,0.5213,IMPACT505,,Bone,1.54,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,7.3831251292,50.0,1.248357424,0.0
+59.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,False,8.39052877112,,1.609724047,1.0
+80.0,Lung Adenocarcinoma,"Spanish  NOS; Hispanic NOS, Latino NOS",True,0.6459,IMPACT505,118.53,Brain,4.08,Indeterminate,Lung,False,OTHER,Tumor,Metastasis,Male,False,9.84416683894,70.0,15.11169514,0.0
+67.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,True,,ACCESS129,,,-1.0,,Lung,False,WHITE,cfDNA,Primary,Female,False,22.3747433897,,3.64651774,1.0
+70.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,,0.0,IMPACT505,,Pleura,0.02,Stable,Lung,False,WHITE,Tumor,Metastasis,Female,False,4.92208341947,30.0,15.0131406,0.0
+67.0,Non-Small Cell Lung Cancer,Non-Spanish; Non-Hispanic,,,ctDx_lung_panel,,,,,,False,WHITE,cfDNA,Metastasis,Male,True,,,13.79763469,0.0
+82.0,Lung Adenocarcinoma,Non-Spanish; Non-Hispanic,False,0.0024,IMPACT505,,,,,Lung,False,WHITE,Tumor,Primary,Female,False,0.0,5.0,14.15900131,0.0

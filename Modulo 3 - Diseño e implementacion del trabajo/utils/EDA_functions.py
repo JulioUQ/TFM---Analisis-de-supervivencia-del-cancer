@@ -228,7 +228,7 @@ def plot_categorical_subplots(
         showlegend=False,
         title=dict(
             text=(
-                f"<span style='font-size: 24px;'><b>Análisis de Variables: {group_name}</b></span>"
+                f"<span style='font-size: 24px;'><b>{group_name}</b></span>"
                 f"<br><span style='color: gray;'>Cohorte: {dataset_name}</span>"
             ),
             x=0.5, y=0.94,
@@ -327,7 +327,7 @@ def plot_numerical_subplots(
         showlegend=False,
         title=dict(
             text=(
-                f"<span style='font-size: 24px;'><b>Análisis de Variables Numéricas: {group_name}</b></span>"
+                f"<span style='font-size: 24px;'><b>{group_name}</b></span>"
                 f"<br><span style='color: gray;'>Cohorte: {dataset_name}</span>"
             ),
             x=0.5, y=0.94,
