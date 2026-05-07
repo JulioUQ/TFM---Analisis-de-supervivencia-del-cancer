@@ -2,6 +2,6 @@
 *.pkl
 outputs/
 **/outputs/
-
+**/models/
 # Ignorar archivos temporales de Word
 ~$*

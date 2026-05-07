@@ -372,7 +372,7 @@ def plot_km_global(
         col=1
     )
 
-    main_title = title or f"Curva de Kaplan-Meier: {group_name}"
+    main_title = title or f"{group_name}"
     sub_title = subtitle or f"Cohorte: {dataset_name} · n = {n_total:,}"
 
     fig.update_xaxes(
