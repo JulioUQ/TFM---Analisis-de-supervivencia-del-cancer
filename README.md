@@ -201,7 +201,7 @@ La memoria incorpora:
 
 ## Estado del proyecto
 
-El repositorio se encuentra en desarrollo como parte del TFM. La estructura y los resultados pueden evolucionar durante la redacción final de la memoria, especialmente en:
+El repositorio se encuentra finalizado como parte del TFM. La estructura y los resultados pueden evolucionar durante la redacción final de la memoria, especialmente en:
 
 - consolidación de notebooks,
 - limpieza de scripts,
