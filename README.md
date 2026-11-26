@@ -1,4 +1,16 @@
-# TFM — Análisis de supervivencia del cáncer
+# TFM · Análisis de supervivencia del cáncer
+
+Trabajo de fin de máster que compara modelos de supervivencia para cohortes de cáncer de mama y pulmón y estudia el valor pronóstico de variables genómicas.
+
+## Tecnologías
+
+Python y análisis de supervivencia
+
+## Explorar el repositorio
+
+- [`ANEXOS - Glosario y datasets.md`](./ANEXOS%20-%20Glosario%20y%20datasets.md)
+
+## Documentación
 
 Repositorio del Trabajo de Fin de Máster **“Supervivencia en Cáncer de Mama y Pulmón: Identificación de Biomarcadores Genómicos Pronósticos mediante Modelos Estadísticos Avanzados y Validación Cruzada en Cohortes Independientes”**.
 
@@ -8,7 +20,7 @@ Máster Universitario en Ciencia de Datos
 Director: Antonio Ruiz Falco Rojas  
 PRA: Laia Subirats Maté
 
-## Descripción del proyecto
+#### Descripción del proyecto
 
 Este repositorio reúne la memoria, documentación, código, datos derivados, figuras y resultados asociados al TFM. El objetivo del trabajo es desarrollar, comparar y validar modelos de análisis de supervivencia aplicados a cohortes oncológicas de cáncer de mama y cáncer de pulmón no microcítico.
 
@@ -25,7 +37,7 @@ El análisis se centra en la variable de supervivencia global, definida mediante
 - `duration`: tiempo de seguimiento o supervivencia global en meses.
 - `event`: indicador binario del evento de interés, donde `1` representa fallecimiento observado y `0` representa observación censurada.
 
-## Objetivos principales
+#### Objetivos principales
 
 1. Preparar y documentar un pipeline reproducible de adquisición, limpieza, exploración y preprocesamiento de datos clínicos y moleculares.
 2. Implementar modelos de supervivencia clásicos, de machine learning y de deep learning.
@@ -34,7 +46,7 @@ El análisis se centra en la variable de supervivencia global, definida mediante
 5. Identificar variables pronósticas relevantes mediante técnicas de interpretabilidad.
 6. Mantener un repositorio organizado, trazable y compatible con buenas prácticas de reproducibilidad.
 
-## Modelos implementados
+#### Modelos implementados
 
 El TFM implementa cuatro enfoques con distinto nivel de complejidad:
 
@@ -45,7 +57,7 @@ El TFM implementa cuatro enfoques con distinto nivel de complejidad:
 | Random Survival Forest | Modelo de machine learning para capturar no linealidad e interacciones |
 | DeepSurv | Modelo de deep learning basado en la pérdida parcial de Cox |
 
-## Métricas de evaluación
+#### Métricas de evaluación
 
 Los modelos se comparan mediante:
 
@@ -55,7 +67,7 @@ Los modelos se comparan mediante:
 - **Estratificación de riesgo**: separación de pacientes en grupos de bajo y alto riesgo.
 - **Validación externa cruzada**: entrenamiento en una cohorte y evaluación en otra, especialmente entre METABRIC y TCGA-BRCA.
 
-## Estructura del repositorio
+#### Estructura del repositorio
 
 ```text
 TFM---ANALISIS-DE-SUPERVIVENCIA-DEL-CANCER/
@@ -105,7 +117,7 @@ TFM---ANALISIS-DE-SUPERVIVENCIA-DEL-CANCER/
 └── README.md
 ```
 
-## Flujo de trabajo reproducible
+#### Flujo de trabajo reproducible
 
 El flujo general del proyecto es:
 
@@ -125,7 +137,7 @@ El flujo general del proyecto es:
 9. **Interpretabilidad y análisis comparativo**.
 10. **Generación de figuras, tablas y resultados para la memoria**.
 
-## Instalación del entorno
+#### Instalación del entorno
 
 > Ajusta el nombre del entorno y las versiones según el archivo final `requirements.txt` o `environment.yml`.
 
@@ -156,7 +168,7 @@ shap
 jupyter
 ```
 
-## Ejecución recomendada
+#### Ejecución recomendada
 
 1. Revisar la documentación de los módulos.
 2. Colocar los datasets clínicos en la carpeta correspondiente de `Modulo 3/data/`.
@@ -174,7 +186,7 @@ jupyter notebook
 
 ---
 
-## Datos y privacidad
+#### Datos y privacidad
 
 Este repositorio está diseñado para documentar código, memoria y resultados derivados. Los datos clínicos utilizados proceden de repositorios públicos o de acceso autorizado, pero **no deben publicarse datos sensibles, identificadores de pacientes ni ficheros que incumplan las condiciones de uso de las fuentes originales**.
 
@@ -186,7 +198,7 @@ Buenas prácticas aplicadas:
 - Respetar las condiciones de uso de cBioPortal, TCGA, METABRIC y MSK.
 - Mantener trazabilidad entre datos de entrada, preprocesamiento y resultados.
 
-## Resultados principales documentados
+#### Resultados principales documentados
 
 La memoria incorpora:
 
@@ -199,7 +211,7 @@ La memoria incorpora:
 - Interpretabilidad mediante importancia de variables y SHAP.
 - Validación externa cruzada entre METABRIC y TCGA-BRCA.
 
-## Estado del proyecto
+#### Estado del proyecto
 
 El repositorio se encuentra finalizado como parte del TFM. La estructura y los resultados pueden evolucionar durante la redacción final de la memoria, especialmente en:
 
@@ -210,7 +222,7 @@ El repositorio se encuentra finalizado como parte del TFM. La estructura y los r
 - revisión de documentación,
 - preparación de anexos y materiales reproducibles.
 
-## Licencia y uso
+#### Licencia y uso
 
 Este trabajo se desarrolla con fines académicos. Antes de reutilizar código, figuras o resultados, revisa:
 
@@ -220,7 +232,7 @@ Este trabajo se desarrolla con fines académicos. Antes de reutilizar código, f
 - la normativa académica aplicable al TFM.
 
 
-# Enlaces de interés:
+### Enlaces de interés:
 
 - https://www.infosalus.com/salud-investigacion/noticia-desarrollan-sistema-inteligencia-artificial-predecir-supervivencia-cancer-mama-20200610163547.html
  
